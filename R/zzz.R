@@ -1,11 +1,15 @@
-# Package setup and configuration
-# This file is loaded when the package is attached
-
-.onAttach <- function(libname, pkgname) {
-  packageStartupMessage("Loading bedcaster package for bed occupancy forecasting")
-}
+#' Package setup and configuration
+#'
+#' These directives ensure the NAMESPACE is generated correctly
+#' for use with Rcpp, rstan, and rstantools.
+#'
+#' @import Rcpp
+#' @import methods
+#' @importFrom rstantools rstan_config
+#' @importFrom RcppParallel RcppParallelLibs
+#' @useDynLib bedcaster, .registration = TRUE
 
 .onLoad <- function(libname, pkgname) {
-  # Set up any package-specific options here if needed
-  invisible()
+  # Load Stan modules when package loads
+  Rcpp::loadModule("stan_fit4bedcaster_mod", what = TRUE)
 }

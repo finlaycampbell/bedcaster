@@ -39,12 +39,34 @@
 #' @importFrom rstan extract
 #' @importFrom stats plogis
 #' @export
-extract_stan <- function(par, results) {
+extract_stan <- function(par, results, output = c("raw", "shaped")) {
+
+  # match arg
+  output <- match.arg(output)
+
+  # extract value
   out <- rstan::extract(results$stan_fit, pars = par)[[1]]
 
-  if (grepl("logmean", par)) out %<>% exp
-  if (par %in% c("alerts_per_case", "alerts_background")) out %<>% exp
-  if (grepl("cfr", par) | grepl("prop_iso", par)) out %<>% plogis
+  # transform if need be
+  if (grepl("logmean", par)) out <- exp(out)
+  if (par %in% c("alerts_per_case", "alerts_background")) out <- exp(out)
+  if (grepl("cfr", par) | grepl("prop_iso", par)) out <- plogis(out)
+
+  if (output == "shaped") {
+    if (length(dim(out)) == 2) {
+      out <- data.frame(
+        iter = rep(seq_len(nrow(out)), times = ncol(out)),
+        index = rep(seq_len(ncol(out)), each = nrow(out)),
+        value = c(out)
+      )
+    } else {
+      out <- data.frame(
+        iter = seq_along(out),
+        value = out
+      )
+    }
+  }
 
   return(out)
+
 }

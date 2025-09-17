@@ -11,7 +11,7 @@
 #' @param incidence Optional tibble containing pre-calculated incidence data.
 #'   If NULL, incidence will be calculated from the linelist data.
 #'
-#' @return A tsibble (time series tibble) containing merged data with columns:
+#' @return A tibble containing merged data with columns:
 #' \itemize{
 #'   \item{date}{Date index}
 #'   \item{day}{Numeric day index (1, 2, 3, ...)}
@@ -28,7 +28,7 @@
 #'   \item Aggregates alerts data by date
 #'   \item Fills gaps in the time series with appropriate values
 #'   \item Creates a case inflation factor based on onset-to-confirmation delays
-#'   \item Converts to tsibble format for time series analysis
+#'   \item Converts to tibble format for analysis
 #' }
 #'
 #' The case inflation factor (prop) is calculated using a log-normal distribution
@@ -44,9 +44,11 @@
 #' }
 #'
 #' @importFrom dplyr full_join arrange group_by summarise mutate
-#' @importFrom tidyr replace_na
-#' @importFrom tsibble as_tsibble fill_gaps
+#' @importFrom stats setNames
+#' @importFrom tidyr replace_na complete
+#' @importFrom tibble as_tibble
 #' @importFrom distcrete distcrete
+#' @importFrom magrittr %>% %$%
 #' @export
 merge_data <- function(ll, alerts, etu_iso, delays, incidence = NULL) {
   if (is.null(incidence)) {
@@ -63,11 +65,13 @@ merge_data <- function(ll, alerts, etu_iso, delays, incidence = NULL) {
       by = "date"
     ) %>%
     arrange(date) %>%
-    as_tsibble(index = date) %>%
-    fill_gaps(cases = 0, etu = NA, iso = NA, alerts = NA) %>%
+    complete(
+      date = seq.Date(min(date), max(date), by = 1),
+      fill = list(cases = 0, etu = NA, iso = NA, alerts = NA)
+    ) %>%
+    as_tibble() %>%
     mutate(
       day = as.numeric(date - min(date) + 1),
-      cases = replace_na(cases, 0),
       ## fit distribution from onset to confirmation for case inflation
       prop = distcrete(
         name = "lnorm", interval = 1,

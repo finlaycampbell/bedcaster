@@ -4,8 +4,10 @@
 #' based on case incidence, alerts, and delay distributions. The model accounts
 #' for reporting delays and provides nowcasts and forecasts of healthcare demand.
 #'
-#' @param data A tsibble containing the merged time series data.
-#' @param model A compiled Stan model object.
+#' @param data A tibble containing the merged time series data.
+#' @param data_as_of Date of dataset used for calculating reporting delay.
+#' @param prior_onset_to_reporting Numeric vector of length 2 specifying the prior
+#'   for log-mean and log-sd of onset-to-reporting delay (default: c(log(5), 0.25)).
 #' @param prior_onset_to_etu Numeric vector of length 2 specifying the prior
 #'   for log-mean and log-sd of onset-to-ETU delay (default: c(log(5), 0.25)).
 #' @param prior_etu_to_survival Numeric vector of length 2 specifying the prior
@@ -52,14 +54,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Compile model
-#' model <- stan_model("inst/stan/occupancy_model_nowcast.stan")
 #'
 #' # Fit with default priors
-#' results <- fit_stan(data, model)
+#' results <- fit_stan(data)
 #'
 #' # Fit with custom priors
-#' results <- fit_stan(data, model,
+#' results <- fit_stan(data,
 #'   prior_cfr = c(qlogis(0.3), 0.2),
 #'   days_ahead = 14
 #' )
@@ -67,27 +67,40 @@
 #'
 #' @importFrom rstan sampling
 #' @importFrom splines bs
-#' @importFrom here here
-#' @importFrom rio export
-#' @importFrom glue glue
-#' @importFrom dplyr mutate
 #' @importFrom stats qlogis
+#' @importFrom parallel detectCores
+#' @importFrom distcrete distcrete
 #' @export
-fit_stan <- function(data, model,
-                     prior_onset_to_etu = c(log(5), 0.25),
-                     prior_etu_to_survival = c(log(10), 0.25),
-                     prior_etu_to_death = c(log(6), 0.25),
-                     prior_onset_to_iso = c(log(3), 0.25),
-                     prior_iso_to_release = c(log(3), 0.25),
-                     prior_cfr = c(qlogis(0.25), 0.25),
-                     prior_prop_iso = c(qlogis(0.8), 0.8),
-                     prior_alerts_background = c(log(50), 0.25),
-                     prior_alerts_per_case = c(log(10), 0.25),
-                     days_ahead = 28,
-                     n_knots = 15,
-                     n_iter = 100,
-                     alerts_background_window = 14,
-                     n_chains = 1) {
+fit_bedcaster <- function(data, data_as_of,
+                          prior_onset_to_reporting = c(0, 5, 0, 5),
+                          prior_onset_to_etu = c(0, 5, 0, 5),
+                          prior_etu_to_survival = c(0, 5, 0, 5),
+                          prior_etu_to_death = c(0, 5, 0, 5),
+                          prior_onset_to_iso = c(0, 5, 0, 5),
+                          prior_iso_to_release = c(0, 5, 0, 5),
+                          prior_cfr = c(qlogis(0.25), 0.25),
+                          prior_prop_iso = c(qlogis(0.8), 0.8),
+                          prior_alerts_background = c(log(50), 0.25),
+                          prior_alerts_per_case = c(log(10), 0.25),
+                          growthrate_asymptote_time = 20,
+                          growthrate_asymptote_spread = 5,
+                          days_ahead = 28,
+                          n_knots = 15,
+                          n_iter = 100,
+                          alerts_background_window = 14,
+                          n_chains = 1,
+                          n_cores = parallel::detectCores() - 1) {
+
+  # specify discrete lognormal
+  onset_to_reporting <- distcrete(
+    name = "lnorm", interval = 1,
+    meanlog = prior_onset_to_reporting["meanlog.mean"],
+    sdlog = prior_onset_to_reporting["sdlog.mean"]
+  )
+
+  # define probability of reporting for given delays
+  prop_cases_reported <- onset_to_reporting$p(as.numeric(data_as_of - data$date))
+
   ## generate spline matrix with buffer on either side to prevent extremes
   buffer <- 16
   spline <- t(bs(
@@ -96,6 +109,13 @@ fit_stan <- function(data, model,
     degree = 3,
     intercept = TRUE
   ))
+
+  # define the weight of the growth rate asymptote
+  growthrate_asymptote_weight <- plogis(
+    seq_len(days_ahead),
+    growthrate_asymptote_time,
+    growthrate_asymptote_spread
+  )
 
   sq_keep <- seq(buffer / 2 + 1, nrow(data) + buffer / 2)
   spline <- spline[, sq_keep]
@@ -133,25 +153,25 @@ fit_stan <- function(data, model,
     prior_prop_iso = prior_prop_iso,
     prior_alerts_background = prior_alerts_background,
     prior_alerts_per_case = prior_alerts_per_case,
-    prop_cases_observed = data$prop,
-    log_prop_cases_observed = log(data$prop),
+    log_prop_cases_reported = log(prop_cases_reported),
     n_alerts_background = n_alerts_background,
     alerts_background_ind = alerts_background_ind,
     n_spline_param = nrow(spline),
-    spline = spline
+    spline = spline,
+    growthrate_asymptote_weight = growthrate_asymptote_weight
   )
 
   init_fun <- function(...) {
     list(
       log_cases_missed =
-        log((1 + data$cases) / (stan_data$prop_cases_observed) - 1)
+        log((1 + data$cases) / (stan_data$prop_cases_reported) - 1)
     )
   }
 
-  options(mc.cores = parallel::detectCores() - 1)
+  options(mc.cores = n_cores)
 
-  stan_fit <- sampling(
-    model,
+  stan_fit <- rstan::sampling(
+    bedcaster:::stanmodels$bedcaster_deaths,
     data = stan_data,
     chains = n_chains,
     iter = n_iter,
@@ -167,14 +187,6 @@ fit_stan <- function(data, model,
   stan_data$day <- seq_len(stan_data$n_days)
   stan_data$date <- data$date
 
-  out <- list(stan_fit = stan_fit, data = stan_data)
+  list(stan_fit = stan_fit, data = stan_data)
 
-  export(
-    out,
-    here(
-      glue("outputs/results_{format(Sys.time(), '%Y-%m-%d_%H-%m')}.rds")
-    )
-  )
-
-  return(out)
 }

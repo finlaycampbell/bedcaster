@@ -34,7 +34,7 @@
 #' p <- vis_growth_rate(results, base_size = 14)
 #'
 #' # Save the plot
-#' p %>% save_plot("growth_rate.png")
+#' p |> save_plot("growth_rate.png")
 #' }
 #'
 #' @importFrom dplyr group_by summarise
@@ -42,19 +42,30 @@
 #' @importFrom ggplot2 scale_x_date labs theme_minimal theme element_rect
 #' @importFrom reshape2 melt
 #' @importFrom tibble tibble
+#' @importFrom stringr str_to_title
 #' @export
 vis_growth_rate <- function(results, base_size = 12) {
-  lines <- extract_stan("growth_rate_vec", results) %>%
-    reshape2::melt() %>%
-    mutate(date = as.Date(Var2, origin = min(results$data$date) - 1))
 
-  med <- lines %>%
-    group_by(date) %>%
+  lines <- bind_rows(
+    extract_stan("growthrate_observed", results, output = "shaped") |>
+      mutate(
+        date = as.Date(index, origin = min(results$data$date) - 1),
+        type = "observed"
+      ),
+    extract_stan("growthrate_projected", results, output = "shaped") |>
+      mutate(
+        date = as.Date(index + length(results$data$date), origin = min(results$data$date) - 1),
+        type = "projected"
+      )
+  )
+
+  med <- lines |>
+    group_by(date, type) |>
     summarise(value = median(value))
 
   ggplot(mapping = aes(date, value)) +
-    geom_line(aes(group = iterations), data = lines, alpha = 0.04) +
-    geom_line(data = med, color = "firebrick", size = 1) +
+    geom_line(aes(group = iter), data = lines, alpha = 0.04) +
+    geom_line(aes(linetype = type), data = med, color = "firebrick", size = 1) +
     geom_hline(yintercept = 0, linetype = 2) +
     scale_y_continuous(expand = c(0, 0)) +
     scale_x_date(
@@ -62,10 +73,16 @@ vis_growth_rate <- function(results, base_size = 12) {
       date_labels = "%b %d",
       date_breaks = "2 weeks"
     ) +
+    scale_linetype_discrete(labels = str_to_title) +
     labs(
       x = NULL,
-      y = "Daily growth rate"
+      y = "Daily growth rate",
+      linetype = NULL
     ) +
     theme_minimal(base_size) +
-    theme(plot.background = element_rect(fill = "white", color = NA))
+    theme(
+      plot.background = element_rect(fill = "white", color = NA),
+      legend.position = "bottom"
+    )
+
 }

@@ -19,7 +19,7 @@ merge_data(ll, alerts, etu_iso, delays, incidence = NULL)
 If NULL, incidence will be calculated from the linelist data.}
 }
 \value{
-A tsibble (time series tibble) containing merged data with columns:
+A tibble containing merged data with columns:
 \itemize{
   \item{date}{Date index}
   \item{day}{Numeric day index (1, 2, 3, ...)}
@@ -42,7 +42,7 @@ The function performs several key operations:
   \item Aggregates alerts data by date
   \item Fills gaps in the time series with appropriate values
   \item Creates a case inflation factor based on onset-to-confirmation delays
-  \item Converts to tsibble format for time series analysis
+  \item Converts to tibble format for analysis
 }
 
 The case inflation factor (prop) is calculated using a log-normal distribution

@@ -12,7 +12,8 @@ functions {
     
   }
 
-  // convolution function from https://discourse.mc-stan.org/t/dot-products-of-vectors-to-perform-1d-convolution/9053/9 
+  // convolution function from https://discourse.mc-stan.org/t/
+  // dot-products-of-vectors-to-perform-1d-convolution/9053/9 
   vector stan_convolve(int nPoints, vector a,  vector b) {
   
     vector [nPoints] out;
@@ -99,7 +100,7 @@ data {
   vector[2] prior_alerts_per_case;
 
   // delay distribution from onset to confirmation and entry into database
-  vector[n_days] log_prop_cases_observed;
+  vector[n_days] log_prop_cases_reported;
 
   // number of alerts_background bins
   int n_alerts_background;
@@ -112,6 +113,18 @@ data {
 
   // spline matrix for growth rate fitting
   matrix[n_spline_param, n_days] spline;
+
+  // asymptote for growth rate  
+  vector[days_ahead] growthrate_asymptote_weight;
+
+}
+
+transformed data {
+
+  // Days for case projection
+  vector[days_ahead] projection_sq;  
+
+  for(i in 1:days_ahead) projection_sq[i] = i;
 
 }
 
@@ -210,34 +223,65 @@ transformed parameters {
   // plogis transform of proportion of alerts isolated
   real prop_iso_trans;
 
-  // vector of estimated growth rates
-  vector[n_days] growth_rate_vec;
-
   // plogis transform of proportion of alerts isolated
   prop_iso_trans = logistic_cdf(prop_iso, 0, 1);
 
+  // vector of estimated growth rates
+  vector[n_days] growthrate_observed;
+
+  // vector of projected growth rates
+  vector[days_ahead] growthrate_projected;
+
+  // params for growthrate extrapolation
+  real growthrate_slope;
+  real growthrate_slope_weight;
+  real growthrate_slope_weight_min = -0.2;
+  real growthrate_slope_weight_max = 0.2;
+  real growthrate_asymptote = -0.1;
+
   // calculate growth rate from spline params
-  growth_rate_vec = to_vector(spline_param*spline)/10;
+  growthrate_observed = to_vector(spline_param*spline)/10;
+
+  // calculate slope of growth rate
+  growthrate_slope = growthrate_observed[n_days] - growthrate_observed[n_days - 1];
+
+  // growth rate slopes are weighted more when the absolute growth rate is high
+  growthrate_slope_weight =
+    (growthrate_observed[n_days] - growthrate_slope_weight_min)/
+    (growthrate_slope_weight_max - growthrate_slope_weight_min);
+  if(growthrate_slope_weight > 1) growthrate_slope_weight = 1;
+  if(growthrate_slope_weight < 0) growthrate_slope_weight = 0;
+
+  // minimum slope weighting of 0.2, maximum slope weighting of 1.0
+  growthrate_slope_weight = 0.2 + 0.8*growthrate_slope_weight;
+
+  // extrapolate growth rate for projection using slope and slope weighting
+  growthrate_projected = growthrate_observed[n_days] +
+    projection_sq*growthrate_slope*growthrate_slope_weight;
+
+  // add growth rate asymptote (weighted mean of extrapolation and asymptote)
+  growthrate_projected = growthrate_asymptote*growthrate_asymptote_weight +
+    (1 - growthrate_asymptote_weight).*growthrate_projected;	  
 
   // model case observations with reporting delay for first day
-  log_cases_fitted[1] = log_cases_intercept + growth_rate_vec[1] + log_prop_cases_observed[1];
+  log_cases_fitted[1] = log_cases_intercept + growthrate_observed[1] + log_prop_cases_reported[1];
   
   // model case observations without reporting delay for first day
-  log_cases_inflated[1] = log_cases_intercept + growth_rate_vec[1];
+  log_cases_inflated[1] = log_cases_intercept + growthrate_observed[1];
 
   // model case observations for all remaining observed days
   if(log_cases_fitted[1] > 10) log_cases_fitted[1] = 10;
   if(log_cases_inflated[1] > 10) log_cases_inflated[1] = 10;  
   for(i in 2:n_days) {
-    log_cases_fitted[i] = log_cases_inflated[i-1] + growth_rate_vec[i] + log_prop_cases_observed[i];
-    log_cases_inflated[i] = log_cases_inflated[i-1] + growth_rate_vec[i];
+    log_cases_fitted[i] = log_cases_inflated[i-1] + growthrate_observed[i] + log_prop_cases_reported[i];
+    log_cases_inflated[i] = log_cases_inflated[i-1] + growthrate_observed[i];
     if(log_cases_fitted[i] > 10) log_cases_fitted[i] = 10;
     if(log_cases_inflated[i] > 10) log_cases_inflated[i] = 10;    
   }
 
   // projected cases forward using inflated values
   for(i in 1:days_ahead) {
-    log_cases_projected[i] = log_cases_inflated[n_days] + growth_rate_vec[n_days]*i;
+    log_cases_projected[i] = log_cases_inflated[n_days] + growthrate_projected[i];  
     if(log_cases_projected[i] > 10) log_cases_projected[i] = 10;
     if(log_cases_projected[i] < -10) log_cases_projected[i] = -10;
   }
