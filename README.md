@@ -1,10 +1,10 @@
-# bedcast
+# bedcaster
 
 Bed Occupancy Forecasting for Epidemics
 
 ## Overview
 
-The `bedcast` package provides tools for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. It is designed to help healthcare systems prepare for and respond to epidemic outbreaks by providing accurate forecasts of ETU (Ebola Treatment Unit) and isolation bed demand.
+The `bedcaster` package provides tools for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. It is designed to help healthcare systems prepare for and respond to epidemic outbreaks by providing accurate forecasts of ETU (Ebola Treatment Unit) and isolation bed demand.
 
 ## Features
 
@@ -19,16 +19,16 @@ The `bedcast` package provides tools for forecasting bed occupancy during epidem
 
 ```r
 # Install from source
-devtools::install_github("your-username/bedcast")
+devtools::install_github("your-username/bedcaster")
 
 # Or install locally
-devtools::install("path/to/bedcast")
+devtools::install("path/to/bedcaster")
 ```
 
 ## Quick Start
 
 ```r
-library(bedcast)
+library(bedcaster)
 
 # Import data
 ll <- get_real_linelist()
@@ -85,6 +85,6 @@ Contributions are welcome! Please feel free to submit issues and pull requests.
 If you use this package in your research, please cite it as:
 
 ```
-Bed Occupancy Forecasting for Epidemics (bedcast) R Package
-https://github.com/your-username/bedcast
+Bed Occupancy Forecasting for Epidemics (bedcaster) R Package
+https://github.com/your-username/bedcaster
 ```

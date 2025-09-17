@@ -1,6 +1,6 @@
 ---
 title: "Bed Occupancy Forecasting Workflow"
-author: "Bedcast Package"
+author: "Bedcaster Package"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -20,11 +20,11 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-The `bedcast` package provides tools for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. This vignette demonstrates the complete workflow for analyzing epidemiological data and generating forecasts of ETU (Ebola Treatment Unit) and isolation bed occupancy.
+The `bedcaster` package provides tools for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. This vignette demonstrates the complete workflow for analyzing epidemiological data and generating forecasts of ETU (Ebola Treatment Unit) and isolation bed occupancy.
 
 # Workflow Overview
 
-The bedcast workflow consists of several key steps:
+The bedcaster workflow consists of several key steps:
 
 1. **Data Import**: Import and process linelist, alerts, and occupancy data
 2. **Delay Estimation**: Calculate delay distributions between key events
@@ -37,8 +37,8 @@ The bedcast workflow consists of several key steps:
 ## 1. Load Required Packages
 
 ```{r load-packages, eval = FALSE}
-# Load the bedcast package and dependencies
-library(bedcast)
+# Load the bedcaster package and dependencies
+library(bedcaster)
 library(tidyverse)
 library(rstan)
 library(here)
@@ -262,6 +262,6 @@ The package leverages Stan for:
 
 # Conclusion
 
-The `bedcast` package provides a comprehensive toolkit for bed occupancy forecasting during epidemics. The workflow is designed to be flexible and adaptable to different disease contexts while maintaining rigorous statistical methods.
+The `bedcaster` package provides a comprehensive toolkit for bed occupancy forecasting during epidemics. The workflow is designed to be flexible and adaptable to different disease contexts while maintaining rigorous statistical methods.
 
 For more information on specific functions, see the package documentation and help files.

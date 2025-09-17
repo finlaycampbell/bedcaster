@@ -1,4 +1,4 @@
-Package: bedcast
+Package: bedcaster
 Title: Bed Occupancy Forecasting for Epidemics
 Version: 0.1.0
 Authors@R: person("Finlay", "Campbell", email = "finlaycampbell93@gmail.com", role = c("aut", "cre"))
