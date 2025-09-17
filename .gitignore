@@ -1,0 +1,32 @@
+# R package files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Build artifacts
+*.tar.gz
+*.zip
+.Rcheck/
+.Rbuildignore
+
+# Output directories
+outputs/
+figures/
+data/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# R package specific
+inst/doc/
+vignettes/*.html
+vignettes/*.pdf

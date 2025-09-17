@@ -1,0 +1,95 @@
+#' Summarize Stan model outputs
+#'
+#' Extracts and summarizes parameter estimates from fitted Stan models with
+#' appropriate transformations and formatting for different parameter types.
+#'
+#' @param par Character string specifying the parameter name to summarize.
+#' @param results A list containing the fitted Stan model results from fit_stan().
+#' @param probs Numeric vector specifying the quantiles to calculate
+#'   (default: c(0.25, 0.5, 0.75)).
+#'
+#' @return A tibble containing summarized parameter estimates with columns:
+#' \itemize{
+#'   \item{day}{Day index (for time-varying parameters)}
+#'   \item{lower}{Lower quantile estimate}
+#'   \item{mid}{Median estimate}
+#'   \item{upper}{Upper quantile estimate}
+#' }
+#'
+#' @details The function handles different parameter types:
+#' \itemize{
+#'   \item{Time-varying parameters}{Cases, growth rates, ETU/ISO occupancy, alerts}
+#'   \item{Projected parameters}{Future projections beyond observed data}
+#'   \item{Static parameters}{Single values for the entire time period}
+#' }
+#'
+#' Automatic transformations are applied based on parameter type:
+#' \itemize{
+#'   \item{Log-mean parameters}{Exponentiated to natural scale}
+#' \item{Log parameters}{Exponentiated (cases, alerts, etc.)}
+#' \item{Logit parameters}{Inverse logit transformation (CFR, proportions)}
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Summarize case estimates
+#' cases <- summarise_stan("log_cases_inflated", results)
+#'
+#' # Get specific quantiles
+#' cases <- summarise_stan("log_cases_inflated", results,
+#'   probs = c(0.025, 0.5, 0.975)
+#' )
+#'
+#' # Summarize static parameters
+#' cfr <- summarise_stan("cfr", results)
+#' }
+#'
+#' @importFrom rstan summary
+#' @importFrom dplyr transmute mutate select
+#' @importFrom tibble as_tibble
+#' @importFrom stats plogis
+#' @export
+summarise_stan <- function(par, results, probs = c(0.25, 0.5, 0.75)) {
+  add_days <- function(par, days) {
+    out <- rstan::summary(results$stan_fit, pars = par, probs = probs) %$%
+      as_tibble(summary)
+    if (length(probs) == 3) {
+      transmute(
+        out,
+        day = days,
+        lower = out[[4]],
+        mid = out[[5]],
+        upper = out[[6]]
+      )
+    } else {
+      mutate(
+        out[4:(4 + length(probs) - 1)],
+        day = days
+      ) %>%
+        select(any_of("day"), everything())
+    }
+  }
+
+  if (grepl(paste(c("cases", "growth"), collapse = "|"), par) & !grepl("proj", par)) {
+    out <- add_days(par, results$data$day)
+  } else if (
+    grepl(paste(c("etu", "iso", "alerts"), collapse = "|"), par) &
+      !grepl("prop", par) & !grepl("background", par)) {
+    out <- add_days(par, seq_len(results$data$n_days + results$data$days_ahead))
+  } else if (grepl("proj", par)) {
+    out <- add_days(par, (results$data$n_days + 1):(results$data$n_days + results$data$days_ahead))
+  } else {
+    out <- add_days(par, NULL)
+  }
+
+  if (grepl("logmean", par)) out %<>% mutate(across(-any_of("day"), exp))
+  if (par %in% c(
+    "alerts_per_case", "alerts_background", "log_cases_inflated",
+    "log_cases_fitted", "log_cases_missed", "log_cases_projected"
+  )) {
+    out %<>% mutate(across(-any_of("day"), exp))
+  }
+  if (grepl("cfr", par)) out %<>% mutate(-day, plogis)
+
+  return(out)
+}
