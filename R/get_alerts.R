@@ -33,7 +33,9 @@
 #'
 #' @importFrom rio import
 #' @importFrom here here
-#' @importFrom dplyr pivot_longer transmute drop_na filter
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr transmute filter
+#' @importFrom tidyr drop_na
 #' @importFrom tibble as_tibble
 #' @export
 get_alerts <- function(file = "alerts_data.xlsx") {

@@ -43,10 +43,10 @@
 #' data <- merge_data(ll, alerts, etu_iso, delays, incidence)
 #' }
 #'
-#' @importFrom dplyr full_join arrange group_by summarise mutate replace_na
+#' @importFrom dplyr full_join arrange group_by summarise mutate
+#' @importFrom tidyr replace_na
 #' @importFrom tsibble as_tsibble fill_gaps
 #' @importFrom distcrete distcrete
-#' @importFrom stats d
 #' @export
 merge_data <- function(ll, alerts, etu_iso, delays, incidence = NULL) {
   if (is.null(incidence)) {

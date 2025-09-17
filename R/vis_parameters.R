@@ -37,8 +37,9 @@
 #' p %>% save_plot("parameters.png", width = 21, height = 15.3)
 #' }
 #'
-#' @importFrom dplyr map_dfr group_by summarise mutate select unnest
-#' @importFrom purrr pmap
+#' @importFrom dplyr group_by summarise mutate select
+#' @importFrom purrr map_dfr pmap
+#' @importFrom tidyr unnest
 #' @importFrom ggplot2 ggplot aes geom_area geom_density facet_wrap labs
 #' @importFrom ggplot2 scale_y_continuous scale_x_continuous theme_minimal theme
 #' @importFrom ggplot2 element_rect

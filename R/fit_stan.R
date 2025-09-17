@@ -150,7 +150,7 @@ fit_stan <- function(data, model,
 
   options(mc.cores = parallel::detectCores() - 1)
 
-  stan_fit <<- sampling(
+  stan_fit <- sampling(
     model,
     data = stan_data,
     chains = n_chains,

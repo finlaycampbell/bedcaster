@@ -38,7 +38,8 @@
 #' p %>% save_plot("model_fit.png", height = 20)
 #' }
 #'
-#' @importFrom dplyr map_dfr bind_rows group_by summarise mutate filter
+#' @importFrom dplyr bind_rows group_by summarise mutate filter
+#' @importFrom purrr map_dfr
 #' @importFrom purrr map2_dfr imap_dfr
 #' @importFrom ggplot2 ggplot aes geom_col geom_ribbon geom_line geom_vline
 #' @importFrom ggplot2 scale_linetype scale_alpha_discrete facet_wrap labs

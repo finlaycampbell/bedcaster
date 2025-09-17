@@ -39,7 +39,6 @@
 #' delays <- get_delays(ll, max_value = 45)
 #' }
 #'
-#' @importFrom dplyr map
 #' @importFrom purrr map set_names pluck
 #' @export
 get_delays <- function(ll, max_value = 30) {

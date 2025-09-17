@@ -32,7 +32,8 @@
 #'
 #' @importFrom rio import
 #' @importFrom here here
-#' @importFrom dplyr mutate select drop_na
+#' @importFrom dplyr mutate select
+#' @importFrom tidyr drop_na
 #' @importFrom tibble as_tibble
 #' @export
 get_etu_iso <- function(file = "sitrep_scrape.xlsx") {

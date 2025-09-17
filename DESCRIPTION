@@ -1,12 +1,12 @@
 Package: bedcast
 Title: Bed Occupancy Forecasting for Epidemics
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Finlay", "Campbell", email = "finlaycampbell93@gmail.com", role = c("aut", "cre"))
 Description: A package for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. Provides tools for data processing, delay estimation, and Stan-based modeling of ETU and isolation occupancy.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Depends: 
     R (>= 4.1.0)
 Imports:
