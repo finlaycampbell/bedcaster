@@ -47,7 +47,8 @@
 #' @importFrom rstan extract
 #' @importFrom stats qnorm dnorm plogis qlogis
 #' @export
-vis_parameters <- function(results, base_size = 12) {
+#'
+vis_bedcast_parameters <- function(results, base_size = 12) {
   labels <- c(
     onset_to_etu_logmean = "Delay onset to hospitalisation",
     etu_to_survival_logmean = "Delay hospitalisation to survival",

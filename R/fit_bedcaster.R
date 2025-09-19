@@ -71,6 +71,7 @@
 #' @importFrom stats qlogis
 #' @importFrom distcrete distcrete
 #' @export
+#'
 fit_bedcaster <- function(data, data_as_of,
                           prior_onset_to_reporting = c(0, 5, 0, 5),
                           prior_onset_to_etu = c(0, 5, 0, 5),
@@ -175,13 +176,11 @@ fit_bedcaster <- function(data, data_as_of,
 
   options(mc.cores = n_cores)
 
-  stan_fit <- rstan::sampling(
-    model,
-    ## stanmodels$bedcaster_deaths,
+  fit <- rstan::sampling(
+    stanmodels$bedcaster,
     data = stan_data,
     chains = n_chains,
     iter = n_iter,
-    ## open_progress = TRUE,
     verbose = TRUE,
     refresh = 10,
     init = init_fun
@@ -193,6 +192,9 @@ fit_bedcaster <- function(data, data_as_of,
   stan_data$day <- seq_len(stan_data$n_obs)
   stan_data$date <- data$date
 
-  list(stan_fit = stan_fit, data = stan_data)
+  out <- list(fit = fit, data = stan_data)
+  class(out) <- "bedcast"
+
+  return(out)
 
 }

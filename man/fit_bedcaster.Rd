@@ -18,13 +18,14 @@ fit_bedcaster(
   prior_alerts_background = c(log(50), 0.25),
   prior_alerts_per_case = c(log(10), 0.25),
   growthrate_asymptote_time = 20,
-  growthrate_asymptote_spread = 5,
-  days_ahead = 28,
+  growthrate_asymptote_spread = 3,
+  n_proj = 28,
   n_knots = 15,
   n_iter = 100,
-  alerts_background_window = 14,
+  alerts_background_window = 28,
+  max_delay = 50,
   n_chains = 1,
-  n_cores = parallel::detectCores() - 1
+  n_cores = 1
 )
 }
 \arguments{
@@ -62,7 +63,7 @@ for background alerts (log scale) (default: c(log(50), 0.25)).}
 \item{prior_alerts_per_case}{Numeric vector of length 2 specifying the prior
 for alerts per case (log scale) (default: c(log(10), 0.25)).}
 
-\item{days_ahead}{Integer specifying number of days to forecast ahead
+\item{n_proj}{Integer specifying number of days to project ahead
 (default: 28).}
 
 \item{n_knots}{Integer specifying number of knots for the growth rate spline
@@ -72,6 +73,8 @@ for alerts per case (log scale) (default: c(log(10), 0.25)).}
 
 \item{alerts_background_window}{Integer specifying window size for background
 alerts estimation (default: 14).}
+
+\item{max_delay}{The maximum number of days for a delay.}
 
 \item{n_chains}{Integer specifying number of MCMC chains (default: 1).}
 }
@@ -94,7 +97,7 @@ The Stan model implements a hierarchical Bayesian approach that:
   \item Accounts for reporting delays using delay distributions
   \item Links cases to ETU occupancy through admission and discharge processes
   \item Models alerts as a function of cases and background noise
-  \item Provides nowcasts of unobserved cases and forecasts of future demand
+  \item Provides nowcasts of unreported cases and forecasts of future demand
 }
 
 The model automatically saves results to the outputs directory with a timestamp.
@@ -108,7 +111,7 @@ results <- fit_stan(data)
 # Fit with custom priors
 results <- fit_stan(data,
   prior_cfr = c(qlogis(0.3), 0.2),
-  days_ahead = 14
+  n_proj = 14
 )
 }
 

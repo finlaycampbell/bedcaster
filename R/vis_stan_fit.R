@@ -29,10 +29,10 @@
 #' @examples
 #' \dontrun{
 #' # Create visualization with default settings
-#' p <- vis_stan_fit(results)
+#' p <- vis_bedcast_fit(results)
 #'
 #' # Customize visualization
-#' p <- vis_stan_fit(results, ylim_factor = 2, base_size = 14)
+#' p <- vis_bedcast_fit(results, ylim_factor = 2, base_size = 14)
 #'
 #' # Save the plot
 #' p %>% save_plot("model_fit.png", height = 20)
@@ -50,10 +50,10 @@
 #' @importFrom forcats fct_rev
 #' @importFrom scales percent
 #' @export
-vis_stan_fit <- function(results,
-                         ylim_factor = 4,
-                         base_size = 12,
-                         quantiles = c(0.25, 0.5, 0.75, 0.95)) {
+vis_bedcast_fit <- function(results,
+                            ylim_factor = 4,
+                            base_size = 12,
+                            quantiles = c(0.25, 0.5, 0.75, 0.95)) {
 
   ## function to manually remove too large values
   get_max <- function(upper, reported, mid) {
@@ -88,17 +88,17 @@ vis_stan_fit <- function(results,
     full_join(
       bind_rows(
         map2_dfr(
-          c("log_cases_inflated", "log_cases_projected",
-            "deaths_inflated", "deaths_projected",
-            "etu_modelled", "alerts_modelled", "iso_modelled"),
+          c("cases_nowcast_sim", "cases_projected_sim",
+            "deaths_nowcast_sim", "deaths_projected_sim",
+            "etu_trucated_sim", "alerts_trucated_sim", "iso_truncated_sim"),
           c("cases", "cases", "deaths", "deaths", "etu", "alerts", "iso"),
           function(varname, var) {
             quantiles %<>% sort()
             breaks <- sort(
               as_vector(map(quantiles, ~ c(0.5 - .x / 2, 0.5 + .x / 2)))
             )
-            values <- summarise_stan(varname, results, breaks)
-            mid <- summarise_stan(varname, results, 0.5)
+            values <- summary(results, varname, breaks)
+            mid <- summary(results, varname, 0.5)
             imap_dfr(
               c(rev(quantiles), tail(quantiles, -1)),
               ~ tibble(
@@ -113,10 +113,10 @@ vis_stan_fit <- function(results,
               mutate(what = var, inflated = TRUE)
           }
         ),
-        summarise_stan("log_cases_fitted", results) %>%
+        summary(results, "cases_truncated_sim") %>%
           mutate(what = "cases", inflated = FALSE,
                  lower = NA, upper = NA, quantile = 1),
-        summarise_stan("deaths_fitted", results) %>%
+        summary(results, "deaths_truncated_sim") %>%
           mutate(what = "deaths", inflated = FALSE,
                  lower = NA, upper = NA, quantile = 1)
       ),

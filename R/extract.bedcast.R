@@ -39,13 +39,13 @@
 #' @importFrom rstan extract
 #' @importFrom stats plogis
 #' @export
-extract_stan <- function(par, results, output = c("raw", "shaped")) {
+extract.bedcast <- function(bedcast, par, output = c("raw", "shaped")) {
 
   # match arg
   output <- match.arg(output)
 
   # extract value
-  out <- rstan::extract(results$stan_fit, pars = par)[[1]]
+  out <- rstan::extract(bedcast$fit, pars = par)[[1]]
 
   # transform if need be
   if (grepl("logmean", par)) out <- exp(out)

@@ -3,8 +3,8 @@
 #' Extracts and summarizes parameter estimates from fitted Stan models with
 #' appropriate transformations and formatting for different parameter types.
 #'
+#' @param x A bedcast object.
 #' @param par Character string specifying the parameter name to summarize.
-#' @param results A list containing the fitted Stan model results from fit_stan().
 #' @param probs Numeric vector specifying the quantiles to calculate
 #'   (default: c(0.25, 0.5, 0.75)).
 #'
@@ -33,26 +33,26 @@
 #' @examples
 #' \dontrun{
 #' # Summarize case estimates
-#' cases <- summarise_stan("log_cases_inflated", results)
+#' cases <- summary(bedcast, "log_cases_inflated")
 #'
 #' # Get specific quantiles
-#' cases <- summarise_stan("log_cases_inflated", results,
+#' cases <- summary(bedcast, "log_cases_inflated",
 #'   probs = c(0.025, 0.5, 0.975)
 #' )
 #'
 #' # Summarize static parameters
-#' cfr <- summarise_stan("cfr", results)
+#' cfr <- summary(bedcast, "cfr")
 #' }
 #'
-#' @importFrom rstan summary
 #' @importFrom dplyr transmute mutate select
 #' @importFrom tibble as_tibble
 #' @importFrom stats plogis
 #' @export
-summarise_stan <- function(par, results, probs = c(0.25, 0.5, 0.75)) {
+#'
+summary.bedcast <- function(x, par, probs = c(0.25, 0.5, 0.75), ...) {
 
   add_days <- function(par, days) {
-    out <- rstan::summary(results$stan_fit, pars = par, probs = probs) %$%
+    out <- rstan::summary(x$fit, pars = par, probs = probs) %$%
       as_tibble(summary)
     if (length(probs) == 3) {
       transmute(
@@ -73,13 +73,14 @@ summarise_stan <- function(par, results, probs = c(0.25, 0.5, 0.75)) {
 
   if (grepl(paste(c("cases", "deaths", "growth"), collapse = "|"), par) &
         !grepl(paste(c("proj", "slope"), collapse = "|"), par)) {
-    out <- add_days(par, results$data$day)
+    out <- add_days(par, x$data$day)
   } else if (
     grepl(paste(c("etu", "iso", "alerts"), collapse = "|"), par) &
-      !grepl(paste(c("per", "prop", "to"), collapse = "|"), par) & !grepl("background", par)) {
-    out <- add_days(par, seq_len(results$data$n_obs + results$data$n_proj))
+      !grepl(paste(c("per", "prop", "to"), collapse = "|"), par) &
+      !grepl("background", par)) {
+    out <- add_days(par, seq_len(x$data$n_obs + x$data$n_proj))
   } else if (grepl("proj", par)) {
-    out <- add_days(par, (results$data$n_obs + 1):(results$data$n_obs + results$data$n_proj))
+    out <- add_days(par, (x$data$n_obs + 1):(x$data$n_obs + x$data$n_proj))
   } else {
     out <- add_days(par, NULL)
   }
@@ -90,7 +91,7 @@ summarise_stan <- function(par, results, probs = c(0.25, 0.5, 0.75)) {
                  "log_cases_missed", "log_cases_projected")) {
     out %<>% mutate(across(-any_of("day"), exp))
   }
-  ## if (grepl("cfr", par)) out %<>% mutate(-day, plogis)
 
   return(out)
+
 }

@@ -42,18 +42,18 @@
 #' @importFrom ggplot2 scale_x_date labs theme_minimal theme element_rect
 #' @importFrom stringr str_to_title
 #' @export
-vis_growth_rate <- function(results, base_size = 12) {
+vis_bedcast_growthrate <- function(bedcast, base_size = 12) {
 
   # extract individual estimates
   bind_rows(
-    extract_stan("growthrate_reported", results, output = "shaped") |>
+    extract_stan("growthrate_reported", bedcast, output = "shaped") |>
       mutate(
-        date = as.Date(index, origin = min(results$data$date) - 1),
+        date = as.Date(index, origin = min(bedcast$data$date) - 1),
         type = "observed"
       ),
-    extract_stan("growthrate_projected", results, output = "shaped") |>
+    extract_stan("growthrate_projected", bedcast, output = "shaped") |>
       mutate(
-        date = as.Date(index + length(results$data$date), origin = min(results$data$date) - 1),
+        date = as.Date(index + length(bedcast$data$date), origin = min(bedcast$data$date) - 1),
         type = "projected"
       )
   ) |>
