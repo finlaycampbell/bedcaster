@@ -26,7 +26,8 @@
 #'   for background alerts (log scale) (default: c(log(50), 0.25)).
 #' @param prior_alerts_per_case Numeric vector of length 2 specifying the prior
 #'   for alerts per case (log scale) (default: c(log(10), 0.25)).
-#' @param days_ahead Integer specifying number of days to forecast ahead
+#' @param max_delay The maximum number of days for a delay.
+#' @param n_proj Integer specifying number of days to project ahead
 #'   (default: 28).
 #' @param n_knots Integer specifying number of knots for the growth rate spline
 #'   (default: 15).
@@ -47,7 +48,7 @@
 #'   \item Accounts for reporting delays using delay distributions
 #'   \item Links cases to ETU occupancy through admission and discharge processes
 #'   \item Models alerts as a function of cases and background noise
-#'   \item Provides nowcasts of unobserved cases and forecasts of future demand
+#'   \item Provides nowcasts of unreported cases and forecasts of future demand
 #' }
 #'
 #' The model automatically saves results to the outputs directory with a timestamp.
@@ -61,14 +62,13 @@
 #' # Fit with custom priors
 #' results <- fit_stan(data,
 #'   prior_cfr = c(qlogis(0.3), 0.2),
-#'   days_ahead = 14
+#'   n_proj = 14
 #' )
 #' }
 #'
 #' @importFrom rstan sampling
 #' @importFrom splines bs
 #' @importFrom stats qlogis
-#' @importFrom parallel detectCores
 #' @importFrom distcrete distcrete
 #' @export
 fit_bedcaster <- function(data, data_as_of,
@@ -83,13 +83,14 @@ fit_bedcaster <- function(data, data_as_of,
                           prior_alerts_background = c(log(50), 0.25),
                           prior_alerts_per_case = c(log(10), 0.25),
                           growthrate_asymptote_time = 20,
-                          growthrate_asymptote_spread = 5,
-                          days_ahead = 28,
+                          growthrate_asymptote_spread = 3,
+                          n_proj = 28,
                           n_knots = 15,
                           n_iter = 100,
-                          alerts_background_window = 14,
+                          alerts_background_window = 28,
+                          max_delay = 50,
                           n_chains = 1,
-                          n_cores = parallel::detectCores() - 1) {
+                          n_cores = 1) {
 
   # specify discrete lognormal
   onset_to_reporting <- distcrete(
@@ -99,7 +100,9 @@ fit_bedcaster <- function(data, data_as_of,
   )
 
   # define probability of reporting for given delays
-  prop_cases_reported <- onset_to_reporting$p(as.numeric(data_as_of - data$date))
+  prop_cases_reported <- onset_to_reporting$p(
+    as.numeric(data_as_of - data$date)
+  )
 
   ## generate spline matrix with buffer on either side to prevent extremes
   buffer <- 16
@@ -112,7 +115,7 @@ fit_bedcaster <- function(data, data_as_of,
 
   # define the weight of the growth rate asymptote
   growthrate_asymptote_weight <- plogis(
-    seq_len(days_ahead),
+    seq_len(n_proj),
     growthrate_asymptote_time,
     growthrate_asymptote_spread
   )
@@ -131,17 +134,18 @@ fit_bedcaster <- function(data, data_as_of,
   )
 
   stan_data <- list(
-    n_days = nrow(data),
-    max_delay = 50,
-    days_ahead = days_ahead,
-    cases_observed = replace_na(data$cases, -1000),
-    etu_observed = replace_na(data$etu, -1000),
+    n_obs = nrow(data),
+    n_proj = n_proj,
+    max_delay = max_delay,
+    cases_reported = replace_na(data$cases, -1000),
+    deaths_reported = replace_na(data$deaths, -1000),
+    etu_reported = replace_na(data$etu, -1000),
     etu_n = sum(!is.na(data$etu)),
     etu_ind = which(!is.na(data$etu)),
-    alerts_observed = replace_na(data$alerts, -1000),
+    alerts_reported = replace_na(data$alerts, -1000),
     alerts_n = sum(!is.na(data$alerts)),
     alerts_ind = which(!is.na(data$alerts)),
-    iso_observed = replace_na(data$iso, -1000),
+    iso_reported = replace_na(data$iso, -1000),
     iso_n = sum(!is.na(data$iso)),
     iso_ind = which(!is.na(data$iso)),
     prior_onset_to_etu = prior_onset_to_etu,
@@ -154,6 +158,7 @@ fit_bedcaster <- function(data, data_as_of,
     prior_alerts_background = prior_alerts_background,
     prior_alerts_per_case = prior_alerts_per_case,
     log_prop_cases_reported = log(prop_cases_reported),
+    prop_deaths_reported = prop_cases_reported,
     n_alerts_background = n_alerts_background,
     alerts_background_ind = alerts_background_ind,
     n_spline_param = nrow(spline),
@@ -171,20 +176,21 @@ fit_bedcaster <- function(data, data_as_of,
   options(mc.cores = n_cores)
 
   stan_fit <- rstan::sampling(
-    bedcaster:::stanmodels$bedcaster_deaths,
+    model,
+    ## stanmodels$bedcaster_deaths,
     data = stan_data,
     chains = n_chains,
     iter = n_iter,
-    open_progress = TRUE,
+    ## open_progress = TRUE,
     verbose = TRUE,
-    refresh = TRUE,
+    refresh = 10,
     init = init_fun
   )
 
-  stan_data$etu_observed <- data$etu
-  stan_data$alerts_observed <- data$alerts
-  stan_data$iso_observed <- data$iso
-  stan_data$day <- seq_len(stan_data$n_days)
+  stan_data$etu_reported <- data$etu
+  stan_data$alerts_reported <- data$alerts
+  stan_data$iso_reported <- data$iso
+  stan_data$day <- seq_len(stan_data$n_obs)
   stan_data$date <- data$date
 
   list(stan_fit = stan_fit, data = stan_data)

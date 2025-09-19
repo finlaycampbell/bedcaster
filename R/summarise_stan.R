@@ -50,6 +50,7 @@
 #' @importFrom stats plogis
 #' @export
 summarise_stan <- function(par, results, probs = c(0.25, 0.5, 0.75)) {
+
   add_days <- function(par, days) {
     out <- rstan::summary(results$stan_fit, pars = par, probs = probs) %$%
       as_tibble(summary)
@@ -70,26 +71,26 @@ summarise_stan <- function(par, results, probs = c(0.25, 0.5, 0.75)) {
     }
   }
 
-  if (grepl(paste(c("cases", "growth"), collapse = "|"), par) & !grepl("proj", par)) {
+  if (grepl(paste(c("cases", "deaths", "growth"), collapse = "|"), par) &
+        !grepl(paste(c("proj", "slope"), collapse = "|"), par)) {
     out <- add_days(par, results$data$day)
   } else if (
     grepl(paste(c("etu", "iso", "alerts"), collapse = "|"), par) &
-      !grepl("prop", par) & !grepl("background", par)) {
-    out <- add_days(par, seq_len(results$data$n_days + results$data$days_ahead))
+      !grepl(paste(c("per", "prop", "to"), collapse = "|"), par) & !grepl("background", par)) {
+    out <- add_days(par, seq_len(results$data$n_obs + results$data$n_proj))
   } else if (grepl("proj", par)) {
-    out <- add_days(par, (results$data$n_days + 1):(results$data$n_days + results$data$days_ahead))
+    out <- add_days(par, (results$data$n_obs + 1):(results$data$n_obs + results$data$n_proj))
   } else {
     out <- add_days(par, NULL)
   }
 
   if (grepl("logmean", par)) out %<>% mutate(across(-any_of("day"), exp))
-  if (par %in% c(
-    "alerts_per_case", "alerts_background", "log_cases_inflated",
-    "log_cases_fitted", "log_cases_missed", "log_cases_projected"
-  )) {
+  if (par %in% c("alerts_per_case", "alerts_background",
+                 "log_cases_inflated", "log_cases_fitted",
+                 "log_cases_missed", "log_cases_projected")) {
     out %<>% mutate(across(-any_of("day"), exp))
   }
-  if (grepl("cfr", par)) out %<>% mutate(-day, plogis)
+  ## if (grepl("cfr", par)) out %<>% mutate(-day, plogis)
 
   return(out)
 }

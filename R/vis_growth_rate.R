@@ -40,14 +40,13 @@
 #' @importFrom dplyr group_by summarise
 #' @importFrom ggplot2 ggplot aes geom_line geom_hline scale_y_continuous
 #' @importFrom ggplot2 scale_x_date labs theme_minimal theme element_rect
-#' @importFrom reshape2 melt
-#' @importFrom tibble tibble
 #' @importFrom stringr str_to_title
 #' @export
 vis_growth_rate <- function(results, base_size = 12) {
 
-  lines <- bind_rows(
-    extract_stan("growthrate_observed", results, output = "shaped") |>
+  # extract individual estimates
+  bind_rows(
+    extract_stan("growthrate_reported", results, output = "shaped") |>
       mutate(
         date = as.Date(index, origin = min(results$data$date) - 1),
         type = "observed"
@@ -57,15 +56,16 @@ vis_growth_rate <- function(results, base_size = 12) {
         date = as.Date(index + length(results$data$date), origin = min(results$data$date) - 1),
         type = "projected"
       )
-  )
-
-  med <- lines |>
-    group_by(date, type) |>
-    summarise(value = median(value))
-
-  ggplot(mapping = aes(date, value)) +
-    geom_line(aes(group = iter), data = lines, alpha = 0.04) +
-    geom_line(aes(linetype = type), data = med, color = "firebrick", size = 1) +
+  ) |>
+    summarise(
+      median = median(value),
+      lower = quantile(value, 0.025),
+      upper = quantile(value, 0.975),
+      .by = c(date, type)
+    ) |>
+    ggplot(aes(date, median, ymin = lower, ymax = upper, linetype = type)) +
+    geom_ribbon(alpha = 0.5) +
+    geom_line(color = "firebrick", size = 1) +
     geom_hline(yintercept = 0, linetype = 2) +
     scale_y_continuous(expand = c(0, 0)) +
     scale_x_date(

@@ -1,9 +1,9 @@
 #' Visualize Stan model fit results
 #'
-#' Creates comprehensive visualizations of the fitted Stan model showing observed
+#' Creates comprehensive visualizations of the fitted Stan model showing reported
 #' data, nowcasts, and forecasts for cases, ETU occupancy, alerts, and isolation
 #' occupancy. The plot includes credible intervals and distinguishes between
-#' observed and projected data.
+#' reported and projected data.
 #'
 #' @param results A list containing the fitted Stan model results from fit_stan().
 #' @param ylim_factor Numeric factor for controlling y-axis limits to prevent
@@ -16,15 +16,15 @@
 #'
 #' @details The visualization includes:
 #' \itemize{
-#'   \item Observed data as bar charts
+#'   \item Reported data as bar charts
 #'   \item Nowcasts and forecasts as ribbon plots with credible intervals
 #'   \item Different alpha levels for different credible interval widths
-#'   \item Vertical line separating observed from projected data
+#'   \item Vertical line separating reported from projected data
 #'   \item Faceted plots for cases, ETU occupancy, alerts, and isolation occupancy
 #' }
 #'
 #' The function automatically handles extreme values by capping them at a
-#' reasonable multiple of the observed maximum to ensure readable plots.
+#' reasonable multiple of the reported maximum to ensure readable plots.
 #'
 #' @examples
 #' \dontrun{
@@ -54,13 +54,14 @@ vis_stan_fit <- function(results,
                          ylim_factor = 4,
                          base_size = 12,
                          quantiles = c(0.25, 0.5, 0.75, 0.95)) {
+
   ## function to manually remove too large values
-  get_max <- function(upper, observed, mid) {
+  get_max <- function(upper, reported, mid) {
     ## if no reported deaths, set max val per million pop
-    if (all(is.na(observed))) {
+    if (all(is.na(reported))) {
       max_val <- max(mid)
     } else {
-      max_val <- max(observed, na.rm = TRUE)
+      max_val <- max(reported, na.rm = TRUE)
     }
     if (max_val == 0) max_val <- 1e7
 
@@ -76,10 +77,10 @@ vis_stan_fit <- function(results,
   }
 
   df <- map_dfr(
-    c("etu", "iso", "alerts", "cases"),
+    c("etu", "iso", "alerts", "cases", "deaths"),
     ~ tibble(
-      day = seq_len(results$data$n_days),
-      observed = pluck(results, "data", glue("{.x}_observed")),
+      day = seq_len(results$data$n_obs),
+      reported = pluck(results, "data", glue("{.x}_reported")),
       what = .x,
       inflated = FALSE
     )
@@ -87,14 +88,15 @@ vis_stan_fit <- function(results,
     full_join(
       bind_rows(
         map2_dfr(
-          c(
-            "log_cases_inflated", "log_cases_projected", "etu_modelled",
-            "alerts_modelled", "iso_modelled"
-          ),
-          c("cases", "cases", "etu", "alerts", "iso"),
+          c("log_cases_inflated", "log_cases_projected",
+            "deaths_inflated", "deaths_projected",
+            "etu_modelled", "alerts_modelled", "iso_modelled"),
+          c("cases", "cases", "deaths", "deaths", "etu", "alerts", "iso"),
           function(varname, var) {
             quantiles %<>% sort()
-            breaks <- sort(as_vector(map(quantiles, ~ c(0.5 - .x / 2, 0.5 + .x / 2))))
+            breaks <- sort(
+              as_vector(map(quantiles, ~ c(0.5 - .x / 2, 0.5 + .x / 2)))
+            )
             values <- summarise_stan(varname, results, breaks)
             mid <- summarise_stan(varname, results, 0.5)
             imap_dfr(
@@ -112,22 +114,26 @@ vis_stan_fit <- function(results,
           }
         ),
         summarise_stan("log_cases_fitted", results) %>%
-          mutate(what = "cases", inflated = FALSE, lower = NA, upper = NA, quantile = 1)
+          mutate(what = "cases", inflated = FALSE,
+                 lower = NA, upper = NA, quantile = 1),
+        summarise_stan("deaths_fitted", results) %>%
+          mutate(what = "deaths", inflated = FALSE,
+                 lower = NA, upper = NA, quantile = 1)
       ),
       by = c("day", "what", "inflated")
     ) %>%
     group_by(what) %>%
     mutate(
-      upper = get_max(upper, observed, mid),
+      upper = get_max(upper, reported, mid),
       mid = replace(mid, mid > max(upper, na.rm = TRUE), NA),
       lower = replace(lower, lower > max(upper, na.rm = TRUE), NA),
-      what = factor(what, c("cases", "etu", "alerts", "iso")),
+      what = factor(what, c("cases", "deaths", "etu", "alerts", "iso")),
       date = as.Date(day, origin = min(results$data$date) - 1)
     )
 
   df %>%
     ggplot(aes(date)) +
-    geom_col(aes(y = observed)) +
+    geom_col(aes(y = reported)) +
     geom_ribbon(
       aes(
         ymin = lower, ymax = upper,
@@ -159,6 +165,7 @@ vis_stan_fit <- function(results,
       scales = "free_y",
       labeller = labeller(what = c(
         cases = "Daily number of cases",
+        deaths = "Daily number of deaths",
         etu = "Daily ETU occupancy",
         alerts = "Daily number of alerts",
         iso = "Daily isolation occupancy"

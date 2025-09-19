@@ -75,37 +75,47 @@ data {
   // Indices of days with iso occupancy data
   int iso_ind[iso_n];
 
-  // mean and sd of the normal prior on the logmean of the delay from onset to hospitalisation
+  // mean and sd of the normal prior on the logmean of the delay
+  // from onset to hospitalisation
   vector[4] prior_onset_to_etu;
 
-  // mean and sd of the normal prior on the logmean of the delay from hospitalisation to survival
+  // mean and sd of the normal prior on the logmean of the delay
+  // from hospitalisation to survival
   vector[4] prior_etu_to_survival;
 
-  // mean and sd of the normal prior on the logmean of the delay from hospitalisation to death
+  // mean and sd of the normal prior on the logmean of the delay
+  // from hospitalisation to death
   vector[4] prior_etu_to_death;
 
-  // mean and sd of the normal prior on the logmean of the delay from case-onset to contact-isolation
+  // mean and sd of the normal prior on the logmean of the delay
+  // from case-onset to contact-isolation
   vector[4] prior_onset_to_iso;
 
-  // mean and sd of the normal prior on the logmean of the delay from in lab turnaround
+  // mean and sd of the normal prior on the logmean of the delay
+  // from in lab turnaround
   vector[4] prior_iso_to_release;
 
   // mean and sd of the normal prior on the plogis transformed CFR
   vector[2] prior_cfr;
   
-  // mean and sd of the normal prior on the plogis transformed proportion of alerts isolated
+  // mean and sd of the normal prior on the plogis transformed
+  // proportion of alerts isolated
   vector[2] prior_prop_iso;
   
-  // mean and sd of the normal prior on the exponentially transformed number of background alerts
+  // mean and sd of the normal prior on the exponentially transformed
+  // number of background alerts
   vector[2] prior_alerts_background;
 
-  // mean and sd of the normal prior on the exponentially transformed number of alerts per case
+  // mean and sd of the normal prior on the exponentially transformed
+  // number of alerts per case
   vector[2] prior_alerts_per_case;
 
-  // delay distribution from onset to case confirmation and entry into database
+  // delay distribution from onset to case confirmation
+  // and entry into database
   vector[n_obs] log_prop_cases_reported;
 
-  // delay distribution from onset to death confirmation and entry into database
+  // delay distribution from onset to death confirmation
+  // and entry into database
   vector[n_obs] prop_deaths_reported;
 
   // number of alerts_background bins
@@ -127,11 +137,12 @@ data {
 
 transformed data {
 
-  // Days for case projection
-  vector[n_proj] projection_sq;  
-  for(i in 1:n_proj) projection_sq[i] = i;
+  // Build projection index
+  vector[n_proj] projection_sq;
+  for (i in 1:n_proj)
+    projection_sq[i] = i;
 
- // Total numbers of days
+ // Total numbers of days in 
  int n_tot;
  n_tot = n_obs + n_proj;
 
@@ -257,8 +268,8 @@ transformed parameters {
   // calculate growth rate from spline params
   growthrate_reported = to_vector(spline_param*spline)/10;
 
-  // calculate slope of growth rate
-  growthrate_slope = growthrate_reported[n_obs] - growthrate_reported[n_obs - 1];
+  // calculate slope of growth rate at most recent time
+  growthrate_slope = growthrate_reported[n_obs] - growthrate_reported[n_obs-1];
 
   // growth rate slopes are weighted more when the absolute growth rate is high
   growthrate_slope_weight =
@@ -272,27 +283,24 @@ transformed parameters {
 
   // extrapolate growth rate for projection using slope and slope weighting
   growthrate_projected = growthrate_reported[n_obs] +
-    projection_sq*growthrate_slope*growthrate_slope_weight;
+    projection_sq * growthrate_slope * growthrate_slope_weight;
 
   // add growth rate asymptote (weighted mean of extrapolation and asymptote)
-  growthrate_projected = growthrate_asymptote*growthrate_asymptote_weight +
+  growthrate_projected = growthrate_asymptote * growthrate_asymptote_weight +
     (1 - growthrate_asymptote_weight).*growthrate_projected;	  
 
   // model case observations without reporting delay for first day
   log_cases_inflated[1] = log_cases_intercept + growthrate_reported[1];
 
-  // model case observations with reporting delay for first day
-  log_cases_fitted[1] = log_cases_inflated[1] +
-    log_prop_cases_reported[1];
-
-  // model case observations for all remaining reported days
-  if(log_cases_fitted[1] > 10) log_cases_fitted[1] = 10;
-  if(log_cases_inflated[1] > 10) log_cases_inflated[1] = 10;  
+  // model case observations with reporting delay
+  log_cases_fitted[1] = log_cases_inflated[1] + log_prop_cases_reported[1];  
   for(i in 2:n_obs) {
-    log_cases_inflated[i] = log_cases_inflated[i-1] +
-      growthrate_reported[i];
-    log_cases_fitted[i] = log_cases_inflated[i] +
-      log_prop_cases_reported[i];
+    log_cases_inflated[i] = log_cases_inflated[i-1] + growthrate_reported[i];
+    log_cases_fitted[i] = log_cases_inflated[i] + log_prop_cases_reported[i];
+  }
+
+  // cap values
+  for(i in 1:n_obs) {
     if(log_cases_fitted[i] > 10) log_cases_fitted[i] = 10;
     if(log_cases_inflated[i] > 10) log_cases_inflated[i] = 10;    
   }
@@ -364,90 +372,32 @@ transformed parameters {
     prop_deaths_reported[i];
 
   // calculate admission and discharge
-  for(i in 1:(n_tot - 1)) {
-    if((i + max_delay) > (n_tot)) {
-      // in case of right truncation move until end of analysis period
-      for(j in 1:(n_tot - i)) {
-        // pull from reported cases
-        if(i <= n_obs) {
-          etu_admission[i+j] += cases_reported[i] * onset_to_etu[j];
-          etu_discharge[i+j] +=
-	    cases_reported[i]*(onset_to_survival[j] + onset_to_death[j]);
-	  // here we are adding alerts from cases and alerts from background together
-          alerts_modelled[i+j] +=
-	    (cases_reported[i]*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*onset_to_iso[j];
-	  // iso admission density is alert density multiplied by prop isolated
-          iso_admission[i + j] +=
-	    (cases_reported[i]*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_iso[j]*prop_iso;
-	  // iso discharge density is discharge density multiplied by prop isolated	 iso_discharge[i + j] +=
-	    (cases_reported[i]*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_release[j]*prop_iso;
-	// pull from projected cases
-	} else {
-          etu_admission[i+j] +=
-	    exp(log_cases_projected[i-n_obs])*onset_to_etu[j];
-          etu_discharge[i+j] +=
-	    exp(log_cases_projected[i-n_obs])*
-	    (onset_to_survival[j] + onset_to_death[j]);
-          alerts_modelled[i+j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j];
-          iso_admission[i+j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_release[j]*prop_iso;
-        }
-      }
+  for (i in 1:(n_tot - 1)) {
+    int j_max = (i + max_delay > n_tot) ? (n_tot - i) : max_delay;
+  
+    // pick the case source (reported vs projected)
+    real cases_val;
+    real alerts_bg;
+    if (i <= n_obs) {
+      cases_val = cases_reported[i];
+      alerts_bg = exp(alerts_background[alerts_background_ind[i]]);
     } else {
-      // if no right truncation go to end of delay distribution
-      for(j in 1:max_delay) {
-        // pull from reported cases
-        if(i <= n_obs) {
-          etu_admission[i + j] +=
-	    cases_reported[i]*onset_to_etu[j];
-          etu_discharge[i + j] +=
-	    cases_reported[i]*(onset_to_survival[j] + onset_to_death[j]);
-          alerts_modelled[i + j] +=
-	    (cases_reported[i]*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*onset_to_iso[j];
-          iso_admission[i + j] +=
-	    (cases_reported[i]*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge[i + j] +=
-	    (cases_reported[i]*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_release[j]*prop_iso;
-	// pull from projected cases
-	} else {
-          etu_admission[i + j] +=
-	    exp(log_cases_projected[i - n_obs])*onset_to_etu[j];
-          etu_discharge[i + j] +=
-	    exp(log_cases_projected[i - n_obs])*
-	    (onset_to_survival[j] + onset_to_death[j]);
-          alerts_modelled[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j];
-          iso_admission[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_release[j]*prop_iso;
-	}
-      }
+      cases_val = exp(log_cases_projected[i - n_obs]);
+      alerts_bg = exp(alerts_background[alerts_background_ind[n_alerts_background]]);
+    }
+
+    // precompute alerts term
+    real alerts_val = cases_val * exp(alerts_per_case) + alerts_bg;
+
+    for (j in 1:j_max) {
+      int t = i + j;
+
+      etu_admission[t]   += cases_val * onset_to_etu[j];
+      etu_discharge[t]   += cases_val * (onset_to_survival[j] + onset_to_death[j]);
+
+      alerts_modelled[t] += alerts_val * onset_to_iso[j];
+      iso_admission[t]   += alerts_val * onset_to_iso[j] * prop_iso;
+      iso_discharge[t]   += alerts_val * onset_to_release[j] * prop_iso;
     }
   }
 
@@ -514,19 +464,19 @@ model {
   // likelihood of reported etu
   for(i in etu_ind)
     target += neg_binomial_2_lpmf(
-      etu_reported[i] | etu_modelled_for_fit[i], exp(etu_overdisp)
+      etu_reported[i] | etu_modelled[i], exp(etu_overdisp)
     );
 
   // likelihood of reported number of alerts
   for(i in alerts_ind)
     target += neg_binomial_2_lpmf(
-      alerts_reported[i] | alerts_modelled_for_fit[i], exp(alerts_overdisp)
+      alerts_reported[i] | alerts_modelled[i], exp(alerts_overdisp)
     );
 
   // likelihood of reported isolation occupancy
   for(i in iso_ind)
     target += neg_binomial_2_lpmf(
-      iso_reported[i] | iso_modelled_for_fit[i], exp(iso_overdisp)
+      iso_reported[i] | iso_modelled[i], exp(iso_overdisp)
     );
 
 }
@@ -588,93 +538,35 @@ generated quantities {
   iso_admission_inflated = rep_vector(0, n_tot);
   iso_discharge_inflated = rep_vector(0, n_tot);
 
-  // calculate etu_admission_inflated and etu_discharge_inflated density
-  for(i in 1:(n_tot - 1)) {
-    if((i + max_delay) > (n_tot)) {
-      // in case of right truncation move until end of analysis period
-      for(j in 1:(n_tot - i)) {
-        // pull from reported cases
-        if(i <= n_obs) {
-          etu_admission_inflated[i + j] +=
-	    exp(log_cases_inflated[i])*onset_to_etu[j];
-          etu_discharge_inflated[i + j] +=
-	    exp(log_cases_inflated[i])*(onset_to_survival[j] + onset_to_death[j]);
-	  // here we are adding alerts from cases and alerts from background together
-          alerts_modelled_inflated[i + j] +=
-	    (exp(log_cases_inflated[i])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_iso[j];
-          iso_admission_inflated[i + j] +=
-	    (exp(log_cases_inflated[i])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge_inflated[i + j] +=
-	    (exp(log_cases_inflated[i])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_release[j]*prop_iso;
-	// pull from projected cases
-	} else {
-          etu_admission_inflated[i + j] +=
-	    exp(log_cases_projected[i - n_obs])*onset_to_etu[j];
-          etu_discharge_inflated[i + j] +=
-	    exp(log_cases_projected[i - n_obs])*
-	    (onset_to_survival[j] + onset_to_death[j]);
-          alerts_modelled_inflated[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j];
-          iso_admission_inflated[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge_inflated[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_release[j]*prop_iso;
-        }
-      }
+  // calculate inflated etu and alerts
+  for (i in 1:(n_tot - 1)) {
+    int j_max = (i + max_delay > n_tot) ? (n_tot - i) : max_delay;
+  
+    // pick the case source (observed inflated vs projected)
+    real cases_val;
+    real alerts_bg;
+    if (i <= n_obs) {
+      cases_val = exp(log_cases_inflated[i]);
+      alerts_bg = exp(alerts_background[alerts_background_ind[i]]);
     } else {
-      // if no right truncation go to end of delay distribution
-      for(j in 1:max_delay) {
-        // pull from reported cases
-        if(i <= n_obs) {
-          etu_admission_inflated[i + j] +=
-	    exp(log_cases_inflated[i])*onset_to_etu[j];
-          etu_discharge_inflated[i + j] +=
-	    exp(log_cases_inflated[i])*(onset_to_survival[j] + onset_to_death[j]);
-          alerts_modelled_inflated[i + j] +=
-	    (exp(log_cases_inflated[i])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_iso[j];
-          iso_admission_inflated[i + j] +=
-	    (exp(log_cases_inflated[i])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge_inflated[i + j] +=
-	    (exp(log_cases_inflated[i])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[i]]))*
-	    onset_to_release[j]*prop_iso;
-	// pull from projected cases
-	} else {
-          etu_admission_inflated[i + j] +=
-	    exp(log_cases_projected[i - n_obs])*onset_to_etu[j];
-          etu_discharge_inflated[i + j] +=
-	    exp(log_cases_projected[i - n_obs])*
-	    (onset_to_survival[j] + onset_to_death[j]);
-          alerts_modelled_inflated[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j];
-          iso_admission_inflated[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_iso[j]*prop_iso;
-          iso_discharge_inflated[i + j] +=
-	    (exp(log_cases_projected[i - n_obs])*exp(alerts_per_case) +
-	    exp(alerts_background[alerts_background_ind[n_alerts_background]]))*
-	    onset_to_release[j]*prop_iso;
-	}
-      }
+      cases_val = exp(log_cases_projected[i - n_obs]);
+      alerts_bg = exp(alerts_background[alerts_background_ind[n_alerts_background]]);
+    }
+
+    // precompute alerts term
+    real alerts_val = cases_val * exp(alerts_per_case) + alerts_bg;
+
+    for (j in 1:j_max) {
+      int t = i + j;
+
+      etu_admission_inflated[t] += cases_val * onset_to_etu[j];
+      // discharge comes from survival and deaths
+      etu_discharge_inflated[t] += cases_val *
+        (onset_to_survival[j] + onset_to_death[j]);
+
+      alerts_modelled_inflated[t] += alerts_val * onset_to_iso[j];
+      iso_admission_inflated[t] += alerts_val * onset_to_iso[j] * prop_iso;
+      iso_discharge_inflated[t] += alerts_val * onset_to_release[j] * prop_iso;
     }
   }
 

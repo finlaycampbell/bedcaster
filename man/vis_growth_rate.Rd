@@ -45,7 +45,7 @@ p <- vis_growth_rate(results)
 p <- vis_growth_rate(results, base_size = 14)
 
 # Save the plot
-p \%>\% save_plot("growth_rate.png")
+p |> save_plot("growth_rate.png")
 }
 
 }

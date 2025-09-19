@@ -4,7 +4,7 @@
 \alias{extract_stan}
 \title{Extract raw samples from Stan model}
 \usage{
-extract_stan(par, results)
+extract_stan(par, results, output = c("raw", "shaped"))
 }
 \arguments{
 \item{par}{Character string specifying the parameter name to extract.}
