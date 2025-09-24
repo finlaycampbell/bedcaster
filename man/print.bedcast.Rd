@@ -2,21 +2,15 @@
 % Please edit documentation in R/print.bedcast.R
 \name{print.bedcast}
 \alias{print.bedcast}
-\title{Printing generic for class bedcast}
+\title{Print method for bedcaster objects}
 \usage{
 \method{print}{bedcast}(x, ...)
 }
 \arguments{
-\item{...}{Other arguments passed to plotting functions.}
+\item{x}{A bedcaster object}
 
-\item{bedcast}{Object of class \code{bedcast} returned by
-fit_bedcaster.}
-
-\item{type}{What type of visualisation. "fit" will call
-\code{vis_bedcast_fit}, "growthrate" will call
-\code{vis_bedcast_growthrate} and "vis_bedcast_parameters" will call
-\code{vis_parameters}.}
+\item{...}{Additional arguments (not used)}
 }
 \description{
-Printing generic for class bedcast
+Print method for bedcaster objects
 }

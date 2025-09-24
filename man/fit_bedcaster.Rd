@@ -90,29 +90,3 @@ Fits a Bayesian model using Stan to forecast ETU and isolation bed occupancy
 based on case incidence, alerts, and delay distributions. The model accounts
 for reporting delays and provides nowcasts and forecasts of healthcare demand.
 }
-\details{
-The Stan model implements a hierarchical Bayesian approach that:
-\itemize{
-  \item Models case incidence using a spline-based growth rate
-  \item Accounts for reporting delays using delay distributions
-  \item Links cases to ETU occupancy through admission and discharge processes
-  \item Models alerts as a function of cases and background noise
-  \item Provides nowcasts of unreported cases and forecasts of future demand
-}
-
-The model automatically saves results to the outputs directory with a timestamp.
-}
-\examples{
-\dontrun{
-
-# Fit with default priors
-results <- fit_stan(df)
-
-# Fit with custom priors
-results <- fit_stan(df,
-  prior_cfr = c(qlogis(0.3), 0.2),
-  n_proj = 14
-)
-}
-
-}

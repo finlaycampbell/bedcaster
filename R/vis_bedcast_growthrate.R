@@ -4,60 +4,30 @@
 #' time, including uncertainty bounds. This helps identify periods of increasing
 #' or decreasing transmission.
 #'
-#' @param results A list containing the fitted Stan model results from fit_stan().
+#' @param bedcast A list containing the output from \code{fit_bedcast}.
 #' @param base_size Numeric base font size for the plot (default: 12).
 #'
 #' @return A ggplot object showing the growth rate over time.
-#'
-#' @details The visualization shows:
-#' \itemize{
-#'   \item Individual MCMC samples as light lines (showing uncertainty)
-#'   \item Median growth rate as a prominent red line
-#'   \item Horizontal reference line at zero growth
-#'   \item Time series of daily growth rates
-#' }
-#'
-#' Positive growth rates indicate increasing transmission, while negative rates
-#' indicate decreasing transmission. The visualization helps identify:
-#' \itemize{
-#'   \item Periods of epidemic growth or decline
-#'   \item Uncertainty in growth rate estimates
-#'   \item Changes in transmission dynamics over time
-#' }
-#'
-#' @examples
-#' \dontrun{
-#' # Create growth rate visualization
-#' p <- vis_growth_rate(results)
-#'
-#' # Customize base size
-#' p <- vis_growth_rate(results, base_size = 14)
-#'
-#' # Save the plot
-#' p |> save_plot("growth_rate.png")
-#' }
 #'
 #' @importFrom dplyr group_by summarise
 #' @importFrom ggplot2 ggplot aes geom_line geom_hline scale_y_continuous
 #' @importFrom ggplot2 scale_x_date labs theme_minimal theme element_rect
 #' @importFrom stringr str_to_title
 #' @export
-vis_bedcast_growthrate <- function(bedcast, base_size = 12) {
+#'
+vis_bedcast_growthrate <- function(bedcast,
+                                   alpha = 0.95,
+                                   base_size = 12) {
 
   # extract individual estimates
   bind_rows(
-    summary(bedcast, "growthrate_reported", c(0.025, 0.5, 0.975)) |>
+    summary(bedcast, "growthrate_reported", alpha = alpha) |>
       mutate(type = "observed"),
-    extract(bedcast, "growthrate_projected") |>
+    summary(bedcast, "growthrate_projected", alpha = alpha) |>
       mutate(type = "projected")
-  ) |>
-    summarise(
-      median = median(value),
-      lower = quantile(value, 0.025),
-      upper = quantile(value, 0.975),
-      .by = c(date, type)
-    ) |>
-    ggplot(aes(date, median, ymin = lower, ymax = upper, linetype = type)) +
+  ) %>%
+    mutate(lower = .[[3]], mid = .[[4]], upper = .[[5]]) |>
+    ggplot(aes(index, mid, ymin = lower, ymax = upper, linetype = type)) +
     geom_ribbon(alpha = 0.5) +
     geom_line(color = "firebrick", size = 1) +
     geom_hline(yintercept = 0, linetype = 2) +

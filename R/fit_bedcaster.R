@@ -42,30 +42,6 @@
 #'   \item{df}{The processed data used for fitting, including original data}
 #' }
 #'
-#' @details The Stan model implements a hierarchical Bayesian approach that:
-#' \itemize{
-#'   \item Models case incidence using a spline-based growth rate
-#'   \item Accounts for reporting delays using delay distributions
-#'   \item Links cases to ETU occupancy through admission and discharge processes
-#'   \item Models alerts as a function of cases and background noise
-#'   \item Provides nowcasts of unreported cases and forecasts of future demand
-#' }
-#'
-#' The model automatically saves results to the outputs directory with a timestamp.
-#'
-#' @examples
-#' \dontrun{
-#'
-#' # Fit with default priors
-#' results <- fit_stan(df)
-#'
-#' # Fit with custom priors
-#' results <- fit_stan(df,
-#'   prior_cfr = c(qlogis(0.3), 0.2),
-#'   n_proj = 14
-#' )
-#' }
-#'
 #' @importFrom splines bs
 #' @importFrom stats qlogis
 #' @importFrom distcrete distcrete
@@ -176,8 +152,8 @@ fit_bedcaster <- function(df, as_of,
   options(mc.cores = n_cores)
 
   fit <- rstan::sampling(
-    model,
-    ## stanmodels$bedcaster2,
+    ## model,
+    stanmodels$bedcaster,
     data = data,
     chains = n_chains,
     iter = n_iter,
@@ -192,7 +168,8 @@ fit_bedcaster <- function(df, as_of,
     alerts_reported = df$alerts,
     iso_reported = df$iso,
     date_fit = df$date,
-    date_projection = max(df$date) + seq_len(n_proj)
+    date_projection = max(df$date) + seq_len(n_proj),
+    date_total = c(df$date, max(df$date) + seq_len(n_proj))
   )
 
   out <- list(fit = fit, data = data)

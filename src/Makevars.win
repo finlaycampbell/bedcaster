@@ -9,3 +9,5 @@ PKG_LIBS = $(shell "$(R_HOME)/bin$(R_ARCH_BIN)/Rscript" -e "RcppParallel::RcppPa
 
 CXX_STD = CXX17
 PKG_CXXFLAGS += -Wa,-mbig-obj
+CXX14FLAGS += -O3 -march=native -mtune=native
+PKG_CPPFLAGS += -DSTAN_THREADS

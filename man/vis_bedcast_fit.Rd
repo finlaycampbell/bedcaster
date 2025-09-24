@@ -24,26 +24,10 @@ display (default: c(0.25, 0.5, 0.75, 0.95)).}
 }
 \value{
 A ggplot object showing the model fit visualization.
-
-The function automatically handles extreme values by capping them at a
-reasonable multiple of the reported maximum to ensure readable plots.
 }
 \description{
 Creates comprehensive visualizations of the fitted Stan model showing reported
 data, nowcasts, and forecasts for cases, ETU occupancy, alerts, and isolation
 occupancy. The plot includes credible intervals and distinguishes between
 reported and projected data.
-}
-\examples{
-\dontrun{
-# Create visualization with default settings
-p <- vis_bedcast_fit(results)
-
-# Customize visualization
-p <- vis_bedcast_fit(results, ylim_factor = 2, base_size = 14)
-
-# Save the plot
-p \%>\% save_plot("model_fit.png", height = 20)
-}
-
 }

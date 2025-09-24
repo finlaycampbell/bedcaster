@@ -27,261 +27,295 @@ namespace model_bedcaster_namespace {
 using stan::model::model_base_crtp;
 using namespace stan::math;
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 364> locations_array__ =
+static constexpr std::array<const char*, 391> locations_array__ =
   {" (found before start of program)",
-  " (in 'string', line 115, column 2 to column 17)",
-  " (in 'string', line 117, column 2 to column 22)",
-  " (in 'string', line 119, column 2 to column 28)",
-  " (in 'string', line 120, column 2 to column 34)",
-  " (in 'string', line 122, column 2 to column 31)",
-  " (in 'string', line 123, column 2 to column 37)",
-  " (in 'string', line 125, column 2 to column 28)",
-  " (in 'string', line 126, column 2 to column 34)",
-  " (in 'string', line 128, column 2 to column 28)",
-  " (in 'string', line 129, column 2 to column 34)",
-  " (in 'string', line 131, column 2 to column 30)",
-  " (in 'string', line 132, column 2 to column 36)",
-  " (in 'string', line 135, column 2 to column 22)",
-  " (in 'string', line 136, column 2 to column 23)",
-  " (in 'string', line 137, column 2 to column 20)",
-  " (in 'string', line 138, column 2 to column 23)",
-  " (in 'string', line 139, column 2 to column 20)",
-  " (in 'string', line 141, column 2 to column 27)",
-  " (in 'string', line 144, column 2 to column 48)",
-  " (in 'string', line 146, column 2 to column 23)",
-  " (in 'string', line 150, column 2 to column 42)",
-  " (in 'string', line 154, column 2 to column 33)",
-  " (in 'string', line 155, column 2 to column 35)",
-  " (in 'string', line 156, column 2 to column 37)",
-  " (in 'string', line 158, column 2 to column 30)",
-  " (in 'string', line 159, column 2 to column 32)",
-  " (in 'string', line 160, column 2 to column 34)",
-  " (in 'string', line 162, column 2 to column 29)",
-  " (in 'string', line 165, column 2 to column 33)",
-  " (in 'string', line 166, column 2 to column 36)",
-  " (in 'string', line 167, column 2 to column 33)",
-  " (in 'string', line 169, column 2 to column 38)",
-  " (in 'string', line 170, column 2 to column 35)",
-  " (in 'string', line 172, column 2 to column 30)",
-  " (in 'string', line 173, column 2 to column 30)",
-  " (in 'string', line 174, column 2 to column 29)",
-  " (in 'string', line 175, column 2 to column 37)",
-  " (in 'string', line 177, column 2 to column 33)",
-  " (in 'string', line 178, column 2 to column 35)",
-  " (in 'string', line 180, column 2 to column 37)",
-  " (in 'string', line 182, column 2 to column 32)",
-  " (in 'string', line 183, column 2 to column 30)",
-  " (in 'string', line 184, column 2 to column 30)",
-  " (in 'string', line 185, column 2 to column 29)",
-  " (in 'string', line 186, column 2 to column 40)",
-  " (in 'string', line 187, column 2 to column 37)",
-  " (in 'string', line 189, column 2 to column 34)",
-  " (in 'string', line 192, column 2 to column 36)",
-  " (in 'string', line 194, column 2 to column 38)",
-  " (in 'string', line 196, column 2 to column 24)",
-  " (in 'string', line 197, column 2 to column 31)",
-  " (in 'string', line 198, column 2 to column 42)",
-  " (in 'string', line 199, column 2 to column 41)",
-  " (in 'string', line 200, column 2 to column 35)",
-  " (in 'string', line 273, column 2 to column 15)",
-  " (in 'string', line 375, column 2 to column 35)",
-  " (in 'string', line 376, column 2 to column 31)",
-  " (in 'string', line 377, column 2 to column 33)",
-  " (in 'string', line 378, column 2 to column 36)",
-  " (in 'string', line 379, column 2 to column 32)",
-  " (in 'string', line 380, column 2 to column 34)",
-  " (in 'string', line 381, column 2 to column 31)",
-  " (in 'string', line 382, column 2 to column 34)",
-  " (in 'string', line 383, column 2 to column 31)",
-  " (in 'string', line 385, column 2 to column 39)",
-  " (in 'string', line 386, column 2 to column 39)",
-  " (in 'string', line 387, column 2 to column 38)",
-  " (in 'string', line 389, column 2 to column 41)",
-  " (in 'string', line 390, column 2 to column 39)",
-  " (in 'string', line 391, column 2 to column 39)",
-  " (in 'string', line 392, column 2 to column 38)",
-  " (in 'string', line 163, column 2 to column 29)",
-  " (in 'string', line 190, column 2 to column 39)",
-  " (in 'string', line 202, column 2 to column 58)",
-  " (in 'string', line 204, column 2 to column 79)",
-  " (in 'string', line 206, column 2 to line 208, column 64)",
-  " (in 'string', line 209, column 34 to column 62)",
-  " (in 'string', line 209, column 2 to column 62)",
-  " (in 'string', line 210, column 34 to column 62)",
-  " (in 'string', line 210, column 2 to column 62)",
-  " (in 'string', line 212, column 2 to column 62)",
-  " (in 'string', line 214, column 2 to line 215, column 63)",
-  " (in 'string', line 217, column 2 to line 218, column 60)",
-  " (in 'string', line 220, column 2 to column 71)",
-  " (in 'string', line 222, column 2 to column 75)",
-  " (in 'string', line 224, column 4 to column 77)",
-  " (in 'string', line 225, column 4 to column 77)",
-  " (in 'string', line 223, column 20 to line 226, column 3)",
-  " (in 'string', line 223, column 2 to line 226, column 3)",
-  " (in 'string', line 229, column 33 to column 58)",
-  " (in 'string', line 229, column 4 to column 58)",
-  " (in 'string', line 230, column 35 to column 62)",
-  " (in 'string', line 230, column 4 to column 62)",
-  " (in 'string', line 228, column 20 to line 231, column 3)",
-  " (in 'string', line 228, column 2 to line 231, column 3)",
-  " (in 'string', line 233, column 2 to column 79)",
-  " (in 'string', line 235, column 4 to column 80)",
-  " (in 'string', line 236, column 36 to column 64)",
-  " (in 'string', line 236, column 4 to column 64)",
-  " (in 'string', line 237, column 37 to column 66)",
-  " (in 'string', line 237, column 4 to column 66)",
-  " (in 'string', line 234, column 21 to line 238, column 3)",
-  " (in 'string', line 234, column 2 to line 238, column 3)",
-  " (in 'string', line 239, column 2 to column 46)",
-  " (in 'string', line 240, column 2 to column 48)",
-  " (in 'string', line 241, column 2 to column 50)",
-  " (in 'string', line 243, column 2 to column 41)",
-  " (in 'string', line 244, column 2 to column 39)",
-  " (in 'string', line 245, column 2 to column 39)",
-  " (in 'string', line 246, column 2 to column 39)",
-  " (in 'string', line 247, column 2 to column 39)",
-  " (in 'string', line 251, column 4 to column 85)",
-  " (in 'string', line 252, column 4 to column 94)",
-  " (in 'string', line 253, column 4 to column 85)",
-  " (in 'string', line 254, column 4 to column 85)",
-  " (in 'string', line 255, column 4 to column 91)",
-  " (in 'string', line 249, column 24 to line 256, column 3)",
-  " (in 'string', line 249, column 2 to line 256, column 3)",
-  " (in 'string', line 258, column 2 to column 51)",
-  " (in 'string', line 259, column 2 to column 60)",
-  " (in 'string', line 260, column 2 to column 51)",
+  " (in 'string', line 114, column 2 to column 17)",
+  " (in 'string', line 116, column 2 to column 22)",
+  " (in 'string', line 118, column 2 to column 28)",
+  " (in 'string', line 119, column 2 to column 34)",
+  " (in 'string', line 121, column 2 to column 31)",
+  " (in 'string', line 122, column 2 to column 37)",
+  " (in 'string', line 124, column 2 to column 28)",
+  " (in 'string', line 125, column 2 to column 34)",
+  " (in 'string', line 127, column 2 to column 28)",
+  " (in 'string', line 128, column 2 to column 34)",
+  " (in 'string', line 130, column 2 to column 30)",
+  " (in 'string', line 131, column 2 to column 36)",
+  " (in 'string', line 134, column 2 to column 26)",
+  " (in 'string', line 135, column 2 to column 27)",
+  " (in 'string', line 136, column 2 to column 24)",
+  " (in 'string', line 137, column 2 to column 27)",
+  " (in 'string', line 138, column 2 to column 24)",
+  " (in 'string', line 140, column 2 to column 27)",
+  " (in 'string', line 143, column 2 to column 52)",
+  " (in 'string', line 145, column 2 to column 27)",
+  " (in 'string', line 149, column 2 to column 42)",
+  " (in 'string', line 156, column 2 to column 36)",
+  " (in 'string', line 158, column 2 to column 38)",
+  " (in 'string', line 189, column 2 to column 35)",
+  " (in 'string', line 190, column 2 to column 33)",
+  " (in 'string', line 191, column 2 to column 36)",
+  " (in 'string', line 224, column 2 to column 33)",
+  " (in 'string', line 225, column 2 to column 36)",
+  " (in 'string', line 226, column 2 to column 33)",
+  " (in 'string', line 228, column 2 to column 38)",
+  " (in 'string', line 229, column 2 to column 35)",
+  " (in 'string', line 231, column 2 to column 33)",
+  " (in 'string', line 232, column 2 to column 35)",
+  " (in 'string', line 234, column 2 to column 37)",
+  " (in 'string', line 236, column 2 to column 11)",
+  " (in 'string', line 278, column 2 to column 36)",
+  " (in 'string', line 279, column 2 to column 34)",
+  " (in 'string', line 280, column 2 to column 37)",
+  " (in 'string', line 307, column 2 to column 36)",
+  " (in 'string', line 308, column 2 to column 33)",
+  " (in 'string', line 309, column 2 to column 33)",
+  " (in 'string', line 311, column 2 to column 16)",
+  " (in 'string', line 314, column 2 to column 23)",
+  " (in 'string', line 317, column 2 to column 48)",
+  " (in 'string', line 367, column 2 to column 22)",
+  " (in 'string', line 368, column 2 to column 23)",
+  " (in 'string', line 369, column 2 to column 20)",
+  " (in 'string', line 370, column 2 to column 23)",
+  " (in 'string', line 371, column 2 to column 20)",
+  " (in 'string', line 431, column 2 to column 34)",
+  " (in 'string', line 432, column 2 to column 33)",
+  " (in 'string', line 433, column 2 to column 31)",
+  " (in 'string', line 435, column 2 to column 35)",
+  " (in 'string', line 436, column 2 to column 34)",
+  " (in 'string', line 437, column 2 to column 32)",
+  " (in 'string', line 453, column 2 to column 31)",
+  " (in 'string', line 454, column 2 to column 34)",
+  " (in 'string', line 455, column 2 to column 31)",
+  " (in 'string', line 515, column 2 to column 31)",
+  " (in 'string', line 516, column 2 to column 34)",
+  " (in 'string', line 517, column 2 to column 31)",
+  " (in 'string', line 519, column 2 to column 29)",
+  " (in 'string', line 520, column 2 to column 32)",
+  " (in 'string', line 521, column 2 to column 29)",
+  " (in 'string', line 162, column 2 to column 24)",
+  " (in 'string', line 163, column 2 to column 31)",
+  " (in 'string', line 164, column 2 to column 42)",
+  " (in 'string', line 165, column 2 to column 41)",
+  " (in 'string', line 166, column 2 to column 35)",
+  " (in 'string', line 168, column 2 to column 58)",
+  " (in 'string', line 170, column 2 to column 79)",
+  " (in 'string', line 172, column 2 to line 174, column 64)",
+  " (in 'string', line 175, column 34 to column 62)",
+  " (in 'string', line 175, column 2 to column 62)",
+  " (in 'string', line 176, column 34 to column 62)",
+  " (in 'string', line 176, column 2 to column 62)",
+  " (in 'string', line 178, column 2 to column 62)",
+  " (in 'string', line 180, column 2 to line 181, column 63)",
+  " (in 'string', line 183, column 2 to line 184, column 60)",
+  " (in 'string', line 159, column 2 to line 185, column 3)",
+  " (in 'string', line 194, column 9 to column 14)",
+  " (in 'string', line 194, column 2 to column 39)",
+  " (in 'string', line 195, column 9 to column 14)",
+  " (in 'string', line 195, column 2 to column 37)",
+  " (in 'string', line 196, column 9 to column 15)",
+  " (in 'string', line 196, column 2 to column 40)",
+  " (in 'string', line 198, column 2 to column 73)",
+  " (in 'string', line 200, column 2 to column 83)",
+  " (in 'string', line 202, column 4 to column 81)",
+  " (in 'string', line 203, column 4 to column 85)",
+  " (in 'string', line 201, column 20 to line 204, column 3)",
+  " (in 'string', line 201, column 2 to line 204, column 3)",
+  " (in 'string', line 207, column 39 to column 70)",
+  " (in 'string', line 207, column 4 to column 70)",
+  " (in 'string', line 208, column 37 to column 66)",
+  " (in 'string', line 208, column 4 to column 66)",
+  " (in 'string', line 206, column 20 to line 209, column 3)",
+  " (in 'string', line 206, column 2 to line 209, column 3)",
+  " (in 'string', line 211, column 2 to column 84)",
+  " (in 'string', line 213, column 4 to column 86)",
+  " (in 'string', line 214, column 39 to column 70)",
+  " (in 'string', line 214, column 4 to column 70)",
+  " (in 'string', line 215, column 40 to column 72)",
+  " (in 'string', line 215, column 4 to column 72)",
+  " (in 'string', line 212, column 21 to line 216, column 3)",
+  " (in 'string', line 212, column 2 to line 216, column 3)",
+  " (in 'string', line 217, column 2 to column 51)",
+  " (in 'string', line 218, column 2 to column 47)",
+  " (in 'string', line 219, column 2 to column 51)",
+  " (in 'string', line 192, column 2 to line 220, column 3)",
+  " (in 'string', line 237, column 2 to column 29)",
+  " (in 'string', line 242, column 4 to line 244, column 6)",
+  " (in 'string', line 245, column 4 to line 247, column 6)",
+  " (in 'string', line 248, column 4 to line 250, column 6)",
+  " (in 'string', line 251, column 4 to line 253, column 6)",
+  " (in 'string', line 254, column 4 to line 256, column 6)",
+  " (in 'string', line 241, column 24 to line 257, column 3)",
+  " (in 'string', line 241, column 2 to line 257, column 3)",
+  " (in 'string', line 259, column 2 to column 51)",
+  " (in 'string', line 260, column 2 to column 60)",
   " (in 'string', line 261, column 2 to column 51)",
-  " (in 'string', line 262, column 2 to column 57)",
-  " (in 'string', line 264, column 2 to column 78)",
+  " (in 'string', line 262, column 2 to column 51)",
+  " (in 'string', line 263, column 2 to column 57)",
   " (in 'string', line 265, column 2 to column 78)",
-  " (in 'string', line 267, column 2 to column 72)",
-  " (in 'string', line 268, column 2 to column 63)",
-  " (in 'string', line 270, column 2 to column 76)",
-  " (in 'string', line 271, column 2 to column 63)",
-  " (in 'string', line 279, column 8 to column 72)",
-  " (in 'string', line 277, column 8 to column 65)",
-  " (in 'string', line 276, column 6 to line 279, column 72)",
-  " (in 'string', line 283, column 8 to column 47)",
-  " (in 'string', line 282, column 11 to line 283, column 47)",
-  " (in 'string', line 281, column 8 to column 40)",
-  " (in 'string', line 280, column 6 to line 283, column 47)",
-  " (in 'string', line 275, column 26 to line 284, column 5)",
-  " (in 'string', line 275, column 4 to line 284, column 5)",
-  " (in 'string', line 274, column 20 to line 285, column 3)",
-  " (in 'string', line 274, column 2 to line 285, column 3)",
-  " (in 'string', line 287, column 20 to line 288, column 28)",
-  " (in 'string', line 287, column 2 to line 288, column 28)",
-  " (in 'string', line 291, column 4 to column 66)",
-  " (in 'string', line 294, column 4 to column 19)",
-  " (in 'string', line 295, column 4 to column 19)",
-  " (in 'string', line 300, column 6 to column 54)",
-  " (in 'string', line 301, column 6 to column 85)",
-  " (in 'string', line 299, column 11 to line 302, column 5)",
-  " (in 'string', line 297, column 6 to column 36)",
-  " (in 'string', line 298, column 6 to column 67)",
-  " (in 'string', line 296, column 20 to line 299, column 5)",
-  " (in 'string', line 296, column 4 to line 302, column 5)",
-  " (in 'string', line 304, column 4 to column 67)",
-  " (in 'string', line 306, column 6 to column 20)",
-  " (in 'string', line 307, column 6 to column 56)",
-  " (in 'string', line 308, column 6 to column 83)",
-  " (in 'string', line 309, column 6 to column 57)",
-  " (in 'string', line 310, column 6 to column 68)",
-  " (in 'string', line 311, column 6 to column 72)",
-  " (in 'string', line 305, column 23 to line 312, column 5)",
-  " (in 'string', line 305, column 4 to line 312, column 5)",
-  " (in 'string', line 290, column 27 to line 313, column 3)",
-  " (in 'string', line 290, column 2 to line 313, column 3)",
-  " (in 'string', line 315, column 2 to column 63)",
-  " (in 'string', line 316, column 2 to column 63)",
-  " (in 'string', line 317, column 47 to column 73)",
-  " (in 'string', line 317, column 22 to column 73)",
-  " (in 'string', line 317, column 2 to column 73)",
-  " (in 'string', line 318, column 20 to column 62)",
-  " (in 'string', line 318, column 2 to column 62)",
-  " (in 'string', line 319, column 50 to column 79)",
-  " (in 'string', line 319, column 22 to column 79)",
-  " (in 'string', line 319, column 2 to column 79)",
-  " (in 'string', line 320, column 20 to column 68)",
-  " (in 'string', line 320, column 2 to column 68)",
-  " (in 'string', line 321, column 47 to column 73)",
-  " (in 'string', line 321, column 22 to column 73)",
-  " (in 'string', line 321, column 2 to column 73)",
-  " (in 'string', line 322, column 20 to column 62)",
-  " (in 'string', line 322, column 2 to column 62)",
-  " (in 'string', line 394, column 2 to column 85)",
-  " (in 'string', line 396, column 2 to column 89)",
-  " (in 'string', line 398, column 2 to column 91)",
-  " (in 'string', line 400, column 2 to column 79)",
-  " (in 'string', line 402, column 2 to column 83)",
-  " (in 'string', line 404, column 2 to column 85)",
-  " (in 'string', line 406, column 2 to column 74)",
-  " (in 'string', line 408, column 2 to column 83)",
-  " (in 'string', line 411, column 2 to column 74)",
-  " (in 'string', line 413, column 2 to column 50)",
-  " (in 'string', line 414, column 2 to column 48)",
-  " (in 'string', line 415, column 2 to column 48)",
-  " (in 'string', line 416, column 2 to column 48)",
-  " (in 'string', line 417, column 2 to column 48)",
-  " (in 'string', line 420, column 4 to column 66)",
-  " (in 'string', line 423, column 4 to column 19)",
-  " (in 'string', line 424, column 4 to column 19)",
-  " (in 'string', line 429, column 6 to column 54)",
-  " (in 'string', line 430, column 6 to column 85)",
-  " (in 'string', line 428, column 11 to line 431, column 5)",
-  " (in 'string', line 426, column 6 to column 45)",
-  " (in 'string', line 427, column 6 to column 67)",
-  " (in 'string', line 425, column 20 to line 428, column 5)",
-  " (in 'string', line 425, column 4 to line 431, column 5)",
-  " (in 'string', line 433, column 4 to column 67)",
-  " (in 'string', line 435, column 6 to column 20)",
-  " (in 'string', line 436, column 6 to column 63)",
-  " (in 'string', line 438, column 6 to line 439, column 51)",
-  " (in 'string', line 440, column 6 to column 66)",
-  " (in 'string', line 441, column 6 to column 75)",
-  " (in 'string', line 442, column 6 to column 79)",
-  " (in 'string', line 434, column 23 to line 443, column 5)",
-  " (in 'string', line 434, column 4 to line 443, column 5)",
-  " (in 'string', line 419, column 27 to line 444, column 3)",
-  " (in 'string', line 419, column 2 to line 444, column 3)",
-  " (in 'string', line 446, column 2 to line 448, column 4)",
-  " (in 'string', line 449, column 2 to line 451, column 4)",
-  " (in 'string', line 454, column 38 to column 73)",
-  " (in 'string', line 454, column 4 to column 73)",
-  " (in 'string', line 453, column 2 to line 454, column 73)",
-  " (in 'string', line 456, column 4 to column 42)",
-  " (in 'string', line 455, column 22 to line 456, column 42)",
-  " (in 'string', line 455, column 2 to line 456, column 42)",
-  " (in 'string', line 458, column 4 to column 39)",
-  " (in 'string', line 457, column 22 to line 458, column 39)",
-  " (in 'string', line 457, column 2 to line 458, column 39)",
-  " (in 'string', line 326, column 2 to column 78)",
-  " (in 'string', line 327, column 2 to column 73)",
-  " (in 'string', line 329, column 2 to column 87)",
-  " (in 'string', line 330, column 2 to column 82)",
-  " (in 'string', line 332, column 2 to column 78)",
-  " (in 'string', line 333, column 2 to column 73)",
-  " (in 'string', line 335, column 2 to column 78)",
-  " (in 'string', line 336, column 2 to column 73)",
-  " (in 'string', line 337, column 2 to column 84)",
-  " (in 'string', line 338, column 2 to column 79)",
-  " (in 'string', line 340, column 2 to column 43)",
-  " (in 'string', line 342, column 2 to column 64)",
-  " (in 'string', line 344, column 2 to column 85)",
-  " (in 'string', line 346, column 2 to column 79)",
-  " (in 'string', line 348, column 2 to column 32)",
-  " (in 'string', line 349, column 2 to column 30)",
-  " (in 'string', line 350, column 2 to column 33)",
-  " (in 'string', line 351, column 2 to column 30)",
-  " (in 'string', line 353, column 2 to column 30)",
-  " (in 'string', line 355, column 2 to column 78)",
-  " (in 'string', line 357, column 2 to column 72)",
-  " (in 'string', line 359, column 2 to line 362, column 6)",
-  " (in 'string', line 360, column 4 to line 362, column 6)",
-  " (in 'string', line 364, column 2 to line 367, column 6)",
-  " (in 'string', line 365, column 4 to line 367, column 6)",
-  " (in 'string', line 369, column 2 to line 372, column 6)",
-  " (in 'string', line 370, column 4 to line 372, column 6)",
+  " (in 'string', line 266, column 2 to column 78)",
+  " (in 'string', line 268, column 2 to column 72)",
+  " (in 'string', line 269, column 2 to column 63)",
+  " (in 'string', line 271, column 2 to column 76)",
+  " (in 'string', line 272, column 2 to column 63)",
+  " (in 'string', line 238, column 2 to line 273, column 3)",
+  " (in 'string', line 282, column 2 to column 52)",
+  " (in 'string', line 283, column 2 to column 50)",
+  " (in 'string', line 284, column 2 to column 53)",
+  " (in 'string', line 285, column 2 to column 15)",
+  " (in 'string', line 291, column 8 to column 66)",
+  " (in 'string', line 289, column 8 to column 58)",
+  " (in 'string', line 288, column 6 to line 291, column 66)",
+  " (in 'string', line 295, column 8 to column 50)",
+  " (in 'string', line 294, column 11 to line 295, column 50)",
+  " (in 'string', line 293, column 8 to column 42)",
+  " (in 'string', line 292, column 6 to line 295, column 50)",
+  " (in 'string', line 287, column 26 to line 296, column 5)",
+  " (in 'string', line 287, column 4 to line 296, column 5)",
+  " (in 'string', line 286, column 20 to line 297, column 3)",
+  " (in 'string', line 286, column 2 to line 297, column 3)",
+  " (in 'string', line 299, column 20 to line 300, column 28)",
+  " (in 'string', line 299, column 2 to line 300, column 28)",
+  " (in 'string', line 281, column 2 to line 302, column 3)",
+  " (in 'string', line 312, column 2 to column 39)",
+  " (in 'string', line 315, column 2 to column 45)",
+  " (in 'string', line 318, column 2 to column 49)",
+  " (in 'string', line 321, column 9 to column 14)",
+  " (in 'string', line 321, column 2 to column 30)",
+  " (in 'string', line 322, column 9 to column 14)",
+  " (in 'string', line 322, column 2 to column 30)",
+  " (in 'string', line 323, column 9 to column 14)",
+  " (in 'string', line 323, column 2 to column 30)",
+  " (in 'string', line 324, column 9 to column 14)",
+  " (in 'string', line 324, column 2 to column 30)",
+  " (in 'string', line 326, column 2 to column 45)",
+  " (in 'string', line 327, column 2 to column 39)",
+  " (in 'string', line 328, column 2 to column 39)",
+  " (in 'string', line 329, column 2 to column 39)",
+  " (in 'string', line 330, column 2 to column 39)",
+  " (in 'string', line 333, column 4 to column 66)",
+  " (in 'string', line 336, column 4 to column 19)",
+  " (in 'string', line 337, column 4 to column 19)",
+  " (in 'string', line 342, column 6 to column 48)",
+  " (in 'string', line 343, column 6 to column 80)",
+  " (in 'string', line 341, column 11 to line 344, column 5)",
+  " (in 'string', line 339, column 6 to column 36)",
+  " (in 'string', line 340, column 6 to column 62)",
+  " (in 'string', line 338, column 20 to line 341, column 5)",
+  " (in 'string', line 338, column 4 to line 344, column 5)",
+  " (in 'string', line 346, column 4 to column 62)",
+  " (in 'string', line 348, column 6 to column 20)",
+  " (in 'string', line 349, column 6 to column 56)",
+  " (in 'string', line 350, column 6 to column 83)",
+  " (in 'string', line 351, column 6 to column 61)",
+  " (in 'string', line 352, column 6 to column 68)",
+  " (in 'string', line 353, column 6 to column 72)",
+  " (in 'string', line 347, column 23 to line 354, column 5)",
+  " (in 'string', line 347, column 4 to line 354, column 5)",
+  " (in 'string', line 332, column 27 to line 355, column 3)",
+  " (in 'string', line 332, column 2 to line 355, column 3)",
+  " (in 'string', line 357, column 2 to column 67)",
+  " (in 'string', line 358, column 2 to column 67)",
+  " (in 'string', line 359, column 51 to column 81)",
+  " (in 'string', line 359, column 22 to column 81)",
+  " (in 'string', line 359, column 2 to column 81)",
+  " (in 'string', line 360, column 54 to column 87)",
+  " (in 'string', line 360, column 22 to column 87)",
+  " (in 'string', line 360, column 2 to column 87)",
+  " (in 'string', line 361, column 51 to column 81)",
+  " (in 'string', line 361, column 22 to column 81)",
+  " (in 'string', line 361, column 2 to column 81)",
+  " (in 'string', line 319, column 2 to line 362, column 3)",
+  " (in 'string', line 372, column 2 to column 43)",
+  " (in 'string', line 373, column 2 to column 45)",
+  " (in 'string', line 374, column 2 to column 39)",
+  " (in 'string', line 375, column 2 to column 45)",
+  " (in 'string', line 376, column 2 to column 39)",
+  " (in 'string', line 439, column 2 to column 79)",
+  " (in 'string', line 441, column 2 to column 75)",
+  " (in 'string', line 443, column 2 to column 79)",
+  " (in 'string', line 445, column 2 to column 82)",
+  " (in 'string', line 447, column 2 to column 78)",
+  " (in 'string', line 449, column 2 to column 82)",
+  " (in 'string', line 458, column 9 to column 14)",
+  " (in 'string', line 458, column 2 to column 41)",
+  " (in 'string', line 459, column 9 to column 14)",
+  " (in 'string', line 459, column 2 to column 41)",
+  " (in 'string', line 461, column 9 to column 14)",
+  " (in 'string', line 461, column 2 to column 41)",
+  " (in 'string', line 462, column 9 to column 14)",
+  " (in 'string', line 462, column 2 to column 41)",
+  " (in 'string', line 464, column 2 to column 43)",
+  " (in 'string', line 465, column 2 to column 50)",
+  " (in 'string', line 466, column 2 to column 50)",
+  " (in 'string', line 467, column 2 to column 50)",
+  " (in 'string', line 468, column 2 to column 50)",
+  " (in 'string', line 471, column 4 to column 66)",
+  " (in 'string', line 474, column 4 to column 19)",
+  " (in 'string', line 475, column 4 to column 19)",
+  " (in 'string', line 480, column 6 to column 48)",
+  " (in 'string', line 481, column 6 to column 80)",
+  " (in 'string', line 479, column 11 to line 482, column 5)",
+  " (in 'string', line 477, column 6 to column 38)",
+  " (in 'string', line 478, column 6 to column 62)",
+  " (in 'string', line 476, column 20 to line 479, column 5)",
+  " (in 'string', line 476, column 4 to line 482, column 5)",
+  " (in 'string', line 484, column 4 to column 62)",
+  " (in 'string', line 486, column 6 to column 20)",
+  " (in 'string', line 487, column 6 to column 65)",
+  " (in 'string', line 489, column 6 to line 490, column 51)",
+  " (in 'string', line 491, column 6 to column 59)",
+  " (in 'string', line 492, column 6 to column 77)",
+  " (in 'string', line 493, column 6 to column 81)",
+  " (in 'string', line 485, column 23 to line 495, column 5)",
+  " (in 'string', line 485, column 4 to line 495, column 5)",
+  " (in 'string', line 470, column 27 to line 496, column 3)",
+  " (in 'string', line 470, column 2 to line 496, column 3)",
+  " (in 'string', line 498, column 2 to line 500, column 4)",
+  " (in 'string', line 501, column 2 to line 503, column 4)",
+  " (in 'string', line 506, column 31 to column 59)",
+  " (in 'string', line 506, column 4 to column 59)",
+  " (in 'string', line 505, column 2 to line 506, column 59)",
+  " (in 'string', line 508, column 4 to column 35)",
+  " (in 'string', line 507, column 22 to line 508, column 35)",
+  " (in 'string', line 507, column 2 to line 508, column 35)",
+  " (in 'string', line 510, column 4 to column 32)",
+  " (in 'string', line 509, column 22 to line 510, column 32)",
+  " (in 'string', line 509, column 2 to line 510, column 32)",
+  " (in 'string', line 456, column 2 to line 511, column 3)",
+  " (in 'string', line 522, column 2 to column 73)",
+  " (in 'string', line 523, column 2 to column 82)",
+  " (in 'string', line 524, column 2 to column 73)",
+  " (in 'string', line 525, column 2 to column 69)",
+  " (in 'string', line 526, column 2 to column 78)",
+  " (in 'string', line 527, column 2 to column 69)",
+  " (in 'string', line 380, column 2 to column 78)",
+  " (in 'string', line 381, column 2 to column 73)",
+  " (in 'string', line 383, column 2 to column 87)",
+  " (in 'string', line 384, column 2 to column 82)",
+  " (in 'string', line 386, column 2 to column 78)",
+  " (in 'string', line 387, column 2 to column 73)",
+  " (in 'string', line 389, column 2 to column 78)",
+  " (in 'string', line 390, column 2 to column 73)",
+  " (in 'string', line 391, column 2 to column 84)",
+  " (in 'string', line 392, column 2 to column 79)",
+  " (in 'string', line 394, column 2 to column 43)",
+  " (in 'string', line 396, column 2 to column 64)",
+  " (in 'string', line 398, column 2 to column 89)",
+  " (in 'string', line 400, column 2 to column 83)",
+  " (in 'string', line 402, column 2 to column 36)",
+  " (in 'string', line 403, column 2 to column 34)",
+  " (in 'string', line 404, column 2 to column 37)",
+  " (in 'string', line 405, column 2 to column 34)",
+  " (in 'string', line 407, column 2 to column 30)",
+  " (in 'string', line 409, column 2 to column 70)",
+  " (in 'string', line 411, column 2 to column 73)",
+  " (in 'string', line 413, column 2 to line 416, column 6)",
+  " (in 'string', line 414, column 4 to line 416, column 6)",
+  " (in 'string', line 418, column 2 to line 421, column 6)",
+  " (in 'string', line 419, column 4 to line 421, column 6)",
+  " (in 'string', line 423, column 2 to line 426, column 6)",
+  " (in 'string', line 424, column 4 to line 426, column 6)",
   " (in 'string', line 31, column 2 to column 23)",
   " (in 'string', line 33, column 2 to column 24)",
   " (in 'string', line 35, column 2 to column 27)",
@@ -328,54 +362,47 @@ static constexpr std::array<const char*, 364> locations_array__ =
   " (in 'string', line 102, column 2 to column 45)",
   " (in 'string', line 106, column 9 to column 15)",
   " (in 'string', line 106, column 2 to column 31)",
-  " (in 'string', line 108, column 4 to column 25)",
-  " (in 'string', line 107, column 2 to line 108, column 25)",
-  " (in 'string', line 110, column 3 to column 13)",
-  " (in 'string', line 111, column 3 to column 26)",
-  " (in 'string', line 144, column 9 to column 28)",
-  " (in 'string', line 150, column 13 to column 27)",
-  " (in 'string', line 154, column 9 to column 14)",
-  " (in 'string', line 155, column 9 to column 14)",
-  " (in 'string', line 156, column 9 to column 15)",
-  " (in 'string', line 158, column 9 to column 14)",
-  " (in 'string', line 159, column 9 to column 14)",
-  " (in 'string', line 160, column 9 to column 15)",
-  " (in 'string', line 165, column 9 to column 18)",
-  " (in 'string', line 166, column 9 to column 18)",
-  " (in 'string', line 167, column 9 to column 18)",
-  " (in 'string', line 169, column 9 to column 18)",
-  " (in 'string', line 170, column 9 to column 18)",
-  " (in 'string', line 172, column 9 to column 14)",
-  " (in 'string', line 173, column 9 to column 14)",
-  " (in 'string', line 174, column 9 to column 14)",
-  " (in 'string', line 175, column 9 to column 14)",
-  " (in 'string', line 177, column 9 to column 18)",
-  " (in 'string', line 178, column 9 to column 18)",
-  " (in 'string', line 180, column 9 to column 18)",
-  " (in 'string', line 182, column 9 to column 14)",
-  " (in 'string', line 183, column 9 to column 14)",
-  " (in 'string', line 184, column 9 to column 14)",
-  " (in 'string', line 185, column 9 to column 14)",
-  " (in 'string', line 186, column 9 to column 14)",
-  " (in 'string', line 187, column 9 to column 14)",
-  " (in 'string', line 192, column 9 to column 14)",
-  " (in 'string', line 194, column 9 to column 15)",
-  " (in 'string', line 375, column 27 to column 33)",
-  " (in 'string', line 376, column 24 to column 29)",
-  " (in 'string', line 377, column 26 to column 31)",
-  " (in 'string', line 378, column 28 to column 34)",
-  " (in 'string', line 379, column 25 to column 30)",
-  " (in 'string', line 380, column 27 to column 32)",
-  " (in 'string', line 381, column 24 to column 29)",
-  " (in 'string', line 382, column 27 to column 32)",
-  " (in 'string', line 383, column 24 to column 29)",
-  " (in 'string', line 385, column 9 to column 14)",
-  " (in 'string', line 386, column 9 to column 14)",
-  " (in 'string', line 387, column 9 to column 14)",
-  " (in 'string', line 389, column 9 to column 14)",
-  " (in 'string', line 390, column 9 to column 14)",
-  " (in 'string', line 391, column 9 to column 14)",
-  " (in 'string', line 392, column 9 to column 14)",
+  " (in 'string', line 107, column 22 to column 43)",
+  " (in 'string', line 107, column 2 to column 43)",
+  " (in 'string', line 109, column 3 to column 13)",
+  " (in 'string', line 110, column 3 to column 26)",
+  " (in 'string', line 143, column 9 to column 28)",
+  " (in 'string', line 149, column 13 to column 27)",
+  " (in 'string', line 156, column 9 to column 14)",
+  " (in 'string', line 158, column 9 to column 15)",
+  " (in 'string', line 189, column 9 to column 14)",
+  " (in 'string', line 190, column 9 to column 14)",
+  " (in 'string', line 191, column 9 to column 15)",
+  " (in 'string', line 224, column 9 to column 18)",
+  " (in 'string', line 225, column 9 to column 18)",
+  " (in 'string', line 226, column 9 to column 18)",
+  " (in 'string', line 228, column 9 to column 18)",
+  " (in 'string', line 229, column 9 to column 18)",
+  " (in 'string', line 231, column 9 to column 18)",
+  " (in 'string', line 232, column 9 to column 18)",
+  " (in 'string', line 234, column 9 to column 18)",
+  " (in 'string', line 278, column 9 to column 14)",
+  " (in 'string', line 279, column 9 to column 14)",
+  " (in 'string', line 280, column 9 to column 15)",
+  " (in 'string', line 307, column 9 to column 14)",
+  " (in 'string', line 308, column 9 to column 14)",
+  " (in 'string', line 309, column 9 to column 14)",
+  " (in 'string', line 317, column 9 to column 28)",
+  " (in 'string', line 431, column 26 to column 32)",
+  " (in 'string', line 432, column 26 to column 31)",
+  " (in 'string', line 433, column 24 to column 29)",
+  " (in 'string', line 435, column 27 to column 33)",
+  " (in 'string', line 436, column 27 to column 32)",
+  " (in 'string', line 437, column 25 to column 30)",
+  " (in 'string', line 453, column 9 to column 14)",
+  " (in 'string', line 454, column 9 to column 14)",
+  " (in 'string', line 455, column 9 to column 14)",
+  " (in 'string', line 515, column 24 to column 29)",
+  " (in 'string', line 516, column 27 to column 32)",
+  " (in 'string', line 517, column 24 to column 29)",
+  " (in 'string', line 519, column 22 to column 27)",
+  " (in 'string', line 520, column 25 to column 30)",
+  " (in 'string', line 521, column 22 to column 27)",
   " (in 'string', line 4, column 4 to column 33)",
   " (in 'string', line 5, column 12 to column 18)",
   " (in 'string', line 5, column 4 to column 26)",
@@ -422,21 +449,21 @@ stan_rev(const T0__& a_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;
   try {
     int a_size = std::numeric_limits<int>::min();
-    current_statement__ = 348;
+    current_statement__ = 375;
     a_size = stan::math::num_elements(a);
-    current_statement__ = 349;
+    current_statement__ = 376;
     stan::math::validate_non_negative_index("a_rev", "a_size", a_size);
     Eigen::Matrix<local_scalar_t__,-1,1> a_rev =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(a_size, DUMMY_VAR__);
-    current_statement__ = 352;
+    current_statement__ = 379;
     for (int i = 1; i <= a_size; ++i) {
-      current_statement__ = 351;
+      current_statement__ = 378;
       stan::model::assign(a_rev,
         stan::model::rvalue(a, "a",
           stan::model::index_uni(((a_size - i) + 1))),
         "assigning variable a_rev", stan::model::index_uni(i));
     }
-    current_statement__ = 353;
+    current_statement__ = 380;
     return a_rev;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -463,26 +490,26 @@ stan_convolve(const int& nPoints, const T1__& a_arg__, const T2__& b_arg__,
   // suppress unused var warning
   (void) DUMMY_VAR__;
   try {
-    current_statement__ = 355;
+    current_statement__ = 382;
     stan::math::validate_non_negative_index("out", "nPoints", nPoints);
     Eigen::Matrix<local_scalar_t__,-1,1> out =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(nPoints, DUMMY_VAR__);
-    current_statement__ = 357;
+    current_statement__ = 384;
     stan::math::validate_non_negative_index("b_rev", "nPoints", nPoints);
     Eigen::Matrix<local_scalar_t__,-1,1> b_rev =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(nPoints, DUMMY_VAR__);
-    current_statement__ = 359;
+    current_statement__ = 386;
     stan::model::assign(b_rev, stan_rev(b, pstream__),
       "assigning variable b_rev");
-    current_statement__ = 361;
+    current_statement__ = 388;
     for (int i = 1; i <= nPoints; ++i) {
-      current_statement__ = 360;
+      current_statement__ = 387;
       stan::model::assign(out,
         stan::math::dot_product(stan::math::head(a, i),
           stan::math::tail(b_rev, i)), "assigning variable out",
         stan::model::index_uni(i));
     }
-    current_statement__ = 362;
+    current_statement__ = 389;
     return out;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -559,122 +586,122 @@ public:
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 254;
+      current_statement__ = 288;
       context__.validate_dims("data initialization", "n_obs", "int",
         std::vector<size_t>{});
       n_obs = std::numeric_limits<int>::min();
-      current_statement__ = 254;
+      current_statement__ = 288;
       n_obs = context__.vals_i("n_obs")[(1 - 1)];
-      current_statement__ = 254;
+      current_statement__ = 288;
       stan::math::check_greater_or_equal(function__, "n_obs", n_obs, 1);
-      current_statement__ = 255;
+      current_statement__ = 289;
       context__.validate_dims("data initialization", "n_proj", "int",
         std::vector<size_t>{});
       n_proj = std::numeric_limits<int>::min();
-      current_statement__ = 255;
+      current_statement__ = 289;
       n_proj = context__.vals_i("n_proj")[(1 - 1)];
-      current_statement__ = 255;
+      current_statement__ = 289;
       stan::math::check_greater_or_equal(function__, "n_proj", n_proj, 1);
-      current_statement__ = 256;
+      current_statement__ = 290;
       context__.validate_dims("data initialization", "max_delay", "int",
         std::vector<size_t>{});
       max_delay = std::numeric_limits<int>::min();
-      current_statement__ = 256;
+      current_statement__ = 290;
       max_delay = context__.vals_i("max_delay")[(1 - 1)];
-      current_statement__ = 256;
+      current_statement__ = 290;
       stan::math::check_greater_or_equal(function__, "max_delay", max_delay,
         1);
-      current_statement__ = 257;
+      current_statement__ = 291;
       stan::math::validate_non_negative_index("cases_reported", "n_obs",
         n_obs);
-      current_statement__ = 258;
+      current_statement__ = 292;
       context__.validate_dims("data initialization", "cases_reported", "int",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
       cases_reported = std::vector<int>(n_obs,
                          std::numeric_limits<int>::min());
-      current_statement__ = 258;
+      current_statement__ = 292;
       cases_reported = context__.vals_i("cases_reported");
-      current_statement__ = 259;
+      current_statement__ = 293;
       stan::math::validate_non_negative_index("deaths_reported", "n_obs",
         n_obs);
-      current_statement__ = 260;
+      current_statement__ = 294;
       context__.validate_dims("data initialization", "deaths_reported",
         "int", std::vector<size_t>{static_cast<size_t>(n_obs)});
       deaths_reported = std::vector<int>(n_obs,
                           std::numeric_limits<int>::min());
-      current_statement__ = 260;
+      current_statement__ = 294;
       deaths_reported = context__.vals_i("deaths_reported");
-      current_statement__ = 261;
+      current_statement__ = 295;
       stan::math::validate_non_negative_index("etu_reported", "n_obs", n_obs);
-      current_statement__ = 262;
+      current_statement__ = 296;
       context__.validate_dims("data initialization", "etu_reported", "int",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
       etu_reported = std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      current_statement__ = 262;
+      current_statement__ = 296;
       etu_reported = context__.vals_i("etu_reported");
-      current_statement__ = 263;
+      current_statement__ = 297;
       context__.validate_dims("data initialization", "etu_n", "int",
         std::vector<size_t>{});
       etu_n = std::numeric_limits<int>::min();
-      current_statement__ = 263;
+      current_statement__ = 297;
       etu_n = context__.vals_i("etu_n")[(1 - 1)];
-      current_statement__ = 264;
+      current_statement__ = 298;
       stan::math::validate_non_negative_index("etu_ind", "etu_n", etu_n);
-      current_statement__ = 265;
+      current_statement__ = 299;
       context__.validate_dims("data initialization", "etu_ind", "int",
         std::vector<size_t>{static_cast<size_t>(etu_n)});
       etu_ind = std::vector<int>(etu_n, std::numeric_limits<int>::min());
-      current_statement__ = 265;
+      current_statement__ = 299;
       etu_ind = context__.vals_i("etu_ind");
-      current_statement__ = 266;
+      current_statement__ = 300;
       stan::math::validate_non_negative_index("alerts_reported", "n_obs",
         n_obs);
-      current_statement__ = 267;
+      current_statement__ = 301;
       context__.validate_dims("data initialization", "alerts_reported",
         "int", std::vector<size_t>{static_cast<size_t>(n_obs)});
       alerts_reported = std::vector<int>(n_obs,
                           std::numeric_limits<int>::min());
-      current_statement__ = 267;
+      current_statement__ = 301;
       alerts_reported = context__.vals_i("alerts_reported");
-      current_statement__ = 268;
+      current_statement__ = 302;
       context__.validate_dims("data initialization", "alerts_n", "int",
         std::vector<size_t>{});
       alerts_n = std::numeric_limits<int>::min();
-      current_statement__ = 268;
+      current_statement__ = 302;
       alerts_n = context__.vals_i("alerts_n")[(1 - 1)];
-      current_statement__ = 269;
+      current_statement__ = 303;
       stan::math::validate_non_negative_index("alerts_ind", "alerts_n",
         alerts_n);
-      current_statement__ = 270;
+      current_statement__ = 304;
       context__.validate_dims("data initialization", "alerts_ind", "int",
         std::vector<size_t>{static_cast<size_t>(alerts_n)});
       alerts_ind = std::vector<int>(alerts_n,
                      std::numeric_limits<int>::min());
-      current_statement__ = 270;
+      current_statement__ = 304;
       alerts_ind = context__.vals_i("alerts_ind");
-      current_statement__ = 271;
+      current_statement__ = 305;
       stan::math::validate_non_negative_index("iso_reported", "n_obs", n_obs);
-      current_statement__ = 272;
+      current_statement__ = 306;
       context__.validate_dims("data initialization", "iso_reported", "int",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
       iso_reported = std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      current_statement__ = 272;
+      current_statement__ = 306;
       iso_reported = context__.vals_i("iso_reported");
-      current_statement__ = 273;
+      current_statement__ = 307;
       context__.validate_dims("data initialization", "iso_n", "int",
         std::vector<size_t>{});
       iso_n = std::numeric_limits<int>::min();
-      current_statement__ = 273;
+      current_statement__ = 307;
       iso_n = context__.vals_i("iso_n")[(1 - 1)];
-      current_statement__ = 274;
+      current_statement__ = 308;
       stan::math::validate_non_negative_index("iso_ind", "iso_n", iso_n);
-      current_statement__ = 275;
+      current_statement__ = 309;
       context__.validate_dims("data initialization", "iso_ind", "int",
         std::vector<size_t>{static_cast<size_t>(iso_n)});
       iso_ind = std::vector<int>(iso_n, std::numeric_limits<int>::min());
-      current_statement__ = 275;
+      current_statement__ = 309;
       iso_ind = context__.vals_i("iso_ind");
-      current_statement__ = 276;
+      current_statement__ = 310;
       context__.validate_dims("data initialization", "prior_onset_to_etu",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_onset_to_etu_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -684,22 +711,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_onset_to_etu_flat__;
-        current_statement__ = 276;
+        current_statement__ = 310;
         prior_onset_to_etu_flat__ = context__.vals_r("prior_onset_to_etu");
-        current_statement__ = 276;
+        current_statement__ = 310;
         pos__ = 1;
-        current_statement__ = 276;
+        current_statement__ = 310;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 276;
+          current_statement__ = 310;
           stan::model::assign(prior_onset_to_etu,
             prior_onset_to_etu_flat__[(pos__ - 1)],
             "assigning variable prior_onset_to_etu",
             stan::model::index_uni(sym1__));
-          current_statement__ = 276;
+          current_statement__ = 310;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 277;
+      current_statement__ = 311;
       context__.validate_dims("data initialization", "prior_etu_to_survival",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_etu_to_survival_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -709,22 +736,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_etu_to_survival_flat__;
-        current_statement__ = 277;
+        current_statement__ = 311;
         prior_etu_to_survival_flat__ = context__.vals_r("prior_etu_to_survival");
-        current_statement__ = 277;
+        current_statement__ = 311;
         pos__ = 1;
-        current_statement__ = 277;
+        current_statement__ = 311;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 277;
+          current_statement__ = 311;
           stan::model::assign(prior_etu_to_survival,
             prior_etu_to_survival_flat__[(pos__ - 1)],
             "assigning variable prior_etu_to_survival",
             stan::model::index_uni(sym1__));
-          current_statement__ = 277;
+          current_statement__ = 311;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 278;
+      current_statement__ = 312;
       context__.validate_dims("data initialization", "prior_etu_to_death",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_etu_to_death_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -734,22 +761,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_etu_to_death_flat__;
-        current_statement__ = 278;
+        current_statement__ = 312;
         prior_etu_to_death_flat__ = context__.vals_r("prior_etu_to_death");
-        current_statement__ = 278;
+        current_statement__ = 312;
         pos__ = 1;
-        current_statement__ = 278;
+        current_statement__ = 312;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 278;
+          current_statement__ = 312;
           stan::model::assign(prior_etu_to_death,
             prior_etu_to_death_flat__[(pos__ - 1)],
             "assigning variable prior_etu_to_death",
             stan::model::index_uni(sym1__));
-          current_statement__ = 278;
+          current_statement__ = 312;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 279;
+      current_statement__ = 313;
       context__.validate_dims("data initialization", "prior_onset_to_iso",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_onset_to_iso_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -759,22 +786,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_onset_to_iso_flat__;
-        current_statement__ = 279;
+        current_statement__ = 313;
         prior_onset_to_iso_flat__ = context__.vals_r("prior_onset_to_iso");
-        current_statement__ = 279;
+        current_statement__ = 313;
         pos__ = 1;
-        current_statement__ = 279;
+        current_statement__ = 313;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 279;
+          current_statement__ = 313;
           stan::model::assign(prior_onset_to_iso,
             prior_onset_to_iso_flat__[(pos__ - 1)],
             "assigning variable prior_onset_to_iso",
             stan::model::index_uni(sym1__));
-          current_statement__ = 279;
+          current_statement__ = 313;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 280;
+      current_statement__ = 314;
       context__.validate_dims("data initialization", "prior_iso_to_release",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_iso_to_release_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -784,22 +811,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_iso_to_release_flat__;
-        current_statement__ = 280;
+        current_statement__ = 314;
         prior_iso_to_release_flat__ = context__.vals_r("prior_iso_to_release");
-        current_statement__ = 280;
+        current_statement__ = 314;
         pos__ = 1;
-        current_statement__ = 280;
+        current_statement__ = 314;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 280;
+          current_statement__ = 314;
           stan::model::assign(prior_iso_to_release,
             prior_iso_to_release_flat__[(pos__ - 1)],
             "assigning variable prior_iso_to_release",
             stan::model::index_uni(sym1__));
-          current_statement__ = 280;
+          current_statement__ = 314;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 281;
+      current_statement__ = 315;
       context__.validate_dims("data initialization", "prior_cfr", "double",
         std::vector<size_t>{static_cast<size_t>(2)});
       prior_cfr_data__ = Eigen::Matrix<double,-1,1>::Constant(2,
@@ -808,20 +835,20 @@ public:
         Eigen::Map<Eigen::Matrix<double,-1,1>>(prior_cfr_data__.data(), 2);
       {
         std::vector<local_scalar_t__> prior_cfr_flat__;
-        current_statement__ = 281;
+        current_statement__ = 315;
         prior_cfr_flat__ = context__.vals_r("prior_cfr");
-        current_statement__ = 281;
+        current_statement__ = 315;
         pos__ = 1;
-        current_statement__ = 281;
+        current_statement__ = 315;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 281;
+          current_statement__ = 315;
           stan::model::assign(prior_cfr, prior_cfr_flat__[(pos__ - 1)],
             "assigning variable prior_cfr", stan::model::index_uni(sym1__));
-          current_statement__ = 281;
+          current_statement__ = 315;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 282;
+      current_statement__ = 316;
       context__.validate_dims("data initialization", "prior_prop_iso",
         "double", std::vector<size_t>{static_cast<size_t>(2)});
       prior_prop_iso_data__ = Eigen::Matrix<double,-1,1>::Constant(2,
@@ -831,21 +858,21 @@ public:
         2);
       {
         std::vector<local_scalar_t__> prior_prop_iso_flat__;
-        current_statement__ = 282;
+        current_statement__ = 316;
         prior_prop_iso_flat__ = context__.vals_r("prior_prop_iso");
-        current_statement__ = 282;
+        current_statement__ = 316;
         pos__ = 1;
-        current_statement__ = 282;
+        current_statement__ = 316;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 282;
+          current_statement__ = 316;
           stan::model::assign(prior_prop_iso, prior_prop_iso_flat__[(pos__ -
             1)], "assigning variable prior_prop_iso",
             stan::model::index_uni(sym1__));
-          current_statement__ = 282;
+          current_statement__ = 316;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 283;
+      current_statement__ = 317;
       context__.validate_dims("data initialization",
         "prior_alerts_background", "double",
         std::vector<size_t>{static_cast<size_t>(2)});
@@ -857,22 +884,22 @@ public:
         2);
       {
         std::vector<local_scalar_t__> prior_alerts_background_flat__;
-        current_statement__ = 283;
+        current_statement__ = 317;
         prior_alerts_background_flat__ = context__.vals_r("prior_alerts_background");
-        current_statement__ = 283;
+        current_statement__ = 317;
         pos__ = 1;
-        current_statement__ = 283;
+        current_statement__ = 317;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 283;
+          current_statement__ = 317;
           stan::model::assign(prior_alerts_background,
             prior_alerts_background_flat__[(pos__ - 1)],
             "assigning variable prior_alerts_background",
             stan::model::index_uni(sym1__));
-          current_statement__ = 283;
+          current_statement__ = 317;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 284;
+      current_statement__ = 318;
       context__.validate_dims("data initialization", "prior_alerts_per_case",
         "double", std::vector<size_t>{static_cast<size_t>(2)});
       prior_alerts_per_case_data__ = Eigen::Matrix<double,-1,1>::Constant(2,
@@ -882,25 +909,25 @@ public:
         2);
       {
         std::vector<local_scalar_t__> prior_alerts_per_case_flat__;
-        current_statement__ = 284;
+        current_statement__ = 318;
         prior_alerts_per_case_flat__ = context__.vals_r("prior_alerts_per_case");
-        current_statement__ = 284;
+        current_statement__ = 318;
         pos__ = 1;
-        current_statement__ = 284;
+        current_statement__ = 318;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 284;
+          current_statement__ = 318;
           stan::model::assign(prior_alerts_per_case,
             prior_alerts_per_case_flat__[(pos__ - 1)],
             "assigning variable prior_alerts_per_case",
             stan::model::index_uni(sym1__));
-          current_statement__ = 284;
+          current_statement__ = 318;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 285;
+      current_statement__ = 319;
       stan::math::validate_non_negative_index("log_prop_cases_reported",
         "n_obs", n_obs);
-      current_statement__ = 286;
+      current_statement__ = 320;
       context__.validate_dims("data initialization",
         "log_prop_cases_reported", "double",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
@@ -912,25 +939,25 @@ public:
         n_obs);
       {
         std::vector<local_scalar_t__> log_prop_cases_reported_flat__;
-        current_statement__ = 286;
+        current_statement__ = 320;
         log_prop_cases_reported_flat__ = context__.vals_r("log_prop_cases_reported");
-        current_statement__ = 286;
+        current_statement__ = 320;
         pos__ = 1;
-        current_statement__ = 286;
+        current_statement__ = 320;
         for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-          current_statement__ = 286;
+          current_statement__ = 320;
           stan::model::assign(log_prop_cases_reported,
             log_prop_cases_reported_flat__[(pos__ - 1)],
             "assigning variable log_prop_cases_reported",
             stan::model::index_uni(sym1__));
-          current_statement__ = 286;
+          current_statement__ = 320;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 287;
+      current_statement__ = 321;
       stan::math::validate_non_negative_index("prop_deaths_reported",
         "n_obs", n_obs);
-      current_statement__ = 288;
+      current_statement__ = 322;
       context__.validate_dims("data initialization", "prop_deaths_reported",
         "double", std::vector<size_t>{static_cast<size_t>(n_obs)});
       prop_deaths_reported_data__ = Eigen::Matrix<double,-1,1>::Constant(n_obs,
@@ -940,49 +967,49 @@ public:
         n_obs);
       {
         std::vector<local_scalar_t__> prop_deaths_reported_flat__;
-        current_statement__ = 288;
+        current_statement__ = 322;
         prop_deaths_reported_flat__ = context__.vals_r("prop_deaths_reported");
-        current_statement__ = 288;
+        current_statement__ = 322;
         pos__ = 1;
-        current_statement__ = 288;
+        current_statement__ = 322;
         for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-          current_statement__ = 288;
+          current_statement__ = 322;
           stan::model::assign(prop_deaths_reported,
             prop_deaths_reported_flat__[(pos__ - 1)],
             "assigning variable prop_deaths_reported",
             stan::model::index_uni(sym1__));
-          current_statement__ = 288;
+          current_statement__ = 322;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 289;
+      current_statement__ = 323;
       context__.validate_dims("data initialization", "n_alerts_background",
         "int", std::vector<size_t>{});
       n_alerts_background = std::numeric_limits<int>::min();
-      current_statement__ = 289;
+      current_statement__ = 323;
       n_alerts_background = context__.vals_i("n_alerts_background")[(1 - 1)];
-      current_statement__ = 290;
+      current_statement__ = 324;
       stan::math::validate_non_negative_index("alerts_background_ind",
         "n_obs", n_obs);
-      current_statement__ = 291;
+      current_statement__ = 325;
       context__.validate_dims("data initialization", "alerts_background_ind",
         "int", std::vector<size_t>{static_cast<size_t>(n_obs)});
       alerts_background_ind = std::vector<int>(n_obs,
                                 std::numeric_limits<int>::min());
-      current_statement__ = 291;
+      current_statement__ = 325;
       alerts_background_ind = context__.vals_i("alerts_background_ind");
-      current_statement__ = 292;
+      current_statement__ = 326;
       context__.validate_dims("data initialization", "n_spline_param", "int",
         std::vector<size_t>{});
       n_spline_param = std::numeric_limits<int>::min();
-      current_statement__ = 292;
+      current_statement__ = 326;
       n_spline_param = context__.vals_i("n_spline_param")[(1 - 1)];
-      current_statement__ = 293;
+      current_statement__ = 327;
       stan::math::validate_non_negative_index("spline", "n_spline_param",
         n_spline_param);
-      current_statement__ = 294;
+      current_statement__ = 328;
       stan::math::validate_non_negative_index("spline", "n_obs", n_obs);
-      current_statement__ = 295;
+      current_statement__ = 329;
       context__.validate_dims("data initialization", "spline", "double",
         std::vector<size_t>{static_cast<size_t>(n_spline_param),
           static_cast<size_t>(n_obs)});
@@ -993,27 +1020,27 @@ public:
         n_spline_param, n_obs);
       {
         std::vector<local_scalar_t__> spline_flat__;
-        current_statement__ = 295;
+        current_statement__ = 329;
         spline_flat__ = context__.vals_r("spline");
-        current_statement__ = 295;
+        current_statement__ = 329;
         pos__ = 1;
-        current_statement__ = 295;
+        current_statement__ = 329;
         for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-          current_statement__ = 295;
+          current_statement__ = 329;
           for (int sym2__ = 1; sym2__ <= n_spline_param; ++sym2__) {
-            current_statement__ = 295;
+            current_statement__ = 329;
             stan::model::assign(spline, spline_flat__[(pos__ - 1)],
               "assigning variable spline", stan::model::index_uni(sym2__),
               stan::model::index_uni(sym1__));
-            current_statement__ = 295;
+            current_statement__ = 329;
             pos__ = (pos__ + 1);
           }
         }
       }
-      current_statement__ = 296;
+      current_statement__ = 330;
       stan::math::validate_non_negative_index("growthrate_asymptote_weight",
         "n_proj", n_proj);
-      current_statement__ = 297;
+      current_statement__ = 331;
       context__.validate_dims("data initialization",
         "growthrate_asymptote_weight", "double",
         std::vector<size_t>{static_cast<size_t>(n_proj)});
@@ -1025,165 +1052,151 @@ public:
         n_proj);
       {
         std::vector<local_scalar_t__> growthrate_asymptote_weight_flat__;
-        current_statement__ = 297;
+        current_statement__ = 331;
         growthrate_asymptote_weight_flat__ = context__.vals_r("growthrate_asymptote_weight");
-        current_statement__ = 297;
+        current_statement__ = 331;
         pos__ = 1;
-        current_statement__ = 297;
+        current_statement__ = 331;
         for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-          current_statement__ = 297;
+          current_statement__ = 331;
           stan::model::assign(growthrate_asymptote_weight,
             growthrate_asymptote_weight_flat__[(pos__ - 1)],
             "assigning variable growthrate_asymptote_weight",
             stan::model::index_uni(sym1__));
-          current_statement__ = 297;
+          current_statement__ = 331;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 298;
+      current_statement__ = 332;
       stan::math::validate_non_negative_index("projection_sq", "n_proj",
         n_proj);
-      current_statement__ = 299;
+      current_statement__ = 333;
       projection_sq_data__ = Eigen::Matrix<double,-1,1>::Constant(n_proj,
                                std::numeric_limits<double>::quiet_NaN());
       new (&projection_sq)
         Eigen::Map<Eigen::Matrix<double,-1,1>>(projection_sq_data__.data(),
         n_proj);
-      current_statement__ = 301;
+      current_statement__ = 335;
       for (int i = 1; i <= n_proj; ++i) {
-        current_statement__ = 300;
+        current_statement__ = 334;
         stan::model::assign(projection_sq, i,
           "assigning variable projection_sq", stan::model::index_uni(i));
       }
-      current_statement__ = 302;
+      current_statement__ = 336;
       n_tot = std::numeric_limits<int>::min();
-      current_statement__ = 303;
+      current_statement__ = 337;
       n_tot = (n_obs + n_proj);
-      current_statement__ = 304;
-      stan::math::validate_non_negative_index("alerts_background",
+      current_statement__ = 338;
+      stan::math::validate_non_negative_index("alerts_background_log",
         "n_alerts_background", n_alerts_background);
-      current_statement__ = 305;
+      current_statement__ = 339;
       stan::math::validate_non_negative_index("spline_param",
         "n_spline_param", n_spline_param);
-      current_statement__ = 306;
-      stan::math::validate_non_negative_index("log_cases_fitted", "n_obs",
-        n_obs);
-      current_statement__ = 307;
-      stan::math::validate_non_negative_index("log_cases_inflated", "n_obs",
-        n_obs);
-      current_statement__ = 308;
-      stan::math::validate_non_negative_index("log_cases_projected",
-        "n_proj", n_proj);
-      current_statement__ = 309;
-      stan::math::validate_non_negative_index("deaths_fitted", "n_obs", n_obs);
-      current_statement__ = 310;
-      stan::math::validate_non_negative_index("deaths_inflated", "n_obs",
-        n_obs);
-      current_statement__ = 311;
-      stan::math::validate_non_negative_index("deaths_projected", "n_proj",
-        n_proj);
-      current_statement__ = 312;
-      stan::math::validate_non_negative_index("onset_to_etu", "max_delay",
-        max_delay);
-      current_statement__ = 313;
-      stan::math::validate_non_negative_index("etu_to_survival", "max_delay",
-        max_delay);
-      current_statement__ = 314;
-      stan::math::validate_non_negative_index("etu_to_death", "max_delay",
-        max_delay);
-      current_statement__ = 315;
-      stan::math::validate_non_negative_index("onset_to_survival",
-        "max_delay", max_delay);
-      current_statement__ = 316;
-      stan::math::validate_non_negative_index("onset_to_death", "max_delay",
-        max_delay);
-      current_statement__ = 317;
-      stan::math::validate_non_negative_index("etu_admission", "n_tot", n_tot);
-      current_statement__ = 318;
-      stan::math::validate_non_negative_index("etu_discharge", "n_tot", n_tot);
-      current_statement__ = 319;
-      stan::math::validate_non_negative_index("etu_modelled", "n_tot", n_tot);
-      current_statement__ = 320;
-      stan::math::validate_non_negative_index("etu_modelled_for_fit",
-        "n_obs", n_obs);
-      current_statement__ = 321;
-      stan::math::validate_non_negative_index("onset_to_iso", "max_delay",
-        max_delay);
-      current_statement__ = 322;
-      stan::math::validate_non_negative_index("iso_to_release", "max_delay",
-        max_delay);
-      current_statement__ = 323;
-      stan::math::validate_non_negative_index("onset_to_release",
-        "max_delay", max_delay);
-      current_statement__ = 324;
-      stan::math::validate_non_negative_index("alerts_modelled", "n_tot",
-        n_tot);
-      current_statement__ = 325;
-      stan::math::validate_non_negative_index("iso_admission", "n_tot", n_tot);
-      current_statement__ = 326;
-      stan::math::validate_non_negative_index("iso_discharge", "n_tot", n_tot);
-      current_statement__ = 327;
-      stan::math::validate_non_negative_index("iso_modelled", "n_tot", n_tot);
-      current_statement__ = 328;
-      stan::math::validate_non_negative_index("alerts_modelled_for_fit",
-        "n_obs", n_obs);
-      current_statement__ = 329;
-      stan::math::validate_non_negative_index("iso_modelled_for_fit",
-        "n_obs", n_obs);
-      current_statement__ = 330;
+      current_statement__ = 340;
       stan::math::validate_non_negative_index("growthrate_reported", "n_obs",
         n_obs);
-      current_statement__ = 331;
+      current_statement__ = 341;
       stan::math::validate_non_negative_index("growthrate_projected",
         "n_proj", n_proj);
-      current_statement__ = 332;
-      stan::math::validate_non_negative_index("cases_projected_dist",
-        "n_proj", n_proj);
-      current_statement__ = 333;
-      stan::math::validate_non_negative_index("cases_fitted_dist", "n_obs",
-        n_obs);
-      current_statement__ = 334;
-      stan::math::validate_non_negative_index("cases_inflated_dist", "n_obs",
-        n_obs);
-      current_statement__ = 335;
-      stan::math::validate_non_negative_index("deaths_projected_dist",
-        "n_proj", n_proj);
-      current_statement__ = 336;
-      stan::math::validate_non_negative_index("deaths_fitted_dist", "n_obs",
-        n_obs);
-      current_statement__ = 337;
-      stan::math::validate_non_negative_index("deaths_inflated_dist",
-        "n_obs", n_obs);
-      current_statement__ = 338;
-      stan::math::validate_non_negative_index("etu_modelled_dist", "n_tot",
-        n_tot);
-      current_statement__ = 339;
-      stan::math::validate_non_negative_index("alerts_modelled_dist",
-        "n_tot", n_tot);
-      current_statement__ = 340;
-      stan::math::validate_non_negative_index("iso_modelled_dist", "n_tot",
-        n_tot);
-      current_statement__ = 341;
-      stan::math::validate_non_negative_index("etu_admission_inflated",
-        "n_tot", n_tot);
       current_statement__ = 342;
-      stan::math::validate_non_negative_index("etu_discharge_inflated",
-        "n_tot", n_tot);
+      stan::math::validate_non_negative_index("cases_truncated_mu", "n_obs",
+        n_obs);
       current_statement__ = 343;
-      stan::math::validate_non_negative_index("etu_modelled_inflated",
-        "n_tot", n_tot);
+      stan::math::validate_non_negative_index("cases_nowcast_mu", "n_obs",
+        n_obs);
       current_statement__ = 344;
-      stan::math::validate_non_negative_index("alerts_modelled_inflated",
-        "n_tot", n_tot);
+      stan::math::validate_non_negative_index("cases_projected_mu", "n_proj",
+        n_proj);
       current_statement__ = 345;
-      stan::math::validate_non_negative_index("iso_admission_inflated",
-        "n_tot", n_tot);
+      stan::math::validate_non_negative_index("onset_to_etu", "max_delay",
+        max_delay);
       current_statement__ = 346;
-      stan::math::validate_non_negative_index("iso_discharge_inflated",
-        "n_tot", n_tot);
+      stan::math::validate_non_negative_index("etu_to_survival", "max_delay",
+        max_delay);
       current_statement__ = 347;
-      stan::math::validate_non_negative_index("iso_modelled_inflated",
+      stan::math::validate_non_negative_index("etu_to_death", "max_delay",
+        max_delay);
+      current_statement__ = 348;
+      stan::math::validate_non_negative_index("onset_to_survival",
+        "max_delay", max_delay);
+      current_statement__ = 349;
+      stan::math::validate_non_negative_index("onset_to_death", "max_delay",
+        max_delay);
+      current_statement__ = 350;
+      stan::math::validate_non_negative_index("onset_to_iso", "max_delay",
+        max_delay);
+      current_statement__ = 351;
+      stan::math::validate_non_negative_index("iso_to_release", "max_delay",
+        max_delay);
+      current_statement__ = 352;
+      stan::math::validate_non_negative_index("onset_to_release",
+        "max_delay", max_delay);
+      current_statement__ = 353;
+      stan::math::validate_non_negative_index("deaths_truncated_mu", "n_obs",
+        n_obs);
+      current_statement__ = 354;
+      stan::math::validate_non_negative_index("deaths_nowcast_mu", "n_obs",
+        n_obs);
+      current_statement__ = 355;
+      stan::math::validate_non_negative_index("deaths_projected_mu",
+        "n_proj", n_proj);
+      current_statement__ = 356;
+      stan::math::validate_non_negative_index("alerts_truncated_mu", "n_tot",
+        n_tot);
+      current_statement__ = 357;
+      stan::math::validate_non_negative_index("etu_truncated_mu", "n_tot",
+        n_tot);
+      current_statement__ = 358;
+      stan::math::validate_non_negative_index("iso_truncated_mu", "n_tot",
+        n_tot);
+      current_statement__ = 359;
+      stan::math::validate_non_negative_index("alerts_background",
+        "n_alerts_background", n_alerts_background);
+      current_statement__ = 360;
+      stan::math::validate_non_negative_index("cases_projected_sim",
+        "n_proj", n_proj);
+      current_statement__ = 361;
+      stan::math::validate_non_negative_index("cases_truncated_sim", "n_obs",
+        n_obs);
+      current_statement__ = 362;
+      stan::math::validate_non_negative_index("cases_nowcast_sim", "n_obs",
+        n_obs);
+      current_statement__ = 363;
+      stan::math::validate_non_negative_index("deaths_projected_sim",
+        "n_proj", n_proj);
+      current_statement__ = 364;
+      stan::math::validate_non_negative_index("deaths_truncated_sim",
+        "n_obs", n_obs);
+      current_statement__ = 365;
+      stan::math::validate_non_negative_index("deaths_nowcast_sim", "n_obs",
+        n_obs);
+      current_statement__ = 366;
+      stan::math::validate_non_negative_index("iso_nowcast_mu", "n_tot",
+        n_tot);
+      current_statement__ = 367;
+      stan::math::validate_non_negative_index("alerts_nowcast_mu", "n_tot",
+        n_tot);
+      current_statement__ = 368;
+      stan::math::validate_non_negative_index("etu_nowcast_mu", "n_tot",
+        n_tot);
+      current_statement__ = 369;
+      stan::math::validate_non_negative_index("etu_truncated_sim", "n_tot",
+        n_tot);
+      current_statement__ = 370;
+      stan::math::validate_non_negative_index("alerts_truncated_sim",
         "n_tot", n_tot);
+      current_statement__ = 371;
+      stan::math::validate_non_negative_index("iso_truncated_sim", "n_tot",
+        n_tot);
+      current_statement__ = 372;
+      stan::math::validate_non_negative_index("etu_nowcast_sim", "n_tot",
+        n_tot);
+      current_statement__ = 373;
+      stan::math::validate_non_negative_index("alerts_nowcast_sim", "n_tot",
+        n_tot);
+      current_statement__ = 374;
+      stan::math::validate_non_negative_index("iso_nowcast_sim", "n_tot",
+        n_tot);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -1258,54 +1271,230 @@ public:
       current_statement__ = 12;
       iso_to_release_sd = in__.template read_constrain_lb<local_scalar_t__,
                             jacobian__>(0, lp__);
-      local_scalar_t__ cases_overdisp = DUMMY_VAR__;
+      local_scalar_t__ cases_overdisp_log = DUMMY_VAR__;
       current_statement__ = 13;
-      cases_overdisp = in__.template read<local_scalar_t__>();
-      local_scalar_t__ deaths_overdisp = DUMMY_VAR__;
+      cases_overdisp_log = in__.template read<local_scalar_t__>();
+      local_scalar_t__ deaths_overdisp_log = DUMMY_VAR__;
       current_statement__ = 14;
-      deaths_overdisp = in__.template read<local_scalar_t__>();
-      local_scalar_t__ etu_overdisp = DUMMY_VAR__;
+      deaths_overdisp_log = in__.template read<local_scalar_t__>();
+      local_scalar_t__ etu_overdisp_log = DUMMY_VAR__;
       current_statement__ = 15;
-      etu_overdisp = in__.template read<local_scalar_t__>();
-      local_scalar_t__ alerts_overdisp = DUMMY_VAR__;
+      etu_overdisp_log = in__.template read<local_scalar_t__>();
+      local_scalar_t__ alerts_overdisp_log = DUMMY_VAR__;
       current_statement__ = 16;
-      alerts_overdisp = in__.template read<local_scalar_t__>();
-      local_scalar_t__ iso_overdisp = DUMMY_VAR__;
+      alerts_overdisp_log = in__.template read<local_scalar_t__>();
+      local_scalar_t__ iso_overdisp_log = DUMMY_VAR__;
       current_statement__ = 17;
-      iso_overdisp = in__.template read<local_scalar_t__>();
+      iso_overdisp_log = in__.template read<local_scalar_t__>();
       local_scalar_t__ log_cases_intercept = DUMMY_VAR__;
       current_statement__ = 18;
       log_cases_intercept = in__.template read<local_scalar_t__>();
-      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background =
+      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background_log =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_alerts_background,
           DUMMY_VAR__);
       current_statement__ = 19;
-      alerts_background = in__.template read<
-                            Eigen::Matrix<local_scalar_t__,-1,1>>(n_alerts_background);
-      local_scalar_t__ alerts_per_case = DUMMY_VAR__;
+      alerts_background_log = in__.template read<
+                                Eigen::Matrix<local_scalar_t__,-1,1>>(n_alerts_background);
+      local_scalar_t__ alerts_per_case_log = DUMMY_VAR__;
       current_statement__ = 20;
-      alerts_per_case = in__.template read<local_scalar_t__>();
+      alerts_per_case_log = in__.template read<local_scalar_t__>();
       Eigen::Matrix<local_scalar_t__,1,-1> spline_param =
         Eigen::Matrix<local_scalar_t__,1,-1>::Constant(n_spline_param,
           DUMMY_VAR__);
       current_statement__ = 21;
       spline_param = in__.template read<
                        Eigen::Matrix<local_scalar_t__,1,-1>>(n_spline_param);
-      Eigen::Matrix<local_scalar_t__,-1,1> log_cases_fitted =
+      Eigen::Matrix<local_scalar_t__,-1,1> growthrate_reported =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> log_cases_inflated =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> log_cases_projected =
+      Eigen::Matrix<local_scalar_t__,-1,1> growthrate_projected =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> deaths_fitted =
+      {
+        local_scalar_t__ growthrate_slope = DUMMY_VAR__;
+        local_scalar_t__ growthrate_slope_weight = DUMMY_VAR__;
+        local_scalar_t__ growthrate_slope_weight_min = DUMMY_VAR__;
+        current_statement__ = 67;
+        growthrate_slope_weight_min = -0.2;
+        local_scalar_t__ growthrate_slope_weight_max = DUMMY_VAR__;
+        current_statement__ = 68;
+        growthrate_slope_weight_max = 0.2;
+        local_scalar_t__ growthrate_asymptote = DUMMY_VAR__;
+        current_statement__ = 69;
+        growthrate_asymptote = -0.1;
+        current_statement__ = 70;
+        stan::model::assign(growthrate_reported,
+          stan::math::divide(
+            stan::math::to_vector(stan::math::multiply(spline_param, spline)),
+            10), "assigning variable growthrate_reported");
+        current_statement__ = 71;
+        growthrate_slope = (stan::model::rvalue(growthrate_reported,
+                              "growthrate_reported",
+                              stan::model::index_uni(n_obs))
+          -
+          stan::model::rvalue(growthrate_reported, "growthrate_reported",
+            stan::model::index_uni((n_obs - 1))));
+        current_statement__ = 72;
+        growthrate_slope_weight = ((stan::model::rvalue(growthrate_reported,
+                                      "growthrate_reported",
+                                      stan::model::index_uni(n_obs))
+          - growthrate_slope_weight_min) / (growthrate_slope_weight_max -
+          growthrate_slope_weight_min));
+        current_statement__ = 74;
+        if (stan::math::logical_gt(growthrate_slope_weight, 1)) {
+          current_statement__ = 73;
+          growthrate_slope_weight = 1;
+        }
+        current_statement__ = 76;
+        if (stan::math::logical_lt(growthrate_slope_weight, 0)) {
+          current_statement__ = 75;
+          growthrate_slope_weight = 0;
+        }
+        current_statement__ = 77;
+        growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
+        current_statement__ = 78;
+        stan::model::assign(growthrate_projected,
+          stan::math::add(
+            stan::model::rvalue(growthrate_reported, "growthrate_reported",
+              stan::model::index_uni(n_obs)),
+            stan::math::multiply(
+              stan::math::multiply(projection_sq, growthrate_slope),
+              growthrate_slope_weight)),
+          "assigning variable growthrate_projected");
+        current_statement__ = 79;
+        stan::model::assign(growthrate_projected,
+          stan::math::add(
+            stan::math::multiply(growthrate_asymptote,
+              growthrate_asymptote_weight),
+            stan::math::elt_multiply(
+              stan::math::subtract(1, growthrate_asymptote_weight),
+              stan::model::deep_copy(growthrate_projected))),
+          "assigning variable growthrate_projected");
+      }
+      Eigen::Matrix<local_scalar_t__,-1,1> cases_truncated_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> deaths_inflated =
+      Eigen::Matrix<local_scalar_t__,-1,1> cases_nowcast_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> deaths_projected =
+      Eigen::Matrix<local_scalar_t__,-1,1> cases_projected_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
-      local_scalar_t__ cfr = DUMMY_VAR__;
-      current_statement__ = 72;
-      cfr = stan::math::inv_logit(cfr_logit);
+      {
+        current_statement__ = 81;
+        stan::math::validate_non_negative_index("log_cases_truncated_mu",
+          "n_obs", n_obs);
+        Eigen::Matrix<local_scalar_t__,-1,1> log_cases_truncated_mu =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
+        current_statement__ = 83;
+        stan::math::validate_non_negative_index("log_cases_nowcast_mu",
+          "n_obs", n_obs);
+        Eigen::Matrix<local_scalar_t__,-1,1> log_cases_nowcast_mu =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
+        current_statement__ = 85;
+        stan::math::validate_non_negative_index("log_cases_projected_mu",
+          "n_proj", n_proj);
+        Eigen::Matrix<local_scalar_t__,-1,1> log_cases_projected_mu =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
+        current_statement__ = 87;
+        stan::model::assign(log_cases_nowcast_mu, (log_cases_intercept +
+          stan::model::rvalue(growthrate_reported, "growthrate_reported",
+            stan::model::index_uni(1))),
+          "assigning variable log_cases_nowcast_mu",
+          stan::model::index_uni(1));
+        current_statement__ = 88;
+        stan::model::assign(log_cases_truncated_mu,
+          (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
+             stan::model::index_uni(1)) +
+          stan::model::rvalue(log_prop_cases_reported,
+            "log_prop_cases_reported", stan::model::index_uni(1))),
+          "assigning variable log_cases_truncated_mu",
+          stan::model::index_uni(1));
+        current_statement__ = 92;
+        for (int i = 2; i <= n_obs; ++i) {
+          current_statement__ = 89;
+          stan::model::assign(log_cases_nowcast_mu,
+            (stan::model::rvalue(log_cases_nowcast_mu,
+               "log_cases_nowcast_mu", stan::model::index_uni((i - 1))) +
+            stan::model::rvalue(growthrate_reported, "growthrate_reported",
+              stan::model::index_uni(i))),
+            "assigning variable log_cases_nowcast_mu",
+            stan::model::index_uni(i));
+          current_statement__ = 90;
+          stan::model::assign(log_cases_truncated_mu,
+            (stan::model::rvalue(log_cases_nowcast_mu,
+               "log_cases_nowcast_mu", stan::model::index_uni(i)) +
+            stan::model::rvalue(log_prop_cases_reported,
+              "log_prop_cases_reported", stan::model::index_uni(i))),
+            "assigning variable log_cases_truncated_mu",
+            stan::model::index_uni(i));
+        }
+        current_statement__ = 98;
+        for (int i = 1; i <= n_obs; ++i) {
+          current_statement__ = 94;
+          if (stan::math::logical_gt(
+                stan::model::rvalue(log_cases_truncated_mu,
+                  "log_cases_truncated_mu", stan::model::index_uni(i)), 10)) {
+            current_statement__ = 93;
+            stan::model::assign(log_cases_truncated_mu, 10,
+              "assigning variable log_cases_truncated_mu",
+              stan::model::index_uni(i));
+          }
+          current_statement__ = 96;
+          if (stan::math::logical_gt(
+                stan::model::rvalue(log_cases_nowcast_mu,
+                  "log_cases_nowcast_mu", stan::model::index_uni(i)), 10)) {
+            current_statement__ = 95;
+            stan::model::assign(log_cases_nowcast_mu, 10,
+              "assigning variable log_cases_nowcast_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 99;
+        stan::model::assign(log_cases_projected_mu,
+          (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
+             stan::model::index_uni(n_obs)) +
+          stan::model::rvalue(growthrate_projected, "growthrate_projected",
+            stan::model::index_uni(1))),
+          "assigning variable log_cases_projected_mu",
+          stan::model::index_uni(1));
+        current_statement__ = 106;
+        for (int i = 2; i <= n_proj; ++i) {
+          current_statement__ = 100;
+          stan::model::assign(log_cases_projected_mu,
+            (stan::model::rvalue(log_cases_projected_mu,
+               "log_cases_projected_mu", stan::model::index_uni((i - 1))) +
+            stan::model::rvalue(growthrate_projected, "growthrate_projected",
+              stan::model::index_uni(i))),
+            "assigning variable log_cases_projected_mu",
+            stan::model::index_uni(i));
+          current_statement__ = 102;
+          if (stan::math::logical_gt(
+                stan::model::rvalue(log_cases_projected_mu,
+                  "log_cases_projected_mu", stan::model::index_uni(i)), 10)) {
+            current_statement__ = 101;
+            stan::model::assign(log_cases_projected_mu, 10,
+              "assigning variable log_cases_projected_mu",
+              stan::model::index_uni(i));
+          }
+          current_statement__ = 104;
+          if (stan::math::logical_lt(
+                stan::model::rvalue(log_cases_projected_mu,
+                  "log_cases_projected_mu", stan::model::index_uni(i)), -10)) {
+            current_statement__ = 103;
+            stan::model::assign(log_cases_projected_mu, -10,
+              "assigning variable log_cases_projected_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 107;
+        stan::model::assign(cases_truncated_mu,
+          stan::math::exp(log_cases_truncated_mu),
+          "assigning variable cases_truncated_mu");
+        current_statement__ = 108;
+        stan::model::assign(cases_nowcast_mu,
+          stan::math::exp(log_cases_nowcast_mu),
+          "assigning variable cases_nowcast_mu");
+        current_statement__ = 109;
+        stan::model::assign(cases_projected_mu,
+          stan::math::exp(log_cases_projected_mu),
+          "assigning variable cases_projected_mu");
+      }
       Eigen::Matrix<local_scalar_t__,-1,1> onset_to_etu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(max_delay,
           DUMMY_VAR__);
@@ -1321,14 +1510,6 @@ public:
       Eigen::Matrix<local_scalar_t__,-1,1> onset_to_death =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(max_delay,
           DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> etu_admission =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> etu_discharge =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> etu_modelled =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> etu_modelled_for_fit =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
       Eigen::Matrix<local_scalar_t__,-1,1> onset_to_iso =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(max_delay,
           DUMMY_VAR__);
@@ -1338,645 +1519,522 @@ public:
       Eigen::Matrix<local_scalar_t__,-1,1> onset_to_release =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(max_delay,
           DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> alerts_modelled =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> iso_admission =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> iso_discharge =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> iso_modelled =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> alerts_modelled_for_fit =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> iso_modelled_for_fit =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      local_scalar_t__ prop_iso = DUMMY_VAR__;
-      current_statement__ = 73;
-      prop_iso = stan::math::inv_logit(prop_iso_logit);
-      Eigen::Matrix<local_scalar_t__,-1,1> growthrate_reported =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-      Eigen::Matrix<local_scalar_t__,-1,1> growthrate_projected =
-        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
-      local_scalar_t__ growthrate_slope = DUMMY_VAR__;
-      local_scalar_t__ growthrate_slope_weight = DUMMY_VAR__;
-      local_scalar_t__ growthrate_slope_weight_min = DUMMY_VAR__;
-      current_statement__ = 52;
-      growthrate_slope_weight_min = -0.2;
-      local_scalar_t__ growthrate_slope_weight_max = DUMMY_VAR__;
-      current_statement__ = 53;
-      growthrate_slope_weight_max = 0.2;
-      local_scalar_t__ growthrate_asymptote = DUMMY_VAR__;
-      current_statement__ = 54;
-      growthrate_asymptote = -0.1;
-      current_statement__ = 74;
-      stan::model::assign(growthrate_reported,
-        stan::math::divide(
-          stan::math::to_vector(stan::math::multiply(spline_param, spline)),
-          10), "assigning variable growthrate_reported");
-      current_statement__ = 75;
-      growthrate_slope = (stan::model::rvalue(growthrate_reported,
-                            "growthrate_reported",
-                            stan::model::index_uni(n_obs))
-        -
-        stan::model::rvalue(growthrate_reported, "growthrate_reported",
-          stan::model::index_uni((n_obs - 1))));
-      current_statement__ = 76;
-      growthrate_slope_weight = ((stan::model::rvalue(growthrate_reported,
-                                    "growthrate_reported",
-                                    stan::model::index_uni(n_obs))
-        - growthrate_slope_weight_min) / (growthrate_slope_weight_max -
-        growthrate_slope_weight_min));
-      current_statement__ = 78;
-      if (stan::math::logical_gt(growthrate_slope_weight, 1)) {
-        current_statement__ = 77;
-        growthrate_slope_weight = 1;
-      }
-      current_statement__ = 80;
-      if (stan::math::logical_lt(growthrate_slope_weight, 0)) {
-        current_statement__ = 79;
-        growthrate_slope_weight = 0;
-      }
-      current_statement__ = 81;
-      growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
-      current_statement__ = 82;
-      stan::model::assign(growthrate_projected,
-        stan::math::add(
-          stan::model::rvalue(growthrate_reported, "growthrate_reported",
-            stan::model::index_uni(n_obs)),
-          stan::math::multiply(
-            stan::math::multiply(projection_sq, growthrate_slope),
-            growthrate_slope_weight)),
-        "assigning variable growthrate_projected");
-      current_statement__ = 83;
-      stan::model::assign(growthrate_projected,
-        stan::math::add(
-          stan::math::multiply(growthrate_asymptote,
-            growthrate_asymptote_weight),
-          stan::math::elt_multiply(
-            stan::math::subtract(1, growthrate_asymptote_weight),
-            stan::model::deep_copy(growthrate_projected))),
-        "assigning variable growthrate_projected");
-      current_statement__ = 84;
-      stan::model::assign(log_cases_inflated, (log_cases_intercept +
-        stan::model::rvalue(growthrate_reported, "growthrate_reported",
-          stan::model::index_uni(1))),
-        "assigning variable log_cases_inflated", stan::model::index_uni(1));
-      current_statement__ = 85;
-      stan::model::assign(log_cases_fitted,
-        (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-           stan::model::index_uni(1)) +
-        stan::model::rvalue(log_prop_cases_reported,
-          "log_prop_cases_reported", stan::model::index_uni(1))),
-        "assigning variable log_cases_fitted", stan::model::index_uni(1));
-      current_statement__ = 89;
-      for (int i = 2; i <= n_obs; ++i) {
-        current_statement__ = 86;
-        stan::model::assign(log_cases_inflated,
-          (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-             stan::model::index_uni((i - 1))) +
-          stan::model::rvalue(growthrate_reported, "growthrate_reported",
-            stan::model::index_uni(i))),
-          "assigning variable log_cases_inflated", stan::model::index_uni(i));
-        current_statement__ = 87;
-        stan::model::assign(log_cases_fitted,
-          (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-             stan::model::index_uni(i)) +
-          stan::model::rvalue(log_prop_cases_reported,
-            "log_prop_cases_reported", stan::model::index_uni(i))),
-          "assigning variable log_cases_fitted", stan::model::index_uni(i));
-      }
-      current_statement__ = 95;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 91;
-        if (stan::math::logical_gt(
-              stan::model::rvalue(log_cases_fitted, "log_cases_fitted",
-                stan::model::index_uni(i)), 10)) {
-          current_statement__ = 90;
-          stan::model::assign(log_cases_fitted, 10,
-            "assigning variable log_cases_fitted", stan::model::index_uni(i));
-        }
-        current_statement__ = 93;
-        if (stan::math::logical_gt(
-              stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-                stan::model::index_uni(i)), 10)) {
-          current_statement__ = 92;
-          stan::model::assign(log_cases_inflated, 10,
-            "assigning variable log_cases_inflated",
-            stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 96;
-      stan::model::assign(log_cases_projected,
-        (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-           stan::model::index_uni(n_obs)) +
-        stan::model::rvalue(growthrate_projected, "growthrate_projected",
-          stan::model::index_uni(1))),
-        "assigning variable log_cases_projected", stan::model::index_uni(1));
-      current_statement__ = 103;
-      for (int i = 2; i <= n_proj; ++i) {
-        current_statement__ = 97;
-        stan::model::assign(log_cases_projected,
-          (stan::model::rvalue(log_cases_projected, "log_cases_projected",
-             stan::model::index_uni((i - 1))) +
-          stan::model::rvalue(growthrate_projected, "growthrate_projected",
-            stan::model::index_uni(i))),
-          "assigning variable log_cases_projected", stan::model::index_uni(i));
-        current_statement__ = 99;
-        if (stan::math::logical_gt(
-              stan::model::rvalue(log_cases_projected, "log_cases_projected",
-                stan::model::index_uni(i)), 10)) {
-          current_statement__ = 98;
-          stan::model::assign(log_cases_projected, 10,
-            "assigning variable log_cases_projected",
-            stan::model::index_uni(i));
-        }
-        current_statement__ = 101;
-        if (stan::math::logical_lt(
-              stan::model::rvalue(log_cases_projected, "log_cases_projected",
-                stan::model::index_uni(i)), -10)) {
-          current_statement__ = 100;
-          stan::model::assign(log_cases_projected, -10,
-            "assigning variable log_cases_projected",
-            stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 104;
-      stan::model::assign(deaths_fitted,
-        stan::math::rep_vector(stan::math::exp(-10), n_obs),
-        "assigning variable deaths_fitted");
-      current_statement__ = 105;
-      stan::model::assign(deaths_inflated,
-        stan::math::rep_vector(stan::math::exp(-10), n_obs),
-        "assigning variable deaths_inflated");
-      current_statement__ = 106;
-      stan::model::assign(deaths_projected,
-        stan::math::rep_vector(stan::math::exp(-10), n_proj),
-        "assigning variable deaths_projected");
-      current_statement__ = 107;
-      stan::model::assign(alerts_modelled, stan::math::rep_vector(0, n_tot),
-        "assigning variable alerts_modelled");
-      current_statement__ = 108;
-      stan::model::assign(etu_admission, stan::math::rep_vector(0, n_tot),
-        "assigning variable etu_admission");
-      current_statement__ = 109;
-      stan::model::assign(etu_discharge, stan::math::rep_vector(0, n_tot),
-        "assigning variable etu_discharge");
-      current_statement__ = 110;
-      stan::model::assign(iso_admission, stan::math::rep_vector(0, n_tot),
-        "assigning variable iso_admission");
+      local_scalar_t__ cfr = DUMMY_VAR__;
       current_statement__ = 111;
-      stan::model::assign(iso_discharge, stan::math::rep_vector(0, n_tot),
-        "assigning variable iso_discharge");
-      current_statement__ = 118;
-      for (int i = 1; i <= max_delay; ++i) {
-        current_statement__ = 112;
+      cfr = stan::math::inv_logit(cfr_logit);
+      {
+        current_statement__ = 118;
+        for (int i = 1; i <= max_delay; ++i) {
+          current_statement__ = 112;
+          stan::model::assign(onset_to_etu,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, onset_to_etu_logmean,
+                onset_to_etu_sd)), "assigning variable onset_to_etu",
+            stan::model::index_uni(i));
+          current_statement__ = 113;
+          stan::model::assign(etu_to_survival,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, etu_to_survival_logmean,
+                etu_to_survival_sd)), "assigning variable etu_to_survival",
+            stan::model::index_uni(i));
+          current_statement__ = 114;
+          stan::model::assign(etu_to_death,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, etu_to_death_logmean,
+                etu_to_death_sd)), "assigning variable etu_to_death",
+            stan::model::index_uni(i));
+          current_statement__ = 115;
+          stan::model::assign(onset_to_iso,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, onset_to_iso_logmean,
+                onset_to_iso_sd)), "assigning variable onset_to_iso",
+            stan::model::index_uni(i));
+          current_statement__ = 116;
+          stan::model::assign(iso_to_release,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, iso_to_release_logmean,
+                iso_to_release_sd)), "assigning variable iso_to_release",
+            stan::model::index_uni(i));
+        }
+        current_statement__ = 119;
         stan::model::assign(onset_to_etu,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, onset_to_etu_logmean,
-              onset_to_etu_sd)), "assigning variable onset_to_etu",
-          stan::model::index_uni(i));
-        current_statement__ = 113;
+          stan::math::elt_divide(stan::model::deep_copy(onset_to_etu),
+            stan::math::sum(onset_to_etu)), "assigning variable onset_to_etu");
+        current_statement__ = 120;
         stan::model::assign(etu_to_survival,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, etu_to_survival_logmean,
-              etu_to_survival_sd)), "assigning variable etu_to_survival",
-          stan::model::index_uni(i));
-        current_statement__ = 114;
+          stan::math::elt_divide(stan::model::deep_copy(etu_to_survival),
+            stan::math::sum(etu_to_survival)),
+          "assigning variable etu_to_survival");
+        current_statement__ = 121;
         stan::model::assign(etu_to_death,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, etu_to_death_logmean,
-              etu_to_death_sd)), "assigning variable etu_to_death",
-          stan::model::index_uni(i));
-        current_statement__ = 115;
+          stan::math::elt_divide(stan::model::deep_copy(etu_to_death),
+            stan::math::sum(etu_to_death)), "assigning variable etu_to_death");
+        current_statement__ = 122;
         stan::model::assign(onset_to_iso,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, onset_to_iso_logmean,
-              onset_to_iso_sd)), "assigning variable onset_to_iso",
-          stan::model::index_uni(i));
-        current_statement__ = 116;
+          stan::math::elt_divide(stan::model::deep_copy(onset_to_iso),
+            stan::math::sum(onset_to_iso)), "assigning variable onset_to_iso");
+        current_statement__ = 123;
         stan::model::assign(iso_to_release,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, iso_to_release_logmean,
-              iso_to_release_sd)), "assigning variable iso_to_release",
-          stan::model::index_uni(i));
+          stan::math::elt_divide(stan::model::deep_copy(iso_to_release),
+            stan::math::sum(iso_to_release)),
+          "assigning variable iso_to_release");
+        current_statement__ = 124;
+        stan::model::assign(onset_to_survival,
+          stan_convolve(max_delay, onset_to_etu, etu_to_survival, pstream__),
+          "assigning variable onset_to_survival");
+        current_statement__ = 125;
+        stan::model::assign(onset_to_survival,
+          stan::math::multiply(
+            stan::math::elt_divide(stan::model::deep_copy(onset_to_survival),
+              stan::math::sum(onset_to_survival)), (1 - cfr)),
+          "assigning variable onset_to_survival");
+        current_statement__ = 126;
+        stan::model::assign(onset_to_death,
+          stan_convolve(max_delay, onset_to_etu, etu_to_death, pstream__),
+          "assigning variable onset_to_death");
+        current_statement__ = 127;
+        stan::model::assign(onset_to_death,
+          stan::math::multiply(
+            stan::math::elt_divide(stan::model::deep_copy(onset_to_death),
+              stan::math::sum(onset_to_death)), cfr),
+          "assigning variable onset_to_death");
+        current_statement__ = 128;
+        stan::model::assign(onset_to_release,
+          stan_convolve(max_delay, onset_to_iso, iso_to_release, pstream__),
+          "assigning variable onset_to_release");
+        current_statement__ = 129;
+        stan::model::assign(onset_to_release,
+          stan::math::elt_divide(stan::model::deep_copy(onset_to_release),
+            stan::math::sum(onset_to_release)),
+          "assigning variable onset_to_release");
       }
-      current_statement__ = 119;
-      stan::model::assign(onset_to_etu,
-        stan::math::elt_divide(stan::model::deep_copy(onset_to_etu),
-          stan::math::sum(onset_to_etu)), "assigning variable onset_to_etu");
-      current_statement__ = 120;
-      stan::model::assign(etu_to_survival,
-        stan::math::elt_divide(stan::model::deep_copy(etu_to_survival),
-          stan::math::sum(etu_to_survival)),
-        "assigning variable etu_to_survival");
-      current_statement__ = 121;
-      stan::model::assign(etu_to_death,
-        stan::math::elt_divide(stan::model::deep_copy(etu_to_death),
-          stan::math::sum(etu_to_death)), "assigning variable etu_to_death");
-      current_statement__ = 122;
-      stan::model::assign(onset_to_iso,
-        stan::math::elt_divide(stan::model::deep_copy(onset_to_iso),
-          stan::math::sum(onset_to_iso)), "assigning variable onset_to_iso");
-      current_statement__ = 123;
-      stan::model::assign(iso_to_release,
-        stan::math::elt_divide(stan::model::deep_copy(iso_to_release),
-          stan::math::sum(iso_to_release)),
-        "assigning variable iso_to_release");
-      current_statement__ = 124;
-      stan::model::assign(onset_to_survival,
-        stan_convolve(max_delay, onset_to_etu, etu_to_survival, pstream__),
-        "assigning variable onset_to_survival");
-      current_statement__ = 125;
-      stan::model::assign(onset_to_survival,
-        stan::math::multiply(
-          stan::math::elt_divide(stan::model::deep_copy(onset_to_survival),
-            stan::math::sum(onset_to_survival)), (1 - cfr)),
-        "assigning variable onset_to_survival");
-      current_statement__ = 126;
-      stan::model::assign(onset_to_death,
-        stan_convolve(max_delay, onset_to_etu, etu_to_death, pstream__),
-        "assigning variable onset_to_death");
-      current_statement__ = 127;
-      stan::model::assign(onset_to_death,
-        stan::math::multiply(
-          stan::math::elt_divide(stan::model::deep_copy(onset_to_death),
-            stan::math::sum(onset_to_death)), cfr),
-        "assigning variable onset_to_death");
-      current_statement__ = 128;
-      stan::model::assign(onset_to_release,
-        stan_convolve(max_delay, onset_to_iso, iso_to_release, pstream__),
-        "assigning variable onset_to_release");
-      current_statement__ = 129;
-      stan::model::assign(onset_to_release,
-        stan::math::elt_divide(stan::model::deep_copy(onset_to_release),
-          stan::math::sum(onset_to_release)),
-        "assigning variable onset_to_release");
-      local_scalar_t__ density = DUMMY_VAR__;
-      current_statement__ = 140;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 138;
-        for (int j = 1; j <= max_delay; ++j) {
-          current_statement__ = 132;
-          if (stan::math::logical_lte(i, n_obs)) {
-            current_statement__ = 131;
-            density = (stan::math::exp(
-                         stan::model::rvalue(log_cases_inflated,
-                           "log_cases_inflated", stan::model::index_uni(i)))
-              *
-              stan::model::rvalue(onset_to_death, "onset_to_death",
-                stan::model::index_uni(j)));
-          } else {
-            current_statement__ = 130;
-            density = (stan::math::exp(
-                         stan::model::rvalue(log_cases_projected,
-                           "log_cases_projected",
-                           stan::model::index_uni((i - n_obs))))
-              *
-              stan::model::rvalue(onset_to_death, "onset_to_death",
-                stan::model::index_uni(j)));
-          }
-          current_statement__ = 136;
-          if (stan::math::logical_lte((i + j), n_obs)) {
-            current_statement__ = 135;
-            stan::model::assign(deaths_inflated,
-              (stan::model::rvalue(deaths_inflated, "deaths_inflated",
-                 stan::model::index_uni((i + j))) + density),
-              "assigning variable deaths_inflated",
-              stan::model::index_uni((i + j)));
-          } else {
-            current_statement__ = 134;
-            if (stan::math::logical_lte((i + j), n_tot)) {
-              current_statement__ = 133;
-              stan::model::assign(deaths_projected,
-                (stan::model::rvalue(deaths_projected, "deaths_projected",
-                   stan::model::index_uni(((i + j) - n_obs))) + density),
-                "assigning variable deaths_projected",
-                stan::model::index_uni(((i + j) - n_obs)));
+      Eigen::Matrix<local_scalar_t__,-1,1> deaths_truncated_mu =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
+      Eigen::Matrix<local_scalar_t__,-1,1> deaths_nowcast_mu =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
+      Eigen::Matrix<local_scalar_t__,-1,1> deaths_projected_mu =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
+      {
+        current_statement__ = 131;
+        stan::model::assign(deaths_truncated_mu,
+          stan::math::rep_vector(stan::math::exp(-10), n_obs),
+          "assigning variable deaths_truncated_mu");
+        current_statement__ = 132;
+        stan::model::assign(deaths_nowcast_mu,
+          stan::math::rep_vector(stan::math::exp(-10), n_obs),
+          "assigning variable deaths_nowcast_mu");
+        current_statement__ = 133;
+        stan::model::assign(deaths_projected_mu,
+          stan::math::rep_vector(stan::math::exp(-10), n_proj),
+          "assigning variable deaths_projected_mu");
+        local_scalar_t__ density = DUMMY_VAR__;
+        current_statement__ = 145;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 143;
+          for (int j = 1; j <= max_delay; ++j) {
+            current_statement__ = 137;
+            if (stan::math::logical_lte(i, n_obs)) {
+              current_statement__ = 136;
+              density = (stan::model::rvalue(cases_nowcast_mu,
+                           "cases_nowcast_mu", stan::model::index_uni(i))
+                *
+                stan::model::rvalue(onset_to_death, "onset_to_death",
+                  stan::model::index_uni(j)));
+            } else {
+              current_statement__ = 135;
+              density = (stan::model::rvalue(cases_projected_mu,
+                           "cases_projected_mu",
+                           stan::model::index_uni((i - n_obs)))
+                *
+                stan::model::rvalue(onset_to_death, "onset_to_death",
+                  stan::model::index_uni(j)));
+            }
+            current_statement__ = 141;
+            if (stan::math::logical_lte((i + j), n_obs)) {
+              current_statement__ = 140;
+              stan::model::assign(deaths_nowcast_mu,
+                (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
+                   stan::model::index_uni((i + j))) + density),
+                "assigning variable deaths_nowcast_mu",
+                stan::model::index_uni((i + j)));
+            } else {
+              current_statement__ = 139;
+              if (stan::math::logical_lte((i + j), n_tot)) {
+                current_statement__ = 138;
+                stan::model::assign(deaths_projected_mu,
+                  (stan::model::rvalue(deaths_projected_mu,
+                     "deaths_projected_mu",
+                     stan::model::index_uni(((i + j) - n_obs))) + density),
+                  "assigning variable deaths_projected_mu",
+                  stan::model::index_uni(((i + j) - n_obs)));
+              }
             }
           }
         }
-      }
-      current_statement__ = 142;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 141;
-        stan::model::assign(deaths_fitted,
-          (stan::model::rvalue(deaths_inflated, "deaths_inflated",
-             stan::model::index_uni(i)) *
-          stan::model::rvalue(prop_deaths_reported, "prop_deaths_reported",
-            stan::model::index_uni(i))), "assigning variable deaths_fitted",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 163;
-      for (int i = 1; i <= (n_tot - 1); ++i) {
-        int j_max = std::numeric_limits<int>::min();
-        current_statement__ = 143;
-        j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
-          i) : max_delay);
-        local_scalar_t__ cases_val = DUMMY_VAR__;
-        local_scalar_t__ alerts_bg = DUMMY_VAR__;
-        current_statement__ = 152;
-        if (stan::math::logical_lte(i, n_obs)) {
-          current_statement__ = 149;
-          cases_val = stan::model::rvalue(cases_reported, "cases_reported",
-                        stan::model::index_uni(i));
-          current_statement__ = 150;
-          alerts_bg = stan::math::exp(
-                        stan::model::rvalue(alerts_background,
-                          "alerts_background",
-                          stan::model::index_uni(
-                            stan::model::rvalue(alerts_background_ind,
-                              "alerts_background_ind",
-                              stan::model::index_uni(i)))));
-        } else {
+        current_statement__ = 147;
+        for (int i = 1; i <= n_obs; ++i) {
           current_statement__ = 146;
-          cases_val = stan::math::exp(
-                        stan::model::rvalue(log_cases_projected,
-                          "log_cases_projected",
-                          stan::model::index_uni((i - n_obs))));
-          current_statement__ = 147;
-          alerts_bg = stan::math::exp(
-                        stan::model::rvalue(alerts_background,
+          stan::model::assign(deaths_truncated_mu,
+            (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
+               stan::model::index_uni(i)) *
+            stan::model::rvalue(prop_deaths_reported, "prop_deaths_reported",
+              stan::model::index_uni(i))),
+            "assigning variable deaths_truncated_mu",
+            stan::model::index_uni(i));
+        }
+      }
+      Eigen::Matrix<local_scalar_t__,-1,1> alerts_truncated_mu =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+      Eigen::Matrix<local_scalar_t__,-1,1> etu_truncated_mu =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+      Eigen::Matrix<local_scalar_t__,-1,1> iso_truncated_mu =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+      local_scalar_t__ prop_iso = DUMMY_VAR__;
+      current_statement__ = 149;
+      prop_iso = stan::math::inv_logit(prop_iso_logit);
+      local_scalar_t__ alerts_per_case = DUMMY_VAR__;
+      current_statement__ = 150;
+      alerts_per_case = stan::math::exp(alerts_per_case_log);
+      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background =
+        Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_alerts_background,
+          DUMMY_VAR__);
+      current_statement__ = 151;
+      stan::model::assign(alerts_background,
+        stan::math::exp(alerts_background_log),
+        "assigning variable alerts_background");
+      {
+        current_statement__ = 152;
+        stan::math::validate_non_negative_index("etu_admission", "n_tot",
+          n_tot);
+        Eigen::Matrix<local_scalar_t__,-1,1> etu_admission =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+        current_statement__ = 154;
+        stan::math::validate_non_negative_index("etu_discharge", "n_tot",
+          n_tot);
+        Eigen::Matrix<local_scalar_t__,-1,1> etu_discharge =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+        current_statement__ = 156;
+        stan::math::validate_non_negative_index("iso_admission", "n_tot",
+          n_tot);
+        Eigen::Matrix<local_scalar_t__,-1,1> iso_admission =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+        current_statement__ = 158;
+        stan::math::validate_non_negative_index("iso_discharge", "n_tot",
+          n_tot);
+        Eigen::Matrix<local_scalar_t__,-1,1> iso_discharge =
+          Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
+        current_statement__ = 160;
+        stan::model::assign(alerts_truncated_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable alerts_truncated_mu");
+        current_statement__ = 161;
+        stan::model::assign(etu_admission, stan::math::rep_vector(0, n_tot),
+          "assigning variable etu_admission");
+        current_statement__ = 162;
+        stan::model::assign(etu_discharge, stan::math::rep_vector(0, n_tot),
+          "assigning variable etu_discharge");
+        current_statement__ = 163;
+        stan::model::assign(iso_admission, stan::math::rep_vector(0, n_tot),
+          "assigning variable iso_admission");
+        current_statement__ = 164;
+        stan::model::assign(iso_discharge, stan::math::rep_vector(0, n_tot),
+          "assigning variable iso_discharge");
+        current_statement__ = 185;
+        for (int i = 1; i <= (n_tot - 1); ++i) {
+          int j_max = std::numeric_limits<int>::min();
+          current_statement__ = 165;
+          j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
+            i) : max_delay);
+          local_scalar_t__ cases_val = DUMMY_VAR__;
+          local_scalar_t__ alerts_bg = DUMMY_VAR__;
+          current_statement__ = 174;
+          if (stan::math::logical_lte(i, n_obs)) {
+            current_statement__ = 171;
+            cases_val = stan::model::rvalue(cases_reported, "cases_reported",
+                          stan::model::index_uni(i));
+            current_statement__ = 172;
+            alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
                             stan::model::rvalue(alerts_background_ind,
                               "alerts_background_ind",
-                              stan::model::index_uni(n_alerts_background)))));
+                              stan::model::index_uni(i))));
+          } else {
+            current_statement__ = 168;
+            cases_val = stan::model::rvalue(cases_projected_mu,
+                          "cases_projected_mu",
+                          stan::model::index_uni((i - n_obs)));
+            current_statement__ = 169;
+            alerts_bg = stan::model::rvalue(alerts_background,
+                          "alerts_background",
+                          stan::model::index_uni(
+                            stan::model::rvalue(alerts_background_ind,
+                              "alerts_background_ind",
+                              stan::model::index_uni(n_alerts_background))));
+          }
+          local_scalar_t__ alerts_val = DUMMY_VAR__;
+          current_statement__ = 175;
+          alerts_val = ((cases_val * alerts_per_case) + alerts_bg);
+          current_statement__ = 183;
+          for (int j = 1; j <= j_max; ++j) {
+            int t = std::numeric_limits<int>::min();
+            current_statement__ = 176;
+            t = (i + j);
+            current_statement__ = 177;
+            stan::model::assign(etu_admission,
+              (stan::model::rvalue(etu_admission, "etu_admission",
+                 stan::model::index_uni(t)) + (cases_val *
+              stan::model::rvalue(onset_to_etu, "onset_to_etu",
+                stan::model::index_uni(j)))),
+              "assigning variable etu_admission", stan::model::index_uni(t));
+            current_statement__ = 178;
+            stan::model::assign(etu_discharge,
+              (stan::model::rvalue(etu_discharge, "etu_discharge",
+                 stan::model::index_uni(t)) + (cases_val *
+              (stan::model::rvalue(onset_to_survival, "onset_to_survival",
+                 stan::model::index_uni(j)) +
+              stan::model::rvalue(onset_to_death, "onset_to_death",
+                stan::model::index_uni(j))))),
+              "assigning variable etu_discharge", stan::model::index_uni(t));
+            current_statement__ = 179;
+            stan::model::assign(alerts_truncated_mu,
+              (stan::model::rvalue(alerts_truncated_mu,
+                 "alerts_truncated_mu", stan::model::index_uni(t)) +
+              (alerts_val *
+              stan::model::rvalue(onset_to_iso, "onset_to_iso",
+                stan::model::index_uni(j)))),
+              "assigning variable alerts_truncated_mu",
+              stan::model::index_uni(t));
+            current_statement__ = 180;
+            stan::model::assign(iso_admission,
+              (stan::model::rvalue(iso_admission, "iso_admission",
+                 stan::model::index_uni(t)) + ((alerts_val *
+              stan::model::rvalue(onset_to_iso, "onset_to_iso",
+                stan::model::index_uni(j))) * prop_iso)),
+              "assigning variable iso_admission", stan::model::index_uni(t));
+            current_statement__ = 181;
+            stan::model::assign(iso_discharge,
+              (stan::model::rvalue(iso_discharge, "iso_discharge",
+                 stan::model::index_uni(t)) + ((alerts_val *
+              stan::model::rvalue(onset_to_release, "onset_to_release",
+                stan::model::index_uni(j))) * prop_iso)),
+              "assigning variable iso_discharge", stan::model::index_uni(t));
+          }
         }
-        local_scalar_t__ alerts_val = DUMMY_VAR__;
-        current_statement__ = 153;
-        alerts_val = ((cases_val * stan::math::exp(alerts_per_case)) +
-          alerts_bg);
-        current_statement__ = 161;
-        for (int j = 1; j <= j_max; ++j) {
-          int t = std::numeric_limits<int>::min();
-          current_statement__ = 154;
-          t = (i + j);
-          current_statement__ = 155;
-          stan::model::assign(etu_admission,
-            (stan::model::rvalue(etu_admission, "etu_admission",
-               stan::model::index_uni(t)) + (cases_val *
-            stan::model::rvalue(onset_to_etu, "onset_to_etu",
-              stan::model::index_uni(j)))),
-            "assigning variable etu_admission", stan::model::index_uni(t));
-          current_statement__ = 156;
-          stan::model::assign(etu_discharge,
-            (stan::model::rvalue(etu_discharge, "etu_discharge",
-               stan::model::index_uni(t)) + (cases_val *
-            (stan::model::rvalue(onset_to_survival, "onset_to_survival",
-               stan::model::index_uni(j)) +
-            stan::model::rvalue(onset_to_death, "onset_to_death",
-              stan::model::index_uni(j))))),
-            "assigning variable etu_discharge", stan::model::index_uni(t));
-          current_statement__ = 157;
-          stan::model::assign(alerts_modelled,
-            (stan::model::rvalue(alerts_modelled, "alerts_modelled",
-               stan::model::index_uni(t)) + (alerts_val *
-            stan::model::rvalue(onset_to_iso, "onset_to_iso",
-              stan::model::index_uni(j)))),
-            "assigning variable alerts_modelled", stan::model::index_uni(t));
-          current_statement__ = 158;
-          stan::model::assign(iso_admission,
-            (stan::model::rvalue(iso_admission, "iso_admission",
-               stan::model::index_uni(t)) + ((alerts_val *
-            stan::model::rvalue(onset_to_iso, "onset_to_iso",
-              stan::model::index_uni(j))) * prop_iso)),
-            "assigning variable iso_admission", stan::model::index_uni(t));
-          current_statement__ = 159;
-          stan::model::assign(iso_discharge,
-            (stan::model::rvalue(iso_discharge, "iso_discharge",
-               stan::model::index_uni(t)) + ((alerts_val *
-            stan::model::rvalue(onset_to_release, "onset_to_release",
-              stan::model::index_uni(j))) * prop_iso)),
-            "assigning variable iso_discharge", stan::model::index_uni(t));
+        current_statement__ = 186;
+        stan::model::assign(etu_truncated_mu,
+          stan::math::cumulative_sum(
+            stan::math::subtract(etu_admission, etu_discharge)),
+          "assigning variable etu_truncated_mu");
+        current_statement__ = 187;
+        stan::model::assign(iso_truncated_mu,
+          stan::math::cumulative_sum(
+            stan::math::subtract(iso_admission, iso_discharge)),
+          "assigning variable iso_truncated_mu");
+        current_statement__ = 190;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 189;
+          if (stan::math::logical_eq(
+                stan::model::rvalue(etu_truncated_mu, "etu_truncated_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 188;
+            stan::model::assign(etu_truncated_mu, 0.00001,
+              "assigning variable etu_truncated_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 193;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 192;
+          if (stan::math::logical_eq(
+                stan::model::rvalue(alerts_truncated_mu,
+                  "alerts_truncated_mu", stan::model::index_uni(i)), 0)) {
+            current_statement__ = 191;
+            stan::model::assign(alerts_truncated_mu, 0.00001,
+              "assigning variable alerts_truncated_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 196;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 195;
+          if (stan::math::logical_lte(
+                stan::model::rvalue(iso_truncated_mu, "iso_truncated_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 194;
+            stan::model::assign(iso_truncated_mu, 0.00001,
+              "assigning variable iso_truncated_mu",
+              stan::model::index_uni(i));
+          }
         }
       }
-      current_statement__ = 164;
-      stan::model::assign(etu_modelled,
-        stan::math::cumulative_sum(
-          stan::math::subtract(etu_admission, etu_discharge)),
-        "assigning variable etu_modelled");
-      current_statement__ = 165;
-      stan::model::assign(iso_modelled,
-        stan::math::cumulative_sum(
-          stan::math::subtract(iso_admission, iso_discharge)),
-        "assigning variable iso_modelled");
-      current_statement__ = 168;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 167;
-        if (stan::math::logical_eq(
-              stan::model::rvalue(etu_modelled, "etu_modelled",
-                stan::model::index_uni(i)), 0)) {
-          current_statement__ = 166;
-          stan::model::assign(etu_modelled, 0.00001,
-            "assigning variable etu_modelled", stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 170;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 169;
-        stan::model::assign(etu_modelled_for_fit,
-          stan::model::rvalue(etu_modelled, "etu_modelled",
-            stan::model::index_uni(i)),
-          "assigning variable etu_modelled_for_fit",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 173;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 172;
-        if (stan::math::logical_eq(
-              stan::model::rvalue(alerts_modelled, "alerts_modelled",
-                stan::model::index_uni(i)), 0)) {
-          current_statement__ = 171;
-          stan::model::assign(alerts_modelled, 0.00001,
-            "assigning variable alerts_modelled", stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 175;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 174;
-        stan::model::assign(alerts_modelled_for_fit,
-          stan::model::rvalue(alerts_modelled, "alerts_modelled",
-            stan::model::index_uni(i)),
-          "assigning variable alerts_modelled_for_fit",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 178;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 177;
-        if (stan::math::logical_lte(
-              stan::model::rvalue(iso_modelled, "iso_modelled",
-                stan::model::index_uni(i)), 0)) {
-          current_statement__ = 176;
-          stan::model::assign(iso_modelled, 0.00001,
-            "assigning variable iso_modelled", stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 180;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 179;
-        stan::model::assign(iso_modelled_for_fit,
-          stan::model::rvalue(iso_modelled, "iso_modelled",
-            stan::model::index_uni(i)),
-          "assigning variable iso_modelled_for_fit",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 28;
-      stan::math::check_greater_or_equal(function__, "cfr", cfr, 0);
-      current_statement__ = 28;
-      stan::math::check_less_or_equal(function__, "cfr", cfr, 1);
-      current_statement__ = 47;
-      stan::math::check_greater_or_equal(function__, "prop_iso", prop_iso, 0);
-      current_statement__ = 47;
-      stan::math::check_less_or_equal(function__, "prop_iso", prop_iso, 1);
+      local_scalar_t__ cases_overdisp = DUMMY_VAR__;
+      local_scalar_t__ deaths_overdisp = DUMMY_VAR__;
+      local_scalar_t__ etu_overdisp = DUMMY_VAR__;
+      local_scalar_t__ alerts_overdisp = DUMMY_VAR__;
+      local_scalar_t__ iso_overdisp = DUMMY_VAR__;
+      current_statement__ = 198;
+      cases_overdisp = stan::math::exp(cases_overdisp_log);
+      current_statement__ = 199;
+      deaths_overdisp = stan::math::exp(deaths_overdisp_log);
+      current_statement__ = 200;
+      etu_overdisp = stan::math::exp(etu_overdisp_log);
+      current_statement__ = 201;
+      alerts_overdisp = stan::math::exp(alerts_overdisp_log);
+      current_statement__ = 202;
+      iso_overdisp = stan::math::exp(iso_overdisp_log);
       {
-        current_statement__ = 227;
+        current_statement__ = 261;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          onset_to_etu_logmean,
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(2))));
-        current_statement__ = 228;
+        current_statement__ = 262;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(onset_to_etu_sd,
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(4))));
-        current_statement__ = 229;
+        current_statement__ = 263;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          etu_to_survival_logmean,
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(2))));
-        current_statement__ = 230;
+        current_statement__ = 264;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_to_survival_sd,
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(4))));
-        current_statement__ = 231;
+        current_statement__ = 265;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          etu_to_death_logmean,
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(2))));
-        current_statement__ = 232;
+        current_statement__ = 266;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_to_death_sd,
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(4))));
-        current_statement__ = 233;
+        current_statement__ = 267;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          onset_to_iso_logmean,
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(2))));
-        current_statement__ = 234;
+        current_statement__ = 268;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(onset_to_iso_sd,
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(4))));
-        current_statement__ = 235;
+        current_statement__ = 269;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          iso_to_release_logmean,
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(2))));
-        current_statement__ = 236;
+        current_statement__ = 270;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(iso_to_release_sd,
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(4))));
-        current_statement__ = 237;
+        current_statement__ = 271;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(cfr,
                          stan::model::rvalue(prior_cfr, "prior_cfr",
                            stan::model::index_uni(1)),
                          stan::model::rvalue(prior_cfr, "prior_cfr",
                            stan::model::index_uni(2))));
-        current_statement__ = 238;
+        current_statement__ = 272;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(prop_iso_logit,
                          stan::model::rvalue(prior_prop_iso,
                            "prior_prop_iso", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_prop_iso,
                            "prior_prop_iso", stan::model::index_uni(2))));
-        current_statement__ = 239;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_background,
+        current_statement__ = 273;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(
+                         alerts_background_log,
                          stan::model::rvalue(prior_alerts_background,
                            "prior_alerts_background",
                            stan::model::index_uni(1)),
                          stan::model::rvalue(prior_alerts_background,
                            "prior_alerts_background",
                            stan::model::index_uni(2))));
-        current_statement__ = 240;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_per_case,
+        current_statement__ = 274;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_per_case_log,
                          stan::model::rvalue(prior_alerts_per_case,
                            "prior_alerts_per_case", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_alerts_per_case,
                            "prior_alerts_per_case", stan::model::index_uni(2))));
-        current_statement__ = 241;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(cases_overdisp, 2, 1));
-        current_statement__ = 242;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_overdisp, 0, 1));
-        current_statement__ = 243;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_overdisp, 0,
+        current_statement__ = 275;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(cases_overdisp_log,
+                         2, 1));
+        current_statement__ = 276;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_overdisp_log, 0,
                          1));
-        current_statement__ = 244;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(iso_overdisp, 0, 1));
-        current_statement__ = 245;
+        current_statement__ = 277;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_overdisp_log,
+                         0, 1));
+        current_statement__ = 278;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(iso_overdisp_log, 0,
+                         1));
+        current_statement__ = 279;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(spline_param, 0, 1));
-        current_statement__ = 246;
+        current_statement__ = 280;
         lp_accum__.add(stan::math::neg_binomial_2_lpmf<propto__>(
-                         cases_reported, stan::math::exp(log_cases_fitted),
-                         stan::math::exp(cases_overdisp)));
-        current_statement__ = 247;
+                         cases_reported, cases_truncated_mu, cases_overdisp));
+        current_statement__ = 281;
         lp_accum__.add(stan::math::neg_binomial_2_lpmf<propto__>(
-                         deaths_reported, deaths_fitted,
-                         stan::math::exp(deaths_overdisp)));
-        current_statement__ = 248;
+                         deaths_reported, deaths_truncated_mu,
+                         deaths_overdisp));
+        current_statement__ = 282;
         for (int sym1__ = 1; sym1__ <= stan::math::size(etu_ind); ++sym1__) {
           int i;
-          current_statement__ = 248;
+          current_statement__ = 282;
           i = etu_ind[(sym1__ - 1)];
-          current_statement__ = 249;
+          current_statement__ = 283;
           lp_accum__.add(stan::math::neg_binomial_2_lpmf<false>(
                            stan::model::rvalue(etu_reported, "etu_reported",
                              stan::model::index_uni(i)),
-                           stan::model::rvalue(etu_modelled, "etu_modelled",
-                             stan::model::index_uni(i)),
-                           stan::math::exp(etu_overdisp)));
+                           stan::model::rvalue(etu_truncated_mu,
+                             "etu_truncated_mu", stan::model::index_uni(i)),
+                           etu_overdisp));
         }
-        current_statement__ = 250;
+        current_statement__ = 284;
         for (int sym1__ = 1; sym1__ <= stan::math::size(alerts_ind); ++sym1__) {
           int i;
-          current_statement__ = 250;
+          current_statement__ = 284;
           i = alerts_ind[(sym1__ - 1)];
-          current_statement__ = 251;
+          current_statement__ = 285;
           lp_accum__.add(stan::math::neg_binomial_2_lpmf<false>(
                            stan::model::rvalue(alerts_reported,
                              "alerts_reported", stan::model::index_uni(i)),
-                           stan::model::rvalue(alerts_modelled,
-                             "alerts_modelled", stan::model::index_uni(i)),
-                           stan::math::exp(alerts_overdisp)));
+                           stan::model::rvalue(alerts_truncated_mu,
+                             "alerts_truncated_mu", stan::model::index_uni(i)),
+                           alerts_overdisp));
         }
-        current_statement__ = 252;
+        current_statement__ = 286;
         for (int sym1__ = 1; sym1__ <= stan::math::size(iso_ind); ++sym1__) {
           int i;
-          current_statement__ = 252;
+          current_statement__ = 286;
           i = iso_ind[(sym1__ - 1)];
-          current_statement__ = 253;
+          current_statement__ = 287;
           lp_accum__.add(stan::math::neg_binomial_2_lpmf<false>(
                            stan::model::rvalue(iso_reported, "iso_reported",
                              stan::model::index_uni(i)),
-                           stan::model::rvalue(iso_modelled, "iso_modelled",
-                             stan::model::index_uni(i)),
-                           stan::math::exp(iso_overdisp)));
+                           stan::model::rvalue(iso_truncated_mu,
+                             "iso_truncated_mu", stan::model::index_uni(i)),
+                           iso_overdisp));
         }
       }
     } catch (const std::exception& e) {
@@ -2059,58 +2117,54 @@ public:
       current_statement__ = 12;
       iso_to_release_sd = in__.template read_constrain_lb<local_scalar_t__,
                             jacobian__>(0, lp__);
-      double cases_overdisp = std::numeric_limits<double>::quiet_NaN();
+      double cases_overdisp_log = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 13;
-      cases_overdisp = in__.template read<local_scalar_t__>();
-      double deaths_overdisp = std::numeric_limits<double>::quiet_NaN();
+      cases_overdisp_log = in__.template read<local_scalar_t__>();
+      double deaths_overdisp_log = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 14;
-      deaths_overdisp = in__.template read<local_scalar_t__>();
-      double etu_overdisp = std::numeric_limits<double>::quiet_NaN();
+      deaths_overdisp_log = in__.template read<local_scalar_t__>();
+      double etu_overdisp_log = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 15;
-      etu_overdisp = in__.template read<local_scalar_t__>();
-      double alerts_overdisp = std::numeric_limits<double>::quiet_NaN();
+      etu_overdisp_log = in__.template read<local_scalar_t__>();
+      double alerts_overdisp_log = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 16;
-      alerts_overdisp = in__.template read<local_scalar_t__>();
-      double iso_overdisp = std::numeric_limits<double>::quiet_NaN();
+      alerts_overdisp_log = in__.template read<local_scalar_t__>();
+      double iso_overdisp_log = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 17;
-      iso_overdisp = in__.template read<local_scalar_t__>();
+      iso_overdisp_log = in__.template read<local_scalar_t__>();
       double log_cases_intercept = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 18;
       log_cases_intercept = in__.template read<local_scalar_t__>();
-      Eigen::Matrix<double,-1,1> alerts_background =
+      Eigen::Matrix<double,-1,1> alerts_background_log =
         Eigen::Matrix<double,-1,1>::Constant(n_alerts_background,
           std::numeric_limits<double>::quiet_NaN());
       current_statement__ = 19;
-      alerts_background = in__.template read<
-                            Eigen::Matrix<local_scalar_t__,-1,1>>(n_alerts_background);
-      double alerts_per_case = std::numeric_limits<double>::quiet_NaN();
+      alerts_background_log = in__.template read<
+                                Eigen::Matrix<local_scalar_t__,-1,1>>(n_alerts_background);
+      double alerts_per_case_log = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 20;
-      alerts_per_case = in__.template read<local_scalar_t__>();
+      alerts_per_case_log = in__.template read<local_scalar_t__>();
       Eigen::Matrix<double,1,-1> spline_param =
         Eigen::Matrix<double,1,-1>::Constant(n_spline_param,
           std::numeric_limits<double>::quiet_NaN());
       current_statement__ = 21;
       spline_param = in__.template read<
                        Eigen::Matrix<local_scalar_t__,1,-1>>(n_spline_param);
-      Eigen::Matrix<double,-1,1> log_cases_fitted =
+      Eigen::Matrix<double,-1,1> growthrate_reported =
         Eigen::Matrix<double,-1,1>::Constant(n_obs,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> log_cases_inflated =
-        Eigen::Matrix<double,-1,1>::Constant(n_obs,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> log_cases_projected =
+      Eigen::Matrix<double,-1,1> growthrate_projected =
         Eigen::Matrix<double,-1,1>::Constant(n_proj,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> deaths_fitted =
+      Eigen::Matrix<double,-1,1> cases_truncated_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_obs,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> deaths_inflated =
+      Eigen::Matrix<double,-1,1> cases_nowcast_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_obs,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> deaths_projected =
+      Eigen::Matrix<double,-1,1> cases_projected_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_proj,
           std::numeric_limits<double>::quiet_NaN());
-      double cfr = std::numeric_limits<double>::quiet_NaN();
       Eigen::Matrix<double,-1,1> onset_to_etu =
         Eigen::Matrix<double,-1,1>::Constant(max_delay,
           std::numeric_limits<double>::quiet_NaN());
@@ -2126,18 +2180,6 @@ public:
       Eigen::Matrix<double,-1,1> onset_to_death =
         Eigen::Matrix<double,-1,1>::Constant(max_delay,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> etu_admission =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> etu_discharge =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> etu_modelled =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> etu_modelled_for_fit =
-        Eigen::Matrix<double,-1,1>::Constant(n_obs,
-          std::numeric_limits<double>::quiet_NaN());
       Eigen::Matrix<double,-1,1> onset_to_iso =
         Eigen::Matrix<double,-1,1>::Constant(max_delay,
           std::numeric_limits<double>::quiet_NaN());
@@ -2147,40 +2189,35 @@ public:
       Eigen::Matrix<double,-1,1> onset_to_release =
         Eigen::Matrix<double,-1,1>::Constant(max_delay,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> alerts_modelled =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_admission =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_discharge =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_modelled =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> alerts_modelled_for_fit =
+      double cfr = std::numeric_limits<double>::quiet_NaN();
+      Eigen::Matrix<double,-1,1> deaths_truncated_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_obs,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_modelled_for_fit =
+      Eigen::Matrix<double,-1,1> deaths_nowcast_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_obs,
           std::numeric_limits<double>::quiet_NaN());
-      double prop_iso = std::numeric_limits<double>::quiet_NaN();
-      Eigen::Matrix<double,-1,1> growthrate_reported =
-        Eigen::Matrix<double,-1,1>::Constant(n_obs,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> growthrate_projected =
+      Eigen::Matrix<double,-1,1> deaths_projected_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_proj,
           std::numeric_limits<double>::quiet_NaN());
-      double growthrate_slope = std::numeric_limits<double>::quiet_NaN();
-      double growthrate_slope_weight =
-        std::numeric_limits<double>::quiet_NaN();
-      double growthrate_slope_weight_min =
-        std::numeric_limits<double>::quiet_NaN();
-      double growthrate_slope_weight_max =
-        std::numeric_limits<double>::quiet_NaN();
-      double growthrate_asymptote = std::numeric_limits<double>::quiet_NaN();
-      double density = std::numeric_limits<double>::quiet_NaN();
+      Eigen::Matrix<double,-1,1> alerts_truncated_mu =
+        Eigen::Matrix<double,-1,1>::Constant(n_tot,
+          std::numeric_limits<double>::quiet_NaN());
+      Eigen::Matrix<double,-1,1> etu_truncated_mu =
+        Eigen::Matrix<double,-1,1>::Constant(n_tot,
+          std::numeric_limits<double>::quiet_NaN());
+      Eigen::Matrix<double,-1,1> iso_truncated_mu =
+        Eigen::Matrix<double,-1,1>::Constant(n_tot,
+          std::numeric_limits<double>::quiet_NaN());
+      double prop_iso = std::numeric_limits<double>::quiet_NaN();
+      double alerts_per_case = std::numeric_limits<double>::quiet_NaN();
+      Eigen::Matrix<double,-1,1> alerts_background =
+        Eigen::Matrix<double,-1,1>::Constant(n_alerts_background,
+          std::numeric_limits<double>::quiet_NaN());
+      double cases_overdisp = std::numeric_limits<double>::quiet_NaN();
+      double deaths_overdisp = std::numeric_limits<double>::quiet_NaN();
+      double etu_overdisp = std::numeric_limits<double>::quiet_NaN();
+      double alerts_overdisp = std::numeric_limits<double>::quiet_NaN();
+      double iso_overdisp = std::numeric_limits<double>::quiet_NaN();
       out__.write(cfr_logit);
       out__.write(prop_iso_logit);
       out__.write(onset_to_etu_logmean);
@@ -2193,789 +2230,861 @@ public:
       out__.write(onset_to_iso_sd);
       out__.write(iso_to_release_logmean);
       out__.write(iso_to_release_sd);
-      out__.write(cases_overdisp);
-      out__.write(deaths_overdisp);
-      out__.write(etu_overdisp);
-      out__.write(alerts_overdisp);
-      out__.write(iso_overdisp);
+      out__.write(cases_overdisp_log);
+      out__.write(deaths_overdisp_log);
+      out__.write(etu_overdisp_log);
+      out__.write(alerts_overdisp_log);
+      out__.write(iso_overdisp_log);
       out__.write(log_cases_intercept);
-      out__.write(alerts_background);
-      out__.write(alerts_per_case);
+      out__.write(alerts_background_log);
+      out__.write(alerts_per_case_log);
       out__.write(spline_param);
       if (stan::math::logical_negation(
             (stan::math::primitive_value(emit_transformed_parameters__) ||
             stan::math::primitive_value(emit_generated_quantities__)))) {
         return ;
       }
-      current_statement__ = 72;
-      cfr = stan::math::inv_logit(cfr_logit);
-      current_statement__ = 73;
-      prop_iso = stan::math::inv_logit(prop_iso_logit);
-      current_statement__ = 52;
-      growthrate_slope_weight_min = -0.2;
-      current_statement__ = 53;
-      growthrate_slope_weight_max = 0.2;
-      current_statement__ = 54;
-      growthrate_asymptote = -0.1;
-      current_statement__ = 74;
-      stan::model::assign(growthrate_reported,
-        stan::math::divide(
-          stan::math::to_vector(stan::math::multiply(spline_param, spline)),
-          10), "assigning variable growthrate_reported");
-      current_statement__ = 75;
-      growthrate_slope = (stan::model::rvalue(growthrate_reported,
-                            "growthrate_reported",
-                            stan::model::index_uni(n_obs))
-        -
-        stan::model::rvalue(growthrate_reported, "growthrate_reported",
-          stan::model::index_uni((n_obs - 1))));
-      current_statement__ = 76;
-      growthrate_slope_weight = ((stan::model::rvalue(growthrate_reported,
-                                    "growthrate_reported",
-                                    stan::model::index_uni(n_obs))
-        - growthrate_slope_weight_min) / (growthrate_slope_weight_max -
-        growthrate_slope_weight_min));
-      current_statement__ = 78;
-      if (stan::math::logical_gt(growthrate_slope_weight, 1)) {
+      {
+        double growthrate_slope = std::numeric_limits<double>::quiet_NaN();
+        double growthrate_slope_weight =
+          std::numeric_limits<double>::quiet_NaN();
+        double growthrate_slope_weight_min =
+          std::numeric_limits<double>::quiet_NaN();
+        current_statement__ = 67;
+        growthrate_slope_weight_min = -0.2;
+        double growthrate_slope_weight_max =
+          std::numeric_limits<double>::quiet_NaN();
+        current_statement__ = 68;
+        growthrate_slope_weight_max = 0.2;
+        double growthrate_asymptote =
+          std::numeric_limits<double>::quiet_NaN();
+        current_statement__ = 69;
+        growthrate_asymptote = -0.1;
+        current_statement__ = 70;
+        stan::model::assign(growthrate_reported,
+          stan::math::divide(
+            stan::math::to_vector(stan::math::multiply(spline_param, spline)),
+            10), "assigning variable growthrate_reported");
+        current_statement__ = 71;
+        growthrate_slope = (stan::model::rvalue(growthrate_reported,
+                              "growthrate_reported",
+                              stan::model::index_uni(n_obs))
+          -
+          stan::model::rvalue(growthrate_reported, "growthrate_reported",
+            stan::model::index_uni((n_obs - 1))));
+        current_statement__ = 72;
+        growthrate_slope_weight = ((stan::model::rvalue(growthrate_reported,
+                                      "growthrate_reported",
+                                      stan::model::index_uni(n_obs))
+          - growthrate_slope_weight_min) / (growthrate_slope_weight_max -
+          growthrate_slope_weight_min));
+        current_statement__ = 74;
+        if (stan::math::logical_gt(growthrate_slope_weight, 1)) {
+          current_statement__ = 73;
+          growthrate_slope_weight = 1;
+        }
+        current_statement__ = 76;
+        if (stan::math::logical_lt(growthrate_slope_weight, 0)) {
+          current_statement__ = 75;
+          growthrate_slope_weight = 0;
+        }
         current_statement__ = 77;
-        growthrate_slope_weight = 1;
-      }
-      current_statement__ = 80;
-      if (stan::math::logical_lt(growthrate_slope_weight, 0)) {
+        growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
+        current_statement__ = 78;
+        stan::model::assign(growthrate_projected,
+          stan::math::add(
+            stan::model::rvalue(growthrate_reported, "growthrate_reported",
+              stan::model::index_uni(n_obs)),
+            stan::math::multiply(
+              stan::math::multiply(projection_sq, growthrate_slope),
+              growthrate_slope_weight)),
+          "assigning variable growthrate_projected");
         current_statement__ = 79;
-        growthrate_slope_weight = 0;
+        stan::model::assign(growthrate_projected,
+          stan::math::add(
+            stan::math::multiply(growthrate_asymptote,
+              growthrate_asymptote_weight),
+            stan::math::elt_multiply(
+              stan::math::subtract(1, growthrate_asymptote_weight),
+              stan::model::deep_copy(growthrate_projected))),
+          "assigning variable growthrate_projected");
       }
-      current_statement__ = 81;
-      growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
-      current_statement__ = 82;
-      stan::model::assign(growthrate_projected,
-        stan::math::add(
-          stan::model::rvalue(growthrate_reported, "growthrate_reported",
-            stan::model::index_uni(n_obs)),
-          stan::math::multiply(
-            stan::math::multiply(projection_sq, growthrate_slope),
-            growthrate_slope_weight)),
-        "assigning variable growthrate_projected");
-      current_statement__ = 83;
-      stan::model::assign(growthrate_projected,
-        stan::math::add(
-          stan::math::multiply(growthrate_asymptote,
-            growthrate_asymptote_weight),
-          stan::math::elt_multiply(
-            stan::math::subtract(1, growthrate_asymptote_weight),
-            stan::model::deep_copy(growthrate_projected))),
-        "assigning variable growthrate_projected");
-      current_statement__ = 84;
-      stan::model::assign(log_cases_inflated, (log_cases_intercept +
-        stan::model::rvalue(growthrate_reported, "growthrate_reported",
-          stan::model::index_uni(1))),
-        "assigning variable log_cases_inflated", stan::model::index_uni(1));
-      current_statement__ = 85;
-      stan::model::assign(log_cases_fitted,
-        (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-           stan::model::index_uni(1)) +
-        stan::model::rvalue(log_prop_cases_reported,
-          "log_prop_cases_reported", stan::model::index_uni(1))),
-        "assigning variable log_cases_fitted", stan::model::index_uni(1));
-      current_statement__ = 89;
-      for (int i = 2; i <= n_obs; ++i) {
-        current_statement__ = 86;
-        stan::model::assign(log_cases_inflated,
-          (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-             stan::model::index_uni((i - 1))) +
-          stan::model::rvalue(growthrate_reported, "growthrate_reported",
-            stan::model::index_uni(i))),
-          "assigning variable log_cases_inflated", stan::model::index_uni(i));
+      {
+        current_statement__ = 81;
+        stan::math::validate_non_negative_index("log_cases_truncated_mu",
+          "n_obs", n_obs);
+        Eigen::Matrix<double,-1,1> log_cases_truncated_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_obs,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 83;
+        stan::math::validate_non_negative_index("log_cases_nowcast_mu",
+          "n_obs", n_obs);
+        Eigen::Matrix<double,-1,1> log_cases_nowcast_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_obs,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 85;
+        stan::math::validate_non_negative_index("log_cases_projected_mu",
+          "n_proj", n_proj);
+        Eigen::Matrix<double,-1,1> log_cases_projected_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_proj,
+            std::numeric_limits<double>::quiet_NaN());
         current_statement__ = 87;
-        stan::model::assign(log_cases_fitted,
-          (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-             stan::model::index_uni(i)) +
+        stan::model::assign(log_cases_nowcast_mu, (log_cases_intercept +
+          stan::model::rvalue(growthrate_reported, "growthrate_reported",
+            stan::model::index_uni(1))),
+          "assigning variable log_cases_nowcast_mu",
+          stan::model::index_uni(1));
+        current_statement__ = 88;
+        stan::model::assign(log_cases_truncated_mu,
+          (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
+             stan::model::index_uni(1)) +
           stan::model::rvalue(log_prop_cases_reported,
-            "log_prop_cases_reported", stan::model::index_uni(i))),
-          "assigning variable log_cases_fitted", stan::model::index_uni(i));
-      }
-      current_statement__ = 95;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 91;
-        if (stan::math::logical_gt(
-              stan::model::rvalue(log_cases_fitted, "log_cases_fitted",
-                stan::model::index_uni(i)), 10)) {
+            "log_prop_cases_reported", stan::model::index_uni(1))),
+          "assigning variable log_cases_truncated_mu",
+          stan::model::index_uni(1));
+        current_statement__ = 92;
+        for (int i = 2; i <= n_obs; ++i) {
+          current_statement__ = 89;
+          stan::model::assign(log_cases_nowcast_mu,
+            (stan::model::rvalue(log_cases_nowcast_mu,
+               "log_cases_nowcast_mu", stan::model::index_uni((i - 1))) +
+            stan::model::rvalue(growthrate_reported, "growthrate_reported",
+              stan::model::index_uni(i))),
+            "assigning variable log_cases_nowcast_mu",
+            stan::model::index_uni(i));
           current_statement__ = 90;
-          stan::model::assign(log_cases_fitted, 10,
-            "assigning variable log_cases_fitted", stan::model::index_uni(i));
-        }
-        current_statement__ = 93;
-        if (stan::math::logical_gt(
-              stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-                stan::model::index_uni(i)), 10)) {
-          current_statement__ = 92;
-          stan::model::assign(log_cases_inflated, 10,
-            "assigning variable log_cases_inflated",
+          stan::model::assign(log_cases_truncated_mu,
+            (stan::model::rvalue(log_cases_nowcast_mu,
+               "log_cases_nowcast_mu", stan::model::index_uni(i)) +
+            stan::model::rvalue(log_prop_cases_reported,
+              "log_prop_cases_reported", stan::model::index_uni(i))),
+            "assigning variable log_cases_truncated_mu",
             stan::model::index_uni(i));
         }
-      }
-      current_statement__ = 96;
-      stan::model::assign(log_cases_projected,
-        (stan::model::rvalue(log_cases_inflated, "log_cases_inflated",
-           stan::model::index_uni(n_obs)) +
-        stan::model::rvalue(growthrate_projected, "growthrate_projected",
-          stan::model::index_uni(1))),
-        "assigning variable log_cases_projected", stan::model::index_uni(1));
-      current_statement__ = 103;
-      for (int i = 2; i <= n_proj; ++i) {
-        current_statement__ = 97;
-        stan::model::assign(log_cases_projected,
-          (stan::model::rvalue(log_cases_projected, "log_cases_projected",
-             stan::model::index_uni((i - 1))) +
-          stan::model::rvalue(growthrate_projected, "growthrate_projected",
-            stan::model::index_uni(i))),
-          "assigning variable log_cases_projected", stan::model::index_uni(i));
-        current_statement__ = 99;
-        if (stan::math::logical_gt(
-              stan::model::rvalue(log_cases_projected, "log_cases_projected",
-                stan::model::index_uni(i)), 10)) {
-          current_statement__ = 98;
-          stan::model::assign(log_cases_projected, 10,
-            "assigning variable log_cases_projected",
-            stan::model::index_uni(i));
-        }
-        current_statement__ = 101;
-        if (stan::math::logical_lt(
-              stan::model::rvalue(log_cases_projected, "log_cases_projected",
-                stan::model::index_uni(i)), -10)) {
-          current_statement__ = 100;
-          stan::model::assign(log_cases_projected, -10,
-            "assigning variable log_cases_projected",
-            stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 104;
-      stan::model::assign(deaths_fitted,
-        stan::math::rep_vector(stan::math::exp(-10), n_obs),
-        "assigning variable deaths_fitted");
-      current_statement__ = 105;
-      stan::model::assign(deaths_inflated,
-        stan::math::rep_vector(stan::math::exp(-10), n_obs),
-        "assigning variable deaths_inflated");
-      current_statement__ = 106;
-      stan::model::assign(deaths_projected,
-        stan::math::rep_vector(stan::math::exp(-10), n_proj),
-        "assigning variable deaths_projected");
-      current_statement__ = 107;
-      stan::model::assign(alerts_modelled, stan::math::rep_vector(0, n_tot),
-        "assigning variable alerts_modelled");
-      current_statement__ = 108;
-      stan::model::assign(etu_admission, stan::math::rep_vector(0, n_tot),
-        "assigning variable etu_admission");
-      current_statement__ = 109;
-      stan::model::assign(etu_discharge, stan::math::rep_vector(0, n_tot),
-        "assigning variable etu_discharge");
-      current_statement__ = 110;
-      stan::model::assign(iso_admission, stan::math::rep_vector(0, n_tot),
-        "assigning variable iso_admission");
-      current_statement__ = 111;
-      stan::model::assign(iso_discharge, stan::math::rep_vector(0, n_tot),
-        "assigning variable iso_discharge");
-      current_statement__ = 118;
-      for (int i = 1; i <= max_delay; ++i) {
-        current_statement__ = 112;
-        stan::model::assign(onset_to_etu,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, onset_to_etu_logmean,
-              onset_to_etu_sd)), "assigning variable onset_to_etu",
-          stan::model::index_uni(i));
-        current_statement__ = 113;
-        stan::model::assign(etu_to_survival,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, etu_to_survival_logmean,
-              etu_to_survival_sd)), "assigning variable etu_to_survival",
-          stan::model::index_uni(i));
-        current_statement__ = 114;
-        stan::model::assign(etu_to_death,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, etu_to_death_logmean,
-              etu_to_death_sd)), "assigning variable etu_to_death",
-          stan::model::index_uni(i));
-        current_statement__ = 115;
-        stan::model::assign(onset_to_iso,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, onset_to_iso_logmean,
-              onset_to_iso_sd)), "assigning variable onset_to_iso",
-          stan::model::index_uni(i));
-        current_statement__ = 116;
-        stan::model::assign(iso_to_release,
-          stan::math::exp(
-            stan::math::lognormal_lpdf<false>(i, iso_to_release_logmean,
-              iso_to_release_sd)), "assigning variable iso_to_release",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 119;
-      stan::model::assign(onset_to_etu,
-        stan::math::elt_divide(stan::model::deep_copy(onset_to_etu),
-          stan::math::sum(onset_to_etu)), "assigning variable onset_to_etu");
-      current_statement__ = 120;
-      stan::model::assign(etu_to_survival,
-        stan::math::elt_divide(stan::model::deep_copy(etu_to_survival),
-          stan::math::sum(etu_to_survival)),
-        "assigning variable etu_to_survival");
-      current_statement__ = 121;
-      stan::model::assign(etu_to_death,
-        stan::math::elt_divide(stan::model::deep_copy(etu_to_death),
-          stan::math::sum(etu_to_death)), "assigning variable etu_to_death");
-      current_statement__ = 122;
-      stan::model::assign(onset_to_iso,
-        stan::math::elt_divide(stan::model::deep_copy(onset_to_iso),
-          stan::math::sum(onset_to_iso)), "assigning variable onset_to_iso");
-      current_statement__ = 123;
-      stan::model::assign(iso_to_release,
-        stan::math::elt_divide(stan::model::deep_copy(iso_to_release),
-          stan::math::sum(iso_to_release)),
-        "assigning variable iso_to_release");
-      current_statement__ = 124;
-      stan::model::assign(onset_to_survival,
-        stan_convolve(max_delay, onset_to_etu, etu_to_survival, pstream__),
-        "assigning variable onset_to_survival");
-      current_statement__ = 125;
-      stan::model::assign(onset_to_survival,
-        stan::math::multiply(
-          stan::math::elt_divide(stan::model::deep_copy(onset_to_survival),
-            stan::math::sum(onset_to_survival)), (1 - cfr)),
-        "assigning variable onset_to_survival");
-      current_statement__ = 126;
-      stan::model::assign(onset_to_death,
-        stan_convolve(max_delay, onset_to_etu, etu_to_death, pstream__),
-        "assigning variable onset_to_death");
-      current_statement__ = 127;
-      stan::model::assign(onset_to_death,
-        stan::math::multiply(
-          stan::math::elt_divide(stan::model::deep_copy(onset_to_death),
-            stan::math::sum(onset_to_death)), cfr),
-        "assigning variable onset_to_death");
-      current_statement__ = 128;
-      stan::model::assign(onset_to_release,
-        stan_convolve(max_delay, onset_to_iso, iso_to_release, pstream__),
-        "assigning variable onset_to_release");
-      current_statement__ = 129;
-      stan::model::assign(onset_to_release,
-        stan::math::elt_divide(stan::model::deep_copy(onset_to_release),
-          stan::math::sum(onset_to_release)),
-        "assigning variable onset_to_release");
-      current_statement__ = 140;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 138;
-        for (int j = 1; j <= max_delay; ++j) {
-          current_statement__ = 132;
-          if (stan::math::logical_lte(i, n_obs)) {
-            current_statement__ = 131;
-            density = (stan::math::exp(
-                         stan::model::rvalue(log_cases_inflated,
-                           "log_cases_inflated", stan::model::index_uni(i)))
-              *
-              stan::model::rvalue(onset_to_death, "onset_to_death",
-                stan::model::index_uni(j)));
-          } else {
-            current_statement__ = 130;
-            density = (stan::math::exp(
-                         stan::model::rvalue(log_cases_projected,
-                           "log_cases_projected",
-                           stan::model::index_uni((i - n_obs))))
-              *
-              stan::model::rvalue(onset_to_death, "onset_to_death",
-                stan::model::index_uni(j)));
+        current_statement__ = 98;
+        for (int i = 1; i <= n_obs; ++i) {
+          current_statement__ = 94;
+          if (stan::math::logical_gt(
+                stan::model::rvalue(log_cases_truncated_mu,
+                  "log_cases_truncated_mu", stan::model::index_uni(i)), 10)) {
+            current_statement__ = 93;
+            stan::model::assign(log_cases_truncated_mu, 10,
+              "assigning variable log_cases_truncated_mu",
+              stan::model::index_uni(i));
           }
-          current_statement__ = 136;
-          if (stan::math::logical_lte((i + j), n_obs)) {
-            current_statement__ = 135;
-            stan::model::assign(deaths_inflated,
-              (stan::model::rvalue(deaths_inflated, "deaths_inflated",
-                 stan::model::index_uni((i + j))) + density),
-              "assigning variable deaths_inflated",
-              stan::model::index_uni((i + j)));
-          } else {
-            current_statement__ = 134;
-            if (stan::math::logical_lte((i + j), n_tot)) {
-              current_statement__ = 133;
-              stan::model::assign(deaths_projected,
-                (stan::model::rvalue(deaths_projected, "deaths_projected",
-                   stan::model::index_uni(((i + j) - n_obs))) + density),
-                "assigning variable deaths_projected",
-                stan::model::index_uni(((i + j) - n_obs)));
+          current_statement__ = 96;
+          if (stan::math::logical_gt(
+                stan::model::rvalue(log_cases_nowcast_mu,
+                  "log_cases_nowcast_mu", stan::model::index_uni(i)), 10)) {
+            current_statement__ = 95;
+            stan::model::assign(log_cases_nowcast_mu, 10,
+              "assigning variable log_cases_nowcast_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 99;
+        stan::model::assign(log_cases_projected_mu,
+          (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
+             stan::model::index_uni(n_obs)) +
+          stan::model::rvalue(growthrate_projected, "growthrate_projected",
+            stan::model::index_uni(1))),
+          "assigning variable log_cases_projected_mu",
+          stan::model::index_uni(1));
+        current_statement__ = 106;
+        for (int i = 2; i <= n_proj; ++i) {
+          current_statement__ = 100;
+          stan::model::assign(log_cases_projected_mu,
+            (stan::model::rvalue(log_cases_projected_mu,
+               "log_cases_projected_mu", stan::model::index_uni((i - 1))) +
+            stan::model::rvalue(growthrate_projected, "growthrate_projected",
+              stan::model::index_uni(i))),
+            "assigning variable log_cases_projected_mu",
+            stan::model::index_uni(i));
+          current_statement__ = 102;
+          if (stan::math::logical_gt(
+                stan::model::rvalue(log_cases_projected_mu,
+                  "log_cases_projected_mu", stan::model::index_uni(i)), 10)) {
+            current_statement__ = 101;
+            stan::model::assign(log_cases_projected_mu, 10,
+              "assigning variable log_cases_projected_mu",
+              stan::model::index_uni(i));
+          }
+          current_statement__ = 104;
+          if (stan::math::logical_lt(
+                stan::model::rvalue(log_cases_projected_mu,
+                  "log_cases_projected_mu", stan::model::index_uni(i)), -10)) {
+            current_statement__ = 103;
+            stan::model::assign(log_cases_projected_mu, -10,
+              "assigning variable log_cases_projected_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 107;
+        stan::model::assign(cases_truncated_mu,
+          stan::math::exp(log_cases_truncated_mu),
+          "assigning variable cases_truncated_mu");
+        current_statement__ = 108;
+        stan::model::assign(cases_nowcast_mu,
+          stan::math::exp(log_cases_nowcast_mu),
+          "assigning variable cases_nowcast_mu");
+        current_statement__ = 109;
+        stan::model::assign(cases_projected_mu,
+          stan::math::exp(log_cases_projected_mu),
+          "assigning variable cases_projected_mu");
+      }
+      current_statement__ = 111;
+      cfr = stan::math::inv_logit(cfr_logit);
+      {
+        current_statement__ = 118;
+        for (int i = 1; i <= max_delay; ++i) {
+          current_statement__ = 112;
+          stan::model::assign(onset_to_etu,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, onset_to_etu_logmean,
+                onset_to_etu_sd)), "assigning variable onset_to_etu",
+            stan::model::index_uni(i));
+          current_statement__ = 113;
+          stan::model::assign(etu_to_survival,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, etu_to_survival_logmean,
+                etu_to_survival_sd)), "assigning variable etu_to_survival",
+            stan::model::index_uni(i));
+          current_statement__ = 114;
+          stan::model::assign(etu_to_death,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, etu_to_death_logmean,
+                etu_to_death_sd)), "assigning variable etu_to_death",
+            stan::model::index_uni(i));
+          current_statement__ = 115;
+          stan::model::assign(onset_to_iso,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, onset_to_iso_logmean,
+                onset_to_iso_sd)), "assigning variable onset_to_iso",
+            stan::model::index_uni(i));
+          current_statement__ = 116;
+          stan::model::assign(iso_to_release,
+            stan::math::exp(
+              stan::math::lognormal_lpdf<false>(i, iso_to_release_logmean,
+                iso_to_release_sd)), "assigning variable iso_to_release",
+            stan::model::index_uni(i));
+        }
+        current_statement__ = 119;
+        stan::model::assign(onset_to_etu,
+          stan::math::elt_divide(stan::model::deep_copy(onset_to_etu),
+            stan::math::sum(onset_to_etu)), "assigning variable onset_to_etu");
+        current_statement__ = 120;
+        stan::model::assign(etu_to_survival,
+          stan::math::elt_divide(stan::model::deep_copy(etu_to_survival),
+            stan::math::sum(etu_to_survival)),
+          "assigning variable etu_to_survival");
+        current_statement__ = 121;
+        stan::model::assign(etu_to_death,
+          stan::math::elt_divide(stan::model::deep_copy(etu_to_death),
+            stan::math::sum(etu_to_death)), "assigning variable etu_to_death");
+        current_statement__ = 122;
+        stan::model::assign(onset_to_iso,
+          stan::math::elt_divide(stan::model::deep_copy(onset_to_iso),
+            stan::math::sum(onset_to_iso)), "assigning variable onset_to_iso");
+        current_statement__ = 123;
+        stan::model::assign(iso_to_release,
+          stan::math::elt_divide(stan::model::deep_copy(iso_to_release),
+            stan::math::sum(iso_to_release)),
+          "assigning variable iso_to_release");
+        current_statement__ = 124;
+        stan::model::assign(onset_to_survival,
+          stan_convolve(max_delay, onset_to_etu, etu_to_survival, pstream__),
+          "assigning variable onset_to_survival");
+        current_statement__ = 125;
+        stan::model::assign(onset_to_survival,
+          stan::math::multiply(
+            stan::math::elt_divide(stan::model::deep_copy(onset_to_survival),
+              stan::math::sum(onset_to_survival)), (1 - cfr)),
+          "assigning variable onset_to_survival");
+        current_statement__ = 126;
+        stan::model::assign(onset_to_death,
+          stan_convolve(max_delay, onset_to_etu, etu_to_death, pstream__),
+          "assigning variable onset_to_death");
+        current_statement__ = 127;
+        stan::model::assign(onset_to_death,
+          stan::math::multiply(
+            stan::math::elt_divide(stan::model::deep_copy(onset_to_death),
+              stan::math::sum(onset_to_death)), cfr),
+          "assigning variable onset_to_death");
+        current_statement__ = 128;
+        stan::model::assign(onset_to_release,
+          stan_convolve(max_delay, onset_to_iso, iso_to_release, pstream__),
+          "assigning variable onset_to_release");
+        current_statement__ = 129;
+        stan::model::assign(onset_to_release,
+          stan::math::elt_divide(stan::model::deep_copy(onset_to_release),
+            stan::math::sum(onset_to_release)),
+          "assigning variable onset_to_release");
+      }
+      {
+        current_statement__ = 131;
+        stan::model::assign(deaths_truncated_mu,
+          stan::math::rep_vector(stan::math::exp(-10), n_obs),
+          "assigning variable deaths_truncated_mu");
+        current_statement__ = 132;
+        stan::model::assign(deaths_nowcast_mu,
+          stan::math::rep_vector(stan::math::exp(-10), n_obs),
+          "assigning variable deaths_nowcast_mu");
+        current_statement__ = 133;
+        stan::model::assign(deaths_projected_mu,
+          stan::math::rep_vector(stan::math::exp(-10), n_proj),
+          "assigning variable deaths_projected_mu");
+        double density = std::numeric_limits<double>::quiet_NaN();
+        current_statement__ = 145;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 143;
+          for (int j = 1; j <= max_delay; ++j) {
+            current_statement__ = 137;
+            if (stan::math::logical_lte(i, n_obs)) {
+              current_statement__ = 136;
+              density = (stan::model::rvalue(cases_nowcast_mu,
+                           "cases_nowcast_mu", stan::model::index_uni(i))
+                *
+                stan::model::rvalue(onset_to_death, "onset_to_death",
+                  stan::model::index_uni(j)));
+            } else {
+              current_statement__ = 135;
+              density = (stan::model::rvalue(cases_projected_mu,
+                           "cases_projected_mu",
+                           stan::model::index_uni((i - n_obs)))
+                *
+                stan::model::rvalue(onset_to_death, "onset_to_death",
+                  stan::model::index_uni(j)));
+            }
+            current_statement__ = 141;
+            if (stan::math::logical_lte((i + j), n_obs)) {
+              current_statement__ = 140;
+              stan::model::assign(deaths_nowcast_mu,
+                (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
+                   stan::model::index_uni((i + j))) + density),
+                "assigning variable deaths_nowcast_mu",
+                stan::model::index_uni((i + j)));
+            } else {
+              current_statement__ = 139;
+              if (stan::math::logical_lte((i + j), n_tot)) {
+                current_statement__ = 138;
+                stan::model::assign(deaths_projected_mu,
+                  (stan::model::rvalue(deaths_projected_mu,
+                     "deaths_projected_mu",
+                     stan::model::index_uni(((i + j) - n_obs))) + density),
+                  "assigning variable deaths_projected_mu",
+                  stan::model::index_uni(((i + j) - n_obs)));
+              }
             }
           }
         }
-      }
-      current_statement__ = 142;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 141;
-        stan::model::assign(deaths_fitted,
-          (stan::model::rvalue(deaths_inflated, "deaths_inflated",
-             stan::model::index_uni(i)) *
-          stan::model::rvalue(prop_deaths_reported, "prop_deaths_reported",
-            stan::model::index_uni(i))), "assigning variable deaths_fitted",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 163;
-      for (int i = 1; i <= (n_tot - 1); ++i) {
-        int j_max = std::numeric_limits<int>::min();
-        current_statement__ = 143;
-        j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
-          i) : max_delay);
-        double cases_val = std::numeric_limits<double>::quiet_NaN();
-        double alerts_bg = std::numeric_limits<double>::quiet_NaN();
-        current_statement__ = 152;
-        if (stan::math::logical_lte(i, n_obs)) {
-          current_statement__ = 149;
-          cases_val = stan::model::rvalue(cases_reported, "cases_reported",
-                        stan::model::index_uni(i));
-          current_statement__ = 150;
-          alerts_bg = stan::math::exp(
-                        stan::model::rvalue(alerts_background,
-                          "alerts_background",
-                          stan::model::index_uni(
-                            stan::model::rvalue(alerts_background_ind,
-                              "alerts_background_ind",
-                              stan::model::index_uni(i)))));
-        } else {
+        current_statement__ = 147;
+        for (int i = 1; i <= n_obs; ++i) {
           current_statement__ = 146;
-          cases_val = stan::math::exp(
-                        stan::model::rvalue(log_cases_projected,
-                          "log_cases_projected",
-                          stan::model::index_uni((i - n_obs))));
-          current_statement__ = 147;
-          alerts_bg = stan::math::exp(
-                        stan::model::rvalue(alerts_background,
+          stan::model::assign(deaths_truncated_mu,
+            (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
+               stan::model::index_uni(i)) *
+            stan::model::rvalue(prop_deaths_reported, "prop_deaths_reported",
+              stan::model::index_uni(i))),
+            "assigning variable deaths_truncated_mu",
+            stan::model::index_uni(i));
+        }
+      }
+      current_statement__ = 149;
+      prop_iso = stan::math::inv_logit(prop_iso_logit);
+      current_statement__ = 150;
+      alerts_per_case = stan::math::exp(alerts_per_case_log);
+      current_statement__ = 151;
+      stan::model::assign(alerts_background,
+        stan::math::exp(alerts_background_log),
+        "assigning variable alerts_background");
+      {
+        current_statement__ = 152;
+        stan::math::validate_non_negative_index("etu_admission", "n_tot",
+          n_tot);
+        Eigen::Matrix<double,-1,1> etu_admission =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 154;
+        stan::math::validate_non_negative_index("etu_discharge", "n_tot",
+          n_tot);
+        Eigen::Matrix<double,-1,1> etu_discharge =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 156;
+        stan::math::validate_non_negative_index("iso_admission", "n_tot",
+          n_tot);
+        Eigen::Matrix<double,-1,1> iso_admission =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 158;
+        stan::math::validate_non_negative_index("iso_discharge", "n_tot",
+          n_tot);
+        Eigen::Matrix<double,-1,1> iso_discharge =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 160;
+        stan::model::assign(alerts_truncated_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable alerts_truncated_mu");
+        current_statement__ = 161;
+        stan::model::assign(etu_admission, stan::math::rep_vector(0, n_tot),
+          "assigning variable etu_admission");
+        current_statement__ = 162;
+        stan::model::assign(etu_discharge, stan::math::rep_vector(0, n_tot),
+          "assigning variable etu_discharge");
+        current_statement__ = 163;
+        stan::model::assign(iso_admission, stan::math::rep_vector(0, n_tot),
+          "assigning variable iso_admission");
+        current_statement__ = 164;
+        stan::model::assign(iso_discharge, stan::math::rep_vector(0, n_tot),
+          "assigning variable iso_discharge");
+        current_statement__ = 185;
+        for (int i = 1; i <= (n_tot - 1); ++i) {
+          int j_max = std::numeric_limits<int>::min();
+          current_statement__ = 165;
+          j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
+            i) : max_delay);
+          double cases_val = std::numeric_limits<double>::quiet_NaN();
+          double alerts_bg = std::numeric_limits<double>::quiet_NaN();
+          current_statement__ = 174;
+          if (stan::math::logical_lte(i, n_obs)) {
+            current_statement__ = 171;
+            cases_val = stan::model::rvalue(cases_reported, "cases_reported",
+                          stan::model::index_uni(i));
+            current_statement__ = 172;
+            alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
                             stan::model::rvalue(alerts_background_ind,
                               "alerts_background_ind",
-                              stan::model::index_uni(n_alerts_background)))));
+                              stan::model::index_uni(i))));
+          } else {
+            current_statement__ = 168;
+            cases_val = stan::model::rvalue(cases_projected_mu,
+                          "cases_projected_mu",
+                          stan::model::index_uni((i - n_obs)));
+            current_statement__ = 169;
+            alerts_bg = stan::model::rvalue(alerts_background,
+                          "alerts_background",
+                          stan::model::index_uni(
+                            stan::model::rvalue(alerts_background_ind,
+                              "alerts_background_ind",
+                              stan::model::index_uni(n_alerts_background))));
+          }
+          double alerts_val = std::numeric_limits<double>::quiet_NaN();
+          current_statement__ = 175;
+          alerts_val = ((cases_val * alerts_per_case) + alerts_bg);
+          current_statement__ = 183;
+          for (int j = 1; j <= j_max; ++j) {
+            int t = std::numeric_limits<int>::min();
+            current_statement__ = 176;
+            t = (i + j);
+            current_statement__ = 177;
+            stan::model::assign(etu_admission,
+              (stan::model::rvalue(etu_admission, "etu_admission",
+                 stan::model::index_uni(t)) + (cases_val *
+              stan::model::rvalue(onset_to_etu, "onset_to_etu",
+                stan::model::index_uni(j)))),
+              "assigning variable etu_admission", stan::model::index_uni(t));
+            current_statement__ = 178;
+            stan::model::assign(etu_discharge,
+              (stan::model::rvalue(etu_discharge, "etu_discharge",
+                 stan::model::index_uni(t)) + (cases_val *
+              (stan::model::rvalue(onset_to_survival, "onset_to_survival",
+                 stan::model::index_uni(j)) +
+              stan::model::rvalue(onset_to_death, "onset_to_death",
+                stan::model::index_uni(j))))),
+              "assigning variable etu_discharge", stan::model::index_uni(t));
+            current_statement__ = 179;
+            stan::model::assign(alerts_truncated_mu,
+              (stan::model::rvalue(alerts_truncated_mu,
+                 "alerts_truncated_mu", stan::model::index_uni(t)) +
+              (alerts_val *
+              stan::model::rvalue(onset_to_iso, "onset_to_iso",
+                stan::model::index_uni(j)))),
+              "assigning variable alerts_truncated_mu",
+              stan::model::index_uni(t));
+            current_statement__ = 180;
+            stan::model::assign(iso_admission,
+              (stan::model::rvalue(iso_admission, "iso_admission",
+                 stan::model::index_uni(t)) + ((alerts_val *
+              stan::model::rvalue(onset_to_iso, "onset_to_iso",
+                stan::model::index_uni(j))) * prop_iso)),
+              "assigning variable iso_admission", stan::model::index_uni(t));
+            current_statement__ = 181;
+            stan::model::assign(iso_discharge,
+              (stan::model::rvalue(iso_discharge, "iso_discharge",
+                 stan::model::index_uni(t)) + ((alerts_val *
+              stan::model::rvalue(onset_to_release, "onset_to_release",
+                stan::model::index_uni(j))) * prop_iso)),
+              "assigning variable iso_discharge", stan::model::index_uni(t));
+          }
         }
-        double alerts_val = std::numeric_limits<double>::quiet_NaN();
-        current_statement__ = 153;
-        alerts_val = ((cases_val * stan::math::exp(alerts_per_case)) +
-          alerts_bg);
-        current_statement__ = 161;
-        for (int j = 1; j <= j_max; ++j) {
-          int t = std::numeric_limits<int>::min();
-          current_statement__ = 154;
-          t = (i + j);
-          current_statement__ = 155;
-          stan::model::assign(etu_admission,
-            (stan::model::rvalue(etu_admission, "etu_admission",
-               stan::model::index_uni(t)) + (cases_val *
-            stan::model::rvalue(onset_to_etu, "onset_to_etu",
-              stan::model::index_uni(j)))),
-            "assigning variable etu_admission", stan::model::index_uni(t));
-          current_statement__ = 156;
-          stan::model::assign(etu_discharge,
-            (stan::model::rvalue(etu_discharge, "etu_discharge",
-               stan::model::index_uni(t)) + (cases_val *
-            (stan::model::rvalue(onset_to_survival, "onset_to_survival",
-               stan::model::index_uni(j)) +
-            stan::model::rvalue(onset_to_death, "onset_to_death",
-              stan::model::index_uni(j))))),
-            "assigning variable etu_discharge", stan::model::index_uni(t));
-          current_statement__ = 157;
-          stan::model::assign(alerts_modelled,
-            (stan::model::rvalue(alerts_modelled, "alerts_modelled",
-               stan::model::index_uni(t)) + (alerts_val *
-            stan::model::rvalue(onset_to_iso, "onset_to_iso",
-              stan::model::index_uni(j)))),
-            "assigning variable alerts_modelled", stan::model::index_uni(t));
-          current_statement__ = 158;
-          stan::model::assign(iso_admission,
-            (stan::model::rvalue(iso_admission, "iso_admission",
-               stan::model::index_uni(t)) + ((alerts_val *
-            stan::model::rvalue(onset_to_iso, "onset_to_iso",
-              stan::model::index_uni(j))) * prop_iso)),
-            "assigning variable iso_admission", stan::model::index_uni(t));
-          current_statement__ = 159;
-          stan::model::assign(iso_discharge,
-            (stan::model::rvalue(iso_discharge, "iso_discharge",
-               stan::model::index_uni(t)) + ((alerts_val *
-            stan::model::rvalue(onset_to_release, "onset_to_release",
-              stan::model::index_uni(j))) * prop_iso)),
-            "assigning variable iso_discharge", stan::model::index_uni(t));
+        current_statement__ = 186;
+        stan::model::assign(etu_truncated_mu,
+          stan::math::cumulative_sum(
+            stan::math::subtract(etu_admission, etu_discharge)),
+          "assigning variable etu_truncated_mu");
+        current_statement__ = 187;
+        stan::model::assign(iso_truncated_mu,
+          stan::math::cumulative_sum(
+            stan::math::subtract(iso_admission, iso_discharge)),
+          "assigning variable iso_truncated_mu");
+        current_statement__ = 190;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 189;
+          if (stan::math::logical_eq(
+                stan::model::rvalue(etu_truncated_mu, "etu_truncated_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 188;
+            stan::model::assign(etu_truncated_mu, 0.00001,
+              "assigning variable etu_truncated_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 193;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 192;
+          if (stan::math::logical_eq(
+                stan::model::rvalue(alerts_truncated_mu,
+                  "alerts_truncated_mu", stan::model::index_uni(i)), 0)) {
+            current_statement__ = 191;
+            stan::model::assign(alerts_truncated_mu, 0.00001,
+              "assigning variable alerts_truncated_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 196;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 195;
+          if (stan::math::logical_lte(
+                stan::model::rvalue(iso_truncated_mu, "iso_truncated_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 194;
+            stan::model::assign(iso_truncated_mu, 0.00001,
+              "assigning variable iso_truncated_mu",
+              stan::model::index_uni(i));
+          }
         }
       }
-      current_statement__ = 164;
-      stan::model::assign(etu_modelled,
-        stan::math::cumulative_sum(
-          stan::math::subtract(etu_admission, etu_discharge)),
-        "assigning variable etu_modelled");
-      current_statement__ = 165;
-      stan::model::assign(iso_modelled,
-        stan::math::cumulative_sum(
-          stan::math::subtract(iso_admission, iso_discharge)),
-        "assigning variable iso_modelled");
-      current_statement__ = 168;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 167;
-        if (stan::math::logical_eq(
-              stan::model::rvalue(etu_modelled, "etu_modelled",
-                stan::model::index_uni(i)), 0)) {
-          current_statement__ = 166;
-          stan::model::assign(etu_modelled, 0.00001,
-            "assigning variable etu_modelled", stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 170;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 169;
-        stan::model::assign(etu_modelled_for_fit,
-          stan::model::rvalue(etu_modelled, "etu_modelled",
-            stan::model::index_uni(i)),
-          "assigning variable etu_modelled_for_fit",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 173;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 172;
-        if (stan::math::logical_eq(
-              stan::model::rvalue(alerts_modelled, "alerts_modelled",
-                stan::model::index_uni(i)), 0)) {
-          current_statement__ = 171;
-          stan::model::assign(alerts_modelled, 0.00001,
-            "assigning variable alerts_modelled", stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 175;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 174;
-        stan::model::assign(alerts_modelled_for_fit,
-          stan::model::rvalue(alerts_modelled, "alerts_modelled",
-            stan::model::index_uni(i)),
-          "assigning variable alerts_modelled_for_fit",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 178;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 177;
-        if (stan::math::logical_lte(
-              stan::model::rvalue(iso_modelled, "iso_modelled",
-                stan::model::index_uni(i)), 0)) {
-          current_statement__ = 176;
-          stan::model::assign(iso_modelled, 0.00001,
-            "assigning variable iso_modelled", stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 180;
-      for (int i = 1; i <= n_obs; ++i) {
-        current_statement__ = 179;
-        stan::model::assign(iso_modelled_for_fit,
-          stan::model::rvalue(iso_modelled, "iso_modelled",
-            stan::model::index_uni(i)),
-          "assigning variable iso_modelled_for_fit",
-          stan::model::index_uni(i));
-      }
-      current_statement__ = 28;
-      stan::math::check_greater_or_equal(function__, "cfr", cfr, 0);
-      current_statement__ = 28;
-      stan::math::check_less_or_equal(function__, "cfr", cfr, 1);
-      current_statement__ = 47;
-      stan::math::check_greater_or_equal(function__, "prop_iso", prop_iso, 0);
-      current_statement__ = 47;
-      stan::math::check_less_or_equal(function__, "prop_iso", prop_iso, 1);
+      current_statement__ = 198;
+      cases_overdisp = stan::math::exp(cases_overdisp_log);
+      current_statement__ = 199;
+      deaths_overdisp = stan::math::exp(deaths_overdisp_log);
+      current_statement__ = 200;
+      etu_overdisp = stan::math::exp(etu_overdisp_log);
+      current_statement__ = 201;
+      alerts_overdisp = stan::math::exp(alerts_overdisp_log);
+      current_statement__ = 202;
+      iso_overdisp = stan::math::exp(iso_overdisp_log);
       if (emit_transformed_parameters__) {
-        out__.write(log_cases_fitted);
-        out__.write(log_cases_inflated);
-        out__.write(log_cases_projected);
-        out__.write(deaths_fitted);
-        out__.write(deaths_inflated);
-        out__.write(deaths_projected);
-        out__.write(cfr);
+        out__.write(growthrate_reported);
+        out__.write(growthrate_projected);
+        out__.write(cases_truncated_mu);
+        out__.write(cases_nowcast_mu);
+        out__.write(cases_projected_mu);
         out__.write(onset_to_etu);
         out__.write(etu_to_survival);
         out__.write(etu_to_death);
         out__.write(onset_to_survival);
         out__.write(onset_to_death);
-        out__.write(etu_admission);
-        out__.write(etu_discharge);
-        out__.write(etu_modelled);
-        out__.write(etu_modelled_for_fit);
         out__.write(onset_to_iso);
         out__.write(iso_to_release);
         out__.write(onset_to_release);
-        out__.write(alerts_modelled);
-        out__.write(iso_admission);
-        out__.write(iso_discharge);
-        out__.write(iso_modelled);
-        out__.write(alerts_modelled_for_fit);
-        out__.write(iso_modelled_for_fit);
+        out__.write(cfr);
+        out__.write(deaths_truncated_mu);
+        out__.write(deaths_nowcast_mu);
+        out__.write(deaths_projected_mu);
+        out__.write(alerts_truncated_mu);
+        out__.write(etu_truncated_mu);
+        out__.write(iso_truncated_mu);
         out__.write(prop_iso);
-        out__.write(growthrate_reported);
-        out__.write(growthrate_projected);
-        out__.write(growthrate_slope);
-        out__.write(growthrate_slope_weight);
-        out__.write(growthrate_slope_weight_min);
-        out__.write(growthrate_slope_weight_max);
-        out__.write(growthrate_asymptote);
-        out__.write(density);
+        out__.write(alerts_per_case);
+        out__.write(alerts_background);
+        out__.write(cases_overdisp);
+        out__.write(deaths_overdisp);
+        out__.write(etu_overdisp);
+        out__.write(alerts_overdisp);
+        out__.write(iso_overdisp);
       }
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       }
-      std::vector<int> cases_projected_dist =
+      std::vector<int> cases_projected_sim =
         std::vector<int>(n_proj, std::numeric_limits<int>::min());
-      std::vector<int> cases_fitted_dist =
+      std::vector<int> cases_truncated_sim =
         std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      std::vector<int> cases_inflated_dist =
+      std::vector<int> cases_nowcast_sim =
         std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      std::vector<int> deaths_projected_dist =
+      std::vector<int> deaths_projected_sim =
         std::vector<int>(n_proj, std::numeric_limits<int>::min());
-      std::vector<int> deaths_fitted_dist =
+      std::vector<int> deaths_truncated_sim =
         std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      std::vector<int> deaths_inflated_dist =
+      std::vector<int> deaths_nowcast_sim =
         std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      std::vector<int> etu_modelled_dist =
-        std::vector<int>(n_tot, std::numeric_limits<int>::min());
-      std::vector<int> alerts_modelled_dist =
-        std::vector<int>(n_tot, std::numeric_limits<int>::min());
-      std::vector<int> iso_modelled_dist =
-        std::vector<int>(n_tot, std::numeric_limits<int>::min());
-      Eigen::Matrix<double,-1,1> etu_admission_inflated =
+      current_statement__ = 203;
+      stan::model::assign(cases_truncated_sim,
+        stan::math::neg_binomial_2_rng(cases_truncated_mu, cases_overdisp,
+          base_rng__), "assigning variable cases_truncated_sim");
+      current_statement__ = 204;
+      stan::model::assign(cases_nowcast_sim,
+        stan::math::neg_binomial_2_rng(cases_nowcast_mu, cases_overdisp,
+          base_rng__), "assigning variable cases_nowcast_sim");
+      current_statement__ = 205;
+      stan::model::assign(cases_projected_sim,
+        stan::math::neg_binomial_2_rng(cases_projected_mu, cases_overdisp,
+          base_rng__), "assigning variable cases_projected_sim");
+      current_statement__ = 206;
+      stan::model::assign(deaths_truncated_sim,
+        stan::math::neg_binomial_2_rng(deaths_truncated_mu, deaths_overdisp,
+          base_rng__), "assigning variable deaths_truncated_sim");
+      current_statement__ = 207;
+      stan::model::assign(deaths_nowcast_sim,
+        stan::math::neg_binomial_2_rng(deaths_nowcast_mu, deaths_overdisp,
+          base_rng__), "assigning variable deaths_nowcast_sim");
+      current_statement__ = 208;
+      stan::model::assign(deaths_projected_sim,
+        stan::math::neg_binomial_2_rng(deaths_projected_mu, deaths_overdisp,
+          base_rng__), "assigning variable deaths_projected_sim");
+      Eigen::Matrix<double,-1,1> iso_nowcast_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_tot,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> etu_discharge_inflated =
+      Eigen::Matrix<double,-1,1> alerts_nowcast_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_tot,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> etu_modelled_inflated =
+      Eigen::Matrix<double,-1,1> etu_nowcast_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_tot,
           std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> alerts_modelled_inflated =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_admission_inflated =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_discharge_inflated =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double,-1,1> iso_modelled_inflated =
-        Eigen::Matrix<double,-1,1>::Constant(n_tot,
-          std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 181;
-      stan::model::assign(cases_fitted_dist,
-        stan::math::neg_binomial_2_rng(stan::math::exp(log_cases_fitted),
-          stan::math::exp(cases_overdisp), base_rng__),
-        "assigning variable cases_fitted_dist");
-      current_statement__ = 182;
-      stan::model::assign(cases_inflated_dist,
-        stan::math::neg_binomial_2_rng(stan::math::exp(log_cases_inflated),
-          stan::math::exp(cases_overdisp), base_rng__),
-        "assigning variable cases_inflated_dist");
-      current_statement__ = 183;
-      stan::model::assign(cases_projected_dist,
-        stan::math::neg_binomial_2_rng(stan::math::exp(log_cases_projected),
-          stan::math::exp(cases_overdisp), base_rng__),
-        "assigning variable cases_projected_dist");
-      current_statement__ = 184;
-      stan::model::assign(deaths_fitted_dist,
-        stan::math::neg_binomial_2_rng(deaths_fitted,
-          stan::math::exp(deaths_overdisp), base_rng__),
-        "assigning variable deaths_fitted_dist");
-      current_statement__ = 185;
-      stan::model::assign(deaths_inflated_dist,
-        stan::math::neg_binomial_2_rng(deaths_inflated,
-          stan::math::exp(deaths_overdisp), base_rng__),
-        "assigning variable deaths_inflated_dist");
-      current_statement__ = 186;
-      stan::model::assign(deaths_projected_dist,
-        stan::math::neg_binomial_2_rng(deaths_projected,
-          stan::math::exp(deaths_overdisp), base_rng__),
-        "assigning variable deaths_projected_dist");
-      current_statement__ = 187;
-      stan::model::assign(etu_modelled_dist,
-        stan::math::neg_binomial_2_rng(etu_modelled,
-          stan::math::exp(etu_overdisp), base_rng__),
-        "assigning variable etu_modelled_dist");
-      current_statement__ = 188;
-      stan::model::assign(alerts_modelled_dist,
-        stan::math::neg_binomial_2_rng(alerts_modelled,
-          stan::math::exp(alerts_overdisp), base_rng__),
-        "assigning variable alerts_modelled_dist");
-      current_statement__ = 189;
-      stan::model::assign(iso_modelled_dist,
-        stan::math::neg_binomial_2_rng(iso_modelled,
-          stan::math::exp(iso_overdisp), base_rng__),
-        "assigning variable iso_modelled_dist");
-      current_statement__ = 190;
-      stan::model::assign(alerts_modelled_inflated,
-        stan::math::rep_vector(0, n_tot),
-        "assigning variable alerts_modelled_inflated");
-      current_statement__ = 191;
-      stan::model::assign(etu_admission_inflated,
-        stan::math::rep_vector(0, n_tot),
-        "assigning variable etu_admission_inflated");
-      current_statement__ = 192;
-      stan::model::assign(etu_discharge_inflated,
-        stan::math::rep_vector(0, n_tot),
-        "assigning variable etu_discharge_inflated");
-      current_statement__ = 193;
-      stan::model::assign(iso_admission_inflated,
-        stan::math::rep_vector(0, n_tot),
-        "assigning variable iso_admission_inflated");
-      current_statement__ = 194;
-      stan::model::assign(iso_discharge_inflated,
-        stan::math::rep_vector(0, n_tot),
-        "assigning variable iso_discharge_inflated");
-      current_statement__ = 215;
-      for (int i = 1; i <= (n_tot - 1); ++i) {
-        int j_max = std::numeric_limits<int>::min();
-        current_statement__ = 195;
-        j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
-          i) : max_delay);
-        double cases_val = std::numeric_limits<double>::quiet_NaN();
-        double alerts_bg = std::numeric_limits<double>::quiet_NaN();
-        current_statement__ = 204;
-        if (stan::math::logical_lte(i, n_obs)) {
-          current_statement__ = 201;
-          cases_val = stan::math::exp(
-                        stan::model::rvalue(log_cases_inflated,
-                          "log_cases_inflated", stan::model::index_uni(i)));
-          current_statement__ = 202;
-          alerts_bg = stan::math::exp(
-                        stan::model::rvalue(alerts_background,
-                          "alerts_background",
-                          stan::model::index_uni(
-                            stan::model::rvalue(alerts_background_ind,
-                              "alerts_background_ind",
-                              stan::model::index_uni(i)))));
-        } else {
-          current_statement__ = 198;
-          cases_val = stan::math::exp(
-                        stan::model::rvalue(log_cases_projected,
-                          "log_cases_projected",
-                          stan::model::index_uni((i - n_obs))));
-          current_statement__ = 199;
-          alerts_bg = stan::math::exp(
-                        stan::model::rvalue(alerts_background,
-                          "alerts_background",
-                          stan::model::index_uni(
-                            stan::model::rvalue(alerts_background_ind,
-                              "alerts_background_ind",
-                              stan::model::index_uni(n_alerts_background)))));
-        }
-        double alerts_val = std::numeric_limits<double>::quiet_NaN();
-        current_statement__ = 205;
-        alerts_val = ((cases_val * stan::math::exp(alerts_per_case)) +
-          alerts_bg);
+      {
+        current_statement__ = 209;
+        stan::math::validate_non_negative_index("etu_admission_nowcast_mu",
+          "n_tot", n_tot);
+        Eigen::Matrix<double,-1,1> etu_admission_nowcast_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 211;
+        stan::math::validate_non_negative_index("etu_discharge_nowcast_mu",
+          "n_tot", n_tot);
+        Eigen::Matrix<double,-1,1> etu_discharge_nowcast_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
         current_statement__ = 213;
-        for (int j = 1; j <= j_max; ++j) {
-          int t = std::numeric_limits<int>::min();
-          current_statement__ = 206;
-          t = (i + j);
-          current_statement__ = 207;
-          stan::model::assign(etu_admission_inflated,
-            (stan::model::rvalue(etu_admission_inflated,
-               "etu_admission_inflated", stan::model::index_uni(t)) +
-            (cases_val *
-            stan::model::rvalue(onset_to_etu, "onset_to_etu",
-              stan::model::index_uni(j)))),
-            "assigning variable etu_admission_inflated",
-            stan::model::index_uni(t));
-          current_statement__ = 208;
-          stan::model::assign(etu_discharge_inflated,
-            (stan::model::rvalue(etu_discharge_inflated,
-               "etu_discharge_inflated", stan::model::index_uni(t)) +
-            (cases_val *
-            (stan::model::rvalue(onset_to_survival, "onset_to_survival",
-               stan::model::index_uni(j)) +
-            stan::model::rvalue(onset_to_death, "onset_to_death",
-              stan::model::index_uni(j))))),
-            "assigning variable etu_discharge_inflated",
-            stan::model::index_uni(t));
-          current_statement__ = 209;
-          stan::model::assign(alerts_modelled_inflated,
-            (stan::model::rvalue(alerts_modelled_inflated,
-               "alerts_modelled_inflated", stan::model::index_uni(t)) +
-            (alerts_val *
-            stan::model::rvalue(onset_to_iso, "onset_to_iso",
-              stan::model::index_uni(j)))),
-            "assigning variable alerts_modelled_inflated",
-            stan::model::index_uni(t));
-          current_statement__ = 210;
-          stan::model::assign(iso_admission_inflated,
-            (stan::model::rvalue(iso_admission_inflated,
-               "iso_admission_inflated", stan::model::index_uni(t)) +
-            ((alerts_val *
-            stan::model::rvalue(onset_to_iso, "onset_to_iso",
-              stan::model::index_uni(j))) * prop_iso)),
-            "assigning variable iso_admission_inflated",
-            stan::model::index_uni(t));
-          current_statement__ = 211;
-          stan::model::assign(iso_discharge_inflated,
-            (stan::model::rvalue(iso_discharge_inflated,
-               "iso_discharge_inflated", stan::model::index_uni(t)) +
-            ((alerts_val *
-            stan::model::rvalue(onset_to_release, "onset_to_release",
-              stan::model::index_uni(j))) * prop_iso)),
-            "assigning variable iso_discharge_inflated",
-            stan::model::index_uni(t));
-        }
-      }
-      current_statement__ = 216;
-      stan::model::assign(etu_modelled_inflated,
-        stan::math::cumulative_sum(
-          stan::math::subtract(etu_admission_inflated, etu_discharge_inflated)),
-        "assigning variable etu_modelled_inflated");
-      current_statement__ = 217;
-      stan::model::assign(iso_modelled_inflated,
-        stan::math::cumulative_sum(
-          stan::math::subtract(iso_admission_inflated, iso_discharge_inflated)),
-        "assigning variable iso_modelled_inflated");
-      current_statement__ = 220;
-      for (int i = 1; i <= n_tot; ++i) {
+        stan::math::validate_non_negative_index("iso_admission_nowcast_mu",
+          "n_tot", n_tot);
+        Eigen::Matrix<double,-1,1> iso_admission_nowcast_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 215;
+        stan::math::validate_non_negative_index("iso_discharge_nowcast_mu",
+          "n_tot", n_tot);
+        Eigen::Matrix<double,-1,1> iso_discharge_nowcast_mu =
+          Eigen::Matrix<double,-1,1>::Constant(n_tot,
+            std::numeric_limits<double>::quiet_NaN());
+        current_statement__ = 217;
+        stan::model::assign(alerts_nowcast_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable alerts_nowcast_mu");
+        current_statement__ = 218;
+        stan::model::assign(etu_admission_nowcast_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable etu_admission_nowcast_mu");
         current_statement__ = 219;
-        if (stan::math::logical_eq(
-              stan::model::rvalue(etu_modelled_inflated,
-                "etu_modelled_inflated", stan::model::index_uni(i)), 0)) {
-          current_statement__ = 218;
-          stan::model::assign(etu_modelled_inflated, 0.00001,
-            "assigning variable etu_modelled_inflated",
-            stan::model::index_uni(i));
+        stan::model::assign(etu_discharge_nowcast_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable etu_discharge_nowcast_mu");
+        current_statement__ = 220;
+        stan::model::assign(iso_admission_nowcast_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable iso_admission_nowcast_mu");
+        current_statement__ = 221;
+        stan::model::assign(iso_discharge_nowcast_mu,
+          stan::math::rep_vector(0, n_tot),
+          "assigning variable iso_discharge_nowcast_mu");
+        current_statement__ = 242;
+        for (int i = 1; i <= (n_tot - 1); ++i) {
+          int j_max = std::numeric_limits<int>::min();
+          current_statement__ = 222;
+          j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
+            i) : max_delay);
+          double cases_val = std::numeric_limits<double>::quiet_NaN();
+          double alerts_bg = std::numeric_limits<double>::quiet_NaN();
+          current_statement__ = 231;
+          if (stan::math::logical_lte(i, n_obs)) {
+            current_statement__ = 228;
+            cases_val = stan::model::rvalue(cases_nowcast_mu,
+                          "cases_nowcast_mu", stan::model::index_uni(i));
+            current_statement__ = 229;
+            alerts_bg = stan::model::rvalue(alerts_background,
+                          "alerts_background",
+                          stan::model::index_uni(
+                            stan::model::rvalue(alerts_background_ind,
+                              "alerts_background_ind",
+                              stan::model::index_uni(i))));
+          } else {
+            current_statement__ = 225;
+            cases_val = stan::model::rvalue(cases_projected_mu,
+                          "cases_projected_mu",
+                          stan::model::index_uni((i - n_obs)));
+            current_statement__ = 226;
+            alerts_bg = stan::model::rvalue(alerts_background,
+                          "alerts_background",
+                          stan::model::index_uni(
+                            stan::model::rvalue(alerts_background_ind,
+                              "alerts_background_ind",
+                              stan::model::index_uni(n_alerts_background))));
+          }
+          double alerts_val = std::numeric_limits<double>::quiet_NaN();
+          current_statement__ = 232;
+          alerts_val = ((cases_val * alerts_per_case) + alerts_bg);
+          current_statement__ = 240;
+          for (int j = 1; j <= j_max; ++j) {
+            int t = std::numeric_limits<int>::min();
+            current_statement__ = 233;
+            t = (i + j);
+            current_statement__ = 234;
+            stan::model::assign(etu_admission_nowcast_mu,
+              (stan::model::rvalue(etu_admission_nowcast_mu,
+                 "etu_admission_nowcast_mu", stan::model::index_uni(t)) +
+              (cases_val *
+              stan::model::rvalue(onset_to_etu, "onset_to_etu",
+                stan::model::index_uni(j)))),
+              "assigning variable etu_admission_nowcast_mu",
+              stan::model::index_uni(t));
+            current_statement__ = 235;
+            stan::model::assign(etu_discharge_nowcast_mu,
+              (stan::model::rvalue(etu_discharge_nowcast_mu,
+                 "etu_discharge_nowcast_mu", stan::model::index_uni(t)) +
+              (cases_val *
+              (stan::model::rvalue(onset_to_survival, "onset_to_survival",
+                 stan::model::index_uni(j)) +
+              stan::model::rvalue(onset_to_death, "onset_to_death",
+                stan::model::index_uni(j))))),
+              "assigning variable etu_discharge_nowcast_mu",
+              stan::model::index_uni(t));
+            current_statement__ = 236;
+            stan::model::assign(alerts_nowcast_mu,
+              (stan::model::rvalue(alerts_nowcast_mu, "alerts_nowcast_mu",
+                 stan::model::index_uni(t)) + (alerts_val *
+              stan::model::rvalue(onset_to_iso, "onset_to_iso",
+                stan::model::index_uni(j)))),
+              "assigning variable alerts_nowcast_mu",
+              stan::model::index_uni(t));
+            current_statement__ = 237;
+            stan::model::assign(iso_admission_nowcast_mu,
+              (stan::model::rvalue(iso_admission_nowcast_mu,
+                 "iso_admission_nowcast_mu", stan::model::index_uni(t)) +
+              ((alerts_val *
+              stan::model::rvalue(onset_to_iso, "onset_to_iso",
+                stan::model::index_uni(j))) * prop_iso)),
+              "assigning variable iso_admission_nowcast_mu",
+              stan::model::index_uni(t));
+            current_statement__ = 238;
+            stan::model::assign(iso_discharge_nowcast_mu,
+              (stan::model::rvalue(iso_discharge_nowcast_mu,
+                 "iso_discharge_nowcast_mu", stan::model::index_uni(t)) +
+              ((alerts_val *
+              stan::model::rvalue(onset_to_release, "onset_to_release",
+                stan::model::index_uni(j))) * prop_iso)),
+              "assigning variable iso_discharge_nowcast_mu",
+              stan::model::index_uni(t));
+          }
+        }
+        current_statement__ = 243;
+        stan::model::assign(etu_nowcast_mu,
+          stan::math::cumulative_sum(
+            stan::math::subtract(etu_admission_nowcast_mu,
+              etu_discharge_nowcast_mu)), "assigning variable etu_nowcast_mu");
+        current_statement__ = 244;
+        stan::model::assign(iso_nowcast_mu,
+          stan::math::cumulative_sum(
+            stan::math::subtract(iso_admission_nowcast_mu,
+              iso_discharge_nowcast_mu)), "assigning variable iso_nowcast_mu");
+        current_statement__ = 247;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 246;
+          if (stan::math::logical_eq(
+                stan::model::rvalue(etu_nowcast_mu, "etu_nowcast_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 245;
+            stan::model::assign(etu_nowcast_mu, 0.00001,
+              "assigning variable etu_nowcast_mu", stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 250;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 249;
+          if (stan::math::logical_eq(
+                stan::model::rvalue(alerts_nowcast_mu, "alerts_nowcast_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 248;
+            stan::model::assign(alerts_nowcast_mu, 0.00001,
+              "assigning variable alerts_nowcast_mu",
+              stan::model::index_uni(i));
+          }
+        }
+        current_statement__ = 253;
+        for (int i = 1; i <= n_tot; ++i) {
+          current_statement__ = 252;
+          if (stan::math::logical_lte(
+                stan::model::rvalue(iso_nowcast_mu, "iso_nowcast_mu",
+                  stan::model::index_uni(i)), 0)) {
+            current_statement__ = 251;
+            stan::model::assign(iso_nowcast_mu, 0.00001,
+              "assigning variable iso_nowcast_mu", stan::model::index_uni(i));
+          }
         }
       }
-      current_statement__ = 223;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 222;
-        if (stan::math::logical_eq(
-              stan::model::rvalue(alerts_modelled_inflated,
-                "alerts_modelled_inflated", stan::model::index_uni(i)), 0)) {
-          current_statement__ = 221;
-          stan::model::assign(alerts_modelled_inflated, 0.00001,
-            "assigning variable alerts_modelled_inflated",
-            stan::model::index_uni(i));
-        }
-      }
-      current_statement__ = 226;
-      for (int i = 1; i <= n_tot; ++i) {
-        current_statement__ = 225;
-        if (stan::math::logical_lte(
-              stan::model::rvalue(iso_modelled_inflated,
-                "iso_modelled_inflated", stan::model::index_uni(i)), 0)) {
-          current_statement__ = 224;
-          stan::model::assign(iso_modelled_inflated, 0.00001,
-            "assigning variable iso_modelled_inflated",
-            stan::model::index_uni(i));
-        }
-      }
-      out__.write(cases_projected_dist);
-      out__.write(cases_fitted_dist);
-      out__.write(cases_inflated_dist);
-      out__.write(deaths_projected_dist);
-      out__.write(deaths_fitted_dist);
-      out__.write(deaths_inflated_dist);
-      out__.write(etu_modelled_dist);
-      out__.write(alerts_modelled_dist);
-      out__.write(iso_modelled_dist);
-      out__.write(etu_admission_inflated);
-      out__.write(etu_discharge_inflated);
-      out__.write(etu_modelled_inflated);
-      out__.write(alerts_modelled_inflated);
-      out__.write(iso_admission_inflated);
-      out__.write(iso_discharge_inflated);
-      out__.write(iso_modelled_inflated);
+      std::vector<int> etu_truncated_sim =
+        std::vector<int>(n_tot, std::numeric_limits<int>::min());
+      std::vector<int> alerts_truncated_sim =
+        std::vector<int>(n_tot, std::numeric_limits<int>::min());
+      std::vector<int> iso_truncated_sim =
+        std::vector<int>(n_tot, std::numeric_limits<int>::min());
+      std::vector<int> etu_nowcast_sim =
+        std::vector<int>(n_tot, std::numeric_limits<int>::min());
+      std::vector<int> alerts_nowcast_sim =
+        std::vector<int>(n_tot, std::numeric_limits<int>::min());
+      std::vector<int> iso_nowcast_sim =
+        std::vector<int>(n_tot, std::numeric_limits<int>::min());
+      current_statement__ = 255;
+      stan::model::assign(etu_truncated_sim,
+        stan::math::neg_binomial_2_rng(etu_truncated_mu, etu_overdisp,
+          base_rng__), "assigning variable etu_truncated_sim");
+      current_statement__ = 256;
+      stan::model::assign(alerts_truncated_sim,
+        stan::math::neg_binomial_2_rng(alerts_truncated_mu, alerts_overdisp,
+          base_rng__), "assigning variable alerts_truncated_sim");
+      current_statement__ = 257;
+      stan::model::assign(iso_truncated_sim,
+        stan::math::neg_binomial_2_rng(iso_truncated_mu, iso_overdisp,
+          base_rng__), "assigning variable iso_truncated_sim");
+      current_statement__ = 258;
+      stan::model::assign(etu_nowcast_sim,
+        stan::math::neg_binomial_2_rng(etu_nowcast_mu, etu_overdisp,
+          base_rng__), "assigning variable etu_nowcast_sim");
+      current_statement__ = 259;
+      stan::model::assign(alerts_nowcast_sim,
+        stan::math::neg_binomial_2_rng(alerts_nowcast_mu, alerts_overdisp,
+          base_rng__), "assigning variable alerts_nowcast_sim");
+      current_statement__ = 260;
+      stan::model::assign(iso_nowcast_sim,
+        stan::math::neg_binomial_2_rng(iso_nowcast_mu, iso_overdisp,
+          base_rng__), "assigning variable iso_nowcast_sim");
+      out__.write(cases_projected_sim);
+      out__.write(cases_truncated_sim);
+      out__.write(cases_nowcast_sim);
+      out__.write(deaths_projected_sim);
+      out__.write(deaths_truncated_sim);
+      out__.write(deaths_nowcast_sim);
+      out__.write(iso_nowcast_mu);
+      out__.write(alerts_nowcast_mu);
+      out__.write(etu_nowcast_mu);
+      out__.write(etu_truncated_sim);
+      out__.write(alerts_truncated_sim);
+      out__.write(iso_truncated_sim);
+      out__.write(etu_nowcast_sim);
+      out__.write(alerts_nowcast_sim);
+      out__.write(iso_nowcast_sim);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -3044,42 +3153,42 @@ public:
       current_statement__ = 12;
       iso_to_release_sd = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, iso_to_release_sd);
-      local_scalar_t__ cases_overdisp = DUMMY_VAR__;
+      local_scalar_t__ cases_overdisp_log = DUMMY_VAR__;
       current_statement__ = 13;
-      cases_overdisp = in__.read<local_scalar_t__>();
-      out__.write(cases_overdisp);
-      local_scalar_t__ deaths_overdisp = DUMMY_VAR__;
+      cases_overdisp_log = in__.read<local_scalar_t__>();
+      out__.write(cases_overdisp_log);
+      local_scalar_t__ deaths_overdisp_log = DUMMY_VAR__;
       current_statement__ = 14;
-      deaths_overdisp = in__.read<local_scalar_t__>();
-      out__.write(deaths_overdisp);
-      local_scalar_t__ etu_overdisp = DUMMY_VAR__;
+      deaths_overdisp_log = in__.read<local_scalar_t__>();
+      out__.write(deaths_overdisp_log);
+      local_scalar_t__ etu_overdisp_log = DUMMY_VAR__;
       current_statement__ = 15;
-      etu_overdisp = in__.read<local_scalar_t__>();
-      out__.write(etu_overdisp);
-      local_scalar_t__ alerts_overdisp = DUMMY_VAR__;
+      etu_overdisp_log = in__.read<local_scalar_t__>();
+      out__.write(etu_overdisp_log);
+      local_scalar_t__ alerts_overdisp_log = DUMMY_VAR__;
       current_statement__ = 16;
-      alerts_overdisp = in__.read<local_scalar_t__>();
-      out__.write(alerts_overdisp);
-      local_scalar_t__ iso_overdisp = DUMMY_VAR__;
+      alerts_overdisp_log = in__.read<local_scalar_t__>();
+      out__.write(alerts_overdisp_log);
+      local_scalar_t__ iso_overdisp_log = DUMMY_VAR__;
       current_statement__ = 17;
-      iso_overdisp = in__.read<local_scalar_t__>();
-      out__.write(iso_overdisp);
+      iso_overdisp_log = in__.read<local_scalar_t__>();
+      out__.write(iso_overdisp_log);
       local_scalar_t__ log_cases_intercept = DUMMY_VAR__;
       current_statement__ = 18;
       log_cases_intercept = in__.read<local_scalar_t__>();
       out__.write(log_cases_intercept);
-      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background =
+      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background_log =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_alerts_background,
           DUMMY_VAR__);
       current_statement__ = 19;
-      stan::model::assign(alerts_background,
+      stan::model::assign(alerts_background_log,
         in__.read<Eigen::Matrix<local_scalar_t__,-1,1>>(n_alerts_background),
-        "assigning variable alerts_background");
-      out__.write(alerts_background);
-      local_scalar_t__ alerts_per_case = DUMMY_VAR__;
+        "assigning variable alerts_background_log");
+      out__.write(alerts_background_log);
+      local_scalar_t__ alerts_per_case_log = DUMMY_VAR__;
       current_statement__ = 20;
-      alerts_per_case = in__.read<local_scalar_t__>();
-      out__.write(alerts_per_case);
+      alerts_per_case_log = in__.read<local_scalar_t__>();
+      out__.write(alerts_per_case_log);
       Eigen::Matrix<local_scalar_t__,1,-1> spline_param =
         Eigen::Matrix<local_scalar_t__,1,-1>::Constant(n_spline_param,
           DUMMY_VAR__);
@@ -3140,30 +3249,30 @@ public:
       context__.validate_dims("parameter initialization",
         "iso_to_release_sd", "double", std::vector<size_t>{});
       current_statement__ = 13;
-      context__.validate_dims("parameter initialization", "cases_overdisp",
-        "double", std::vector<size_t>{});
+      context__.validate_dims("parameter initialization",
+        "cases_overdisp_log", "double", std::vector<size_t>{});
       current_statement__ = 14;
-      context__.validate_dims("parameter initialization", "deaths_overdisp",
-        "double", std::vector<size_t>{});
+      context__.validate_dims("parameter initialization",
+        "deaths_overdisp_log", "double", std::vector<size_t>{});
       current_statement__ = 15;
-      context__.validate_dims("parameter initialization", "etu_overdisp",
+      context__.validate_dims("parameter initialization", "etu_overdisp_log",
         "double", std::vector<size_t>{});
       current_statement__ = 16;
-      context__.validate_dims("parameter initialization", "alerts_overdisp",
-        "double", std::vector<size_t>{});
+      context__.validate_dims("parameter initialization",
+        "alerts_overdisp_log", "double", std::vector<size_t>{});
       current_statement__ = 17;
-      context__.validate_dims("parameter initialization", "iso_overdisp",
+      context__.validate_dims("parameter initialization", "iso_overdisp_log",
         "double", std::vector<size_t>{});
       current_statement__ = 18;
       context__.validate_dims("parameter initialization",
         "log_cases_intercept", "double", std::vector<size_t>{});
       current_statement__ = 19;
       context__.validate_dims("parameter initialization",
-        "alerts_background", "double",
+        "alerts_background_log", "double",
         std::vector<size_t>{static_cast<size_t>(n_alerts_background)});
       current_statement__ = 20;
-      context__.validate_dims("parameter initialization", "alerts_per_case",
-        "double", std::vector<size_t>{});
+      context__.validate_dims("parameter initialization",
+        "alerts_per_case_log", "double", std::vector<size_t>{});
       current_statement__ = 21;
       context__.validate_dims("parameter initialization", "spline_param",
         "double", std::vector<size_t>{static_cast<size_t>(n_spline_param)});
@@ -3222,55 +3331,55 @@ public:
       current_statement__ = 12;
       iso_to_release_sd = context__.vals_r("iso_to_release_sd")[(1 - 1)];
       out__.write_free_lb(0, iso_to_release_sd);
-      local_scalar_t__ cases_overdisp = DUMMY_VAR__;
+      local_scalar_t__ cases_overdisp_log = DUMMY_VAR__;
       current_statement__ = 13;
-      cases_overdisp = context__.vals_r("cases_overdisp")[(1 - 1)];
-      out__.write(cases_overdisp);
-      local_scalar_t__ deaths_overdisp = DUMMY_VAR__;
+      cases_overdisp_log = context__.vals_r("cases_overdisp_log")[(1 - 1)];
+      out__.write(cases_overdisp_log);
+      local_scalar_t__ deaths_overdisp_log = DUMMY_VAR__;
       current_statement__ = 14;
-      deaths_overdisp = context__.vals_r("deaths_overdisp")[(1 - 1)];
-      out__.write(deaths_overdisp);
-      local_scalar_t__ etu_overdisp = DUMMY_VAR__;
+      deaths_overdisp_log = context__.vals_r("deaths_overdisp_log")[(1 - 1)];
+      out__.write(deaths_overdisp_log);
+      local_scalar_t__ etu_overdisp_log = DUMMY_VAR__;
       current_statement__ = 15;
-      etu_overdisp = context__.vals_r("etu_overdisp")[(1 - 1)];
-      out__.write(etu_overdisp);
-      local_scalar_t__ alerts_overdisp = DUMMY_VAR__;
+      etu_overdisp_log = context__.vals_r("etu_overdisp_log")[(1 - 1)];
+      out__.write(etu_overdisp_log);
+      local_scalar_t__ alerts_overdisp_log = DUMMY_VAR__;
       current_statement__ = 16;
-      alerts_overdisp = context__.vals_r("alerts_overdisp")[(1 - 1)];
-      out__.write(alerts_overdisp);
-      local_scalar_t__ iso_overdisp = DUMMY_VAR__;
+      alerts_overdisp_log = context__.vals_r("alerts_overdisp_log")[(1 - 1)];
+      out__.write(alerts_overdisp_log);
+      local_scalar_t__ iso_overdisp_log = DUMMY_VAR__;
       current_statement__ = 17;
-      iso_overdisp = context__.vals_r("iso_overdisp")[(1 - 1)];
-      out__.write(iso_overdisp);
+      iso_overdisp_log = context__.vals_r("iso_overdisp_log")[(1 - 1)];
+      out__.write(iso_overdisp_log);
       local_scalar_t__ log_cases_intercept = DUMMY_VAR__;
       current_statement__ = 18;
       log_cases_intercept = context__.vals_r("log_cases_intercept")[(1 - 1)];
       out__.write(log_cases_intercept);
-      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background =
+      Eigen::Matrix<local_scalar_t__,-1,1> alerts_background_log =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_alerts_background,
           DUMMY_VAR__);
       {
-        std::vector<local_scalar_t__> alerts_background_flat__;
+        std::vector<local_scalar_t__> alerts_background_log_flat__;
         current_statement__ = 19;
-        alerts_background_flat__ = context__.vals_r("alerts_background");
+        alerts_background_log_flat__ = context__.vals_r("alerts_background_log");
         current_statement__ = 19;
         pos__ = 1;
         current_statement__ = 19;
         for (int sym1__ = 1; sym1__ <= n_alerts_background; ++sym1__) {
           current_statement__ = 19;
-          stan::model::assign(alerts_background,
-            alerts_background_flat__[(pos__ - 1)],
-            "assigning variable alerts_background",
+          stan::model::assign(alerts_background_log,
+            alerts_background_log_flat__[(pos__ - 1)],
+            "assigning variable alerts_background_log",
             stan::model::index_uni(sym1__));
           current_statement__ = 19;
           pos__ = (pos__ + 1);
         }
       }
-      out__.write(alerts_background);
-      local_scalar_t__ alerts_per_case = DUMMY_VAR__;
+      out__.write(alerts_background_log);
+      local_scalar_t__ alerts_per_case_log = DUMMY_VAR__;
       current_statement__ = 20;
-      alerts_per_case = context__.vals_r("alerts_per_case")[(1 - 1)];
-      out__.write(alerts_per_case);
+      alerts_per_case_log = context__.vals_r("alerts_per_case_log")[(1 - 1)];
+      out__.write(alerts_per_case_log);
       Eigen::Matrix<local_scalar_t__,1,-1> spline_param =
         Eigen::Matrix<local_scalar_t__,1,-1>::Constant(n_spline_param,
           DUMMY_VAR__);
@@ -3304,36 +3413,35 @@ public:
                 "etu_to_death_logmean", "etu_to_death_sd",
                 "onset_to_iso_logmean", "onset_to_iso_sd",
                 "iso_to_release_logmean", "iso_to_release_sd",
-                "cases_overdisp", "deaths_overdisp", "etu_overdisp",
-                "alerts_overdisp", "iso_overdisp", "log_cases_intercept",
-                "alerts_background", "alerts_per_case", "spline_param"};
+                "cases_overdisp_log", "deaths_overdisp_log",
+                "etu_overdisp_log", "alerts_overdisp_log",
+                "iso_overdisp_log", "log_cases_intercept",
+                "alerts_background_log", "alerts_per_case_log",
+                "spline_param"};
     if (emit_transformed_parameters__) {
       std::vector<std::string>
-        temp{"log_cases_fitted", "log_cases_inflated", "log_cases_projected",
-             "deaths_fitted", "deaths_inflated", "deaths_projected", "cfr",
+        temp{"growthrate_reported", "growthrate_projected",
+             "cases_truncated_mu", "cases_nowcast_mu", "cases_projected_mu",
              "onset_to_etu", "etu_to_survival", "etu_to_death",
-             "onset_to_survival", "onset_to_death", "etu_admission",
-             "etu_discharge", "etu_modelled", "etu_modelled_for_fit",
-             "onset_to_iso", "iso_to_release", "onset_to_release",
-             "alerts_modelled", "iso_admission", "iso_discharge",
-             "iso_modelled", "alerts_modelled_for_fit",
-             "iso_modelled_for_fit", "prop_iso", "growthrate_reported",
-             "growthrate_projected", "growthrate_slope",
-             "growthrate_slope_weight", "growthrate_slope_weight_min",
-             "growthrate_slope_weight_max", "growthrate_asymptote", "density"};
+             "onset_to_survival", "onset_to_death", "onset_to_iso",
+             "iso_to_release", "onset_to_release", "cfr",
+             "deaths_truncated_mu", "deaths_nowcast_mu",
+             "deaths_projected_mu", "alerts_truncated_mu",
+             "etu_truncated_mu", "iso_truncated_mu", "prop_iso",
+             "alerts_per_case", "alerts_background", "cases_overdisp",
+             "deaths_overdisp", "etu_overdisp", "alerts_overdisp",
+             "iso_overdisp"};
       names__.reserve(names__.size() + temp.size());
       names__.insert(names__.end(), temp.begin(), temp.end());
     }
     if (emit_generated_quantities__) {
       std::vector<std::string>
-        temp{"cases_projected_dist", "cases_fitted_dist",
-             "cases_inflated_dist", "deaths_projected_dist",
-             "deaths_fitted_dist", "deaths_inflated_dist",
-             "etu_modelled_dist", "alerts_modelled_dist",
-             "iso_modelled_dist", "etu_admission_inflated",
-             "etu_discharge_inflated", "etu_modelled_inflated",
-             "alerts_modelled_inflated", "iso_admission_inflated",
-             "iso_discharge_inflated", "iso_modelled_inflated"};
+        temp{"cases_projected_sim", "cases_truncated_sim",
+             "cases_nowcast_sim", "deaths_projected_sim",
+             "deaths_truncated_sim", "deaths_nowcast_sim", "iso_nowcast_mu",
+             "alerts_nowcast_mu", "etu_nowcast_mu", "etu_truncated_sim",
+             "alerts_truncated_sim", "iso_truncated_sim", "etu_nowcast_sim",
+             "alerts_nowcast_sim", "iso_nowcast_sim"};
       names__.reserve(names__.size() + temp.size());
       names__.insert(names__.end(), temp.begin(), temp.end());
     }
@@ -3358,36 +3466,30 @@ public:
     if (emit_transformed_parameters__) {
       std::vector<std::vector<size_t>>
         temp{std::vector<size_t>{static_cast<size_t>(n_obs)},
-             std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{static_cast<size_t>(n_proj)},
              std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{static_cast<size_t>(n_proj)},
-             std::vector<size_t>{},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
              std::vector<size_t>{static_cast<size_t>(max_delay)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
-             std::vector<size_t>{static_cast<size_t>(n_obs)},
-             std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{},
              std::vector<size_t>{static_cast<size_t>(n_obs)},
+             std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{static_cast<size_t>(n_proj)},
+             std::vector<size_t>{static_cast<size_t>(n_tot)},
+             std::vector<size_t>{static_cast<size_t>(n_tot)},
+             std::vector<size_t>{static_cast<size_t>(n_tot)},
+             std::vector<size_t>{}, std::vector<size_t>{},
+             std::vector<size_t>{static_cast<size_t>(n_alerts_background)},
              std::vector<size_t>{}, std::vector<size_t>{},
              std::vector<size_t>{}, std::vector<size_t>{},
-             std::vector<size_t>{}, std::vector<size_t>{}};
+             std::vector<size_t>{}};
       dimss__.reserve(dimss__.size() + temp.size());
       dimss__.insert(dimss__.end(), temp.begin(), temp.end());
     }
@@ -3399,7 +3501,6 @@ public:
              std::vector<size_t>{static_cast<size_t>(n_proj)},
              std::vector<size_t>{static_cast<size_t>(n_obs)},
              std::vector<size_t>{static_cast<size_t>(n_obs)},
-             std::vector<size_t>{static_cast<size_t>(n_tot)},
              std::vector<size_t>{static_cast<size_t>(n_tot)},
              std::vector<size_t>{static_cast<size_t>(n_tot)},
              std::vector<size_t>{static_cast<size_t>(n_tot)},
@@ -3429,47 +3530,42 @@ public:
     param_names__.emplace_back(std::string() + "onset_to_iso_sd");
     param_names__.emplace_back(std::string() + "iso_to_release_logmean");
     param_names__.emplace_back(std::string() + "iso_to_release_sd");
-    param_names__.emplace_back(std::string() + "cases_overdisp");
-    param_names__.emplace_back(std::string() + "deaths_overdisp");
-    param_names__.emplace_back(std::string() + "etu_overdisp");
-    param_names__.emplace_back(std::string() + "alerts_overdisp");
-    param_names__.emplace_back(std::string() + "iso_overdisp");
+    param_names__.emplace_back(std::string() + "cases_overdisp_log");
+    param_names__.emplace_back(std::string() + "deaths_overdisp_log");
+    param_names__.emplace_back(std::string() + "etu_overdisp_log");
+    param_names__.emplace_back(std::string() + "alerts_overdisp_log");
+    param_names__.emplace_back(std::string() + "iso_overdisp_log");
     param_names__.emplace_back(std::string() + "log_cases_intercept");
     for (int sym1__ = 1; sym1__ <= n_alerts_background; ++sym1__) {
-      param_names__.emplace_back(std::string() + "alerts_background" + '.' +
-        std::to_string(sym1__));
+      param_names__.emplace_back(std::string() + "alerts_background_log" +
+        '.' + std::to_string(sym1__));
     }
-    param_names__.emplace_back(std::string() + "alerts_per_case");
+    param_names__.emplace_back(std::string() + "alerts_per_case_log");
     for (int sym1__ = 1; sym1__ <= n_spline_param; ++sym1__) {
       param_names__.emplace_back(std::string() + "spline_param" + '.' +
         std::to_string(sym1__));
     }
     if (emit_transformed_parameters__) {
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "log_cases_fitted" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "log_cases_inflated" + '.'
-          + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "growthrate_reported" +
+          '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "log_cases_projected" +
+        param_names__.emplace_back(std::string() + "growthrate_projected" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_fitted" + '.' +
-          std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "cases_truncated_mu" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_inflated" + '.' +
+        param_names__.emplace_back(std::string() + "cases_nowcast_mu" + '.' +
           std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_projected" + '.' +
-          std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "cases_projected_mu" + '.'
+          + std::to_string(sym1__));
       }
-      param_names__.emplace_back(std::string() + "cfr");
       for (int sym1__ = 1; sym1__ <= max_delay; ++sym1__) {
         param_names__.emplace_back(std::string() + "onset_to_etu" + '.' +
           std::to_string(sym1__));
@@ -3490,22 +3586,6 @@ public:
         param_names__.emplace_back(std::string() + "onset_to_death" + '.' +
           std::to_string(sym1__));
       }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_admission" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_discharge" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled_for_fit" +
-          '.' + std::to_string(sym1__));
-      }
       for (int sym1__ = 1; sym1__ <= max_delay; ++sym1__) {
         param_names__.emplace_back(std::string() + "onset_to_iso" + '.' +
           std::to_string(sym1__));
@@ -3518,112 +3598,103 @@ public:
         param_names__.emplace_back(std::string() + "onset_to_release" + '.' +
           std::to_string(sym1__));
       }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_admission" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_discharge" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled" + '.' +
-          std::to_string(sym1__));
-      }
+      param_names__.emplace_back(std::string() + "cfr");
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled_for_fit"
-          + '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled_for_fit" +
+        param_names__.emplace_back(std::string() + "deaths_truncated_mu" +
           '.' + std::to_string(sym1__));
       }
-      param_names__.emplace_back(std::string() + "prop_iso");
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "growthrate_reported" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "deaths_nowcast_mu" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "growthrate_projected" +
+        param_names__.emplace_back(std::string() + "deaths_projected_mu" +
           '.' + std::to_string(sym1__));
       }
-      param_names__.emplace_back(std::string() + "growthrate_slope");
-      param_names__.emplace_back(std::string() + "growthrate_slope_weight");
-      param_names__.emplace_back(std::string() +
-        "growthrate_slope_weight_min");
-      param_names__.emplace_back(std::string() +
-        "growthrate_slope_weight_max");
-      param_names__.emplace_back(std::string() + "growthrate_asymptote");
-      param_names__.emplace_back(std::string() + "density");
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "alerts_truncated_mu" +
+          '.' + std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "etu_truncated_mu" + '.' +
+          std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "iso_truncated_mu" + '.' +
+          std::to_string(sym1__));
+      }
+      param_names__.emplace_back(std::string() + "prop_iso");
+      param_names__.emplace_back(std::string() + "alerts_per_case");
+      for (int sym1__ = 1; sym1__ <= n_alerts_background; ++sym1__) {
+        param_names__.emplace_back(std::string() + "alerts_background" + '.'
+          + std::to_string(sym1__));
+      }
+      param_names__.emplace_back(std::string() + "cases_overdisp");
+      param_names__.emplace_back(std::string() + "deaths_overdisp");
+      param_names__.emplace_back(std::string() + "etu_overdisp");
+      param_names__.emplace_back(std::string() + "alerts_overdisp");
+      param_names__.emplace_back(std::string() + "iso_overdisp");
     }
     if (emit_generated_quantities__) {
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "cases_projected_dist" +
+        param_names__.emplace_back(std::string() + "cases_projected_sim" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "cases_fitted_dist" + '.'
+        param_names__.emplace_back(std::string() + "cases_truncated_sim" +
+          '.' + std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
+        param_names__.emplace_back(std::string() + "cases_nowcast_sim" + '.'
           + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "cases_inflated_dist" +
-          '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_projected_dist" +
+        param_names__.emplace_back(std::string() + "deaths_projected_sim" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_fitted_dist" + '.'
-          + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "deaths_truncated_sim" +
+          '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_inflated_dist" +
-          '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled_dist" + '.'
+        param_names__.emplace_back(std::string() + "deaths_nowcast_sim" + '.'
           + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled_dist" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "iso_nowcast_mu" + '.' +
+          std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled_dist" + '.'
+        param_names__.emplace_back(std::string() + "alerts_nowcast_mu" + '.'
           + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_admission_inflated" +
+        param_names__.emplace_back(std::string() + "etu_nowcast_mu" + '.' +
+          std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "etu_truncated_sim" + '.'
+          + std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "alerts_truncated_sim" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_discharge_inflated" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "iso_truncated_sim" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled_inflated" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "etu_nowcast_sim" + '.' +
+          std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled_inflated"
-          + '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "alerts_nowcast_sim" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_admission_inflated" +
-          '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_discharge_inflated" +
-          '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled_inflated" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "iso_nowcast_sim" + '.' +
+          std::to_string(sym1__));
       }
     }
   }
@@ -3643,47 +3714,42 @@ public:
     param_names__.emplace_back(std::string() + "onset_to_iso_sd");
     param_names__.emplace_back(std::string() + "iso_to_release_logmean");
     param_names__.emplace_back(std::string() + "iso_to_release_sd");
-    param_names__.emplace_back(std::string() + "cases_overdisp");
-    param_names__.emplace_back(std::string() + "deaths_overdisp");
-    param_names__.emplace_back(std::string() + "etu_overdisp");
-    param_names__.emplace_back(std::string() + "alerts_overdisp");
-    param_names__.emplace_back(std::string() + "iso_overdisp");
+    param_names__.emplace_back(std::string() + "cases_overdisp_log");
+    param_names__.emplace_back(std::string() + "deaths_overdisp_log");
+    param_names__.emplace_back(std::string() + "etu_overdisp_log");
+    param_names__.emplace_back(std::string() + "alerts_overdisp_log");
+    param_names__.emplace_back(std::string() + "iso_overdisp_log");
     param_names__.emplace_back(std::string() + "log_cases_intercept");
     for (int sym1__ = 1; sym1__ <= n_alerts_background; ++sym1__) {
-      param_names__.emplace_back(std::string() + "alerts_background" + '.' +
-        std::to_string(sym1__));
+      param_names__.emplace_back(std::string() + "alerts_background_log" +
+        '.' + std::to_string(sym1__));
     }
-    param_names__.emplace_back(std::string() + "alerts_per_case");
+    param_names__.emplace_back(std::string() + "alerts_per_case_log");
     for (int sym1__ = 1; sym1__ <= n_spline_param; ++sym1__) {
       param_names__.emplace_back(std::string() + "spline_param" + '.' +
         std::to_string(sym1__));
     }
     if (emit_transformed_parameters__) {
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "log_cases_fitted" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "log_cases_inflated" + '.'
-          + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "growthrate_reported" +
+          '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "log_cases_projected" +
+        param_names__.emplace_back(std::string() + "growthrate_projected" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_fitted" + '.' +
-          std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "cases_truncated_mu" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_inflated" + '.' +
+        param_names__.emplace_back(std::string() + "cases_nowcast_mu" + '.' +
           std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_projected" + '.' +
-          std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "cases_projected_mu" + '.'
+          + std::to_string(sym1__));
       }
-      param_names__.emplace_back(std::string() + "cfr");
       for (int sym1__ = 1; sym1__ <= max_delay; ++sym1__) {
         param_names__.emplace_back(std::string() + "onset_to_etu" + '.' +
           std::to_string(sym1__));
@@ -3704,22 +3770,6 @@ public:
         param_names__.emplace_back(std::string() + "onset_to_death" + '.' +
           std::to_string(sym1__));
       }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_admission" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_discharge" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled_for_fit" +
-          '.' + std::to_string(sym1__));
-      }
       for (int sym1__ = 1; sym1__ <= max_delay; ++sym1__) {
         param_names__.emplace_back(std::string() + "onset_to_iso" + '.' +
           std::to_string(sym1__));
@@ -3732,120 +3782,111 @@ public:
         param_names__.emplace_back(std::string() + "onset_to_release" + '.' +
           std::to_string(sym1__));
       }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_admission" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_discharge" + '.' +
-          std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled" + '.' +
-          std::to_string(sym1__));
-      }
+      param_names__.emplace_back(std::string() + "cfr");
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled_for_fit"
-          + '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled_for_fit" +
+        param_names__.emplace_back(std::string() + "deaths_truncated_mu" +
           '.' + std::to_string(sym1__));
       }
-      param_names__.emplace_back(std::string() + "prop_iso");
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "growthrate_reported" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "deaths_nowcast_mu" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "growthrate_projected" +
+        param_names__.emplace_back(std::string() + "deaths_projected_mu" +
           '.' + std::to_string(sym1__));
       }
-      param_names__.emplace_back(std::string() + "growthrate_slope");
-      param_names__.emplace_back(std::string() + "growthrate_slope_weight");
-      param_names__.emplace_back(std::string() +
-        "growthrate_slope_weight_min");
-      param_names__.emplace_back(std::string() +
-        "growthrate_slope_weight_max");
-      param_names__.emplace_back(std::string() + "growthrate_asymptote");
-      param_names__.emplace_back(std::string() + "density");
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "alerts_truncated_mu" +
+          '.' + std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "etu_truncated_mu" + '.' +
+          std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "iso_truncated_mu" + '.' +
+          std::to_string(sym1__));
+      }
+      param_names__.emplace_back(std::string() + "prop_iso");
+      param_names__.emplace_back(std::string() + "alerts_per_case");
+      for (int sym1__ = 1; sym1__ <= n_alerts_background; ++sym1__) {
+        param_names__.emplace_back(std::string() + "alerts_background" + '.'
+          + std::to_string(sym1__));
+      }
+      param_names__.emplace_back(std::string() + "cases_overdisp");
+      param_names__.emplace_back(std::string() + "deaths_overdisp");
+      param_names__.emplace_back(std::string() + "etu_overdisp");
+      param_names__.emplace_back(std::string() + "alerts_overdisp");
+      param_names__.emplace_back(std::string() + "iso_overdisp");
     }
     if (emit_generated_quantities__) {
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "cases_projected_dist" +
+        param_names__.emplace_back(std::string() + "cases_projected_sim" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "cases_fitted_dist" + '.'
+        param_names__.emplace_back(std::string() + "cases_truncated_sim" +
+          '.' + std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
+        param_names__.emplace_back(std::string() + "cases_nowcast_sim" + '.'
           + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "cases_inflated_dist" +
-          '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_projected_dist" +
+        param_names__.emplace_back(std::string() + "deaths_projected_sim" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_fitted_dist" + '.'
-          + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "deaths_truncated_sim" +
+          '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-        param_names__.emplace_back(std::string() + "deaths_inflated_dist" +
-          '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled_dist" + '.'
+        param_names__.emplace_back(std::string() + "deaths_nowcast_sim" + '.'
           + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled_dist" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "iso_nowcast_mu" + '.' +
+          std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled_dist" + '.'
+        param_names__.emplace_back(std::string() + "alerts_nowcast_mu" + '.'
           + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_admission_inflated" +
+        param_names__.emplace_back(std::string() + "etu_nowcast_mu" + '.' +
+          std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "etu_truncated_sim" + '.'
+          + std::to_string(sym1__));
+      }
+      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
+        param_names__.emplace_back(std::string() + "alerts_truncated_sim" +
           '.' + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_discharge_inflated" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "iso_truncated_sim" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "etu_modelled_inflated" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "etu_nowcast_sim" + '.' +
+          std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "alerts_modelled_inflated"
-          + '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "alerts_nowcast_sim" + '.'
+          + std::to_string(sym1__));
       }
       for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_admission_inflated" +
-          '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_discharge_inflated" +
-          '.' + std::to_string(sym1__));
-      }
-      for (int sym1__ = 1; sym1__ <= n_tot; ++sym1__) {
-        param_names__.emplace_back(std::string() + "iso_modelled_inflated" +
-          '.' + std::to_string(sym1__));
+        param_names__.emplace_back(std::string() + "iso_nowcast_sim" + '.' +
+          std::to_string(sym1__));
       }
     }
   }
   inline std::string get_constrained_sizedtypes() const {
-    return std::string("[{\"name\":\"cfr_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"prop_iso_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"cases_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"deaths_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_cases_intercept\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_background\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_alerts_background) + "},\"block\":\"parameters\"},{\"name\":\"alerts_per_case\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"spline_param\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_spline_param) + "},\"block\":\"parameters\"},{\"name\":\"log_cases_fitted\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"log_cases_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"log_cases_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_fitted\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cfr\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_etu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_admission\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_discharge\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_modelled\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_modelled_for_fit\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_iso\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_modelled\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_admission\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_discharge\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_modelled\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_modelled_for_fit\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_modelled_for_fit\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"prop_iso\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_reported\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope_weight\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope_weight_min\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope_weight_max\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_asymptote\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"density\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"cases_projected_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_fitted_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_inflated_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_projected_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_fitted_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_inflated_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"etu_modelled_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"alerts_modelled_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_modelled_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"etu_admission_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_discharge_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_modelled_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"alerts_modelled_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"iso_admission_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"iso_discharge_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"iso_modelled_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"cfr_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"prop_iso_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"cases_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"deaths_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_cases_intercept\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_background_log\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_alerts_background) + "},\"block\":\"parameters\"},{\"name\":\"alerts_per_case_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"spline_param\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_spline_param) + "},\"block\":\"parameters\"},{\"name\":\"growthrate_reported\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_projected_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_etu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_iso\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cfr\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_projected_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"prop_iso\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_per_case\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_background\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_alerts_background) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"etu_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"iso_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"cases_projected_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_projected_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"alerts_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"alerts_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"etu_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"alerts_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
   }
   inline std::string get_unconstrained_sizedtypes() const {
-    return std::string("[{\"name\":\"cfr_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"prop_iso_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"cases_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"deaths_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_cases_intercept\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_background\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_alerts_background) + "},\"block\":\"parameters\"},{\"name\":\"alerts_per_case\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"spline_param\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_spline_param) + "},\"block\":\"parameters\"},{\"name\":\"log_cases_fitted\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"log_cases_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"log_cases_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_fitted\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cfr\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_etu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_admission\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_discharge\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_modelled\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_modelled_for_fit\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_iso\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_modelled\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_admission\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_discharge\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_modelled\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_modelled_for_fit\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_modelled_for_fit\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"prop_iso\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_reported\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope_weight\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope_weight_min\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_slope_weight_max\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_asymptote\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"density\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"cases_projected_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_fitted_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_inflated_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_projected_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_fitted_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_inflated_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"etu_modelled_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"alerts_modelled_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_modelled_dist\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"etu_admission_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_discharge_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_modelled_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"alerts_modelled_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"iso_admission_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"iso_discharge_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"iso_modelled_inflated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"cfr_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"prop_iso_logit\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_etu_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_survival_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_to_death_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"onset_to_iso_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_logmean\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_to_release_sd\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"cases_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"deaths_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"etu_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"iso_overdisp_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_cases_intercept\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alerts_background_log\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_alerts_background) + "},\"block\":\"parameters\"},{\"name\":\"alerts_per_case_log\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"spline_param\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_spline_param) + "},\"block\":\"parameters\"},{\"name\":\"growthrate_reported\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"growthrate_projected\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_projected_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_etu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_survival\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_death\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_iso\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"onset_to_release\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(max_delay) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cfr\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_obs) + "},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_projected_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_proj) + "},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"etu_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"iso_truncated_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"transformed_parameters\"},{\"name\":\"prop_iso\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_per_case\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_background\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_alerts_background) + "},\"block\":\"transformed_parameters\"},{\"name\":\"cases_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"deaths_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"etu_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"alerts_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"iso_overdisp\",\"type\":{\"name\":\"real\"},\"block\":\"transformed_parameters\"},{\"name\":\"cases_projected_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"cases_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_projected_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_proj) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"deaths_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_obs) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"alerts_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_nowcast_mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(n_tot) + "},\"block\":\"generated_quantities\"},{\"name\":\"etu_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"alerts_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_truncated_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"etu_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"alerts_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"},{\"name\":\"iso_nowcast_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_tot) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
   }
   // Begin method overload boilerplate
   template <typename RNG> inline void
@@ -3858,16 +3899,15 @@ public:
       1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) +
       n_alerts_background) + 1) + n_spline_param);
     const size_t num_transformed = emit_transformed_parameters *
-      ((((((((((((((((((((((((((((((((((n_obs + n_obs) + n_proj) + n_obs) +
-      n_obs) + n_proj) + 1) + max_delay) + max_delay) + max_delay) +
-      max_delay) + max_delay) + n_tot) + n_tot) + n_tot) + n_obs) +
-      max_delay) + max_delay) + max_delay) + n_tot) + n_tot) + n_tot) +
-      n_tot) + n_obs) + n_obs) + 1) + n_obs) + n_proj) + 1) + 1) + 1) + 1) +
-      1) + 1));
+      ((((((((((((((((((((((((((((n_obs + n_proj) + n_obs) + n_obs) + n_proj)
+      + max_delay) + max_delay) + max_delay) + max_delay) + max_delay) +
+      max_delay) + max_delay) + max_delay) + 1) + n_obs) + n_obs) + n_proj) +
+      n_tot) + n_tot) + n_tot) + 1) + 1) + n_alerts_background) + 1) + 1) +
+      1) + 1) + 1));
     const size_t num_gen_quantities = emit_generated_quantities *
-      ((((((((((((((((n_proj + n_obs) + n_obs) + n_proj) + n_obs) + n_obs) +
+      (((((((((((((((n_proj + n_obs) + n_obs) + n_proj) + n_obs) + n_obs) +
       n_tot) + n_tot) + n_tot) + n_tot) + n_tot) + n_tot) + n_tot) + n_tot) +
-      n_tot) + n_tot));
+      n_tot));
     const size_t num_to_write = num_params__ + num_transformed +
       num_gen_quantities;
     std::vector<int> params_i;
@@ -3886,16 +3926,15 @@ public:
       1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) +
       n_alerts_background) + 1) + n_spline_param);
     const size_t num_transformed = emit_transformed_parameters *
-      ((((((((((((((((((((((((((((((((((n_obs + n_obs) + n_proj) + n_obs) +
-      n_obs) + n_proj) + 1) + max_delay) + max_delay) + max_delay) +
-      max_delay) + max_delay) + n_tot) + n_tot) + n_tot) + n_obs) +
-      max_delay) + max_delay) + max_delay) + n_tot) + n_tot) + n_tot) +
-      n_tot) + n_obs) + n_obs) + 1) + n_obs) + n_proj) + 1) + 1) + 1) + 1) +
-      1) + 1));
+      ((((((((((((((((((((((((((((n_obs + n_proj) + n_obs) + n_obs) + n_proj)
+      + max_delay) + max_delay) + max_delay) + max_delay) + max_delay) +
+      max_delay) + max_delay) + max_delay) + 1) + n_obs) + n_obs) + n_proj) +
+      n_tot) + n_tot) + n_tot) + 1) + 1) + n_alerts_background) + 1) + 1) +
+      1) + 1) + 1));
     const size_t num_gen_quantities = emit_generated_quantities *
-      ((((((((((((((((n_proj + n_obs) + n_obs) + n_proj) + n_obs) + n_obs) +
+      (((((((((((((((n_proj + n_obs) + n_obs) + n_proj) + n_obs) + n_obs) +
       n_tot) + n_tot) + n_tot) + n_tot) + n_tot) + n_tot) + n_tot) + n_tot) +
-      n_tot) + n_tot));
+      n_tot));
     const size_t num_to_write = num_params__ + num_transformed +
       num_gen_quantities;
     vars = std::vector<double>(num_to_write,

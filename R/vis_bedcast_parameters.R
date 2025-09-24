@@ -9,34 +9,6 @@
 #'
 #' @return A ggplot object showing parameter distributions with priors overlaid.
 #'
-#' @details The visualization shows:
-#' \itemize{
-#'   \item Posterior distributions (green) representing parameter estimates informed by data
-#'   \item Prior distributions (grey) representing initial assumptions
-#'   \item Faceted plots for each parameter type
-#'   \item Proper scaling and transformation of parameters to their natural scales
-#' }
-#'
-#' Parameters visualized include:
-#' \itemize{
-#'   \item{Delay parameters}{Onset to ETU, ETU to survival/death, onset to isolation, lab turnaround}
-#'   \item{Case fatality rate}{In-hospital case fatality rate}
-#'   \item{Isolation parameters}{Proportion of alerts isolated}
-#'   \item{Alert parameters}{Alerts per case and background alerts}
-#' }
-#'
-#' @examples
-#' \dontrun{
-#' # Create parameter visualization
-#' p <- vis_parameters(results)
-#'
-#' # Customize base size
-#' p <- vis_parameters(results, base_size = 14)
-#'
-#' # Save the plot
-#' p %>% save_plot("parameters.png", width = 21, height = 15.3)
-#' }
-#'
 #' @importFrom dplyr group_by summarise mutate select
 #' @importFrom purrr map_dfr pmap
 #' @importFrom tidyr unnest
@@ -48,6 +20,7 @@
 #' @export
 #'
 vis_bedcast_parameters <- function(results, base_size = 12) {
+
   labels <- c(
     onset_to_etu_logmean = "Delay onset to hospitalisation",
     etu_to_survival_logmean = "Delay hospitalisation to survival",
@@ -61,60 +34,78 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
   )
 
   samples <- map_dfr(
-    names(labels),
-    ~ if (.x == "alerts_background") {
-      extract(results, "alerts_background") %>%
-        as.data.frame.table(responseName = "value") %>%
-        transmute(var = .x, value, group = Var2)
+    purrr::set_names(names(labels)), ~ extract(results, .x), .id = "var"
+  )
+
+  make_prior <- function(var, minval, maxval) {
+
+    varname <- paste0("prior_", str_remove(var, "_logmean"))
+    prior <- results$data[[varname]][1:2]
+    if (varname %in% c("prior_cfr", "prior_prop_iso")) {
+      rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
+      sq <- seq(
+        min(rnge[1], qlogis(minval)),
+        max(rnge[2], qlogis(maxval)),
+        length = 100
+      )
+      tibble(
+        value = plogis(sq),
+        density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "plogis")
+      )
+    } else if (varname == "prior_growth_rate") {
+      rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
+      sq <- seq(min(rnge[1], minval), max(rnge[2], maxval), length = 100)
+      tibble(
+        value = sq,
+        density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "identity")
+      )
+    } else if (grepl("alerts", varname)) {
+      rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
+      sq <- seq(
+        min(rnge[1], log(minval)),
+        max(rnge[2], log(maxval)),
+        length = 100
+      )
+      tibble(
+        value = exp(sq),
+        density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "exp")
+      )
     } else {
-      tibble(var = .x, value = extract(results, .x), group = "A")
+      rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
+      sq <- seq(
+        min(rnge[1], minval),
+        max(rnge[2], maxval),
+        ## min(rnge[1], log(minval)),
+        ## max(rnge[2], log(maxval)),
+        length = 100
+      )
+      tibble(
+        value = exp(sq),
+        density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "exp")
+      )
     }
-  ) %>%
-    mutate(var = factor(var, names(labels)))
+  }
 
   prior <- samples %>%
     group_by(var) %>%
     summarise(minval = min(value), maxval = max(value)) %>%
-    mutate(
-      prior = pmap(
-        list(var, minval, maxval),
-        function(var, minval, maxval) {
-          varname <- paste0("prior_", str_remove(var, "_logmean"))
-          prior <- results$data[[varname]][1:2]
-          if (varname %in% c("prior_cfr", "prior_prop_iso")) {
-            rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
-            sq <- seq(min(rnge[1], qlogis(minval)), max(rnge[2], qlogis(maxval)), length = 100)
-            tibble(
-              value = plogis(sq),
-              density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "plogis")
-            )
-          } else if (varname == "prior_growth_rate") {
-            rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
-            sq <- seq(min(rnge[1], minval), max(rnge[2], maxval), length = 100)
-            tibble(
-              value = sq,
-              density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "identity")
-            )
-          } else {
-            rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
-            sq <- seq(min(rnge[1], log(minval)), max(rnge[2], log(maxval)), length = 100)
-            tibble(
-              value = exp(sq),
-              density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "exp")
-            )
-          }
-        }
-      )
-    ) %>%
+    mutate(prior = pmap(list(var, minval, maxval), make_prior)) %>%
     select(var, prior) %>%
     unnest(prior) %>%
     mutate(var = factor(var, names(labels)), group = "AA")
 
-  samples %>%
-    ggplot(aes(value, group = group)) +
-    geom_area(aes(y = density), data = prior, fill = "grey20", alpha = 0.75, color = "black") +
-    geom_density(fill = "darkgreen", alpha = 0.5) +
-    facet_wrap(~var, scales = "free", labeller = labeller(var = labels)) +
+  ggplot() +
+    geom_area(
+      data = prior,
+      aes(value, y = density),
+      fill = "grey20", alpha = 0.75, color = "black"
+    ) +
+    geom_density(
+      data = samples,
+      aes(value, group = factor(index)),
+      fill = "darkgreen", alpha = 0.5,
+    ) +
+    facet_wrap(~ var, scales = "free", labeller = labeller(var = labels)) +
     scale_y_continuous(expand = c(0.01, 0)) +
     scale_x_continuous(expand = c(0, 0)) +
     labs(

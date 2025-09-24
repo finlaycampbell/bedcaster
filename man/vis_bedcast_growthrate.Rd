@@ -4,12 +4,12 @@
 \alias{vis_bedcast_growthrate}
 \title{Visualize growth rate over time}
 \usage{
-vis_bedcast_growthrate(bedcast, base_size = 12)
+vis_bedcast_growthrate(bedcast, alpha = 0.95, base_size = 12)
 }
 \arguments{
-\item{base_size}{Numeric base font size for the plot (default: 12).}
+\item{bedcast}{A list containing the output from \code{fit_bedcast}.}
 
-\item{results}{A list containing the fitted Stan model results from fit_stan().}
+\item{base_size}{Numeric base font size for the plot (default: 12).}
 }
 \value{
 A ggplot object showing the growth rate over time.
@@ -18,34 +18,4 @@ A ggplot object showing the growth rate over time.
 Creates a visualization showing the estimated daily growth rate of cases over
 time, including uncertainty bounds. This helps identify periods of increasing
 or decreasing transmission.
-}
-\details{
-The visualization shows:
-\itemize{
-  \item Individual MCMC samples as light lines (showing uncertainty)
-  \item Median growth rate as a prominent red line
-  \item Horizontal reference line at zero growth
-  \item Time series of daily growth rates
-}
-
-Positive growth rates indicate increasing transmission, while negative rates
-indicate decreasing transmission. The visualization helps identify:
-\itemize{
-  \item Periods of epidemic growth or decline
-  \item Uncertainty in growth rate estimates
-  \item Changes in transmission dynamics over time
-}
-}
-\examples{
-\dontrun{
-# Create growth rate visualization
-p <- vis_growth_rate(results)
-
-# Customize base size
-p <- vis_growth_rate(results, base_size = 14)
-
-# Save the plot
-p |> save_plot("growth_rate.png")
-}
-
 }

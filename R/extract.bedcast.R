@@ -62,14 +62,14 @@ extract.bedcast <- function(bedcast, par) {
     index <- if (length(index) == 0) seq_len(ncol(out)) else bedcast$data[[index]]
 
     out <- tibble(
-      iter = rep(seq_len(nrow(out)), times = ncol(out)),
       index = rep(index, each = nrow(out)),
+      iter = rep(seq_len(nrow(out)), times = ncol(out)),
       value = c(out)
     )
 
   } else {
 
-    out <- tibble(iter = seq_along(out), value = out)
+    out <- tibble(index = 1, iter = seq_along(out), value = out)
 
   }
 

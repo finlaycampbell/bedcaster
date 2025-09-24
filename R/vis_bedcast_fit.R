@@ -14,21 +14,6 @@
 #'
 #' @return A ggplot object showing the model fit visualization.
 #'
-#' The function automatically handles extreme values by capping them at a
-#' reasonable multiple of the reported maximum to ensure readable plots.
-#'
-#' @examples
-#' \dontrun{
-#' # Create visualization with default settings
-#' p <- vis_bedcast_fit(results)
-#'
-#' # Customize visualization
-#' p <- vis_bedcast_fit(results, ylim_factor = 2, base_size = 14)
-#'
-#' # Save the plot
-#' p %>% save_plot("model_fit.png", height = 20)
-#' }
-#'
 #' @importFrom dplyr bind_rows group_by summarise mutate filter
 #' @importFrom purrr map_dfr
 #' @importFrom purrr map2_dfr imap_dfr
@@ -41,6 +26,7 @@
 #' @importFrom forcats fct_rev
 #' @importFrom scales percent
 #' @export
+#'
 vis_bedcast_fit <- function(results,
                             ylim_factor = 4,
                             base_size = 12,
@@ -48,15 +34,8 @@ vis_bedcast_fit <- function(results,
 
   # function to manually remove too large values
   set_max <- function(vals, max_val) {
-    replace(
-      vals,
-      ifelse(is.na(vals), FALSE, vals > ylim_factor * max_val),
-      if (any(vals < ylim_factor * max_val, na.rm = TRUE)) {
-        max(vals[vals < ylim_factor * max_val], na.rm = TRUE)
-      } else {
-        ylim_factor * max_val
-      }
-    )
+    limit <- max_val * ylim_factor
+    replace(vals, !is.na(vals) & vals > limit, limit)
   }
 
   # get maximum reported for a given variable
@@ -65,18 +44,18 @@ vis_bedcast_fit <- function(results,
   }
 
   # define fitting variables
-  fittings_vars <- c("cases_nowcast_sim", "cases_projected_sim",
+  fitting_vars <- c("cases_nowcast_sim", "cases_projected_sim",
                      "deaths_nowcast_sim", "deaths_projected_sim",
                      "etu_nowcast_sim", "alerts_nowcast_sim",
                      "iso_nowcast_sim")
 
   # define data variables
   data_vars <- c(
-    cases = "Daily number of cases",
-    deaths = "Daily number of deaths",
-    etu = "Daily ETU occupancy",
-    iso = "Daily isolation occupancy",
-    alerts = "Daily number of alerts"
+    cases = "Daily reported cases",
+    deaths = "Daily reported deaths",
+    etu = "ETU occupancy",
+    iso = "Isolation occupancy",
+    alerts = "Daily alerts"
   )
 
   # extract data
@@ -92,7 +71,7 @@ vis_bedcast_fit <- function(results,
 
   # extract quantiles for ribbons
   ribbons <- map_dfr(
-    vars,
+    fitting_vars,
     function(varname) {
       quantiles <- sort(quantiles)
       breaks <- sort(
@@ -107,14 +86,18 @@ vis_bedcast_fit <- function(results,
           group = letters[.y],
           index = values$index,
           lower = values[[.y + 2]],
-          upper = values[[.y + 3]]
+          upper = values[[.y + 3]],
+          inflated = str_split(varname, "_")[[1]][2] != "truncated"
         )
       ) %>%
         mutate(
           upper = set_max(upper, get_max(var)),
-          lower = replace(lower, lower > max(upper, na.rm = TRUE), NA),
-          what = var,
-          inflated = str_split(varname, "_")[[1]][2] != "truncated"
+          lower = replace(
+            lower,
+            lower > max(upper, na.rm = TRUE),
+            max(upper, na.rm = TRUE)
+          ),
+          what = var
         )
     }
   ) |>
@@ -122,7 +105,7 @@ vis_bedcast_fit <- function(results,
 
   # extract median estimates for lines
   mids <- map_dfr(
-    c(vars, "cases_truncated_sim", "deaths_truncated_sim"),
+    c(fitting_vars, "cases_truncated_sim", "deaths_truncated_sim"),
     function(varname) {
       var <- str_split(varname, "_")[[1]][1]
       summary(results, varname, probs = 0.5) |>
@@ -139,14 +122,15 @@ vis_bedcast_fit <- function(results,
   # plot
   ggplot() +
     geom_col(
-      data = data,
+      data = drop_na(data, reported),
       aes(index, reported)
     ) +
     geom_ribbon(
-      data = ribbons,
+      data = drop_na(ribbons, lower, upper),
       aes(
         index, ymin = lower, ymax = upper,
-        alpha = fct_rev(factor(quantile)),
+        alpha = quantile,
+        ## alpha = fct_rev(factor(quantile)),
         group = group
       ),
       fill = "firebrick",
@@ -156,7 +140,7 @@ vis_bedcast_fit <- function(results,
       data = mids,
       aes(index, mid, linetype = fct_rev(factor(as.numeric(inflated)))),
       color = "black",
-      size = 1
+      linewidth = 1
     ) +
     geom_vline(
       xintercept = max(results$data$date_fit) + 0.5,
@@ -165,9 +149,10 @@ vis_bedcast_fit <- function(results,
     scale_linetype(
       labels = c("1" = "Nowcast", "0" = "Reported")
     ) +
-    scale_alpha_discrete(
-      range = c(0.25, 0.8),
-      labels = ~ scales::percent(as.numeric(as.character(.x)), 1)
+    scale_alpha_continuous(
+      range = c(0.9, 0.25),
+      labels = ~ scales::percent(as.numeric(as.character(.x)), 1),
+      breaks = quantiles
     ) +
     facet_wrap(
       ~ what,
@@ -182,7 +167,7 @@ vis_bedcast_fit <- function(results,
       alpha = "Credible interval",
       linetype = "Type"
     ) +
-    guides(alpha = guide_legend(reverse = TRUE)) +
+    guides(alpha = guide_legend(reverse = FALSE)) +
     scale_x_date(
       expand = c(0, 0),
       date_labels = "%b %d",
