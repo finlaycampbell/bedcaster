@@ -5,30 +5,9 @@
 #'
 #' @param x A bedcast object.
 #' @param par Character string specifying the parameter name to summarize.
+#' @param alpha The coverage of the credible interval.
 #' @param probs Numeric vector specifying the quantiles to calculate
-#'   (default: c(0.25, 0.5, 0.75)).
-#'
-#' @return A tibble containing summarized parameter estimates with columns:
-#' \itemize{
-#'   \item{day}{Day index (for time-varying parameters)}
-#'   \item{lower}{Lower quantile estimate}
-#'   \item{mid}{Median estimate}
-#'   \item{upper}{Upper quantile estimate}
-#' }
-#'
-#' @details The function handles different parameter types:
-#' \itemize{
-#'   \item{Time-varying parameters}{Cases, growth rates, ETU/ISO occupancy, alerts}
-#'   \item{Projected parameters}{Future projections beyond observed data}
-#'   \item{Static parameters}{Single values for the entire time period}
-#' }
-#'
-#' Automatic transformations are applied based on parameter type:
-#' \itemize{
-#'   \item{Log-mean parameters}{Exponentiated to natural scale}
-#' \item{Log parameters}{Exponentiated (cases, alerts, etc.)}
-#' \item{Logit parameters}{Inverse logit transformation (CFR, proportions)}
-#' }
+#'   (default: c(0.25, 0.5, 0.75)), overrides specification of alpha.
 #'
 #' @examples
 #' \dontrun{
@@ -49,49 +28,32 @@
 #' @importFrom stats plogis
 #' @export
 #'
-summary.bedcast <- function(x, par, probs = c(0.25, 0.5, 0.75), ...) {
+summary.bedcast <- function(x, par, alpha = 0.95, probs) {
 
-  add_days <- function(par, days) {
-    out <- rstan::summary(x$fit, pars = par, probs = probs) %$%
-      as_tibble(summary)
-    if (length(probs) == 3) {
-      transmute(
-        out,
-        day = days,
-        lower = out[[4]],
-        mid = out[[5]],
-        upper = out[[6]]
-      )
-    } else {
-      mutate(
-        out[4:(4 + length(probs) - 1)],
-        day = days
-      ) %>%
-        select(any_of("day"), everything())
-    }
-  }
+  if (missing(probs))
+    probs <- c(0.5 - alpha / 2, 0.5, 0.5 + alpha / 2)
 
-  if (grepl(paste(c("cases", "deaths", "growth"), collapse = "|"), par) &
-        !grepl(paste(c("proj", "slope"), collapse = "|"), par)) {
-    out <- add_days(par, x$data$day)
-  } else if (
-    grepl(paste(c("etu", "iso", "alerts"), collapse = "|"), par) &
-      !grepl(paste(c("per", "prop", "to"), collapse = "|"), par) &
-      !grepl("background", par)) {
-    out <- add_days(par, seq_len(x$data$n_obs + x$data$n_proj))
-  } else if (grepl("proj", par)) {
-    out <- add_days(par, (x$data$n_obs + 1):(x$data$n_obs + x$data$n_proj))
-  } else {
-    out <- add_days(par, NULL)
-  }
+  out <- rstan::summary(x$fit, pars = par, probs = probs)$summary
+  colnames(out)[grepl("%", colnames(out))] <- paste0(
+    "q_", format(probs, scientific = FALSE)
+  )
 
-  if (grepl("logmean", par)) out %<>% mutate(across(-any_of("day"), exp))
-  if (par %in% c("alerts_per_case", "alerts_background",
-                 "log_cases_inflated", "log_cases_fitted",
-                 "log_cases_missed", "log_cases_projected")) {
-    out %<>% mutate(across(-any_of("day"), exp))
-  }
+  # match variable names to their indices
+  mtch <- list(
+    date_fit = c("reported", "truncated", "nowcast"),
+    date_projection = c("projected"),
+    date_total = c("etu", "alerts", "iso")
+  )
 
-  return(out)
+  index <- names(mtch)[
+    map_lgl(mtch, ~ grepl(paste(.x, collapse = "|"), par))
+  ]
+
+  # etu/iso/alerts match date_projection and date_total - use total
+  index <- if (length(index) == 0) seq_len(nrow(out))
+  else x$data[[tail(index, 1)]]
+
+  mutate(as_tibble(out), index = index, .before = mean) |>
+    select(-c(se_mean, sd, n_eff, Rhat))
 
 }

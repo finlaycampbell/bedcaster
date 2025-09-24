@@ -4,8 +4,8 @@
 #' based on case incidence, alerts, and delay distributions. The model accounts
 #' for reporting delays and provides nowcasts and forecasts of healthcare demand.
 #'
-#' @param data A tibble containing the merged time series data.
-#' @param data_as_of Date of dataset used for calculating reporting delay.
+#' @param df A tibble containing the merged time series df.
+#' @param as_of Date of dataset used for calculating reporting delay.
 #' @param prior_onset_to_reporting Numeric vector of length 2 specifying the prior
 #'   for log-mean and log-sd of onset-to-reporting delay (default: c(log(5), 0.25)).
 #' @param prior_onset_to_etu Numeric vector of length 2 specifying the prior
@@ -39,7 +39,7 @@
 #' @return A list containing:
 #' \itemize{
 #'   \item{stan_fit}{The fitted Stan model object}
-#'   \item{data}{The processed data used for fitting, including original data}
+#'   \item{df}{The processed data used for fitting, including original data}
 #' }
 #'
 #' @details The Stan model implements a hierarchical Bayesian approach that:
@@ -57,22 +57,21 @@
 #' \dontrun{
 #'
 #' # Fit with default priors
-#' results <- fit_stan(data)
+#' results <- fit_stan(df)
 #'
 #' # Fit with custom priors
-#' results <- fit_stan(data,
+#' results <- fit_stan(df,
 #'   prior_cfr = c(qlogis(0.3), 0.2),
 #'   n_proj = 14
 #' )
 #' }
 #'
-#' @importFrom rstan sampling
 #' @importFrom splines bs
 #' @importFrom stats qlogis
 #' @importFrom distcrete distcrete
 #' @export
 #'
-fit_bedcaster <- function(data, data_as_of,
+fit_bedcaster <- function(df, as_of,
                           prior_onset_to_reporting = c(0, 5, 0, 5),
                           prior_onset_to_etu = c(0, 5, 0, 5),
                           prior_etu_to_survival = c(0, 5, 0, 5),
@@ -102,14 +101,14 @@ fit_bedcaster <- function(data, data_as_of,
 
   # define probability of reporting for given delays
   prop_cases_reported <- onset_to_reporting$p(
-    as.numeric(data_as_of - data$date)
+    as.numeric(as_of - df$date)
   )
 
   ## generate spline matrix with buffer on either side to prevent extremes
   buffer <- 16
   spline <- t(bs(
-    x = seq_len(nrow(data) + buffer),
-    knots = seq(1, nrow(data), length = n_knots),
+    x = seq_len(nrow(df) + buffer),
+    knots = seq(1, nrow(df), length = n_knots),
     degree = 3,
     intercept = TRUE
   ))
@@ -121,34 +120,34 @@ fit_bedcaster <- function(data, data_as_of,
     growthrate_asymptote_spread
   )
 
-  sq_keep <- seq(buffer / 2 + 1, nrow(data) + buffer / 2)
+  sq_keep <- seq(buffer / 2 + 1, nrow(df) + buffer / 2)
   spline <- spline[, sq_keep]
 
-  n_alerts_background <- floor(nrow(data) / alerts_background_window)
+  n_alerts_background <- floor(nrow(df) / alerts_background_window)
   alerts_background_ind <- rep(
     seq_len(n_alerts_background),
     each = alerts_background_window
   )
   alerts_background_ind <- c(
-    rep(1, nrow(data) - length(alerts_background_ind)),
+    rep(1, nrow(df) - length(alerts_background_ind)),
     alerts_background_ind
   )
 
-  stan_data <- list(
-    n_obs = nrow(data),
+  data <- list(
+    n_obs = nrow(df),
     n_proj = n_proj,
     max_delay = max_delay,
-    cases_reported = replace_na(data$cases, -1000),
-    deaths_reported = replace_na(data$deaths, -1000),
-    etu_reported = replace_na(data$etu, -1000),
-    etu_n = sum(!is.na(data$etu)),
-    etu_ind = which(!is.na(data$etu)),
-    alerts_reported = replace_na(data$alerts, -1000),
-    alerts_n = sum(!is.na(data$alerts)),
-    alerts_ind = which(!is.na(data$alerts)),
-    iso_reported = replace_na(data$iso, -1000),
-    iso_n = sum(!is.na(data$iso)),
-    iso_ind = which(!is.na(data$iso)),
+    cases_reported = replace_na(df$cases, -1000),
+    deaths_reported = replace_na(df$deaths, -1000),
+    etu_reported = replace_na(df$etu, -1000),
+    etu_n = sum(!is.na(df$etu)),
+    etu_ind = which(!is.na(df$etu)),
+    alerts_reported = replace_na(df$alerts, -1000),
+    alerts_n = sum(!is.na(df$alerts)),
+    alerts_ind = which(!is.na(df$alerts)),
+    iso_reported = replace_na(df$iso, -1000),
+    iso_n = sum(!is.na(df$iso)),
+    iso_ind = which(!is.na(df$iso)),
     prior_onset_to_etu = prior_onset_to_etu,
     prior_etu_to_survival = prior_etu_to_survival,
     prior_etu_to_death = prior_etu_to_death,
@@ -170,15 +169,16 @@ fit_bedcaster <- function(data, data_as_of,
   init_fun <- function(...) {
     list(
       log_cases_missed =
-        log((1 + data$cases) / (stan_data$prop_cases_reported) - 1)
+        log((1 + df$cases) / (data$prop_cases_reported) - 1)
     )
   }
 
   options(mc.cores = n_cores)
 
   fit <- rstan::sampling(
-    stanmodels$bedcaster,
-    data = stan_data,
+    model,
+    ## stanmodels$bedcaster2,
+    data = data,
     chains = n_chains,
     iter = n_iter,
     verbose = TRUE,
@@ -186,13 +186,16 @@ fit_bedcaster <- function(data, data_as_of,
     init = init_fun
   )
 
-  stan_data$etu_reported <- data$etu
-  stan_data$alerts_reported <- data$alerts
-  stan_data$iso_reported <- data$iso
-  stan_data$day <- seq_len(stan_data$n_obs)
-  stan_data$date <- data$date
+  data <- list_modify(
+    data,
+    etu_reported = df$etu,
+    alerts_reported = df$alerts,
+    iso_reported = df$iso,
+    date_fit = df$date,
+    date_projection = max(df$date) + seq_len(n_proj)
+  )
 
-  out <- list(fit = fit, data = stan_data)
+  out <- list(fit = fit, data = data)
   class(out) <- "bedcast"
 
   return(out)

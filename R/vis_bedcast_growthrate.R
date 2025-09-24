@@ -46,16 +46,10 @@ vis_bedcast_growthrate <- function(bedcast, base_size = 12) {
 
   # extract individual estimates
   bind_rows(
-    extract_stan("growthrate_reported", bedcast, output = "shaped") |>
-      mutate(
-        date = as.Date(index, origin = min(bedcast$data$date) - 1),
-        type = "observed"
-      ),
-    extract_stan("growthrate_projected", bedcast, output = "shaped") |>
-      mutate(
-        date = as.Date(index + length(bedcast$data$date), origin = min(bedcast$data$date) - 1),
-        type = "projected"
-      )
+    summary(bedcast, "growthrate_reported", c(0.025, 0.5, 0.975)) |>
+      mutate(type = "observed"),
+    extract(bedcast, "growthrate_projected") |>
+      mutate(type = "projected")
   ) |>
     summarise(
       median = median(value),

@@ -44,7 +44,6 @@
 #' @importFrom ggplot2 scale_y_continuous scale_x_continuous theme_minimal theme
 #' @importFrom ggplot2 element_rect
 #' @importFrom tibble tibble
-#' @importFrom rstan extract
 #' @importFrom stats qnorm dnorm plogis qlogis
 #' @export
 #'
@@ -64,11 +63,11 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
   samples <- map_dfr(
     names(labels),
     ~ if (.x == "alerts_background") {
-      extract_stan("alerts_background", results) %>%
+      extract(results, "alerts_background") %>%
         as.data.frame.table(responseName = "value") %>%
         transmute(var = .x, value, group = Var2)
     } else {
-      tibble(var = .x, value = extract_stan(.x, results), group = "A")
+      tibble(var = .x, value = extract(results, .x), group = "A")
     }
   ) %>%
     mutate(var = factor(var, names(labels)))

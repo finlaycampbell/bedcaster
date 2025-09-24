@@ -4,7 +4,7 @@
 \alias{extract.bedcast}
 \title{Extract raw samples from Stan model}
 \usage{
-extract.bedcast(bedcast, par, output = c("raw", "shaped"))
+\method{extract}{bedcast}(bedcast, par)
 }
 \arguments{
 \item{par}{Character string specifying the parameter name to extract.}

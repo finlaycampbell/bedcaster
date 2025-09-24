@@ -5,8 +5,8 @@
 \title{Fit Stan model for bed occupancy forecasting}
 \usage{
 fit_bedcaster(
-  data,
-  data_as_of,
+  df,
+  as_of,
   prior_onset_to_reporting = c(0, 5, 0, 5),
   prior_onset_to_etu = c(0, 5, 0, 5),
   prior_etu_to_survival = c(0, 5, 0, 5),
@@ -29,9 +29,9 @@ fit_bedcaster(
 )
 }
 \arguments{
-\item{data}{A tibble containing the merged time series data.}
+\item{df}{A tibble containing the merged time series df.}
 
-\item{data_as_of}{Date of dataset used for calculating reporting delay.}
+\item{as_of}{Date of dataset used for calculating reporting delay.}
 
 \item{prior_onset_to_reporting}{Numeric vector of length 2 specifying the prior
 for log-mean and log-sd of onset-to-reporting delay (default: c(log(5), 0.25)).}
@@ -82,7 +82,7 @@ alerts estimation (default: 14).}
 A list containing:
 \itemize{
   \item{stan_fit}{The fitted Stan model object}
-  \item{data}{The processed data used for fitting, including original data}
+  \item{df}{The processed data used for fitting, including original data}
 }
 }
 \description{
@@ -106,10 +106,10 @@ The model automatically saves results to the outputs directory with a timestamp.
 \dontrun{
 
 # Fit with default priors
-results <- fit_stan(data)
+results <- fit_stan(df)
 
 # Fit with custom priors
-results <- fit_stan(data,
+results <- fit_stan(df,
   prior_cfr = c(qlogis(0.3), 0.2),
   n_proj = 14
 )

@@ -4,43 +4,21 @@
 \alias{summary.bedcast}
 \title{Summarize Stan model outputs}
 \usage{
-\method{summary}{bedcast}(x, par, probs = c(0.25, 0.5, 0.75), ...)
+\method{summary}{bedcast}(x, par, alpha = 0.95, probs)
 }
 \arguments{
 \item{x}{A bedcast object.}
 
 \item{par}{Character string specifying the parameter name to summarize.}
 
+\item{alpha}{The coverage of the credible interval.}
+
 \item{probs}{Numeric vector specifying the quantiles to calculate
-(default: c(0.25, 0.5, 0.75)).}
-}
-\value{
-A tibble containing summarized parameter estimates with columns:
-\itemize{
-  \item{day}{Day index (for time-varying parameters)}
-  \item{lower}{Lower quantile estimate}
-  \item{mid}{Median estimate}
-  \item{upper}{Upper quantile estimate}
-}
+(default: c(0.25, 0.5, 0.75)), overrides specification of alpha.}
 }
 \description{
 Extracts and summarizes parameter estimates from fitted Stan models with
 appropriate transformations and formatting for different parameter types.
-}
-\details{
-The function handles different parameter types:
-\itemize{
-  \item{Time-varying parameters}{Cases, growth rates, ETU/ISO occupancy, alerts}
-  \item{Projected parameters}{Future projections beyond observed data}
-  \item{Static parameters}{Single values for the entire time period}
-}
-
-Automatic transformations are applied based on parameter type:
-\itemize{
-  \item{Log-mean parameters}{Exponentiated to natural scale}
-\item{Log parameters}{Exponentiated (cases, alerts, etc.)}
-\item{Logit parameters}{Inverse logit transformation (CFR, proportions)}
-}
 }
 \examples{
 \dontrun{

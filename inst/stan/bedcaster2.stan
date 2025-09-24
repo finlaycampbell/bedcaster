@@ -187,11 +187,11 @@ parameters {
   real log_cases_intercept;
 
   // mean number of background of alerts per day (exponentially transformed)
-  // real alerts_background;
-  vector[n_alerts_background] alerts_background;  
+  // real alerts_background_log;
+  vector[n_alerts_background] alerts_background_log;
 
   // mean number of alerts per case
-  real alerts_per_case;
+  real alerts_per_case_log;
 
   // growth rates
   // vector[n_growth_rate] growth_rate;
@@ -412,6 +412,14 @@ transformed parameters {
   real prop_iso;
   prop_iso = inv_logit(prop_iso_logit);
 
+  // exp transform of number of alerts per case
+  real alerts_per_case;
+  alerts_per_case = exp(alerts_per_case_log);
+
+  // exp transform of number of background alerts
+  vector[n_alerts_background] alerts_background;
+  alerts_background = exp(alerts_background_log);
+
   {
 
   // declare local variables (admission and discharge densities)
@@ -436,14 +444,14 @@ transformed parameters {
     real alerts_bg;
     if (i <= n_obs) {
       cases_val = cases_reported[i];
-      alerts_bg = exp(alerts_background[alerts_background_ind[i]]);
+      alerts_bg = alerts_background[alerts_background_ind[i]];
     } else {
       cases_val = cases_projected_mu[i - n_obs];
-      alerts_bg = exp(alerts_background[alerts_background_ind[n_alerts_background]]);
+      alerts_bg = alerts_background[alerts_background_ind[n_alerts_background]];
     }
 
     // precompute alerts term
-    real alerts_val = cases_val * exp(alerts_per_case) + alerts_bg;
+    real alerts_val = cases_val * alerts_per_case + alerts_bg;
 
     for (j in 1:j_max) {
       int t = i + j;
@@ -512,10 +520,10 @@ model {
   prop_iso_logit ~ normal(prior_prop_iso[1], prior_prop_iso[2]);
 
   // prior on number of background alerts
-  alerts_background ~ normal(prior_alerts_background[1], prior_alerts_background[2]);
+  alerts_background_log ~ normal(prior_alerts_background[1], prior_alerts_background[2]);
 
   // prior on number of alerts per case
-  alerts_per_case ~ normal(prior_alerts_per_case[1], prior_alerts_per_case[2]);
+  alerts_per_case_log ~ normal(prior_alerts_per_case[1], prior_alerts_per_case[2]);
 
   // prior on overdispersion parameter of nbinom sampling distribution
   cases_overdisp_log ~ normal(2, 1);
@@ -620,14 +628,14 @@ generated quantities {
     real alerts_bg;
     if (i <= n_obs) {
       cases_val = cases_nowcast_mu[i];
-      alerts_bg = exp(alerts_background[alerts_background_ind[i]]);
+      alerts_bg = alerts_background[alerts_background_ind[i]];
     } else {
       cases_val = cases_projected_mu[i - n_obs];
-      alerts_bg = exp(alerts_background[alerts_background_ind[n_alerts_background]]);
+      alerts_bg = alerts_background[alerts_background_ind[n_alerts_background]];
     }
 
     // precompute alerts term
-    real alerts_val = cases_val * exp(alerts_per_case) + alerts_bg;
+    real alerts_val = cases_val * alerts_per_case + alerts_bg;
 
     for (j in 1:j_max) {
       int t = i + j;
@@ -684,6 +692,5 @@ generated quantities {
   etu_nowcast_sim = neg_binomial_2_rng(etu_nowcast_mu, etu_overdisp);
   alerts_nowcast_sim = neg_binomial_2_rng(alerts_nowcast_mu, alerts_overdisp);
   iso_nowcast_sim = neg_binomial_2_rng(iso_nowcast_mu, iso_overdisp);
-
 
 }

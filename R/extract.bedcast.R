@@ -36,37 +36,58 @@
 #' alerts_samples <- extract_stan("alerts_per_case", results)
 #' }
 #'
-#' @importFrom rstan extract
 #' @importFrom stats plogis
+#' @importFrom tibble tibble
 #' @export
-extract.bedcast <- function(bedcast, par, output = c("raw", "shaped")) {
-
-  # match arg
-  output <- match.arg(output)
+#' @method extract bedcast
+#'
+#'
+extract.bedcast <- function(bedcast, par) {
 
   # extract value
   out <- rstan::extract(bedcast$fit, pars = par)[[1]]
 
-  # transform if need be
-  if (grepl("logmean", par)) out <- exp(out)
-  if (par %in% c("alerts_per_case", "alerts_background")) out <- exp(out)
-  if (grepl("cfr", par) | grepl("prop_iso", par)) out <- plogis(out)
+  if (length(dim(out)) == 2) {
 
-  if (output == "shaped") {
-    if (length(dim(out)) == 2) {
-      out <- data.frame(
-        iter = rep(seq_len(nrow(out)), times = ncol(out)),
-        index = rep(seq_len(ncol(out)), each = nrow(out)),
-        value = c(out)
-      )
-    } else {
-      out <- data.frame(
-        iter = seq_along(out),
-        value = out
-      )
-    }
+    # match variable names to their indices
+    mtch <- list(
+      date_fit = c("reported", "truncated", "nowcast"),
+      date_proj = c("projected")
+    )
+
+    index <- names(mtch)[
+      map_lgl(mtch, ~ grepl(paste(.x, collapse = "|"), par))
+    ]
+
+    index <- if (length(index) == 0) seq_len(ncol(out)) else bedcast$data[[index]]
+
+    out <- tibble(
+      iter = rep(seq_len(nrow(out)), times = ncol(out)),
+      index = rep(index, each = nrow(out)),
+      value = c(out)
+    )
+
+  } else {
+
+    out <- tibble(iter = seq_along(out), value = out)
+
   }
 
   return(out)
 
+}
+
+
+#' Extract information from an object
+#'
+#' A generic function to extract information from objects.
+#'
+#' @param x An object to extract from.
+#' @param ... Further arguments passed to or from other methods.
+#'
+#' @return The result of extraction, depending on the class of \code{x}.
+#' @export
+#'
+extract <- function(x, ...) {
+  UseMethod("extract")
 }
