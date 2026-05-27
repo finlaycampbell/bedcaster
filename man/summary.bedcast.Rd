@@ -4,10 +4,10 @@
 \alias{summary.bedcast}
 \title{Summarize Stan model outputs}
 \usage{
-\method{summary}{bedcast}(x, par, alpha = 0.95, probs)
+\method{summary}{bedcast}(object, par, alpha = 0.95, probs, ...)
 }
 \arguments{
-\item{x}{A bedcast object.}
+\item{object}{A \code{bedcast} object from \code{\link{fit_bedcaster}}.}
 
 \item{par}{Character string specifying the parameter name to summarize.}
 
@@ -15,6 +15,8 @@
 
 \item{probs}{Numeric vector specifying the quantiles to calculate
 (default: c(0.25, 0.5, 0.75)), overrides specification of alpha.}
+
+\item{...}{Not used.}
 }
 \description{
 Extracts and summarizes parameter estimates from fitted Stan models with

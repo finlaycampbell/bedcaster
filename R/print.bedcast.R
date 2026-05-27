@@ -15,8 +15,15 @@ print.bedcast <- function(x, ...) {
   total_alerts <- sum(x$data$alerts_reported, na.rm = TRUE)
   total_iso    <- sum(x$data$iso_reported,    na.rm = TRUE)
 
+  growthrate_mode <- if (isTRUE(x$data$extrapolate_growthrate)) {
+    "extrapolated"
+  } else {
+    "held at last estimate"
+  }
+
   data_lines <- c(
     sprintf(" Days:      %d", n_days),
+    sprintf(" Growthrate:%s", growthrate_mode),
     sprintf(" Cases:     %d", total_cases),
     sprintf(" Deaths:    %d", total_deaths),
     sprintf(" ETU:       %d", total_etu),

@@ -27,6 +27,11 @@ Thumbs.db
 .idea/
 
 # R package specific
+.R_libs/
 inst/doc/
 vignettes/*.html
 vignettes/*.pdf
+src/*.o
+src/*.dll
+src/*.so
+src/*.dylib

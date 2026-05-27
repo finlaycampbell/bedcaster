@@ -7,7 +7,7 @@
 vis_bedcast_parameters(results, base_size = 12)
 }
 \arguments{
-\item{results}{A list containing the fitted Stan model results from fit_stan().}
+\item{results}{A \code{bedcast} object from \code{\link{fit_bedcaster}}.}
 
 \item{base_size}{Numeric base font size for the plot (default: 12).}
 }
@@ -18,34 +18,4 @@ A ggplot object showing parameter distributions with priors overlaid.
 Creates visualizations comparing posterior parameter distributions with their
 prior distributions. This helps assess how much the data informed the parameter
 estimates and whether the priors were appropriate.
-}
-\details{
-The visualization shows:
-\itemize{
-  \item Posterior distributions (green) representing parameter estimates informed by data
-  \item Prior distributions (grey) representing initial assumptions
-  \item Faceted plots for each parameter type
-  \item Proper scaling and transformation of parameters to their natural scales
-}
-
-Parameters visualized include:
-\itemize{
-  \item{Delay parameters}{Onset to ETU, ETU to survival/death, onset to isolation, lab turnaround}
-  \item{Case fatality rate}{In-hospital case fatality rate}
-  \item{Isolation parameters}{Proportion of alerts isolated}
-  \item{Alert parameters}{Alerts per case and background alerts}
-}
-}
-\examples{
-\dontrun{
-# Create parameter visualization
-p <- vis_parameters(results)
-
-# Customize base size
-p <- vis_parameters(results, base_size = 14)
-
-# Save the plot
-p \%>\% save_plot("parameters.png", width = 21, height = 15.3)
-}
-
 }

@@ -1,0 +1,9 @@
+^\.R_libs$
+^\.Rcheck$
+^src/.*\.o$
+^src/.*\.dll$
+^.*\.Rproj$
+^\.Rproj\.user$
+^outputs/
+^figures/
+^data/

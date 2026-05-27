@@ -28,6 +28,14 @@ functions {
     
   }
 
+  // Floor NB location parameters (strict positivity for lpmf/rng).
+  real mfr(real x) {
+    return fmax(x, 1e-9);
+  }
+
+  vector mfrv(vector x) {
+    return fmax(x, rep_vector(1e-9, rows(x)));
+  }
 
 }
 
@@ -130,8 +138,11 @@ data {
   // spline matrix for growth rate fitting
   matrix[n_spline_param, n_obs] spline;
 
-  // asymptote for growth rate  
+  // asymptote for growth rate (used when extrapolate_growthrate == 1)
   vector[n_proj] growthrate_asymptote_weight;
+
+  // 0 = hold last estimated growth rate; 1 = slope + asymptote extrapolation
+  int<lower = 0, upper = 1> extrapolate_growthrate;
 
 }
 
@@ -235,16 +246,23 @@ transformed parameters {
   if(growthrate_slope_weight > 1) growthrate_slope_weight = 1;
   if(growthrate_slope_weight < 0) growthrate_slope_weight = 0;
 
-  // minimum slope weighting of 0.2, maximum slope weighting of 1.0
-  growthrate_slope_weight = 0.2 + 0.8*growthrate_slope_weight;
+  if (extrapolate_growthrate == 0) {
+    // hold growth rate at the most recent estimated value
+    for (i in 1:n_proj) {
+      growthrate_projected[i] = growthrate_reported[n_obs];
+    }
+  } else {
+    // minimum slope weighting of 0.2, maximum slope weighting of 1.0
+    growthrate_slope_weight = 0.2 + 0.8 * growthrate_slope_weight;
 
-  // extrapolate growth rate for projection using slope and slope weighting
-  growthrate_projected = growthrate_reported[n_obs] +
-    projection_sq * growthrate_slope * growthrate_slope_weight;
+    // extrapolate growth rate for projection using slope and slope weighting
+    growthrate_projected = growthrate_reported[n_obs] +
+      projection_sq * growthrate_slope * growthrate_slope_weight;
 
-  // add growth rate asymptote (weighted mean of extrapolation and asymptote)
-  growthrate_projected = growthrate_asymptote * growthrate_asymptote_weight +
-    (1 - growthrate_asymptote_weight).*growthrate_projected;	  
+    // add growth rate asymptote (weighted mean of extrapolation and asymptote)
+    growthrate_projected = growthrate_asymptote * growthrate_asymptote_weight +
+      (1 - growthrate_asymptote_weight) .* growthrate_projected;
+  }
 
   }
 
@@ -289,9 +307,9 @@ transformed parameters {
     if(log_cases_projected_mu[i] < -10) log_cases_projected_mu[i] = -10;
   }
 
-  cases_truncated_mu = exp(log_cases_truncated_mu);
-  cases_nowcast_mu = exp(log_cases_nowcast_mu);
-  cases_projected_mu = exp(log_cases_projected_mu);  
+  cases_truncated_mu = mfrv(exp(log_cases_truncated_mu));
+  cases_nowcast_mu = mfrv(exp(log_cases_nowcast_mu));
+  cases_projected_mu = mfrv(exp(log_cases_projected_mu));
 
   }
 
@@ -395,7 +413,11 @@ transformed parameters {
   // reported deaths are nowcast deaths scaled by proportion observed
   for(i in 1:n_obs) deaths_truncated_mu[i] = deaths_nowcast_mu[i] *
     prop_deaths_reported[i];
-    
+
+  deaths_nowcast_mu = mfrv(deaths_nowcast_mu);
+  deaths_projected_mu = mfrv(deaths_projected_mu);
+  deaths_truncated_mu = mfrv(deaths_truncated_mu);
+
   }
   
 
@@ -469,9 +491,9 @@ transformed parameters {
   etu_truncated_mu = cumulative_sum(etu_admission - etu_discharge);
   iso_truncated_mu = cumulative_sum(iso_admission - iso_discharge);
 
-  for(i in 1:(n_tot)) if(etu_truncated_mu[i] == 0) etu_truncated_mu[i] = 0.00001;
-  for(i in 1:(n_tot)) if(alerts_truncated_mu[i] == 0) alerts_truncated_mu[i] = 0.00001;
-  for(i in 1:(n_tot)) if(iso_truncated_mu[i] <= 0) iso_truncated_mu[i] = 0.00001;
+  etu_truncated_mu = mfrv(etu_truncated_mu);
+  alerts_truncated_mu = mfrv(alerts_truncated_mu);
+  iso_truncated_mu = mfrv(iso_truncated_mu);
 
   }
 
@@ -574,23 +596,13 @@ generated quantities {
   int deaths_truncated_sim[n_obs];
   int deaths_nowcast_sim[n_obs];
 
-  // generate sample of fitted cases
-  cases_truncated_sim = neg_binomial_2_rng(cases_truncated_mu, cases_overdisp);
+  cases_truncated_sim = neg_binomial_2_rng(mfrv(cases_truncated_mu), cases_overdisp);
+  cases_nowcast_sim = neg_binomial_2_rng(mfrv(cases_nowcast_mu), cases_overdisp);
+  cases_projected_sim = neg_binomial_2_rng(mfrv(cases_projected_mu), cases_overdisp);
 
-  // generate sample of fitted cases
-  cases_nowcast_sim = neg_binomial_2_rng(cases_nowcast_mu, cases_overdisp);
-
-  // generate sample of projected cases
-  cases_projected_sim = neg_binomial_2_rng(cases_projected_mu, cases_overdisp);
-
-  // generate sample of fitted deaths
-  deaths_truncated_sim = neg_binomial_2_rng(deaths_truncated_mu, deaths_overdisp);
-
-  // generate sample of fitted deaths
-  deaths_nowcast_sim = neg_binomial_2_rng(deaths_nowcast_mu, deaths_overdisp);
-
-  // generate sample of projected deaths
-  deaths_projected_sim = neg_binomial_2_rng(deaths_projected_mu, deaths_overdisp);
+  deaths_truncated_sim = neg_binomial_2_rng(mfrv(deaths_truncated_mu), deaths_overdisp);
+  deaths_nowcast_sim = neg_binomial_2_rng(mfrv(deaths_nowcast_mu), deaths_overdisp);
+  deaths_projected_sim = neg_binomial_2_rng(mfrv(deaths_projected_mu), deaths_overdisp);
 
 
   // NOWCAST ALERTS AND HOSPITAL OCCUPANCY
@@ -660,13 +672,9 @@ generated quantities {
     iso_admission_nowcast_mu - iso_discharge_nowcast_mu
   );
 
-  // correct small values
-  for(i in 1:(n_tot))
-    if(etu_nowcast_mu[i] == 0) etu_nowcast_mu[i] = 0.00001;
-  for(i in 1:(n_tot)) if(alerts_nowcast_mu[i] == 0)
-    alerts_nowcast_mu[i] = 0.00001;
-  for(i in 1:(n_tot)) if(iso_nowcast_mu[i] <= 0)
-    iso_nowcast_mu[i] = 0.00001;
+  etu_nowcast_mu = mfrv(etu_nowcast_mu);
+  alerts_nowcast_mu = mfrv(alerts_nowcast_mu);
+  iso_nowcast_mu = mfrv(iso_nowcast_mu);
 
   }
 
@@ -685,12 +693,12 @@ generated quantities {
   int alerts_nowcast_sim[n_tot];      
   int iso_nowcast_sim[n_tot];
 
-  etu_truncated_sim = neg_binomial_2_rng(etu_truncated_mu, etu_overdisp);
-  alerts_truncated_sim = neg_binomial_2_rng(alerts_truncated_mu, alerts_overdisp);
-  iso_truncated_sim = neg_binomial_2_rng(iso_truncated_mu, iso_overdisp);
+  etu_truncated_sim = neg_binomial_2_rng(mfrv(etu_truncated_mu), etu_overdisp);
+  alerts_truncated_sim = neg_binomial_2_rng(mfrv(alerts_truncated_mu), alerts_overdisp);
+  iso_truncated_sim = neg_binomial_2_rng(mfrv(iso_truncated_mu), iso_overdisp);
 
-  etu_nowcast_sim = neg_binomial_2_rng(etu_nowcast_mu, etu_overdisp);
-  alerts_nowcast_sim = neg_binomial_2_rng(alerts_nowcast_mu, alerts_overdisp);
-  iso_nowcast_sim = neg_binomial_2_rng(iso_nowcast_mu, iso_overdisp);
+  etu_nowcast_sim = neg_binomial_2_rng(mfrv(etu_nowcast_mu), etu_overdisp);
+  alerts_nowcast_sim = neg_binomial_2_rng(mfrv(alerts_nowcast_mu), alerts_overdisp);
+  iso_nowcast_sim = neg_binomial_2_rng(mfrv(iso_nowcast_mu), iso_overdisp);
 
 }

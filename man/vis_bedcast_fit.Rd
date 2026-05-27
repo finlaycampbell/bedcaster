@@ -12,7 +12,7 @@ vis_bedcast_fit(
 )
 }
 \arguments{
-\item{results}{A list containing the fitted Stan model results from fit_stan().}
+\item{results}{A \code{bedcast} object from \code{\link{fit_bedcaster}}.}
 
 \item{ylim_factor}{Numeric factor for controlling y-axis limits to prevent
 extreme values from dominating the plot (default: 4).}

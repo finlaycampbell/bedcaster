@@ -22,7 +22,8 @@ transformations. This is used to properly normalize prior densities when
 visualizing parameter distributions.
 }
 \details{
-This function is used internally by vis_parameters() to properly
+This function is used internally by \code{vis_bedcast_parameters()}
+to properly
 normalize prior distributions when they are transformed to different scales.
 The calculation involves:
 \itemize{

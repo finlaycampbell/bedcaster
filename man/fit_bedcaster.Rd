@@ -7,16 +7,19 @@
 fit_bedcaster(
   df,
   as_of,
-  prior_onset_to_reporting = c(0, 5, 0, 5),
-  prior_onset_to_etu = c(0, 5, 0, 5),
-  prior_etu_to_survival = c(0, 5, 0, 5),
-  prior_etu_to_death = c(0, 5, 0, 5),
-  prior_onset_to_iso = c(0, 5, 0, 5),
-  prior_iso_to_release = c(0, 5, 0, 5),
+  prior_onset_to_reporting = c(meanlog.mean = 0, sdlog.mean = 5),
+  prior_onset_to_etu = c(meanlog.mean = 0, meanlog.sd = 5, sdlog.mean = 0, sdlog.sd = 5),
+  prior_etu_to_survival = c(meanlog.mean = 0, meanlog.sd = 5, sdlog.mean = 0, sdlog.sd =
+    5),
+  prior_etu_to_death = c(meanlog.mean = 0, meanlog.sd = 5, sdlog.mean = 0, sdlog.sd = 5),
+  prior_onset_to_iso = c(meanlog.mean = 0, meanlog.sd = 5, sdlog.mean = 0, sdlog.sd = 5),
+  prior_iso_to_release = c(meanlog.mean = 0, meanlog.sd = 5, sdlog.mean = 0, sdlog.sd =
+    5),
   prior_cfr = c(qlogis(0.25), 0.25),
   prior_prop_iso = c(qlogis(0.8), 0.8),
   prior_alerts_background = c(log(50), 0.25),
   prior_alerts_per_case = c(log(10), 0.25),
+  extrapolate_growthrate = FALSE,
   growthrate_asymptote_time = 20,
   growthrate_asymptote_spread = 3,
   n_proj = 28,
@@ -29,39 +32,56 @@ fit_bedcaster(
 )
 }
 \arguments{
-\item{df}{A tibble containing the merged time series df.}
+\item{df}{A data frame with columns `date`, `cases`, `deaths`, `etu`,
+`alerts`, and `iso` (counts may be `NA` when not observed).}
 
-\item{as_of}{Date of dataset used for calculating reporting delay.}
+\item{as_of}{Date used to compute reporting-delay weights (typically the
+latest date in the surveillance system).}
 
-\item{prior_onset_to_reporting}{Numeric vector of length 2 specifying the prior
-for log-mean and log-sd of onset-to-reporting delay (default: c(log(5), 0.25)).}
+\item{prior_onset_to_reporting}{Named numeric vector passed to
+[distcrete::distcrete()] for the onset-to-reporting delay (`meanlog`,
+`sdlog` on the log scale).}
 
-\item{prior_onset_to_etu}{Numeric vector of length 2 specifying the prior
-for log-mean and log-sd of onset-to-ETU delay (default: c(log(5), 0.25)).}
+\item{prior_onset_to_etu}{Named length-4 vector giving Normal priors on
+onset-to-ETU log-mean and log-sd (`meanlog.mean`, `meanlog.sd`,
+`sdlog.mean`, `sdlog.sd`).}
 
-\item{prior_etu_to_survival}{Numeric vector of length 2 specifying the prior
-for log-mean and log-sd of ETU-to-survival delay (default: c(log(10), 0.25)).}
+\item{prior_etu_to_survival}{Same format as `prior_onset_to_etu` for
+hospitalisation-to-survival delay.}
 
-\item{prior_etu_to_death}{Numeric vector of length 2 specifying the prior
-for log-mean and log-sd of ETU-to-death delay (default: c(log(6), 0.25)).}
+\item{prior_etu_to_death}{Same format as `prior_onset_to_etu` for
+hospitalisation-to-death delay.}
 
-\item{prior_onset_to_iso}{Numeric vector of length 2 specifying the prior
-for log-mean and log-sd of onset-to-isolation delay (default: c(log(3), 0.25)).}
+\item{prior_onset_to_iso}{Same format as `prior_onset_to_etu` for
+onset-to-isolation delay.}
 
-\item{prior_iso_to_release}{Numeric vector of length 2 specifying the prior
-for log-mean and log-sd of isolation-to-release delay (default: c(log(3), 0.25)).}
+\item{prior_iso_to_release}{Same format as `prior_onset_to_etu` for
+isolation-to-release delay.}
 
-\item{prior_cfr}{Numeric vector of length 2 specifying the prior for
-case fatality rate (logit scale) (default: c(qlogis(0.25), 0.25)).}
+\item{prior_cfr}{Length-2 vector (mean, sd) for in-hospital case fatality
+rate on the logit scale.}
 
-\item{prior_prop_iso}{Numeric vector of length 2 specifying the prior for
-proportion of alerts isolated (logit scale) (default: c(qlogis(0.8), 0.8)).}
+\item{prior_prop_iso}{Length-2 vector (mean, sd) for the proportion of
+alerts isolated, on the logit scale.}
 
-\item{prior_alerts_background}{Numeric vector of length 2 specifying the prior
-for background alerts (log scale) (default: c(log(50), 0.25)).}
+\item{prior_alerts_background}{Length-2 vector (mean, sd) for background
+alerts on the log scale.}
 
-\item{prior_alerts_per_case}{Numeric vector of length 2 specifying the prior
-for alerts per case (log scale) (default: c(log(10), 0.25)).}
+\item{prior_alerts_per_case}{Length-2 vector (mean, sd) for alerts per
+case on the log scale.}
+
+\item{extrapolate_growthrate}{If \code{FALSE} (default), projected growth
+rates are held at the last estimated value over the fit period. If
+\code{TRUE}, growth rates are extrapolated using recent slope and an
+asymptote (see \code{growthrate_asymptote_time}).}
+
+\item{growthrate_asymptote_time}{Day of projection at which the growth-rate
+asymptote reaches half weight (only used when \code{extrapolate_growthrate
+= TRUE}).}
+
+\item{growthrate_asymptote_spread}{Spread of the logistic weighting for the
+growth-rate asymptote (only used when \code{extrapolate_growthrate =
+TRUE}).}
 
 \item{n_proj}{Integer specifying number of days to project ahead
 (default: 28).}
@@ -77,13 +97,16 @@ alerts estimation (default: 14).}
 \item{max_delay}{The maximum number of days for a delay.}
 
 \item{n_chains}{Integer specifying number of MCMC chains (default: 1).}
+
+\item{n_cores}{Number of CPU cores for parallel sampling (default: 1).}
 }
 \value{
-A list containing:
-\itemize{
-  \item{stan_fit}{The fitted Stan model object}
-  \item{df}{The processed data used for fitting, including original data}
-}
+An object of class `"bedcast"` with elements:
+  \describe{
+    \item{`fit`}{A `stanfit` object from [rstan::sampling()].}
+    \item{`data`}{Stan input data plus dates and reporting series used
+      in plots.}
+  }
 }
 \description{
 Fits a Bayesian model using Stan to forecast ETU and isolation bed occupancy

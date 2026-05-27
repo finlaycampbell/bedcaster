@@ -11,7 +11,8 @@
 #'
 #' @return A numeric value representing the area under the curve after transformation.
 #'
-#' @details This function is used internally by vis_parameters() to properly
+#' @details This function is used internally by \code{vis_bedcast_parameters()}
+#' to properly
 #' normalize prior distributions when they are transformed to different scales.
 #' The calculation involves:
 #' \itemize{

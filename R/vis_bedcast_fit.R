@@ -5,7 +5,7 @@
 #' occupancy. The plot includes credible intervals and distinguishes between
 #' reported and projected data.
 #'
-#' @param results A list containing the fitted Stan model results from fit_stan().
+#' @param results A \code{bedcast} object from \code{\link{fit_bedcaster}}.
 #' @param ylim_factor Numeric factor for controlling y-axis limits to prevent
 #'   extreme values from dominating the plot (default: 4).
 #' @param base_size Numeric base font size for the plot (default: 12).
@@ -14,17 +14,19 @@
 #'
 #' @return A ggplot object showing the model fit visualization.
 #'
-#' @importFrom dplyr bind_rows group_by summarise mutate filter
-#' @importFrom purrr map_dfr
-#' @importFrom purrr map2_dfr imap_dfr
+#' @importFrom dplyr bind_rows group_by summarise mutate filter transmute
+#' @importFrom purrr map_dfr map imap_dfr set_names pluck as_vector
 #' @importFrom ggplot2 ggplot aes geom_col geom_ribbon geom_line geom_vline
-#' @importFrom ggplot2 scale_linetype scale_alpha_discrete facet_wrap labs
+#' @importFrom ggplot2 scale_linetype scale_alpha_continuous facet_wrap labs
 #' @importFrom ggplot2 scale_x_date scale_y_continuous theme_minimal theme
-#' @importFrom ggplot2 element_rect guide_legend
+#' @importFrom ggplot2 element_rect guide_legend guides labeller
 #' @importFrom glue glue
 #' @importFrom tibble tibble
-#' @importFrom forcats fct_rev
-#' @importFrom scales percent
+#' @importFrom forcats fct_inorder fct_rev
+#' @importFrom tidyr drop_na
+#' @importFrom stringr str_split
+#' @importFrom stats quantile
+#' @importFrom utils tail
 #' @export
 #'
 vis_bedcast_fit <- function(results,
@@ -34,13 +36,39 @@ vis_bedcast_fit <- function(results,
 
   # function to manually remove too large values
   set_max <- function(vals, max_val) {
+    if (!is.finite(max_val) || max_val <= 0) {
+      return(vals)
+    }
     limit <- max_val * ylim_factor
     replace(vals, !is.na(vals) & vals > limit, limit)
   }
 
-  # get maximum reported for a given variable
+  # anchor for ylim_factor capping
   get_max <- function(var) {
-    max(filter(data, what == var)$reported, na.rm = TRUE)
+    reported <- dplyr::filter(data, what == var)$reported
+    reported_max <- max(reported, na.rm = TRUE)
+    if (is.finite(reported_max) && reported_max > 0) {
+      return(reported_max)
+    }
+
+    # no reported data: anchor on latest central estimate in fit window
+    sim_par <- paste0(var, "_nowcast_sim")
+    sim_med <- summary(results, sim_par, probs = 0.5)
+    fit_dates <- results$data$date_fit
+    sim_fit <- sim_med[sim_med$index %in% fit_dates, , drop = FALSE]
+
+    if (nrow(sim_fit) == 0) {
+      return(max(sim_med$q_0.5, na.rm = TRUE))
+    }
+
+    latest_idx <- which.max(sim_fit$index)
+    anchor <- sim_fit$q_0.5[latest_idx]
+
+    if (!is.finite(anchor) || anchor <= 0) {
+      anchor <- max(sim_fit$q_0.5, na.rm = TRUE)
+    }
+
+    anchor
   }
 
   # define fitting variables
@@ -67,7 +95,7 @@ vis_bedcast_fit <- function(results,
     ),
     .id = "what"
   ) |>
-    mutate(what = fct_inorder(what))
+    mutate(what = forcats::fct_inorder(what))
 
   # extract quantiles for ribbons
   ribbons <- map_dfr(
@@ -89,7 +117,7 @@ vis_bedcast_fit <- function(results,
           upper = values[[.y + 3]],
           inflated = str_split(varname, "_")[[1]][2] != "truncated"
         )
-      ) %>%
+      ) |>
         mutate(
           upper = set_max(upper, get_max(var)),
           lower = replace(
@@ -138,7 +166,7 @@ vis_bedcast_fit <- function(results,
     ) +
     geom_line(
       data = mids,
-      aes(index, mid, linetype = fct_rev(factor(as.numeric(inflated)))),
+      aes(index, mid, linetype = forcats::fct_rev(factor(as.numeric(inflated)))),
       color = "black",
       linewidth = 1
     ) +

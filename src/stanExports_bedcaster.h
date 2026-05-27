@@ -27,382 +27,380 @@ namespace model_bedcaster_namespace {
 using stan::model::model_base_crtp;
 using namespace stan::math;
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 391> locations_array__ =
+static constexpr std::array<const char*, 393> locations_array__ =
   {" (found before start of program)",
-  " (in 'string', line 114, column 2 to column 17)",
-  " (in 'string', line 116, column 2 to column 22)",
-  " (in 'string', line 118, column 2 to column 28)",
-  " (in 'string', line 119, column 2 to column 34)",
-  " (in 'string', line 121, column 2 to column 31)",
-  " (in 'string', line 122, column 2 to column 37)",
-  " (in 'string', line 124, column 2 to column 28)",
-  " (in 'string', line 125, column 2 to column 34)",
+  " (in 'string', line 123, column 2 to column 17)",
+  " (in 'string', line 125, column 2 to column 22)",
   " (in 'string', line 127, column 2 to column 28)",
   " (in 'string', line 128, column 2 to column 34)",
-  " (in 'string', line 130, column 2 to column 30)",
-  " (in 'string', line 131, column 2 to column 36)",
-  " (in 'string', line 134, column 2 to column 26)",
-  " (in 'string', line 135, column 2 to column 27)",
-  " (in 'string', line 136, column 2 to column 24)",
-  " (in 'string', line 137, column 2 to column 27)",
-  " (in 'string', line 138, column 2 to column 24)",
-  " (in 'string', line 140, column 2 to column 27)",
-  " (in 'string', line 143, column 2 to column 52)",
-  " (in 'string', line 145, column 2 to column 27)",
-  " (in 'string', line 149, column 2 to column 42)",
-  " (in 'string', line 156, column 2 to column 36)",
-  " (in 'string', line 158, column 2 to column 38)",
-  " (in 'string', line 189, column 2 to column 35)",
-  " (in 'string', line 190, column 2 to column 33)",
-  " (in 'string', line 191, column 2 to column 36)",
-  " (in 'string', line 224, column 2 to column 33)",
-  " (in 'string', line 225, column 2 to column 36)",
-  " (in 'string', line 226, column 2 to column 33)",
-  " (in 'string', line 228, column 2 to column 38)",
-  " (in 'string', line 229, column 2 to column 35)",
-  " (in 'string', line 231, column 2 to column 33)",
-  " (in 'string', line 232, column 2 to column 35)",
-  " (in 'string', line 234, column 2 to column 37)",
-  " (in 'string', line 236, column 2 to column 11)",
-  " (in 'string', line 278, column 2 to column 36)",
-  " (in 'string', line 279, column 2 to column 34)",
-  " (in 'string', line 280, column 2 to column 37)",
-  " (in 'string', line 307, column 2 to column 36)",
-  " (in 'string', line 308, column 2 to column 33)",
-  " (in 'string', line 309, column 2 to column 33)",
-  " (in 'string', line 311, column 2 to column 16)",
-  " (in 'string', line 314, column 2 to column 23)",
-  " (in 'string', line 317, column 2 to column 48)",
-  " (in 'string', line 367, column 2 to column 22)",
-  " (in 'string', line 368, column 2 to column 23)",
-  " (in 'string', line 369, column 2 to column 20)",
-  " (in 'string', line 370, column 2 to column 23)",
-  " (in 'string', line 371, column 2 to column 20)",
-  " (in 'string', line 431, column 2 to column 34)",
-  " (in 'string', line 432, column 2 to column 33)",
-  " (in 'string', line 433, column 2 to column 31)",
-  " (in 'string', line 435, column 2 to column 35)",
-  " (in 'string', line 436, column 2 to column 34)",
-  " (in 'string', line 437, column 2 to column 32)",
-  " (in 'string', line 453, column 2 to column 31)",
+  " (in 'string', line 130, column 2 to column 31)",
+  " (in 'string', line 131, column 2 to column 37)",
+  " (in 'string', line 133, column 2 to column 28)",
+  " (in 'string', line 134, column 2 to column 34)",
+  " (in 'string', line 136, column 2 to column 28)",
+  " (in 'string', line 137, column 2 to column 34)",
+  " (in 'string', line 139, column 2 to column 30)",
+  " (in 'string', line 140, column 2 to column 36)",
+  " (in 'string', line 143, column 2 to column 26)",
+  " (in 'string', line 144, column 2 to column 27)",
+  " (in 'string', line 145, column 2 to column 24)",
+  " (in 'string', line 146, column 2 to column 27)",
+  " (in 'string', line 147, column 2 to column 24)",
+  " (in 'string', line 149, column 2 to column 27)",
+  " (in 'string', line 152, column 2 to column 52)",
+  " (in 'string', line 154, column 2 to column 27)",
+  " (in 'string', line 158, column 2 to column 42)",
+  " (in 'string', line 165, column 2 to column 36)",
+  " (in 'string', line 167, column 2 to column 38)",
+  " (in 'string', line 205, column 2 to column 35)",
+  " (in 'string', line 206, column 2 to column 33)",
+  " (in 'string', line 207, column 2 to column 36)",
+  " (in 'string', line 240, column 2 to column 33)",
+  " (in 'string', line 241, column 2 to column 36)",
+  " (in 'string', line 242, column 2 to column 33)",
+  " (in 'string', line 244, column 2 to column 38)",
+  " (in 'string', line 245, column 2 to column 35)",
+  " (in 'string', line 247, column 2 to column 33)",
+  " (in 'string', line 248, column 2 to column 35)",
+  " (in 'string', line 250, column 2 to column 37)",
+  " (in 'string', line 252, column 2 to column 11)",
+  " (in 'string', line 294, column 2 to column 36)",
+  " (in 'string', line 295, column 2 to column 34)",
+  " (in 'string', line 296, column 2 to column 37)",
+  " (in 'string', line 325, column 2 to column 36)",
+  " (in 'string', line 326, column 2 to column 33)",
+  " (in 'string', line 327, column 2 to column 33)",
+  " (in 'string', line 329, column 2 to column 16)",
+  " (in 'string', line 332, column 2 to column 23)",
+  " (in 'string', line 335, column 2 to column 48)",
+  " (in 'string', line 385, column 2 to column 22)",
+  " (in 'string', line 386, column 2 to column 23)",
+  " (in 'string', line 387, column 2 to column 20)",
+  " (in 'string', line 388, column 2 to column 23)",
+  " (in 'string', line 389, column 2 to column 20)",
+  " (in 'string', line 449, column 2 to column 34)",
+  " (in 'string', line 450, column 2 to column 33)",
+  " (in 'string', line 451, column 2 to column 31)",
+  " (in 'string', line 453, column 2 to column 35)",
   " (in 'string', line 454, column 2 to column 34)",
-  " (in 'string', line 455, column 2 to column 31)",
-  " (in 'string', line 515, column 2 to column 31)",
-  " (in 'string', line 516, column 2 to column 34)",
-  " (in 'string', line 517, column 2 to column 31)",
-  " (in 'string', line 519, column 2 to column 29)",
-  " (in 'string', line 520, column 2 to column 32)",
-  " (in 'string', line 521, column 2 to column 29)",
-  " (in 'string', line 162, column 2 to column 24)",
-  " (in 'string', line 163, column 2 to column 31)",
-  " (in 'string', line 164, column 2 to column 42)",
-  " (in 'string', line 165, column 2 to column 41)",
-  " (in 'string', line 166, column 2 to column 35)",
-  " (in 'string', line 168, column 2 to column 58)",
-  " (in 'string', line 170, column 2 to column 79)",
-  " (in 'string', line 172, column 2 to line 174, column 64)",
-  " (in 'string', line 175, column 34 to column 62)",
-  " (in 'string', line 175, column 2 to column 62)",
-  " (in 'string', line 176, column 34 to column 62)",
-  " (in 'string', line 176, column 2 to column 62)",
-  " (in 'string', line 178, column 2 to column 62)",
-  " (in 'string', line 180, column 2 to line 181, column 63)",
-  " (in 'string', line 183, column 2 to line 184, column 60)",
-  " (in 'string', line 159, column 2 to line 185, column 3)",
-  " (in 'string', line 194, column 9 to column 14)",
-  " (in 'string', line 194, column 2 to column 39)",
-  " (in 'string', line 195, column 9 to column 14)",
-  " (in 'string', line 195, column 2 to column 37)",
-  " (in 'string', line 196, column 9 to column 15)",
-  " (in 'string', line 196, column 2 to column 40)",
-  " (in 'string', line 198, column 2 to column 73)",
-  " (in 'string', line 200, column 2 to column 83)",
-  " (in 'string', line 202, column 4 to column 81)",
-  " (in 'string', line 203, column 4 to column 85)",
-  " (in 'string', line 201, column 20 to line 204, column 3)",
-  " (in 'string', line 201, column 2 to line 204, column 3)",
-  " (in 'string', line 207, column 39 to column 70)",
-  " (in 'string', line 207, column 4 to column 70)",
-  " (in 'string', line 208, column 37 to column 66)",
-  " (in 'string', line 208, column 4 to column 66)",
-  " (in 'string', line 206, column 20 to line 209, column 3)",
-  " (in 'string', line 206, column 2 to line 209, column 3)",
-  " (in 'string', line 211, column 2 to column 84)",
-  " (in 'string', line 213, column 4 to column 86)",
-  " (in 'string', line 214, column 39 to column 70)",
-  " (in 'string', line 214, column 4 to column 70)",
-  " (in 'string', line 215, column 40 to column 72)",
-  " (in 'string', line 215, column 4 to column 72)",
-  " (in 'string', line 212, column 21 to line 216, column 3)",
-  " (in 'string', line 212, column 2 to line 216, column 3)",
-  " (in 'string', line 217, column 2 to column 51)",
-  " (in 'string', line 218, column 2 to column 47)",
-  " (in 'string', line 219, column 2 to column 51)",
-  " (in 'string', line 192, column 2 to line 220, column 3)",
-  " (in 'string', line 237, column 2 to column 29)",
-  " (in 'string', line 242, column 4 to line 244, column 6)",
-  " (in 'string', line 245, column 4 to line 247, column 6)",
-  " (in 'string', line 248, column 4 to line 250, column 6)",
-  " (in 'string', line 251, column 4 to line 253, column 6)",
-  " (in 'string', line 254, column 4 to line 256, column 6)",
-  " (in 'string', line 241, column 24 to line 257, column 3)",
-  " (in 'string', line 241, column 2 to line 257, column 3)",
-  " (in 'string', line 259, column 2 to column 51)",
-  " (in 'string', line 260, column 2 to column 60)",
-  " (in 'string', line 261, column 2 to column 51)",
-  " (in 'string', line 262, column 2 to column 51)",
-  " (in 'string', line 263, column 2 to column 57)",
-  " (in 'string', line 265, column 2 to column 78)",
-  " (in 'string', line 266, column 2 to column 78)",
-  " (in 'string', line 268, column 2 to column 72)",
-  " (in 'string', line 269, column 2 to column 63)",
-  " (in 'string', line 271, column 2 to column 76)",
-  " (in 'string', line 272, column 2 to column 63)",
-  " (in 'string', line 238, column 2 to line 273, column 3)",
-  " (in 'string', line 282, column 2 to column 52)",
-  " (in 'string', line 283, column 2 to column 50)",
-  " (in 'string', line 284, column 2 to column 53)",
-  " (in 'string', line 285, column 2 to column 15)",
-  " (in 'string', line 291, column 8 to column 66)",
-  " (in 'string', line 289, column 8 to column 58)",
-  " (in 'string', line 288, column 6 to line 291, column 66)",
-  " (in 'string', line 295, column 8 to column 50)",
-  " (in 'string', line 294, column 11 to line 295, column 50)",
-  " (in 'string', line 293, column 8 to column 42)",
-  " (in 'string', line 292, column 6 to line 295, column 50)",
-  " (in 'string', line 287, column 26 to line 296, column 5)",
-  " (in 'string', line 287, column 4 to line 296, column 5)",
-  " (in 'string', line 286, column 20 to line 297, column 3)",
-  " (in 'string', line 286, column 2 to line 297, column 3)",
-  " (in 'string', line 299, column 20 to line 300, column 28)",
-  " (in 'string', line 299, column 2 to line 300, column 28)",
-  " (in 'string', line 281, column 2 to line 302, column 3)",
-  " (in 'string', line 312, column 2 to column 39)",
-  " (in 'string', line 315, column 2 to column 45)",
-  " (in 'string', line 318, column 2 to column 49)",
-  " (in 'string', line 321, column 9 to column 14)",
-  " (in 'string', line 321, column 2 to column 30)",
-  " (in 'string', line 322, column 9 to column 14)",
-  " (in 'string', line 322, column 2 to column 30)",
-  " (in 'string', line 323, column 9 to column 14)",
-  " (in 'string', line 323, column 2 to column 30)",
-  " (in 'string', line 324, column 9 to column 14)",
-  " (in 'string', line 324, column 2 to column 30)",
-  " (in 'string', line 326, column 2 to column 45)",
-  " (in 'string', line 327, column 2 to column 39)",
-  " (in 'string', line 328, column 2 to column 39)",
-  " (in 'string', line 329, column 2 to column 39)",
+  " (in 'string', line 455, column 2 to column 32)",
+  " (in 'string', line 465, column 2 to column 31)",
+  " (in 'string', line 466, column 2 to column 34)",
+  " (in 'string', line 467, column 2 to column 31)",
+  " (in 'string', line 523, column 2 to column 31)",
+  " (in 'string', line 524, column 2 to column 34)",
+  " (in 'string', line 525, column 2 to column 31)",
+  " (in 'string', line 527, column 2 to column 29)",
+  " (in 'string', line 528, column 2 to column 32)",
+  " (in 'string', line 529, column 2 to column 29)",
+  " (in 'string', line 171, column 2 to column 24)",
+  " (in 'string', line 172, column 2 to column 31)",
+  " (in 'string', line 173, column 2 to column 42)",
+  " (in 'string', line 174, column 2 to column 41)",
+  " (in 'string', line 175, column 2 to column 35)",
+  " (in 'string', line 177, column 2 to column 58)",
+  " (in 'string', line 179, column 2 to column 79)",
+  " (in 'string', line 181, column 2 to line 183, column 64)",
+  " (in 'string', line 184, column 34 to column 62)",
+  " (in 'string', line 184, column 2 to column 62)",
+  " (in 'string', line 185, column 34 to column 62)",
+  " (in 'string', line 185, column 2 to column 62)",
+  " (in 'string', line 193, column 4 to column 66)",
+  " (in 'string', line 195, column 4 to line 196, column 65)",
+  " (in 'string', line 198, column 4 to line 199, column 64)",
+  " (in 'string', line 191, column 9 to line 200, column 3)",
+  " (in 'string', line 189, column 6 to column 59)",
+  " (in 'string', line 188, column 24 to line 190, column 5)",
+  " (in 'string', line 188, column 4 to line 190, column 5)",
+  " (in 'string', line 186, column 35 to line 191, column 3)",
+  " (in 'string', line 186, column 2 to line 200, column 3)",
+  " (in 'string', line 168, column 2 to line 201, column 3)",
+  " (in 'string', line 210, column 9 to column 14)",
+  " (in 'string', line 210, column 2 to column 39)",
+  " (in 'string', line 211, column 9 to column 14)",
+  " (in 'string', line 211, column 2 to column 37)",
+  " (in 'string', line 212, column 9 to column 15)",
+  " (in 'string', line 212, column 2 to column 40)",
+  " (in 'string', line 214, column 2 to column 73)",
+  " (in 'string', line 216, column 2 to column 83)",
+  " (in 'string', line 218, column 4 to column 81)",
+  " (in 'string', line 219, column 4 to column 85)",
+  " (in 'string', line 217, column 20 to line 220, column 3)",
+  " (in 'string', line 217, column 2 to line 220, column 3)",
+  " (in 'string', line 223, column 39 to column 70)",
+  " (in 'string', line 223, column 4 to column 70)",
+  " (in 'string', line 224, column 37 to column 66)",
+  " (in 'string', line 224, column 4 to column 66)",
+  " (in 'string', line 222, column 20 to line 225, column 3)",
+  " (in 'string', line 222, column 2 to line 225, column 3)",
+  " (in 'string', line 227, column 2 to column 84)",
+  " (in 'string', line 229, column 4 to column 86)",
+  " (in 'string', line 230, column 39 to column 70)",
+  " (in 'string', line 230, column 4 to column 70)",
+  " (in 'string', line 231, column 40 to column 72)",
+  " (in 'string', line 231, column 4 to column 72)",
+  " (in 'string', line 228, column 21 to line 232, column 3)",
+  " (in 'string', line 228, column 2 to line 232, column 3)",
+  " (in 'string', line 233, column 2 to column 57)",
+  " (in 'string', line 234, column 2 to column 53)",
+  " (in 'string', line 235, column 2 to column 57)",
+  " (in 'string', line 208, column 2 to line 236, column 3)",
+  " (in 'string', line 253, column 2 to column 29)",
+  " (in 'string', line 258, column 4 to line 260, column 6)",
+  " (in 'string', line 261, column 4 to line 263, column 6)",
+  " (in 'string', line 264, column 4 to line 266, column 6)",
+  " (in 'string', line 267, column 4 to line 269, column 6)",
+  " (in 'string', line 270, column 4 to line 272, column 6)",
+  " (in 'string', line 257, column 24 to line 273, column 3)",
+  " (in 'string', line 257, column 2 to line 273, column 3)",
+  " (in 'string', line 275, column 2 to column 51)",
+  " (in 'string', line 276, column 2 to column 60)",
+  " (in 'string', line 277, column 2 to column 51)",
+  " (in 'string', line 278, column 2 to column 51)",
+  " (in 'string', line 279, column 2 to column 57)",
+  " (in 'string', line 281, column 2 to column 78)",
+  " (in 'string', line 282, column 2 to column 78)",
+  " (in 'string', line 284, column 2 to column 72)",
+  " (in 'string', line 285, column 2 to column 63)",
+  " (in 'string', line 287, column 2 to column 76)",
+  " (in 'string', line 288, column 2 to column 63)",
+  " (in 'string', line 254, column 2 to line 289, column 3)",
+  " (in 'string', line 298, column 2 to column 52)",
+  " (in 'string', line 299, column 2 to column 50)",
+  " (in 'string', line 300, column 2 to column 53)",
+  " (in 'string', line 301, column 2 to column 15)",
+  " (in 'string', line 307, column 8 to column 66)",
+  " (in 'string', line 305, column 8 to column 58)",
+  " (in 'string', line 304, column 6 to line 307, column 66)",
+  " (in 'string', line 311, column 8 to column 50)",
+  " (in 'string', line 310, column 11 to line 311, column 50)",
+  " (in 'string', line 309, column 8 to column 42)",
+  " (in 'string', line 308, column 6 to line 311, column 50)",
+  " (in 'string', line 303, column 26 to line 312, column 5)",
+  " (in 'string', line 303, column 4 to line 312, column 5)",
+  " (in 'string', line 302, column 20 to line 313, column 3)",
+  " (in 'string', line 302, column 2 to line 313, column 3)",
+  " (in 'string', line 315, column 20 to line 316, column 28)",
+  " (in 'string', line 315, column 2 to line 316, column 28)",
+  " (in 'string', line 317, column 2 to column 46)",
+  " (in 'string', line 318, column 2 to column 50)",
+  " (in 'string', line 319, column 2 to column 50)",
+  " (in 'string', line 297, column 2 to line 320, column 3)",
   " (in 'string', line 330, column 2 to column 39)",
-  " (in 'string', line 333, column 4 to column 66)",
-  " (in 'string', line 336, column 4 to column 19)",
-  " (in 'string', line 337, column 4 to column 19)",
-  " (in 'string', line 342, column 6 to column 48)",
-  " (in 'string', line 343, column 6 to column 80)",
-  " (in 'string', line 341, column 11 to line 344, column 5)",
-  " (in 'string', line 339, column 6 to column 36)",
-  " (in 'string', line 340, column 6 to column 62)",
-  " (in 'string', line 338, column 20 to line 341, column 5)",
-  " (in 'string', line 338, column 4 to line 344, column 5)",
-  " (in 'string', line 346, column 4 to column 62)",
-  " (in 'string', line 348, column 6 to column 20)",
-  " (in 'string', line 349, column 6 to column 56)",
-  " (in 'string', line 350, column 6 to column 83)",
-  " (in 'string', line 351, column 6 to column 61)",
-  " (in 'string', line 352, column 6 to column 68)",
-  " (in 'string', line 353, column 6 to column 72)",
-  " (in 'string', line 347, column 23 to line 354, column 5)",
-  " (in 'string', line 347, column 4 to line 354, column 5)",
-  " (in 'string', line 332, column 27 to line 355, column 3)",
-  " (in 'string', line 332, column 2 to line 355, column 3)",
-  " (in 'string', line 357, column 2 to column 67)",
-  " (in 'string', line 358, column 2 to column 67)",
-  " (in 'string', line 359, column 51 to column 81)",
-  " (in 'string', line 359, column 22 to column 81)",
-  " (in 'string', line 359, column 2 to column 81)",
-  " (in 'string', line 360, column 54 to column 87)",
-  " (in 'string', line 360, column 22 to column 87)",
-  " (in 'string', line 360, column 2 to column 87)",
-  " (in 'string', line 361, column 51 to column 81)",
-  " (in 'string', line 361, column 22 to column 81)",
-  " (in 'string', line 361, column 2 to column 81)",
-  " (in 'string', line 319, column 2 to line 362, column 3)",
-  " (in 'string', line 372, column 2 to column 43)",
-  " (in 'string', line 373, column 2 to column 45)",
-  " (in 'string', line 374, column 2 to column 39)",
-  " (in 'string', line 375, column 2 to column 45)",
-  " (in 'string', line 376, column 2 to column 39)",
-  " (in 'string', line 439, column 2 to column 79)",
-  " (in 'string', line 441, column 2 to column 75)",
-  " (in 'string', line 443, column 2 to column 79)",
-  " (in 'string', line 445, column 2 to column 82)",
-  " (in 'string', line 447, column 2 to column 78)",
-  " (in 'string', line 449, column 2 to column 82)",
-  " (in 'string', line 458, column 9 to column 14)",
-  " (in 'string', line 458, column 2 to column 41)",
-  " (in 'string', line 459, column 9 to column 14)",
-  " (in 'string', line 459, column 2 to column 41)",
-  " (in 'string', line 461, column 9 to column 14)",
-  " (in 'string', line 461, column 2 to column 41)",
-  " (in 'string', line 462, column 9 to column 14)",
-  " (in 'string', line 462, column 2 to column 41)",
-  " (in 'string', line 464, column 2 to column 43)",
-  " (in 'string', line 465, column 2 to column 50)",
-  " (in 'string', line 466, column 2 to column 50)",
-  " (in 'string', line 467, column 2 to column 50)",
-  " (in 'string', line 468, column 2 to column 50)",
-  " (in 'string', line 471, column 4 to column 66)",
-  " (in 'string', line 474, column 4 to column 19)",
-  " (in 'string', line 475, column 4 to column 19)",
-  " (in 'string', line 480, column 6 to column 48)",
-  " (in 'string', line 481, column 6 to column 80)",
-  " (in 'string', line 479, column 11 to line 482, column 5)",
-  " (in 'string', line 477, column 6 to column 38)",
-  " (in 'string', line 478, column 6 to column 62)",
-  " (in 'string', line 476, column 20 to line 479, column 5)",
-  " (in 'string', line 476, column 4 to line 482, column 5)",
-  " (in 'string', line 484, column 4 to column 62)",
-  " (in 'string', line 486, column 6 to column 20)",
-  " (in 'string', line 487, column 6 to column 65)",
-  " (in 'string', line 489, column 6 to line 490, column 51)",
-  " (in 'string', line 491, column 6 to column 59)",
-  " (in 'string', line 492, column 6 to column 77)",
-  " (in 'string', line 493, column 6 to column 81)",
-  " (in 'string', line 485, column 23 to line 495, column 5)",
-  " (in 'string', line 485, column 4 to line 495, column 5)",
-  " (in 'string', line 470, column 27 to line 496, column 3)",
-  " (in 'string', line 470, column 2 to line 496, column 3)",
-  " (in 'string', line 498, column 2 to line 500, column 4)",
-  " (in 'string', line 501, column 2 to line 503, column 4)",
-  " (in 'string', line 506, column 31 to column 59)",
-  " (in 'string', line 506, column 4 to column 59)",
-  " (in 'string', line 505, column 2 to line 506, column 59)",
-  " (in 'string', line 508, column 4 to column 35)",
-  " (in 'string', line 507, column 22 to line 508, column 35)",
-  " (in 'string', line 507, column 2 to line 508, column 35)",
-  " (in 'string', line 510, column 4 to column 32)",
-  " (in 'string', line 509, column 22 to line 510, column 32)",
-  " (in 'string', line 509, column 2 to line 510, column 32)",
-  " (in 'string', line 456, column 2 to line 511, column 3)",
-  " (in 'string', line 522, column 2 to column 73)",
-  " (in 'string', line 523, column 2 to column 82)",
-  " (in 'string', line 524, column 2 to column 73)",
-  " (in 'string', line 525, column 2 to column 69)",
-  " (in 'string', line 526, column 2 to column 78)",
-  " (in 'string', line 527, column 2 to column 69)",
-  " (in 'string', line 380, column 2 to column 78)",
-  " (in 'string', line 381, column 2 to column 73)",
-  " (in 'string', line 383, column 2 to column 87)",
-  " (in 'string', line 384, column 2 to column 82)",
-  " (in 'string', line 386, column 2 to column 78)",
-  " (in 'string', line 387, column 2 to column 73)",
-  " (in 'string', line 389, column 2 to column 78)",
-  " (in 'string', line 390, column 2 to column 73)",
-  " (in 'string', line 391, column 2 to column 84)",
-  " (in 'string', line 392, column 2 to column 79)",
-  " (in 'string', line 394, column 2 to column 43)",
-  " (in 'string', line 396, column 2 to column 64)",
-  " (in 'string', line 398, column 2 to column 89)",
-  " (in 'string', line 400, column 2 to column 83)",
-  " (in 'string', line 402, column 2 to column 36)",
-  " (in 'string', line 403, column 2 to column 34)",
-  " (in 'string', line 404, column 2 to column 37)",
-  " (in 'string', line 405, column 2 to column 34)",
-  " (in 'string', line 407, column 2 to column 30)",
-  " (in 'string', line 409, column 2 to column 70)",
-  " (in 'string', line 411, column 2 to column 73)",
-  " (in 'string', line 413, column 2 to line 416, column 6)",
-  " (in 'string', line 414, column 4 to line 416, column 6)",
-  " (in 'string', line 418, column 2 to line 421, column 6)",
-  " (in 'string', line 419, column 4 to line 421, column 6)",
-  " (in 'string', line 423, column 2 to line 426, column 6)",
-  " (in 'string', line 424, column 4 to line 426, column 6)",
-  " (in 'string', line 31, column 2 to column 23)",
-  " (in 'string', line 33, column 2 to column 24)",
-  " (in 'string', line 35, column 2 to column 27)",
-  " (in 'string', line 37, column 21 to column 26)",
-  " (in 'string', line 37, column 2 to column 28)",
-  " (in 'string', line 39, column 22 to column 27)",
-  " (in 'string', line 39, column 2 to column 29)",
-  " (in 'string', line 41, column 19 to column 24)",
-  " (in 'string', line 41, column 2 to column 26)",
-  " (in 'string', line 43, column 2 to column 12)",
-  " (in 'string', line 45, column 14 to column 19)",
-  " (in 'string', line 45, column 2 to column 21)",
-  " (in 'string', line 47, column 22 to column 27)",
-  " (in 'string', line 47, column 2 to column 29)",
-  " (in 'string', line 49, column 2 to column 15)",
-  " (in 'string', line 51, column 17 to column 25)",
-  " (in 'string', line 51, column 2 to column 27)",
-  " (in 'string', line 53, column 19 to column 24)",
-  " (in 'string', line 53, column 2 to column 26)",
-  " (in 'string', line 55, column 2 to column 12)",
-  " (in 'string', line 57, column 14 to column 19)",
-  " (in 'string', line 57, column 2 to column 21)",
-  " (in 'string', line 60, column 2 to column 31)",
-  " (in 'string', line 63, column 2 to column 34)",
-  " (in 'string', line 66, column 2 to column 31)",
-  " (in 'string', line 69, column 2 to column 31)",
-  " (in 'string', line 72, column 2 to column 33)",
-  " (in 'string', line 74, column 2 to column 22)",
-  " (in 'string', line 78, column 2 to column 27)",
-  " (in 'string', line 82, column 2 to column 36)",
-  " (in 'string', line 85, column 2 to column 34)",
-  " (in 'string', line 88, column 9 to column 14)",
-  " (in 'string', line 88, column 2 to column 40)",
-  " (in 'string', line 91, column 9 to column 14)",
-  " (in 'string', line 91, column 2 to column 37)",
-  " (in 'string', line 93, column 2 to column 26)",
-  " (in 'string', line 96, column 28 to column 33)",
-  " (in 'string', line 96, column 2 to column 35)",
-  " (in 'string', line 98, column 2 to column 21)",
-  " (in 'string', line 100, column 9 to column 23)",
-  " (in 'string', line 100, column 25 to column 30)",
-  " (in 'string', line 100, column 2 to column 39)",
-  " (in 'string', line 102, column 9 to column 15)",
-  " (in 'string', line 102, column 2 to column 45)",
-  " (in 'string', line 106, column 9 to column 15)",
-  " (in 'string', line 106, column 2 to column 31)",
-  " (in 'string', line 107, column 22 to column 43)",
-  " (in 'string', line 107, column 2 to column 43)",
-  " (in 'string', line 109, column 3 to column 13)",
-  " (in 'string', line 110, column 3 to column 26)",
-  " (in 'string', line 143, column 9 to column 28)",
-  " (in 'string', line 149, column 13 to column 27)",
-  " (in 'string', line 156, column 9 to column 14)",
-  " (in 'string', line 158, column 9 to column 15)",
-  " (in 'string', line 189, column 9 to column 14)",
-  " (in 'string', line 190, column 9 to column 14)",
-  " (in 'string', line 191, column 9 to column 15)",
-  " (in 'string', line 224, column 9 to column 18)",
-  " (in 'string', line 225, column 9 to column 18)",
-  " (in 'string', line 226, column 9 to column 18)",
-  " (in 'string', line 228, column 9 to column 18)",
-  " (in 'string', line 229, column 9 to column 18)",
-  " (in 'string', line 231, column 9 to column 18)",
-  " (in 'string', line 232, column 9 to column 18)",
-  " (in 'string', line 234, column 9 to column 18)",
-  " (in 'string', line 278, column 9 to column 14)",
-  " (in 'string', line 279, column 9 to column 14)",
-  " (in 'string', line 280, column 9 to column 15)",
-  " (in 'string', line 307, column 9 to column 14)",
-  " (in 'string', line 308, column 9 to column 14)",
-  " (in 'string', line 309, column 9 to column 14)",
-  " (in 'string', line 317, column 9 to column 28)",
-  " (in 'string', line 431, column 26 to column 32)",
-  " (in 'string', line 432, column 26 to column 31)",
-  " (in 'string', line 433, column 24 to column 29)",
-  " (in 'string', line 435, column 27 to column 33)",
-  " (in 'string', line 436, column 27 to column 32)",
-  " (in 'string', line 437, column 25 to column 30)",
-  " (in 'string', line 453, column 9 to column 14)",
-  " (in 'string', line 454, column 9 to column 14)",
-  " (in 'string', line 455, column 9 to column 14)",
-  " (in 'string', line 515, column 24 to column 29)",
-  " (in 'string', line 516, column 27 to column 32)",
-  " (in 'string', line 517, column 24 to column 29)",
-  " (in 'string', line 519, column 22 to column 27)",
-  " (in 'string', line 520, column 25 to column 30)",
-  " (in 'string', line 521, column 22 to column 27)",
+  " (in 'string', line 333, column 2 to column 45)",
+  " (in 'string', line 336, column 2 to column 49)",
+  " (in 'string', line 339, column 9 to column 14)",
+  " (in 'string', line 339, column 2 to column 30)",
+  " (in 'string', line 340, column 9 to column 14)",
+  " (in 'string', line 340, column 2 to column 30)",
+  " (in 'string', line 341, column 9 to column 14)",
+  " (in 'string', line 341, column 2 to column 30)",
+  " (in 'string', line 342, column 9 to column 14)",
+  " (in 'string', line 342, column 2 to column 30)",
+  " (in 'string', line 344, column 2 to column 45)",
+  " (in 'string', line 345, column 2 to column 39)",
+  " (in 'string', line 346, column 2 to column 39)",
+  " (in 'string', line 347, column 2 to column 39)",
+  " (in 'string', line 348, column 2 to column 39)",
+  " (in 'string', line 351, column 4 to column 66)",
+  " (in 'string', line 354, column 4 to column 19)",
+  " (in 'string', line 355, column 4 to column 19)",
+  " (in 'string', line 360, column 6 to column 48)",
+  " (in 'string', line 361, column 6 to column 80)",
+  " (in 'string', line 359, column 11 to line 362, column 5)",
+  " (in 'string', line 357, column 6 to column 36)",
+  " (in 'string', line 358, column 6 to column 62)",
+  " (in 'string', line 356, column 20 to line 359, column 5)",
+  " (in 'string', line 356, column 4 to line 362, column 5)",
+  " (in 'string', line 364, column 4 to column 62)",
+  " (in 'string', line 366, column 6 to column 20)",
+  " (in 'string', line 367, column 6 to column 56)",
+  " (in 'string', line 368, column 6 to column 83)",
+  " (in 'string', line 369, column 6 to column 61)",
+  " (in 'string', line 370, column 6 to column 68)",
+  " (in 'string', line 371, column 6 to column 72)",
+  " (in 'string', line 365, column 23 to line 372, column 5)",
+  " (in 'string', line 365, column 4 to line 372, column 5)",
+  " (in 'string', line 350, column 27 to line 373, column 3)",
+  " (in 'string', line 350, column 2 to line 373, column 3)",
+  " (in 'string', line 375, column 2 to column 67)",
+  " (in 'string', line 376, column 2 to column 67)",
+  " (in 'string', line 377, column 2 to column 44)",
+  " (in 'string', line 378, column 2 to column 50)",
+  " (in 'string', line 379, column 2 to column 44)",
+  " (in 'string', line 337, column 2 to line 380, column 3)",
+  " (in 'string', line 390, column 2 to column 43)",
+  " (in 'string', line 391, column 2 to column 45)",
+  " (in 'string', line 392, column 2 to column 39)",
+  " (in 'string', line 393, column 2 to column 45)",
+  " (in 'string', line 394, column 2 to column 39)",
+  " (in 'string', line 456, column 2 to column 85)",
+  " (in 'string', line 457, column 2 to column 81)",
+  " (in 'string', line 458, column 2 to column 85)",
+  " (in 'string', line 459, column 2 to column 88)",
+  " (in 'string', line 460, column 2 to column 84)",
+  " (in 'string', line 461, column 2 to column 88)",
+  " (in 'string', line 470, column 9 to column 14)",
+  " (in 'string', line 470, column 2 to column 41)",
+  " (in 'string', line 471, column 9 to column 14)",
+  " (in 'string', line 471, column 2 to column 41)",
+  " (in 'string', line 473, column 9 to column 14)",
+  " (in 'string', line 473, column 2 to column 41)",
+  " (in 'string', line 474, column 9 to column 14)",
+  " (in 'string', line 474, column 2 to column 41)",
+  " (in 'string', line 476, column 2 to column 43)",
+  " (in 'string', line 477, column 2 to column 50)",
+  " (in 'string', line 478, column 2 to column 50)",
+  " (in 'string', line 479, column 2 to column 50)",
+  " (in 'string', line 480, column 2 to column 50)",
+  " (in 'string', line 483, column 4 to column 66)",
+  " (in 'string', line 486, column 4 to column 19)",
+  " (in 'string', line 487, column 4 to column 19)",
+  " (in 'string', line 492, column 6 to column 48)",
+  " (in 'string', line 493, column 6 to column 80)",
+  " (in 'string', line 491, column 11 to line 494, column 5)",
+  " (in 'string', line 489, column 6 to column 38)",
+  " (in 'string', line 490, column 6 to column 62)",
+  " (in 'string', line 488, column 20 to line 491, column 5)",
+  " (in 'string', line 488, column 4 to line 494, column 5)",
+  " (in 'string', line 496, column 4 to column 62)",
+  " (in 'string', line 498, column 6 to column 20)",
+  " (in 'string', line 499, column 6 to column 65)",
+  " (in 'string', line 501, column 6 to line 502, column 51)",
+  " (in 'string', line 503, column 6 to column 59)",
+  " (in 'string', line 504, column 6 to column 77)",
+  " (in 'string', line 505, column 6 to column 81)",
+  " (in 'string', line 497, column 23 to line 507, column 5)",
+  " (in 'string', line 497, column 4 to line 507, column 5)",
+  " (in 'string', line 482, column 27 to line 508, column 3)",
+  " (in 'string', line 482, column 2 to line 508, column 3)",
+  " (in 'string', line 510, column 2 to line 512, column 4)",
+  " (in 'string', line 513, column 2 to line 515, column 4)",
+  " (in 'string', line 516, column 2 to column 40)",
+  " (in 'string', line 517, column 2 to column 46)",
+  " (in 'string', line 518, column 2 to column 40)",
+  " (in 'string', line 468, column 2 to line 519, column 3)",
+  " (in 'string', line 530, column 2 to column 79)",
+  " (in 'string', line 531, column 2 to column 88)",
+  " (in 'string', line 532, column 2 to column 79)",
+  " (in 'string', line 533, column 2 to column 75)",
+  " (in 'string', line 534, column 2 to column 84)",
+  " (in 'string', line 535, column 2 to column 75)",
+  " (in 'string', line 398, column 2 to column 78)",
+  " (in 'string', line 399, column 2 to column 73)",
+  " (in 'string', line 401, column 2 to column 87)",
+  " (in 'string', line 402, column 2 to column 82)",
+  " (in 'string', line 404, column 2 to column 78)",
+  " (in 'string', line 405, column 2 to column 73)",
+  " (in 'string', line 407, column 2 to column 78)",
+  " (in 'string', line 408, column 2 to column 73)",
+  " (in 'string', line 409, column 2 to column 84)",
+  " (in 'string', line 410, column 2 to column 79)",
+  " (in 'string', line 412, column 2 to column 43)",
+  " (in 'string', line 414, column 2 to column 64)",
+  " (in 'string', line 416, column 2 to column 89)",
+  " (in 'string', line 418, column 2 to column 83)",
+  " (in 'string', line 420, column 2 to column 36)",
+  " (in 'string', line 421, column 2 to column 34)",
+  " (in 'string', line 422, column 2 to column 37)",
+  " (in 'string', line 423, column 2 to column 34)",
+  " (in 'string', line 425, column 2 to column 30)",
+  " (in 'string', line 427, column 2 to column 70)",
+  " (in 'string', line 429, column 2 to column 73)",
+  " (in 'string', line 431, column 2 to line 434, column 6)",
+  " (in 'string', line 432, column 4 to line 434, column 6)",
+  " (in 'string', line 436, column 2 to line 439, column 6)",
+  " (in 'string', line 437, column 4 to line 439, column 6)",
+  " (in 'string', line 441, column 2 to line 444, column 6)",
+  " (in 'string', line 442, column 4 to line 444, column 6)",
+  " (in 'string', line 38, column 2 to column 23)",
+  " (in 'string', line 40, column 2 to column 24)",
+  " (in 'string', line 42, column 2 to column 27)",
+  " (in 'string', line 44, column 21 to column 26)",
+  " (in 'string', line 44, column 2 to column 28)",
+  " (in 'string', line 46, column 22 to column 27)",
+  " (in 'string', line 46, column 2 to column 29)",
+  " (in 'string', line 48, column 19 to column 24)",
+  " (in 'string', line 48, column 2 to column 26)",
+  " (in 'string', line 50, column 2 to column 12)",
+  " (in 'string', line 52, column 14 to column 19)",
+  " (in 'string', line 52, column 2 to column 21)",
+  " (in 'string', line 54, column 22 to column 27)",
+  " (in 'string', line 54, column 2 to column 29)",
+  " (in 'string', line 56, column 2 to column 15)",
+  " (in 'string', line 58, column 17 to column 25)",
+  " (in 'string', line 58, column 2 to column 27)",
+  " (in 'string', line 60, column 19 to column 24)",
+  " (in 'string', line 60, column 2 to column 26)",
+  " (in 'string', line 62, column 2 to column 12)",
+  " (in 'string', line 64, column 14 to column 19)",
+  " (in 'string', line 64, column 2 to column 21)",
+  " (in 'string', line 67, column 2 to column 31)",
+  " (in 'string', line 70, column 2 to column 34)",
+  " (in 'string', line 73, column 2 to column 31)",
+  " (in 'string', line 76, column 2 to column 31)",
+  " (in 'string', line 79, column 2 to column 33)",
+  " (in 'string', line 81, column 2 to column 22)",
+  " (in 'string', line 85, column 2 to column 27)",
+  " (in 'string', line 89, column 2 to column 36)",
+  " (in 'string', line 92, column 2 to column 34)",
+  " (in 'string', line 95, column 9 to column 14)",
+  " (in 'string', line 95, column 2 to column 40)",
+  " (in 'string', line 98, column 9 to column 14)",
+  " (in 'string', line 98, column 2 to column 37)",
+  " (in 'string', line 100, column 2 to column 26)",
+  " (in 'string', line 103, column 28 to column 33)",
+  " (in 'string', line 103, column 2 to column 35)",
+  " (in 'string', line 105, column 2 to column 21)",
+  " (in 'string', line 107, column 9 to column 23)",
+  " (in 'string', line 107, column 25 to column 30)",
+  " (in 'string', line 107, column 2 to column 39)",
+  " (in 'string', line 109, column 9 to column 15)",
+  " (in 'string', line 109, column 2 to column 45)",
+  " (in 'string', line 111, column 2 to column 51)",
+  " (in 'string', line 115, column 9 to column 15)",
+  " (in 'string', line 115, column 2 to column 31)",
+  " (in 'string', line 116, column 22 to column 43)",
+  " (in 'string', line 116, column 2 to column 43)",
+  " (in 'string', line 118, column 3 to column 13)",
+  " (in 'string', line 119, column 3 to column 26)",
+  " (in 'string', line 152, column 9 to column 28)",
+  " (in 'string', line 158, column 13 to column 27)",
+  " (in 'string', line 165, column 9 to column 14)",
+  " (in 'string', line 167, column 9 to column 15)",
+  " (in 'string', line 205, column 9 to column 14)",
+  " (in 'string', line 206, column 9 to column 14)",
+  " (in 'string', line 207, column 9 to column 15)",
+  " (in 'string', line 240, column 9 to column 18)",
+  " (in 'string', line 241, column 9 to column 18)",
+  " (in 'string', line 242, column 9 to column 18)",
+  " (in 'string', line 244, column 9 to column 18)",
+  " (in 'string', line 245, column 9 to column 18)",
+  " (in 'string', line 247, column 9 to column 18)",
+  " (in 'string', line 248, column 9 to column 18)",
+  " (in 'string', line 250, column 9 to column 18)",
+  " (in 'string', line 294, column 9 to column 14)",
+  " (in 'string', line 295, column 9 to column 14)",
+  " (in 'string', line 296, column 9 to column 15)",
+  " (in 'string', line 325, column 9 to column 14)",
+  " (in 'string', line 326, column 9 to column 14)",
+  " (in 'string', line 327, column 9 to column 14)",
+  " (in 'string', line 335, column 9 to column 28)",
+  " (in 'string', line 449, column 26 to column 32)",
+  " (in 'string', line 450, column 26 to column 31)",
+  " (in 'string', line 451, column 24 to column 29)",
+  " (in 'string', line 453, column 27 to column 33)",
+  " (in 'string', line 454, column 27 to column 32)",
+  " (in 'string', line 455, column 25 to column 30)",
+  " (in 'string', line 465, column 9 to column 14)",
+  " (in 'string', line 466, column 9 to column 14)",
+  " (in 'string', line 467, column 9 to column 14)",
+  " (in 'string', line 523, column 24 to column 29)",
+  " (in 'string', line 524, column 27 to column 32)",
+  " (in 'string', line 525, column 24 to column 29)",
+  " (in 'string', line 527, column 22 to column 27)",
+  " (in 'string', line 528, column 25 to column 30)",
+  " (in 'string', line 529, column 22 to column 27)",
   " (in 'string', line 4, column 4 to column 33)",
   " (in 'string', line 5, column 12 to column 18)",
   " (in 'string', line 5, column 4 to column 26)",
@@ -418,7 +416,11 @@ static constexpr std::array<const char*, 391> locations_array__ =
   " (in 'string', line 23, column 6 to column 55)",
   " (in 'string', line 22, column 4 to line 23, column 55)",
   " (in 'string', line 25, column 4 to column 16)",
-  " (in 'string', line 15, column 57 to line 27, column 3)"};
+  " (in 'string', line 15, column 57 to line 27, column 3)",
+  " (in 'string', line 30, column 4 to column 25)",
+  " (in 'string', line 29, column 19 to line 31, column 3)",
+  " (in 'string', line 33, column 4 to column 46)",
+  " (in 'string', line 32, column 24 to line 34, column 3)"};
 template <typename T0__,
           stan::require_all_t<stan::is_col_vector<T0__>,
                               stan::is_vt_not_complex<T0__>>* = nullptr>
@@ -433,6 +435,14 @@ Eigen::Matrix<stan::promote_args_t<stan::base_type_t<T1__>,
                 stan::base_type_t<T2__>>,-1,1>
 stan_convolve(const int& nPoints, const T1__& a_arg__, const T2__& b_arg__,
               std::ostream* pstream__);
+template <typename T0__,
+          stan::require_all_t<stan::is_stan_scalar<T0__>>* = nullptr>
+stan::promote_args_t<T0__> mfr(const T0__& x, std::ostream* pstream__);
+template <typename T0__,
+          stan::require_all_t<stan::is_col_vector<T0__>,
+                              stan::is_vt_not_complex<T0__>>* = nullptr>
+Eigen::Matrix<stan::promote_args_t<stan::base_type_t<T0__>>,-1,1>
+mfrv(const T0__& x_arg__, std::ostream* pstream__);
 template <typename T0__,
           stan::require_all_t<stan::is_col_vector<T0__>,
                               stan::is_vt_not_complex<T0__>>*>
@@ -449,21 +459,21 @@ stan_rev(const T0__& a_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;
   try {
     int a_size = std::numeric_limits<int>::min();
-    current_statement__ = 375;
+    current_statement__ = 373;
     a_size = stan::math::num_elements(a);
-    current_statement__ = 376;
+    current_statement__ = 374;
     stan::math::validate_non_negative_index("a_rev", "a_size", a_size);
     Eigen::Matrix<local_scalar_t__,-1,1> a_rev =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(a_size, DUMMY_VAR__);
-    current_statement__ = 379;
+    current_statement__ = 377;
     for (int i = 1; i <= a_size; ++i) {
-      current_statement__ = 378;
+      current_statement__ = 376;
       stan::model::assign(a_rev,
         stan::model::rvalue(a, "a",
           stan::model::index_uni(((a_size - i) + 1))),
         "assigning variable a_rev", stan::model::index_uni(i));
     }
-    current_statement__ = 380;
+    current_statement__ = 378;
     return a_rev;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -490,27 +500,66 @@ stan_convolve(const int& nPoints, const T1__& a_arg__, const T2__& b_arg__,
   // suppress unused var warning
   (void) DUMMY_VAR__;
   try {
-    current_statement__ = 382;
+    current_statement__ = 380;
     stan::math::validate_non_negative_index("out", "nPoints", nPoints);
     Eigen::Matrix<local_scalar_t__,-1,1> out =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(nPoints, DUMMY_VAR__);
-    current_statement__ = 384;
+    current_statement__ = 382;
     stan::math::validate_non_negative_index("b_rev", "nPoints", nPoints);
     Eigen::Matrix<local_scalar_t__,-1,1> b_rev =
       Eigen::Matrix<local_scalar_t__,-1,1>::Constant(nPoints, DUMMY_VAR__);
-    current_statement__ = 386;
+    current_statement__ = 384;
     stan::model::assign(b_rev, stan_rev(b, pstream__),
       "assigning variable b_rev");
-    current_statement__ = 388;
+    current_statement__ = 386;
     for (int i = 1; i <= nPoints; ++i) {
-      current_statement__ = 387;
+      current_statement__ = 385;
       stan::model::assign(out,
         stan::math::dot_product(stan::math::head(a, i),
           stan::math::tail(b_rev, i)), "assigning variable out",
         stan::model::index_uni(i));
     }
-    current_statement__ = 389;
+    current_statement__ = 387;
     return out;
+  } catch (const std::exception& e) {
+    stan::lang::rethrow_located(e, locations_array__[current_statement__]);
+  }
+}
+template <typename T0__, stan::require_all_t<stan::is_stan_scalar<T0__>>*>
+stan::promote_args_t<T0__> mfr(const T0__& x, std::ostream* pstream__) {
+  using local_scalar_t__ = stan::promote_args_t<T0__>;
+  int current_statement__ = 0;
+  static constexpr bool propto__ = true;
+  // suppress unused var warning
+  (void) propto__;
+  local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
+  // suppress unused var warning
+  (void) DUMMY_VAR__;
+  try {
+    current_statement__ = 389;
+    return stan::math::fmax(x, 1e-9);
+  } catch (const std::exception& e) {
+    stan::lang::rethrow_located(e, locations_array__[current_statement__]);
+  }
+}
+template <typename T0__,
+          stan::require_all_t<stan::is_col_vector<T0__>,
+                              stan::is_vt_not_complex<T0__>>*>
+Eigen::Matrix<stan::promote_args_t<stan::base_type_t<T0__>>,-1,1>
+mfrv(const T0__& x_arg__, std::ostream* pstream__) {
+  using local_scalar_t__ = stan::promote_args_t<stan::base_type_t<T0__>>;
+  int current_statement__ = 0;
+  const auto& x = stan::math::to_ref(x_arg__);
+  static constexpr bool propto__ = true;
+  // suppress unused var warning
+  (void) propto__;
+  local_scalar_t__ DUMMY_VAR__(std::numeric_limits<double>::quiet_NaN());
+  // suppress unused var warning
+  (void) DUMMY_VAR__;
+  try {
+    current_statement__ = 391;
+    return stan::math::fmax(x,
+             stan::math::rep_vector(1e-9, stan::math::rows(x)));
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
   }
@@ -548,6 +597,7 @@ private:
   int n_spline_param;
   Eigen::Matrix<double,-1,-1> spline_data__;
   Eigen::Matrix<double,-1,1> growthrate_asymptote_weight_data__;
+  int extrapolate_growthrate;
   Eigen::Matrix<double,-1,1> projection_sq_data__;
   int n_tot;
   Eigen::Map<Eigen::Matrix<double,-1,1>> prior_onset_to_etu{nullptr, 0};
@@ -586,122 +636,122 @@ public:
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 288;
+      current_statement__ = 285;
       context__.validate_dims("data initialization", "n_obs", "int",
         std::vector<size_t>{});
       n_obs = std::numeric_limits<int>::min();
-      current_statement__ = 288;
+      current_statement__ = 285;
       n_obs = context__.vals_i("n_obs")[(1 - 1)];
-      current_statement__ = 288;
+      current_statement__ = 285;
       stan::math::check_greater_or_equal(function__, "n_obs", n_obs, 1);
-      current_statement__ = 289;
+      current_statement__ = 286;
       context__.validate_dims("data initialization", "n_proj", "int",
         std::vector<size_t>{});
       n_proj = std::numeric_limits<int>::min();
-      current_statement__ = 289;
+      current_statement__ = 286;
       n_proj = context__.vals_i("n_proj")[(1 - 1)];
-      current_statement__ = 289;
+      current_statement__ = 286;
       stan::math::check_greater_or_equal(function__, "n_proj", n_proj, 1);
-      current_statement__ = 290;
+      current_statement__ = 287;
       context__.validate_dims("data initialization", "max_delay", "int",
         std::vector<size_t>{});
       max_delay = std::numeric_limits<int>::min();
-      current_statement__ = 290;
+      current_statement__ = 287;
       max_delay = context__.vals_i("max_delay")[(1 - 1)];
-      current_statement__ = 290;
+      current_statement__ = 287;
       stan::math::check_greater_or_equal(function__, "max_delay", max_delay,
         1);
-      current_statement__ = 291;
+      current_statement__ = 288;
       stan::math::validate_non_negative_index("cases_reported", "n_obs",
         n_obs);
-      current_statement__ = 292;
+      current_statement__ = 289;
       context__.validate_dims("data initialization", "cases_reported", "int",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
       cases_reported = std::vector<int>(n_obs,
                          std::numeric_limits<int>::min());
-      current_statement__ = 292;
+      current_statement__ = 289;
       cases_reported = context__.vals_i("cases_reported");
-      current_statement__ = 293;
+      current_statement__ = 290;
       stan::math::validate_non_negative_index("deaths_reported", "n_obs",
         n_obs);
-      current_statement__ = 294;
+      current_statement__ = 291;
       context__.validate_dims("data initialization", "deaths_reported",
         "int", std::vector<size_t>{static_cast<size_t>(n_obs)});
       deaths_reported = std::vector<int>(n_obs,
                           std::numeric_limits<int>::min());
-      current_statement__ = 294;
+      current_statement__ = 291;
       deaths_reported = context__.vals_i("deaths_reported");
-      current_statement__ = 295;
+      current_statement__ = 292;
       stan::math::validate_non_negative_index("etu_reported", "n_obs", n_obs);
-      current_statement__ = 296;
+      current_statement__ = 293;
       context__.validate_dims("data initialization", "etu_reported", "int",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
       etu_reported = std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      current_statement__ = 296;
+      current_statement__ = 293;
       etu_reported = context__.vals_i("etu_reported");
-      current_statement__ = 297;
+      current_statement__ = 294;
       context__.validate_dims("data initialization", "etu_n", "int",
         std::vector<size_t>{});
       etu_n = std::numeric_limits<int>::min();
-      current_statement__ = 297;
+      current_statement__ = 294;
       etu_n = context__.vals_i("etu_n")[(1 - 1)];
-      current_statement__ = 298;
+      current_statement__ = 295;
       stan::math::validate_non_negative_index("etu_ind", "etu_n", etu_n);
-      current_statement__ = 299;
+      current_statement__ = 296;
       context__.validate_dims("data initialization", "etu_ind", "int",
         std::vector<size_t>{static_cast<size_t>(etu_n)});
       etu_ind = std::vector<int>(etu_n, std::numeric_limits<int>::min());
-      current_statement__ = 299;
+      current_statement__ = 296;
       etu_ind = context__.vals_i("etu_ind");
-      current_statement__ = 300;
+      current_statement__ = 297;
       stan::math::validate_non_negative_index("alerts_reported", "n_obs",
         n_obs);
-      current_statement__ = 301;
+      current_statement__ = 298;
       context__.validate_dims("data initialization", "alerts_reported",
         "int", std::vector<size_t>{static_cast<size_t>(n_obs)});
       alerts_reported = std::vector<int>(n_obs,
                           std::numeric_limits<int>::min());
-      current_statement__ = 301;
+      current_statement__ = 298;
       alerts_reported = context__.vals_i("alerts_reported");
-      current_statement__ = 302;
+      current_statement__ = 299;
       context__.validate_dims("data initialization", "alerts_n", "int",
         std::vector<size_t>{});
       alerts_n = std::numeric_limits<int>::min();
-      current_statement__ = 302;
+      current_statement__ = 299;
       alerts_n = context__.vals_i("alerts_n")[(1 - 1)];
-      current_statement__ = 303;
+      current_statement__ = 300;
       stan::math::validate_non_negative_index("alerts_ind", "alerts_n",
         alerts_n);
-      current_statement__ = 304;
+      current_statement__ = 301;
       context__.validate_dims("data initialization", "alerts_ind", "int",
         std::vector<size_t>{static_cast<size_t>(alerts_n)});
       alerts_ind = std::vector<int>(alerts_n,
                      std::numeric_limits<int>::min());
-      current_statement__ = 304;
+      current_statement__ = 301;
       alerts_ind = context__.vals_i("alerts_ind");
-      current_statement__ = 305;
+      current_statement__ = 302;
       stan::math::validate_non_negative_index("iso_reported", "n_obs", n_obs);
-      current_statement__ = 306;
+      current_statement__ = 303;
       context__.validate_dims("data initialization", "iso_reported", "int",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
       iso_reported = std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      current_statement__ = 306;
+      current_statement__ = 303;
       iso_reported = context__.vals_i("iso_reported");
-      current_statement__ = 307;
+      current_statement__ = 304;
       context__.validate_dims("data initialization", "iso_n", "int",
         std::vector<size_t>{});
       iso_n = std::numeric_limits<int>::min();
-      current_statement__ = 307;
+      current_statement__ = 304;
       iso_n = context__.vals_i("iso_n")[(1 - 1)];
-      current_statement__ = 308;
+      current_statement__ = 305;
       stan::math::validate_non_negative_index("iso_ind", "iso_n", iso_n);
-      current_statement__ = 309;
+      current_statement__ = 306;
       context__.validate_dims("data initialization", "iso_ind", "int",
         std::vector<size_t>{static_cast<size_t>(iso_n)});
       iso_ind = std::vector<int>(iso_n, std::numeric_limits<int>::min());
-      current_statement__ = 309;
+      current_statement__ = 306;
       iso_ind = context__.vals_i("iso_ind");
-      current_statement__ = 310;
+      current_statement__ = 307;
       context__.validate_dims("data initialization", "prior_onset_to_etu",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_onset_to_etu_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -711,22 +761,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_onset_to_etu_flat__;
-        current_statement__ = 310;
+        current_statement__ = 307;
         prior_onset_to_etu_flat__ = context__.vals_r("prior_onset_to_etu");
-        current_statement__ = 310;
+        current_statement__ = 307;
         pos__ = 1;
-        current_statement__ = 310;
+        current_statement__ = 307;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 310;
+          current_statement__ = 307;
           stan::model::assign(prior_onset_to_etu,
             prior_onset_to_etu_flat__[(pos__ - 1)],
             "assigning variable prior_onset_to_etu",
             stan::model::index_uni(sym1__));
-          current_statement__ = 310;
+          current_statement__ = 307;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 311;
+      current_statement__ = 308;
       context__.validate_dims("data initialization", "prior_etu_to_survival",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_etu_to_survival_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -736,22 +786,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_etu_to_survival_flat__;
-        current_statement__ = 311;
+        current_statement__ = 308;
         prior_etu_to_survival_flat__ = context__.vals_r("prior_etu_to_survival");
-        current_statement__ = 311;
+        current_statement__ = 308;
         pos__ = 1;
-        current_statement__ = 311;
+        current_statement__ = 308;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 311;
+          current_statement__ = 308;
           stan::model::assign(prior_etu_to_survival,
             prior_etu_to_survival_flat__[(pos__ - 1)],
             "assigning variable prior_etu_to_survival",
             stan::model::index_uni(sym1__));
-          current_statement__ = 311;
+          current_statement__ = 308;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 312;
+      current_statement__ = 309;
       context__.validate_dims("data initialization", "prior_etu_to_death",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_etu_to_death_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -761,22 +811,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_etu_to_death_flat__;
-        current_statement__ = 312;
+        current_statement__ = 309;
         prior_etu_to_death_flat__ = context__.vals_r("prior_etu_to_death");
-        current_statement__ = 312;
+        current_statement__ = 309;
         pos__ = 1;
-        current_statement__ = 312;
+        current_statement__ = 309;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 312;
+          current_statement__ = 309;
           stan::model::assign(prior_etu_to_death,
             prior_etu_to_death_flat__[(pos__ - 1)],
             "assigning variable prior_etu_to_death",
             stan::model::index_uni(sym1__));
-          current_statement__ = 312;
+          current_statement__ = 309;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 313;
+      current_statement__ = 310;
       context__.validate_dims("data initialization", "prior_onset_to_iso",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_onset_to_iso_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -786,22 +836,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_onset_to_iso_flat__;
-        current_statement__ = 313;
+        current_statement__ = 310;
         prior_onset_to_iso_flat__ = context__.vals_r("prior_onset_to_iso");
-        current_statement__ = 313;
+        current_statement__ = 310;
         pos__ = 1;
-        current_statement__ = 313;
+        current_statement__ = 310;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 313;
+          current_statement__ = 310;
           stan::model::assign(prior_onset_to_iso,
             prior_onset_to_iso_flat__[(pos__ - 1)],
             "assigning variable prior_onset_to_iso",
             stan::model::index_uni(sym1__));
-          current_statement__ = 313;
+          current_statement__ = 310;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 314;
+      current_statement__ = 311;
       context__.validate_dims("data initialization", "prior_iso_to_release",
         "double", std::vector<size_t>{static_cast<size_t>(4)});
       prior_iso_to_release_data__ = Eigen::Matrix<double,-1,1>::Constant(4,
@@ -811,22 +861,22 @@ public:
         4);
       {
         std::vector<local_scalar_t__> prior_iso_to_release_flat__;
-        current_statement__ = 314;
+        current_statement__ = 311;
         prior_iso_to_release_flat__ = context__.vals_r("prior_iso_to_release");
-        current_statement__ = 314;
+        current_statement__ = 311;
         pos__ = 1;
-        current_statement__ = 314;
+        current_statement__ = 311;
         for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
-          current_statement__ = 314;
+          current_statement__ = 311;
           stan::model::assign(prior_iso_to_release,
             prior_iso_to_release_flat__[(pos__ - 1)],
             "assigning variable prior_iso_to_release",
             stan::model::index_uni(sym1__));
-          current_statement__ = 314;
+          current_statement__ = 311;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 315;
+      current_statement__ = 312;
       context__.validate_dims("data initialization", "prior_cfr", "double",
         std::vector<size_t>{static_cast<size_t>(2)});
       prior_cfr_data__ = Eigen::Matrix<double,-1,1>::Constant(2,
@@ -835,20 +885,20 @@ public:
         Eigen::Map<Eigen::Matrix<double,-1,1>>(prior_cfr_data__.data(), 2);
       {
         std::vector<local_scalar_t__> prior_cfr_flat__;
-        current_statement__ = 315;
+        current_statement__ = 312;
         prior_cfr_flat__ = context__.vals_r("prior_cfr");
-        current_statement__ = 315;
+        current_statement__ = 312;
         pos__ = 1;
-        current_statement__ = 315;
+        current_statement__ = 312;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 315;
+          current_statement__ = 312;
           stan::model::assign(prior_cfr, prior_cfr_flat__[(pos__ - 1)],
             "assigning variable prior_cfr", stan::model::index_uni(sym1__));
-          current_statement__ = 315;
+          current_statement__ = 312;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 316;
+      current_statement__ = 313;
       context__.validate_dims("data initialization", "prior_prop_iso",
         "double", std::vector<size_t>{static_cast<size_t>(2)});
       prior_prop_iso_data__ = Eigen::Matrix<double,-1,1>::Constant(2,
@@ -858,21 +908,21 @@ public:
         2);
       {
         std::vector<local_scalar_t__> prior_prop_iso_flat__;
-        current_statement__ = 316;
+        current_statement__ = 313;
         prior_prop_iso_flat__ = context__.vals_r("prior_prop_iso");
-        current_statement__ = 316;
+        current_statement__ = 313;
         pos__ = 1;
-        current_statement__ = 316;
+        current_statement__ = 313;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 316;
+          current_statement__ = 313;
           stan::model::assign(prior_prop_iso, prior_prop_iso_flat__[(pos__ -
             1)], "assigning variable prior_prop_iso",
             stan::model::index_uni(sym1__));
-          current_statement__ = 316;
+          current_statement__ = 313;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 317;
+      current_statement__ = 314;
       context__.validate_dims("data initialization",
         "prior_alerts_background", "double",
         std::vector<size_t>{static_cast<size_t>(2)});
@@ -884,22 +934,22 @@ public:
         2);
       {
         std::vector<local_scalar_t__> prior_alerts_background_flat__;
-        current_statement__ = 317;
+        current_statement__ = 314;
         prior_alerts_background_flat__ = context__.vals_r("prior_alerts_background");
-        current_statement__ = 317;
+        current_statement__ = 314;
         pos__ = 1;
-        current_statement__ = 317;
+        current_statement__ = 314;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 317;
+          current_statement__ = 314;
           stan::model::assign(prior_alerts_background,
             prior_alerts_background_flat__[(pos__ - 1)],
             "assigning variable prior_alerts_background",
             stan::model::index_uni(sym1__));
-          current_statement__ = 317;
+          current_statement__ = 314;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 318;
+      current_statement__ = 315;
       context__.validate_dims("data initialization", "prior_alerts_per_case",
         "double", std::vector<size_t>{static_cast<size_t>(2)});
       prior_alerts_per_case_data__ = Eigen::Matrix<double,-1,1>::Constant(2,
@@ -909,25 +959,25 @@ public:
         2);
       {
         std::vector<local_scalar_t__> prior_alerts_per_case_flat__;
-        current_statement__ = 318;
+        current_statement__ = 315;
         prior_alerts_per_case_flat__ = context__.vals_r("prior_alerts_per_case");
-        current_statement__ = 318;
+        current_statement__ = 315;
         pos__ = 1;
-        current_statement__ = 318;
+        current_statement__ = 315;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 318;
+          current_statement__ = 315;
           stan::model::assign(prior_alerts_per_case,
             prior_alerts_per_case_flat__[(pos__ - 1)],
             "assigning variable prior_alerts_per_case",
             stan::model::index_uni(sym1__));
-          current_statement__ = 318;
+          current_statement__ = 315;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 319;
+      current_statement__ = 316;
       stan::math::validate_non_negative_index("log_prop_cases_reported",
         "n_obs", n_obs);
-      current_statement__ = 320;
+      current_statement__ = 317;
       context__.validate_dims("data initialization",
         "log_prop_cases_reported", "double",
         std::vector<size_t>{static_cast<size_t>(n_obs)});
@@ -939,25 +989,25 @@ public:
         n_obs);
       {
         std::vector<local_scalar_t__> log_prop_cases_reported_flat__;
-        current_statement__ = 320;
+        current_statement__ = 317;
         log_prop_cases_reported_flat__ = context__.vals_r("log_prop_cases_reported");
-        current_statement__ = 320;
+        current_statement__ = 317;
         pos__ = 1;
-        current_statement__ = 320;
+        current_statement__ = 317;
         for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-          current_statement__ = 320;
+          current_statement__ = 317;
           stan::model::assign(log_prop_cases_reported,
             log_prop_cases_reported_flat__[(pos__ - 1)],
             "assigning variable log_prop_cases_reported",
             stan::model::index_uni(sym1__));
-          current_statement__ = 320;
+          current_statement__ = 317;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 321;
+      current_statement__ = 318;
       stan::math::validate_non_negative_index("prop_deaths_reported",
         "n_obs", n_obs);
-      current_statement__ = 322;
+      current_statement__ = 319;
       context__.validate_dims("data initialization", "prop_deaths_reported",
         "double", std::vector<size_t>{static_cast<size_t>(n_obs)});
       prop_deaths_reported_data__ = Eigen::Matrix<double,-1,1>::Constant(n_obs,
@@ -967,49 +1017,49 @@ public:
         n_obs);
       {
         std::vector<local_scalar_t__> prop_deaths_reported_flat__;
-        current_statement__ = 322;
+        current_statement__ = 319;
         prop_deaths_reported_flat__ = context__.vals_r("prop_deaths_reported");
-        current_statement__ = 322;
+        current_statement__ = 319;
         pos__ = 1;
-        current_statement__ = 322;
+        current_statement__ = 319;
         for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-          current_statement__ = 322;
+          current_statement__ = 319;
           stan::model::assign(prop_deaths_reported,
             prop_deaths_reported_flat__[(pos__ - 1)],
             "assigning variable prop_deaths_reported",
             stan::model::index_uni(sym1__));
-          current_statement__ = 322;
+          current_statement__ = 319;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 323;
+      current_statement__ = 320;
       context__.validate_dims("data initialization", "n_alerts_background",
         "int", std::vector<size_t>{});
       n_alerts_background = std::numeric_limits<int>::min();
-      current_statement__ = 323;
+      current_statement__ = 320;
       n_alerts_background = context__.vals_i("n_alerts_background")[(1 - 1)];
-      current_statement__ = 324;
+      current_statement__ = 321;
       stan::math::validate_non_negative_index("alerts_background_ind",
         "n_obs", n_obs);
-      current_statement__ = 325;
+      current_statement__ = 322;
       context__.validate_dims("data initialization", "alerts_background_ind",
         "int", std::vector<size_t>{static_cast<size_t>(n_obs)});
       alerts_background_ind = std::vector<int>(n_obs,
                                 std::numeric_limits<int>::min());
-      current_statement__ = 325;
+      current_statement__ = 322;
       alerts_background_ind = context__.vals_i("alerts_background_ind");
-      current_statement__ = 326;
+      current_statement__ = 323;
       context__.validate_dims("data initialization", "n_spline_param", "int",
         std::vector<size_t>{});
       n_spline_param = std::numeric_limits<int>::min();
-      current_statement__ = 326;
+      current_statement__ = 323;
       n_spline_param = context__.vals_i("n_spline_param")[(1 - 1)];
-      current_statement__ = 327;
+      current_statement__ = 324;
       stan::math::validate_non_negative_index("spline", "n_spline_param",
         n_spline_param);
-      current_statement__ = 328;
+      current_statement__ = 325;
       stan::math::validate_non_negative_index("spline", "n_obs", n_obs);
-      current_statement__ = 329;
+      current_statement__ = 326;
       context__.validate_dims("data initialization", "spline", "double",
         std::vector<size_t>{static_cast<size_t>(n_spline_param),
           static_cast<size_t>(n_obs)});
@@ -1020,27 +1070,27 @@ public:
         n_spline_param, n_obs);
       {
         std::vector<local_scalar_t__> spline_flat__;
-        current_statement__ = 329;
+        current_statement__ = 326;
         spline_flat__ = context__.vals_r("spline");
-        current_statement__ = 329;
+        current_statement__ = 326;
         pos__ = 1;
-        current_statement__ = 329;
+        current_statement__ = 326;
         for (int sym1__ = 1; sym1__ <= n_obs; ++sym1__) {
-          current_statement__ = 329;
+          current_statement__ = 326;
           for (int sym2__ = 1; sym2__ <= n_spline_param; ++sym2__) {
-            current_statement__ = 329;
+            current_statement__ = 326;
             stan::model::assign(spline, spline_flat__[(pos__ - 1)],
               "assigning variable spline", stan::model::index_uni(sym2__),
               stan::model::index_uni(sym1__));
-            current_statement__ = 329;
+            current_statement__ = 326;
             pos__ = (pos__ + 1);
           }
         }
       }
-      current_statement__ = 330;
+      current_statement__ = 327;
       stan::math::validate_non_negative_index("growthrate_asymptote_weight",
         "n_proj", n_proj);
-      current_statement__ = 331;
+      current_statement__ = 328;
       context__.validate_dims("data initialization",
         "growthrate_asymptote_weight", "double",
         std::vector<size_t>{static_cast<size_t>(n_proj)});
@@ -1052,149 +1102,162 @@ public:
         n_proj);
       {
         std::vector<local_scalar_t__> growthrate_asymptote_weight_flat__;
-        current_statement__ = 331;
+        current_statement__ = 328;
         growthrate_asymptote_weight_flat__ = context__.vals_r("growthrate_asymptote_weight");
-        current_statement__ = 331;
+        current_statement__ = 328;
         pos__ = 1;
-        current_statement__ = 331;
+        current_statement__ = 328;
         for (int sym1__ = 1; sym1__ <= n_proj; ++sym1__) {
-          current_statement__ = 331;
+          current_statement__ = 328;
           stan::model::assign(growthrate_asymptote_weight,
             growthrate_asymptote_weight_flat__[(pos__ - 1)],
             "assigning variable growthrate_asymptote_weight",
             stan::model::index_uni(sym1__));
-          current_statement__ = 331;
+          current_statement__ = 328;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 332;
+      current_statement__ = 329;
+      context__.validate_dims("data initialization",
+        "extrapolate_growthrate", "int", std::vector<size_t>{});
+      extrapolate_growthrate = std::numeric_limits<int>::min();
+      current_statement__ = 329;
+      extrapolate_growthrate = context__.vals_i("extrapolate_growthrate")[(1
+        - 1)];
+      current_statement__ = 329;
+      stan::math::check_greater_or_equal(function__,
+        "extrapolate_growthrate", extrapolate_growthrate, 0);
+      current_statement__ = 329;
+      stan::math::check_less_or_equal(function__, "extrapolate_growthrate",
+        extrapolate_growthrate, 1);
+      current_statement__ = 330;
       stan::math::validate_non_negative_index("projection_sq", "n_proj",
         n_proj);
-      current_statement__ = 333;
+      current_statement__ = 331;
       projection_sq_data__ = Eigen::Matrix<double,-1,1>::Constant(n_proj,
                                std::numeric_limits<double>::quiet_NaN());
       new (&projection_sq)
         Eigen::Map<Eigen::Matrix<double,-1,1>>(projection_sq_data__.data(),
         n_proj);
-      current_statement__ = 335;
+      current_statement__ = 333;
       for (int i = 1; i <= n_proj; ++i) {
-        current_statement__ = 334;
+        current_statement__ = 332;
         stan::model::assign(projection_sq, i,
           "assigning variable projection_sq", stan::model::index_uni(i));
       }
-      current_statement__ = 336;
+      current_statement__ = 334;
       n_tot = std::numeric_limits<int>::min();
-      current_statement__ = 337;
+      current_statement__ = 335;
       n_tot = (n_obs + n_proj);
-      current_statement__ = 338;
+      current_statement__ = 336;
       stan::math::validate_non_negative_index("alerts_background_log",
         "n_alerts_background", n_alerts_background);
-      current_statement__ = 339;
+      current_statement__ = 337;
       stan::math::validate_non_negative_index("spline_param",
         "n_spline_param", n_spline_param);
-      current_statement__ = 340;
+      current_statement__ = 338;
       stan::math::validate_non_negative_index("growthrate_reported", "n_obs",
         n_obs);
-      current_statement__ = 341;
+      current_statement__ = 339;
       stan::math::validate_non_negative_index("growthrate_projected",
         "n_proj", n_proj);
-      current_statement__ = 342;
+      current_statement__ = 340;
       stan::math::validate_non_negative_index("cases_truncated_mu", "n_obs",
         n_obs);
-      current_statement__ = 343;
+      current_statement__ = 341;
       stan::math::validate_non_negative_index("cases_nowcast_mu", "n_obs",
         n_obs);
-      current_statement__ = 344;
+      current_statement__ = 342;
       stan::math::validate_non_negative_index("cases_projected_mu", "n_proj",
         n_proj);
-      current_statement__ = 345;
+      current_statement__ = 343;
       stan::math::validate_non_negative_index("onset_to_etu", "max_delay",
         max_delay);
-      current_statement__ = 346;
+      current_statement__ = 344;
       stan::math::validate_non_negative_index("etu_to_survival", "max_delay",
         max_delay);
-      current_statement__ = 347;
+      current_statement__ = 345;
       stan::math::validate_non_negative_index("etu_to_death", "max_delay",
         max_delay);
-      current_statement__ = 348;
+      current_statement__ = 346;
       stan::math::validate_non_negative_index("onset_to_survival",
         "max_delay", max_delay);
-      current_statement__ = 349;
+      current_statement__ = 347;
       stan::math::validate_non_negative_index("onset_to_death", "max_delay",
         max_delay);
-      current_statement__ = 350;
+      current_statement__ = 348;
       stan::math::validate_non_negative_index("onset_to_iso", "max_delay",
         max_delay);
-      current_statement__ = 351;
+      current_statement__ = 349;
       stan::math::validate_non_negative_index("iso_to_release", "max_delay",
         max_delay);
-      current_statement__ = 352;
+      current_statement__ = 350;
       stan::math::validate_non_negative_index("onset_to_release",
         "max_delay", max_delay);
-      current_statement__ = 353;
+      current_statement__ = 351;
       stan::math::validate_non_negative_index("deaths_truncated_mu", "n_obs",
         n_obs);
-      current_statement__ = 354;
+      current_statement__ = 352;
       stan::math::validate_non_negative_index("deaths_nowcast_mu", "n_obs",
         n_obs);
-      current_statement__ = 355;
+      current_statement__ = 353;
       stan::math::validate_non_negative_index("deaths_projected_mu",
         "n_proj", n_proj);
-      current_statement__ = 356;
+      current_statement__ = 354;
       stan::math::validate_non_negative_index("alerts_truncated_mu", "n_tot",
         n_tot);
-      current_statement__ = 357;
+      current_statement__ = 355;
       stan::math::validate_non_negative_index("etu_truncated_mu", "n_tot",
         n_tot);
-      current_statement__ = 358;
+      current_statement__ = 356;
       stan::math::validate_non_negative_index("iso_truncated_mu", "n_tot",
         n_tot);
-      current_statement__ = 359;
+      current_statement__ = 357;
       stan::math::validate_non_negative_index("alerts_background",
         "n_alerts_background", n_alerts_background);
-      current_statement__ = 360;
+      current_statement__ = 358;
       stan::math::validate_non_negative_index("cases_projected_sim",
         "n_proj", n_proj);
-      current_statement__ = 361;
+      current_statement__ = 359;
       stan::math::validate_non_negative_index("cases_truncated_sim", "n_obs",
         n_obs);
-      current_statement__ = 362;
+      current_statement__ = 360;
       stan::math::validate_non_negative_index("cases_nowcast_sim", "n_obs",
         n_obs);
-      current_statement__ = 363;
+      current_statement__ = 361;
       stan::math::validate_non_negative_index("deaths_projected_sim",
         "n_proj", n_proj);
-      current_statement__ = 364;
+      current_statement__ = 362;
       stan::math::validate_non_negative_index("deaths_truncated_sim",
         "n_obs", n_obs);
-      current_statement__ = 365;
+      current_statement__ = 363;
       stan::math::validate_non_negative_index("deaths_nowcast_sim", "n_obs",
         n_obs);
-      current_statement__ = 366;
+      current_statement__ = 364;
       stan::math::validate_non_negative_index("iso_nowcast_mu", "n_tot",
         n_tot);
-      current_statement__ = 367;
+      current_statement__ = 365;
       stan::math::validate_non_negative_index("alerts_nowcast_mu", "n_tot",
         n_tot);
-      current_statement__ = 368;
+      current_statement__ = 366;
       stan::math::validate_non_negative_index("etu_nowcast_mu", "n_tot",
         n_tot);
-      current_statement__ = 369;
+      current_statement__ = 367;
       stan::math::validate_non_negative_index("etu_truncated_sim", "n_tot",
         n_tot);
-      current_statement__ = 370;
+      current_statement__ = 368;
       stan::math::validate_non_negative_index("alerts_truncated_sim",
         "n_tot", n_tot);
-      current_statement__ = 371;
+      current_statement__ = 369;
       stan::math::validate_non_negative_index("iso_truncated_sim", "n_tot",
         n_tot);
-      current_statement__ = 372;
+      current_statement__ = 370;
       stan::math::validate_non_negative_index("etu_nowcast_sim", "n_tot",
         n_tot);
-      current_statement__ = 373;
+      current_statement__ = 371;
       stan::math::validate_non_negative_index("alerts_nowcast_sim", "n_tot",
         n_tot);
-      current_statement__ = 374;
+      current_statement__ = 372;
       stan::math::validate_non_negative_index("iso_nowcast_sim", "n_tot",
         n_tot);
     } catch (const std::exception& e) {
@@ -1348,26 +1411,39 @@ public:
           current_statement__ = 75;
           growthrate_slope_weight = 0;
         }
-        current_statement__ = 77;
-        growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
-        current_statement__ = 78;
-        stan::model::assign(growthrate_projected,
-          stan::math::add(
-            stan::model::rvalue(growthrate_reported, "growthrate_reported",
-              stan::model::index_uni(n_obs)),
-            stan::math::multiply(
-              stan::math::multiply(projection_sq, growthrate_slope),
-              growthrate_slope_weight)),
-          "assigning variable growthrate_projected");
-        current_statement__ = 79;
-        stan::model::assign(growthrate_projected,
-          stan::math::add(
-            stan::math::multiply(growthrate_asymptote,
-              growthrate_asymptote_weight),
-            stan::math::elt_multiply(
-              stan::math::subtract(1, growthrate_asymptote_weight),
-              stan::model::deep_copy(growthrate_projected))),
-          "assigning variable growthrate_projected");
+        current_statement__ = 85;
+        if (stan::math::logical_eq(extrapolate_growthrate, 0)) {
+          current_statement__ = 83;
+          for (int i = 1; i <= n_proj; ++i) {
+            current_statement__ = 81;
+            stan::model::assign(growthrate_projected,
+              stan::model::rvalue(growthrate_reported, "growthrate_reported",
+                stan::model::index_uni(n_obs)),
+              "assigning variable growthrate_projected",
+              stan::model::index_uni(i));
+          }
+        } else {
+          current_statement__ = 77;
+          growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
+          current_statement__ = 78;
+          stan::model::assign(growthrate_projected,
+            stan::math::add(
+              stan::model::rvalue(growthrate_reported, "growthrate_reported",
+                stan::model::index_uni(n_obs)),
+              stan::math::multiply(
+                stan::math::multiply(projection_sq, growthrate_slope),
+                growthrate_slope_weight)),
+            "assigning variable growthrate_projected");
+          current_statement__ = 79;
+          stan::model::assign(growthrate_projected,
+            stan::math::add(
+              stan::math::multiply(growthrate_asymptote,
+                growthrate_asymptote_weight),
+              stan::math::elt_multiply(
+                stan::math::subtract(1, growthrate_asymptote_weight),
+                stan::model::deep_copy(growthrate_projected))),
+            "assigning variable growthrate_projected");
+        }
       }
       Eigen::Matrix<local_scalar_t__,-1,1> cases_truncated_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
@@ -1376,28 +1452,28 @@ public:
       Eigen::Matrix<local_scalar_t__,-1,1> cases_projected_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
       {
-        current_statement__ = 81;
+        current_statement__ = 87;
         stan::math::validate_non_negative_index("log_cases_truncated_mu",
           "n_obs", n_obs);
         Eigen::Matrix<local_scalar_t__,-1,1> log_cases_truncated_mu =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-        current_statement__ = 83;
+        current_statement__ = 89;
         stan::math::validate_non_negative_index("log_cases_nowcast_mu",
           "n_obs", n_obs);
         Eigen::Matrix<local_scalar_t__,-1,1> log_cases_nowcast_mu =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_obs, DUMMY_VAR__);
-        current_statement__ = 85;
+        current_statement__ = 91;
         stan::math::validate_non_negative_index("log_cases_projected_mu",
           "n_proj", n_proj);
         Eigen::Matrix<local_scalar_t__,-1,1> log_cases_projected_mu =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
-        current_statement__ = 87;
+        current_statement__ = 93;
         stan::model::assign(log_cases_nowcast_mu, (log_cases_intercept +
           stan::model::rvalue(growthrate_reported, "growthrate_reported",
             stan::model::index_uni(1))),
           "assigning variable log_cases_nowcast_mu",
           stan::model::index_uni(1));
-        current_statement__ = 88;
+        current_statement__ = 94;
         stan::model::assign(log_cases_truncated_mu,
           (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
              stan::model::index_uni(1)) +
@@ -1405,9 +1481,9 @@ public:
             "log_prop_cases_reported", stan::model::index_uni(1))),
           "assigning variable log_cases_truncated_mu",
           stan::model::index_uni(1));
-        current_statement__ = 92;
+        current_statement__ = 98;
         for (int i = 2; i <= n_obs; ++i) {
-          current_statement__ = 89;
+          current_statement__ = 95;
           stan::model::assign(log_cases_nowcast_mu,
             (stan::model::rvalue(log_cases_nowcast_mu,
                "log_cases_nowcast_mu", stan::model::index_uni((i - 1))) +
@@ -1415,7 +1491,7 @@ public:
               stan::model::index_uni(i))),
             "assigning variable log_cases_nowcast_mu",
             stan::model::index_uni(i));
-          current_statement__ = 90;
+          current_statement__ = 96;
           stan::model::assign(log_cases_truncated_mu,
             (stan::model::rvalue(log_cases_nowcast_mu,
                "log_cases_nowcast_mu", stan::model::index_uni(i)) +
@@ -1424,28 +1500,28 @@ public:
             "assigning variable log_cases_truncated_mu",
             stan::model::index_uni(i));
         }
-        current_statement__ = 98;
+        current_statement__ = 104;
         for (int i = 1; i <= n_obs; ++i) {
-          current_statement__ = 94;
+          current_statement__ = 100;
           if (stan::math::logical_gt(
                 stan::model::rvalue(log_cases_truncated_mu,
                   "log_cases_truncated_mu", stan::model::index_uni(i)), 10)) {
-            current_statement__ = 93;
+            current_statement__ = 99;
             stan::model::assign(log_cases_truncated_mu, 10,
               "assigning variable log_cases_truncated_mu",
               stan::model::index_uni(i));
           }
-          current_statement__ = 96;
+          current_statement__ = 102;
           if (stan::math::logical_gt(
                 stan::model::rvalue(log_cases_nowcast_mu,
                   "log_cases_nowcast_mu", stan::model::index_uni(i)), 10)) {
-            current_statement__ = 95;
+            current_statement__ = 101;
             stan::model::assign(log_cases_nowcast_mu, 10,
               "assigning variable log_cases_nowcast_mu",
               stan::model::index_uni(i));
           }
         }
-        current_statement__ = 99;
+        current_statement__ = 105;
         stan::model::assign(log_cases_projected_mu,
           (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
              stan::model::index_uni(n_obs)) +
@@ -1453,9 +1529,9 @@ public:
             stan::model::index_uni(1))),
           "assigning variable log_cases_projected_mu",
           stan::model::index_uni(1));
-        current_statement__ = 106;
+        current_statement__ = 112;
         for (int i = 2; i <= n_proj; ++i) {
-          current_statement__ = 100;
+          current_statement__ = 106;
           stan::model::assign(log_cases_projected_mu,
             (stan::model::rvalue(log_cases_projected_mu,
                "log_cases_projected_mu", stan::model::index_uni((i - 1))) +
@@ -1463,36 +1539,36 @@ public:
               stan::model::index_uni(i))),
             "assigning variable log_cases_projected_mu",
             stan::model::index_uni(i));
-          current_statement__ = 102;
+          current_statement__ = 108;
           if (stan::math::logical_gt(
                 stan::model::rvalue(log_cases_projected_mu,
                   "log_cases_projected_mu", stan::model::index_uni(i)), 10)) {
-            current_statement__ = 101;
+            current_statement__ = 107;
             stan::model::assign(log_cases_projected_mu, 10,
               "assigning variable log_cases_projected_mu",
               stan::model::index_uni(i));
           }
-          current_statement__ = 104;
+          current_statement__ = 110;
           if (stan::math::logical_lt(
                 stan::model::rvalue(log_cases_projected_mu,
                   "log_cases_projected_mu", stan::model::index_uni(i)), -10)) {
-            current_statement__ = 103;
+            current_statement__ = 109;
             stan::model::assign(log_cases_projected_mu, -10,
               "assigning variable log_cases_projected_mu",
               stan::model::index_uni(i));
           }
         }
-        current_statement__ = 107;
+        current_statement__ = 113;
         stan::model::assign(cases_truncated_mu,
-          stan::math::exp(log_cases_truncated_mu),
+          mfrv(stan::math::exp(log_cases_truncated_mu), pstream__),
           "assigning variable cases_truncated_mu");
-        current_statement__ = 108;
+        current_statement__ = 114;
         stan::model::assign(cases_nowcast_mu,
-          stan::math::exp(log_cases_nowcast_mu),
+          mfrv(stan::math::exp(log_cases_nowcast_mu), pstream__),
           "assigning variable cases_nowcast_mu");
-        current_statement__ = 109;
+        current_statement__ = 115;
         stan::model::assign(cases_projected_mu,
-          stan::math::exp(log_cases_projected_mu),
+          mfrv(stan::math::exp(log_cases_projected_mu), pstream__),
           "assigning variable cases_projected_mu");
       }
       Eigen::Matrix<local_scalar_t__,-1,1> onset_to_etu =
@@ -1520,89 +1596,89 @@ public:
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(max_delay,
           DUMMY_VAR__);
       local_scalar_t__ cfr = DUMMY_VAR__;
-      current_statement__ = 111;
+      current_statement__ = 117;
       cfr = stan::math::inv_logit(cfr_logit);
       {
-        current_statement__ = 118;
+        current_statement__ = 124;
         for (int i = 1; i <= max_delay; ++i) {
-          current_statement__ = 112;
+          current_statement__ = 118;
           stan::model::assign(onset_to_etu,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, onset_to_etu_logmean,
                 onset_to_etu_sd)), "assigning variable onset_to_etu",
             stan::model::index_uni(i));
-          current_statement__ = 113;
+          current_statement__ = 119;
           stan::model::assign(etu_to_survival,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, etu_to_survival_logmean,
                 etu_to_survival_sd)), "assigning variable etu_to_survival",
             stan::model::index_uni(i));
-          current_statement__ = 114;
+          current_statement__ = 120;
           stan::model::assign(etu_to_death,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, etu_to_death_logmean,
                 etu_to_death_sd)), "assigning variable etu_to_death",
             stan::model::index_uni(i));
-          current_statement__ = 115;
+          current_statement__ = 121;
           stan::model::assign(onset_to_iso,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, onset_to_iso_logmean,
                 onset_to_iso_sd)), "assigning variable onset_to_iso",
             stan::model::index_uni(i));
-          current_statement__ = 116;
+          current_statement__ = 122;
           stan::model::assign(iso_to_release,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, iso_to_release_logmean,
                 iso_to_release_sd)), "assigning variable iso_to_release",
             stan::model::index_uni(i));
         }
-        current_statement__ = 119;
+        current_statement__ = 125;
         stan::model::assign(onset_to_etu,
           stan::math::elt_divide(stan::model::deep_copy(onset_to_etu),
             stan::math::sum(onset_to_etu)), "assigning variable onset_to_etu");
-        current_statement__ = 120;
+        current_statement__ = 126;
         stan::model::assign(etu_to_survival,
           stan::math::elt_divide(stan::model::deep_copy(etu_to_survival),
             stan::math::sum(etu_to_survival)),
           "assigning variable etu_to_survival");
-        current_statement__ = 121;
+        current_statement__ = 127;
         stan::model::assign(etu_to_death,
           stan::math::elt_divide(stan::model::deep_copy(etu_to_death),
             stan::math::sum(etu_to_death)), "assigning variable etu_to_death");
-        current_statement__ = 122;
+        current_statement__ = 128;
         stan::model::assign(onset_to_iso,
           stan::math::elt_divide(stan::model::deep_copy(onset_to_iso),
             stan::math::sum(onset_to_iso)), "assigning variable onset_to_iso");
-        current_statement__ = 123;
+        current_statement__ = 129;
         stan::model::assign(iso_to_release,
           stan::math::elt_divide(stan::model::deep_copy(iso_to_release),
             stan::math::sum(iso_to_release)),
           "assigning variable iso_to_release");
-        current_statement__ = 124;
+        current_statement__ = 130;
         stan::model::assign(onset_to_survival,
           stan_convolve(max_delay, onset_to_etu, etu_to_survival, pstream__),
           "assigning variable onset_to_survival");
-        current_statement__ = 125;
+        current_statement__ = 131;
         stan::model::assign(onset_to_survival,
           stan::math::multiply(
             stan::math::elt_divide(stan::model::deep_copy(onset_to_survival),
               stan::math::sum(onset_to_survival)), (1 - cfr)),
           "assigning variable onset_to_survival");
-        current_statement__ = 126;
+        current_statement__ = 132;
         stan::model::assign(onset_to_death,
           stan_convolve(max_delay, onset_to_etu, etu_to_death, pstream__),
           "assigning variable onset_to_death");
-        current_statement__ = 127;
+        current_statement__ = 133;
         stan::model::assign(onset_to_death,
           stan::math::multiply(
             stan::math::elt_divide(stan::model::deep_copy(onset_to_death),
               stan::math::sum(onset_to_death)), cfr),
           "assigning variable onset_to_death");
-        current_statement__ = 128;
+        current_statement__ = 134;
         stan::model::assign(onset_to_release,
           stan_convolve(max_delay, onset_to_iso, iso_to_release, pstream__),
           "assigning variable onset_to_release");
-        current_statement__ = 129;
+        current_statement__ = 135;
         stan::model::assign(onset_to_release,
           stan::math::elt_divide(stan::model::deep_copy(onset_to_release),
             stan::math::sum(onset_to_release)),
@@ -1615,33 +1691,33 @@ public:
       Eigen::Matrix<local_scalar_t__,-1,1> deaths_projected_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_proj, DUMMY_VAR__);
       {
-        current_statement__ = 131;
+        current_statement__ = 137;
         stan::model::assign(deaths_truncated_mu,
           stan::math::rep_vector(stan::math::exp(-10), n_obs),
           "assigning variable deaths_truncated_mu");
-        current_statement__ = 132;
+        current_statement__ = 138;
         stan::model::assign(deaths_nowcast_mu,
           stan::math::rep_vector(stan::math::exp(-10), n_obs),
           "assigning variable deaths_nowcast_mu");
-        current_statement__ = 133;
+        current_statement__ = 139;
         stan::model::assign(deaths_projected_mu,
           stan::math::rep_vector(stan::math::exp(-10), n_proj),
           "assigning variable deaths_projected_mu");
         local_scalar_t__ density = DUMMY_VAR__;
-        current_statement__ = 145;
+        current_statement__ = 151;
         for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 143;
+          current_statement__ = 149;
           for (int j = 1; j <= max_delay; ++j) {
-            current_statement__ = 137;
+            current_statement__ = 143;
             if (stan::math::logical_lte(i, n_obs)) {
-              current_statement__ = 136;
+              current_statement__ = 142;
               density = (stan::model::rvalue(cases_nowcast_mu,
                            "cases_nowcast_mu", stan::model::index_uni(i))
                 *
                 stan::model::rvalue(onset_to_death, "onset_to_death",
                   stan::model::index_uni(j)));
             } else {
-              current_statement__ = 135;
+              current_statement__ = 141;
               density = (stan::model::rvalue(cases_projected_mu,
                            "cases_projected_mu",
                            stan::model::index_uni((i - n_obs)))
@@ -1649,18 +1725,18 @@ public:
                 stan::model::rvalue(onset_to_death, "onset_to_death",
                   stan::model::index_uni(j)));
             }
-            current_statement__ = 141;
+            current_statement__ = 147;
             if (stan::math::logical_lte((i + j), n_obs)) {
-              current_statement__ = 140;
+              current_statement__ = 146;
               stan::model::assign(deaths_nowcast_mu,
                 (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
                    stan::model::index_uni((i + j))) + density),
                 "assigning variable deaths_nowcast_mu",
                 stan::model::index_uni((i + j)));
             } else {
-              current_statement__ = 139;
+              current_statement__ = 145;
               if (stan::math::logical_lte((i + j), n_tot)) {
-                current_statement__ = 138;
+                current_statement__ = 144;
                 stan::model::assign(deaths_projected_mu,
                   (stan::model::rvalue(deaths_projected_mu,
                      "deaths_projected_mu",
@@ -1671,9 +1747,9 @@ public:
             }
           }
         }
-        current_statement__ = 147;
+        current_statement__ = 153;
         for (int i = 1; i <= n_obs; ++i) {
-          current_statement__ = 146;
+          current_statement__ = 152;
           stan::model::assign(deaths_truncated_mu,
             (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
                stan::model::index_uni(i)) *
@@ -1682,6 +1758,18 @@ public:
             "assigning variable deaths_truncated_mu",
             stan::model::index_uni(i));
         }
+        current_statement__ = 154;
+        stan::model::assign(deaths_nowcast_mu,
+          mfrv(stan::model::deep_copy(deaths_nowcast_mu), pstream__),
+          "assigning variable deaths_nowcast_mu");
+        current_statement__ = 155;
+        stan::model::assign(deaths_projected_mu,
+          mfrv(stan::model::deep_copy(deaths_projected_mu), pstream__),
+          "assigning variable deaths_projected_mu");
+        current_statement__ = 156;
+        stan::model::assign(deaths_truncated_mu,
+          mfrv(stan::model::deep_copy(deaths_truncated_mu), pstream__),
+          "assigning variable deaths_truncated_mu");
       }
       Eigen::Matrix<local_scalar_t__,-1,1> alerts_truncated_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
@@ -1690,69 +1778,69 @@ public:
       Eigen::Matrix<local_scalar_t__,-1,1> iso_truncated_mu =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
       local_scalar_t__ prop_iso = DUMMY_VAR__;
-      current_statement__ = 149;
+      current_statement__ = 158;
       prop_iso = stan::math::inv_logit(prop_iso_logit);
       local_scalar_t__ alerts_per_case = DUMMY_VAR__;
-      current_statement__ = 150;
+      current_statement__ = 159;
       alerts_per_case = stan::math::exp(alerts_per_case_log);
       Eigen::Matrix<local_scalar_t__,-1,1> alerts_background =
         Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_alerts_background,
           DUMMY_VAR__);
-      current_statement__ = 151;
+      current_statement__ = 160;
       stan::model::assign(alerts_background,
         stan::math::exp(alerts_background_log),
         "assigning variable alerts_background");
       {
-        current_statement__ = 152;
+        current_statement__ = 161;
         stan::math::validate_non_negative_index("etu_admission", "n_tot",
           n_tot);
         Eigen::Matrix<local_scalar_t__,-1,1> etu_admission =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-        current_statement__ = 154;
+        current_statement__ = 163;
         stan::math::validate_non_negative_index("etu_discharge", "n_tot",
           n_tot);
         Eigen::Matrix<local_scalar_t__,-1,1> etu_discharge =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-        current_statement__ = 156;
+        current_statement__ = 165;
         stan::math::validate_non_negative_index("iso_admission", "n_tot",
           n_tot);
         Eigen::Matrix<local_scalar_t__,-1,1> iso_admission =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-        current_statement__ = 158;
+        current_statement__ = 167;
         stan::math::validate_non_negative_index("iso_discharge", "n_tot",
           n_tot);
         Eigen::Matrix<local_scalar_t__,-1,1> iso_discharge =
           Eigen::Matrix<local_scalar_t__,-1,1>::Constant(n_tot, DUMMY_VAR__);
-        current_statement__ = 160;
+        current_statement__ = 169;
         stan::model::assign(alerts_truncated_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable alerts_truncated_mu");
-        current_statement__ = 161;
+        current_statement__ = 170;
         stan::model::assign(etu_admission, stan::math::rep_vector(0, n_tot),
           "assigning variable etu_admission");
-        current_statement__ = 162;
+        current_statement__ = 171;
         stan::model::assign(etu_discharge, stan::math::rep_vector(0, n_tot),
           "assigning variable etu_discharge");
-        current_statement__ = 163;
+        current_statement__ = 172;
         stan::model::assign(iso_admission, stan::math::rep_vector(0, n_tot),
           "assigning variable iso_admission");
-        current_statement__ = 164;
+        current_statement__ = 173;
         stan::model::assign(iso_discharge, stan::math::rep_vector(0, n_tot),
           "assigning variable iso_discharge");
-        current_statement__ = 185;
+        current_statement__ = 194;
         for (int i = 1; i <= (n_tot - 1); ++i) {
           int j_max = std::numeric_limits<int>::min();
-          current_statement__ = 165;
+          current_statement__ = 174;
           j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
             i) : max_delay);
           local_scalar_t__ cases_val = DUMMY_VAR__;
           local_scalar_t__ alerts_bg = DUMMY_VAR__;
-          current_statement__ = 174;
+          current_statement__ = 183;
           if (stan::math::logical_lte(i, n_obs)) {
-            current_statement__ = 171;
+            current_statement__ = 180;
             cases_val = stan::model::rvalue(cases_reported, "cases_reported",
                           stan::model::index_uni(i));
-            current_statement__ = 172;
+            current_statement__ = 181;
             alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
@@ -1760,11 +1848,11 @@ public:
                               "alerts_background_ind",
                               stan::model::index_uni(i))));
           } else {
-            current_statement__ = 168;
+            current_statement__ = 177;
             cases_val = stan::model::rvalue(cases_projected_mu,
                           "cases_projected_mu",
                           stan::model::index_uni((i - n_obs)));
-            current_statement__ = 169;
+            current_statement__ = 178;
             alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
@@ -1773,21 +1861,21 @@ public:
                               stan::model::index_uni(n_alerts_background))));
           }
           local_scalar_t__ alerts_val = DUMMY_VAR__;
-          current_statement__ = 175;
+          current_statement__ = 184;
           alerts_val = ((cases_val * alerts_per_case) + alerts_bg);
-          current_statement__ = 183;
+          current_statement__ = 192;
           for (int j = 1; j <= j_max; ++j) {
             int t = std::numeric_limits<int>::min();
-            current_statement__ = 176;
+            current_statement__ = 185;
             t = (i + j);
-            current_statement__ = 177;
+            current_statement__ = 186;
             stan::model::assign(etu_admission,
               (stan::model::rvalue(etu_admission, "etu_admission",
                  stan::model::index_uni(t)) + (cases_val *
               stan::model::rvalue(onset_to_etu, "onset_to_etu",
                 stan::model::index_uni(j)))),
               "assigning variable etu_admission", stan::model::index_uni(t));
-            current_statement__ = 178;
+            current_statement__ = 187;
             stan::model::assign(etu_discharge,
               (stan::model::rvalue(etu_discharge, "etu_discharge",
                  stan::model::index_uni(t)) + (cases_val *
@@ -1796,7 +1884,7 @@ public:
               stan::model::rvalue(onset_to_death, "onset_to_death",
                 stan::model::index_uni(j))))),
               "assigning variable etu_discharge", stan::model::index_uni(t));
-            current_statement__ = 179;
+            current_statement__ = 188;
             stan::model::assign(alerts_truncated_mu,
               (stan::model::rvalue(alerts_truncated_mu,
                  "alerts_truncated_mu", stan::model::index_uni(t)) +
@@ -1805,14 +1893,14 @@ public:
                 stan::model::index_uni(j)))),
               "assigning variable alerts_truncated_mu",
               stan::model::index_uni(t));
-            current_statement__ = 180;
+            current_statement__ = 189;
             stan::model::assign(iso_admission,
               (stan::model::rvalue(iso_admission, "iso_admission",
                  stan::model::index_uni(t)) + ((alerts_val *
               stan::model::rvalue(onset_to_iso, "onset_to_iso",
                 stan::model::index_uni(j))) * prop_iso)),
               "assigning variable iso_admission", stan::model::index_uni(t));
-            current_statement__ = 181;
+            current_statement__ = 190;
             stan::model::assign(iso_discharge,
               (stan::model::rvalue(iso_discharge, "iso_discharge",
                  stan::model::index_uni(t)) + ((alerts_val *
@@ -1821,147 +1909,123 @@ public:
               "assigning variable iso_discharge", stan::model::index_uni(t));
           }
         }
-        current_statement__ = 186;
+        current_statement__ = 195;
         stan::model::assign(etu_truncated_mu,
           stan::math::cumulative_sum(
             stan::math::subtract(etu_admission, etu_discharge)),
           "assigning variable etu_truncated_mu");
-        current_statement__ = 187;
+        current_statement__ = 196;
         stan::model::assign(iso_truncated_mu,
           stan::math::cumulative_sum(
             stan::math::subtract(iso_admission, iso_discharge)),
           "assigning variable iso_truncated_mu");
-        current_statement__ = 190;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 189;
-          if (stan::math::logical_eq(
-                stan::model::rvalue(etu_truncated_mu, "etu_truncated_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 188;
-            stan::model::assign(etu_truncated_mu, 0.00001,
-              "assigning variable etu_truncated_mu",
-              stan::model::index_uni(i));
-          }
-        }
-        current_statement__ = 193;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 192;
-          if (stan::math::logical_eq(
-                stan::model::rvalue(alerts_truncated_mu,
-                  "alerts_truncated_mu", stan::model::index_uni(i)), 0)) {
-            current_statement__ = 191;
-            stan::model::assign(alerts_truncated_mu, 0.00001,
-              "assigning variable alerts_truncated_mu",
-              stan::model::index_uni(i));
-          }
-        }
-        current_statement__ = 196;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 195;
-          if (stan::math::logical_lte(
-                stan::model::rvalue(iso_truncated_mu, "iso_truncated_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 194;
-            stan::model::assign(iso_truncated_mu, 0.00001,
-              "assigning variable iso_truncated_mu",
-              stan::model::index_uni(i));
-          }
-        }
+        current_statement__ = 197;
+        stan::model::assign(etu_truncated_mu,
+          mfrv(stan::model::deep_copy(etu_truncated_mu), pstream__),
+          "assigning variable etu_truncated_mu");
+        current_statement__ = 198;
+        stan::model::assign(alerts_truncated_mu,
+          mfrv(stan::model::deep_copy(alerts_truncated_mu), pstream__),
+          "assigning variable alerts_truncated_mu");
+        current_statement__ = 199;
+        stan::model::assign(iso_truncated_mu,
+          mfrv(stan::model::deep_copy(iso_truncated_mu), pstream__),
+          "assigning variable iso_truncated_mu");
       }
       local_scalar_t__ cases_overdisp = DUMMY_VAR__;
       local_scalar_t__ deaths_overdisp = DUMMY_VAR__;
       local_scalar_t__ etu_overdisp = DUMMY_VAR__;
       local_scalar_t__ alerts_overdisp = DUMMY_VAR__;
       local_scalar_t__ iso_overdisp = DUMMY_VAR__;
-      current_statement__ = 198;
-      cases_overdisp = stan::math::exp(cases_overdisp_log);
-      current_statement__ = 199;
-      deaths_overdisp = stan::math::exp(deaths_overdisp_log);
-      current_statement__ = 200;
-      etu_overdisp = stan::math::exp(etu_overdisp_log);
       current_statement__ = 201;
-      alerts_overdisp = stan::math::exp(alerts_overdisp_log);
+      cases_overdisp = stan::math::exp(cases_overdisp_log);
       current_statement__ = 202;
+      deaths_overdisp = stan::math::exp(deaths_overdisp_log);
+      current_statement__ = 203;
+      etu_overdisp = stan::math::exp(etu_overdisp_log);
+      current_statement__ = 204;
+      alerts_overdisp = stan::math::exp(alerts_overdisp_log);
+      current_statement__ = 205;
       iso_overdisp = stan::math::exp(iso_overdisp_log);
       {
-        current_statement__ = 261;
+        current_statement__ = 258;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          onset_to_etu_logmean,
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(2))));
-        current_statement__ = 262;
+        current_statement__ = 259;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(onset_to_etu_sd,
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_onset_to_etu,
                            "prior_onset_to_etu", stan::model::index_uni(4))));
-        current_statement__ = 263;
+        current_statement__ = 260;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          etu_to_survival_logmean,
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(2))));
-        current_statement__ = 264;
+        current_statement__ = 261;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_to_survival_sd,
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_etu_to_survival,
                            "prior_etu_to_survival", stan::model::index_uni(4))));
-        current_statement__ = 265;
+        current_statement__ = 262;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          etu_to_death_logmean,
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(2))));
-        current_statement__ = 266;
+        current_statement__ = 263;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_to_death_sd,
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_etu_to_death,
                            "prior_etu_to_death", stan::model::index_uni(4))));
-        current_statement__ = 267;
+        current_statement__ = 264;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          onset_to_iso_logmean,
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(2))));
-        current_statement__ = 268;
+        current_statement__ = 265;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(onset_to_iso_sd,
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_onset_to_iso,
                            "prior_onset_to_iso", stan::model::index_uni(4))));
-        current_statement__ = 269;
+        current_statement__ = 266;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          iso_to_release_logmean,
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(2))));
-        current_statement__ = 270;
+        current_statement__ = 267;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(iso_to_release_sd,
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(3)),
                          stan::model::rvalue(prior_iso_to_release,
                            "prior_iso_to_release", stan::model::index_uni(4))));
-        current_statement__ = 271;
+        current_statement__ = 268;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(cfr,
                          stan::model::rvalue(prior_cfr, "prior_cfr",
                            stan::model::index_uni(1)),
                          stan::model::rvalue(prior_cfr, "prior_cfr",
                            stan::model::index_uni(2))));
-        current_statement__ = 272;
+        current_statement__ = 269;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(prop_iso_logit,
                          stan::model::rvalue(prior_prop_iso,
                            "prior_prop_iso", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_prop_iso,
                            "prior_prop_iso", stan::model::index_uni(2))));
-        current_statement__ = 273;
+        current_statement__ = 270;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(
                          alerts_background_log,
                          stan::model::rvalue(prior_alerts_background,
@@ -1970,39 +2034,39 @@ public:
                          stan::model::rvalue(prior_alerts_background,
                            "prior_alerts_background",
                            stan::model::index_uni(2))));
-        current_statement__ = 274;
+        current_statement__ = 271;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_per_case_log,
                          stan::model::rvalue(prior_alerts_per_case,
                            "prior_alerts_per_case", stan::model::index_uni(1)),
                          stan::model::rvalue(prior_alerts_per_case,
                            "prior_alerts_per_case", stan::model::index_uni(2))));
-        current_statement__ = 275;
+        current_statement__ = 272;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(cases_overdisp_log,
                          2, 1));
-        current_statement__ = 276;
+        current_statement__ = 273;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(etu_overdisp_log, 0,
                          1));
-        current_statement__ = 277;
+        current_statement__ = 274;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(alerts_overdisp_log,
                          0, 1));
-        current_statement__ = 278;
+        current_statement__ = 275;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(iso_overdisp_log, 0,
                          1));
-        current_statement__ = 279;
+        current_statement__ = 276;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(spline_param, 0, 1));
-        current_statement__ = 280;
+        current_statement__ = 277;
         lp_accum__.add(stan::math::neg_binomial_2_lpmf<propto__>(
                          cases_reported, cases_truncated_mu, cases_overdisp));
-        current_statement__ = 281;
+        current_statement__ = 278;
         lp_accum__.add(stan::math::neg_binomial_2_lpmf<propto__>(
                          deaths_reported, deaths_truncated_mu,
                          deaths_overdisp));
-        current_statement__ = 282;
+        current_statement__ = 279;
         for (int sym1__ = 1; sym1__ <= stan::math::size(etu_ind); ++sym1__) {
           int i;
-          current_statement__ = 282;
+          current_statement__ = 279;
           i = etu_ind[(sym1__ - 1)];
-          current_statement__ = 283;
+          current_statement__ = 280;
           lp_accum__.add(stan::math::neg_binomial_2_lpmf<false>(
                            stan::model::rvalue(etu_reported, "etu_reported",
                              stan::model::index_uni(i)),
@@ -2010,12 +2074,12 @@ public:
                              "etu_truncated_mu", stan::model::index_uni(i)),
                            etu_overdisp));
         }
-        current_statement__ = 284;
+        current_statement__ = 281;
         for (int sym1__ = 1; sym1__ <= stan::math::size(alerts_ind); ++sym1__) {
           int i;
-          current_statement__ = 284;
+          current_statement__ = 281;
           i = alerts_ind[(sym1__ - 1)];
-          current_statement__ = 285;
+          current_statement__ = 282;
           lp_accum__.add(stan::math::neg_binomial_2_lpmf<false>(
                            stan::model::rvalue(alerts_reported,
                              "alerts_reported", stan::model::index_uni(i)),
@@ -2023,12 +2087,12 @@ public:
                              "alerts_truncated_mu", stan::model::index_uni(i)),
                            alerts_overdisp));
         }
-        current_statement__ = 286;
+        current_statement__ = 283;
         for (int sym1__ = 1; sym1__ <= stan::math::size(iso_ind); ++sym1__) {
           int i;
-          current_statement__ = 286;
+          current_statement__ = 283;
           i = iso_ind[(sym1__ - 1)];
-          current_statement__ = 287;
+          current_statement__ = 284;
           lp_accum__.add(stan::math::neg_binomial_2_lpmf<false>(
                            stan::model::rvalue(iso_reported, "iso_reported",
                              stan::model::index_uni(i)),
@@ -2288,53 +2352,66 @@ public:
           current_statement__ = 75;
           growthrate_slope_weight = 0;
         }
-        current_statement__ = 77;
-        growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
-        current_statement__ = 78;
-        stan::model::assign(growthrate_projected,
-          stan::math::add(
-            stan::model::rvalue(growthrate_reported, "growthrate_reported",
-              stan::model::index_uni(n_obs)),
-            stan::math::multiply(
-              stan::math::multiply(projection_sq, growthrate_slope),
-              growthrate_slope_weight)),
-          "assigning variable growthrate_projected");
-        current_statement__ = 79;
-        stan::model::assign(growthrate_projected,
-          stan::math::add(
-            stan::math::multiply(growthrate_asymptote,
-              growthrate_asymptote_weight),
-            stan::math::elt_multiply(
-              stan::math::subtract(1, growthrate_asymptote_weight),
-              stan::model::deep_copy(growthrate_projected))),
-          "assigning variable growthrate_projected");
+        current_statement__ = 85;
+        if (stan::math::logical_eq(extrapolate_growthrate, 0)) {
+          current_statement__ = 83;
+          for (int i = 1; i <= n_proj; ++i) {
+            current_statement__ = 81;
+            stan::model::assign(growthrate_projected,
+              stan::model::rvalue(growthrate_reported, "growthrate_reported",
+                stan::model::index_uni(n_obs)),
+              "assigning variable growthrate_projected",
+              stan::model::index_uni(i));
+          }
+        } else {
+          current_statement__ = 77;
+          growthrate_slope_weight = (0.2 + (0.8 * growthrate_slope_weight));
+          current_statement__ = 78;
+          stan::model::assign(growthrate_projected,
+            stan::math::add(
+              stan::model::rvalue(growthrate_reported, "growthrate_reported",
+                stan::model::index_uni(n_obs)),
+              stan::math::multiply(
+                stan::math::multiply(projection_sq, growthrate_slope),
+                growthrate_slope_weight)),
+            "assigning variable growthrate_projected");
+          current_statement__ = 79;
+          stan::model::assign(growthrate_projected,
+            stan::math::add(
+              stan::math::multiply(growthrate_asymptote,
+                growthrate_asymptote_weight),
+              stan::math::elt_multiply(
+                stan::math::subtract(1, growthrate_asymptote_weight),
+                stan::model::deep_copy(growthrate_projected))),
+            "assigning variable growthrate_projected");
+        }
       }
       {
-        current_statement__ = 81;
+        current_statement__ = 87;
         stan::math::validate_non_negative_index("log_cases_truncated_mu",
           "n_obs", n_obs);
         Eigen::Matrix<double,-1,1> log_cases_truncated_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_obs,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 83;
+        current_statement__ = 89;
         stan::math::validate_non_negative_index("log_cases_nowcast_mu",
           "n_obs", n_obs);
         Eigen::Matrix<double,-1,1> log_cases_nowcast_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_obs,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 85;
+        current_statement__ = 91;
         stan::math::validate_non_negative_index("log_cases_projected_mu",
           "n_proj", n_proj);
         Eigen::Matrix<double,-1,1> log_cases_projected_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_proj,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 87;
+        current_statement__ = 93;
         stan::model::assign(log_cases_nowcast_mu, (log_cases_intercept +
           stan::model::rvalue(growthrate_reported, "growthrate_reported",
             stan::model::index_uni(1))),
           "assigning variable log_cases_nowcast_mu",
           stan::model::index_uni(1));
-        current_statement__ = 88;
+        current_statement__ = 94;
         stan::model::assign(log_cases_truncated_mu,
           (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
              stan::model::index_uni(1)) +
@@ -2342,9 +2419,9 @@ public:
             "log_prop_cases_reported", stan::model::index_uni(1))),
           "assigning variable log_cases_truncated_mu",
           stan::model::index_uni(1));
-        current_statement__ = 92;
+        current_statement__ = 98;
         for (int i = 2; i <= n_obs; ++i) {
-          current_statement__ = 89;
+          current_statement__ = 95;
           stan::model::assign(log_cases_nowcast_mu,
             (stan::model::rvalue(log_cases_nowcast_mu,
                "log_cases_nowcast_mu", stan::model::index_uni((i - 1))) +
@@ -2352,7 +2429,7 @@ public:
               stan::model::index_uni(i))),
             "assigning variable log_cases_nowcast_mu",
             stan::model::index_uni(i));
-          current_statement__ = 90;
+          current_statement__ = 96;
           stan::model::assign(log_cases_truncated_mu,
             (stan::model::rvalue(log_cases_nowcast_mu,
                "log_cases_nowcast_mu", stan::model::index_uni(i)) +
@@ -2361,28 +2438,28 @@ public:
             "assigning variable log_cases_truncated_mu",
             stan::model::index_uni(i));
         }
-        current_statement__ = 98;
+        current_statement__ = 104;
         for (int i = 1; i <= n_obs; ++i) {
-          current_statement__ = 94;
+          current_statement__ = 100;
           if (stan::math::logical_gt(
                 stan::model::rvalue(log_cases_truncated_mu,
                   "log_cases_truncated_mu", stan::model::index_uni(i)), 10)) {
-            current_statement__ = 93;
+            current_statement__ = 99;
             stan::model::assign(log_cases_truncated_mu, 10,
               "assigning variable log_cases_truncated_mu",
               stan::model::index_uni(i));
           }
-          current_statement__ = 96;
+          current_statement__ = 102;
           if (stan::math::logical_gt(
                 stan::model::rvalue(log_cases_nowcast_mu,
                   "log_cases_nowcast_mu", stan::model::index_uni(i)), 10)) {
-            current_statement__ = 95;
+            current_statement__ = 101;
             stan::model::assign(log_cases_nowcast_mu, 10,
               "assigning variable log_cases_nowcast_mu",
               stan::model::index_uni(i));
           }
         }
-        current_statement__ = 99;
+        current_statement__ = 105;
         stan::model::assign(log_cases_projected_mu,
           (stan::model::rvalue(log_cases_nowcast_mu, "log_cases_nowcast_mu",
              stan::model::index_uni(n_obs)) +
@@ -2390,9 +2467,9 @@ public:
             stan::model::index_uni(1))),
           "assigning variable log_cases_projected_mu",
           stan::model::index_uni(1));
-        current_statement__ = 106;
+        current_statement__ = 112;
         for (int i = 2; i <= n_proj; ++i) {
-          current_statement__ = 100;
+          current_statement__ = 106;
           stan::model::assign(log_cases_projected_mu,
             (stan::model::rvalue(log_cases_projected_mu,
                "log_cases_projected_mu", stan::model::index_uni((i - 1))) +
@@ -2400,154 +2477,154 @@ public:
               stan::model::index_uni(i))),
             "assigning variable log_cases_projected_mu",
             stan::model::index_uni(i));
-          current_statement__ = 102;
+          current_statement__ = 108;
           if (stan::math::logical_gt(
                 stan::model::rvalue(log_cases_projected_mu,
                   "log_cases_projected_mu", stan::model::index_uni(i)), 10)) {
-            current_statement__ = 101;
+            current_statement__ = 107;
             stan::model::assign(log_cases_projected_mu, 10,
               "assigning variable log_cases_projected_mu",
               stan::model::index_uni(i));
           }
-          current_statement__ = 104;
+          current_statement__ = 110;
           if (stan::math::logical_lt(
                 stan::model::rvalue(log_cases_projected_mu,
                   "log_cases_projected_mu", stan::model::index_uni(i)), -10)) {
-            current_statement__ = 103;
+            current_statement__ = 109;
             stan::model::assign(log_cases_projected_mu, -10,
               "assigning variable log_cases_projected_mu",
               stan::model::index_uni(i));
           }
         }
-        current_statement__ = 107;
+        current_statement__ = 113;
         stan::model::assign(cases_truncated_mu,
-          stan::math::exp(log_cases_truncated_mu),
+          mfrv(stan::math::exp(log_cases_truncated_mu), pstream__),
           "assigning variable cases_truncated_mu");
-        current_statement__ = 108;
+        current_statement__ = 114;
         stan::model::assign(cases_nowcast_mu,
-          stan::math::exp(log_cases_nowcast_mu),
+          mfrv(stan::math::exp(log_cases_nowcast_mu), pstream__),
           "assigning variable cases_nowcast_mu");
-        current_statement__ = 109;
+        current_statement__ = 115;
         stan::model::assign(cases_projected_mu,
-          stan::math::exp(log_cases_projected_mu),
+          mfrv(stan::math::exp(log_cases_projected_mu), pstream__),
           "assigning variable cases_projected_mu");
       }
-      current_statement__ = 111;
+      current_statement__ = 117;
       cfr = stan::math::inv_logit(cfr_logit);
       {
-        current_statement__ = 118;
+        current_statement__ = 124;
         for (int i = 1; i <= max_delay; ++i) {
-          current_statement__ = 112;
+          current_statement__ = 118;
           stan::model::assign(onset_to_etu,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, onset_to_etu_logmean,
                 onset_to_etu_sd)), "assigning variable onset_to_etu",
             stan::model::index_uni(i));
-          current_statement__ = 113;
+          current_statement__ = 119;
           stan::model::assign(etu_to_survival,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, etu_to_survival_logmean,
                 etu_to_survival_sd)), "assigning variable etu_to_survival",
             stan::model::index_uni(i));
-          current_statement__ = 114;
+          current_statement__ = 120;
           stan::model::assign(etu_to_death,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, etu_to_death_logmean,
                 etu_to_death_sd)), "assigning variable etu_to_death",
             stan::model::index_uni(i));
-          current_statement__ = 115;
+          current_statement__ = 121;
           stan::model::assign(onset_to_iso,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, onset_to_iso_logmean,
                 onset_to_iso_sd)), "assigning variable onset_to_iso",
             stan::model::index_uni(i));
-          current_statement__ = 116;
+          current_statement__ = 122;
           stan::model::assign(iso_to_release,
             stan::math::exp(
               stan::math::lognormal_lpdf<false>(i, iso_to_release_logmean,
                 iso_to_release_sd)), "assigning variable iso_to_release",
             stan::model::index_uni(i));
         }
-        current_statement__ = 119;
+        current_statement__ = 125;
         stan::model::assign(onset_to_etu,
           stan::math::elt_divide(stan::model::deep_copy(onset_to_etu),
             stan::math::sum(onset_to_etu)), "assigning variable onset_to_etu");
-        current_statement__ = 120;
+        current_statement__ = 126;
         stan::model::assign(etu_to_survival,
           stan::math::elt_divide(stan::model::deep_copy(etu_to_survival),
             stan::math::sum(etu_to_survival)),
           "assigning variable etu_to_survival");
-        current_statement__ = 121;
+        current_statement__ = 127;
         stan::model::assign(etu_to_death,
           stan::math::elt_divide(stan::model::deep_copy(etu_to_death),
             stan::math::sum(etu_to_death)), "assigning variable etu_to_death");
-        current_statement__ = 122;
+        current_statement__ = 128;
         stan::model::assign(onset_to_iso,
           stan::math::elt_divide(stan::model::deep_copy(onset_to_iso),
             stan::math::sum(onset_to_iso)), "assigning variable onset_to_iso");
-        current_statement__ = 123;
+        current_statement__ = 129;
         stan::model::assign(iso_to_release,
           stan::math::elt_divide(stan::model::deep_copy(iso_to_release),
             stan::math::sum(iso_to_release)),
           "assigning variable iso_to_release");
-        current_statement__ = 124;
+        current_statement__ = 130;
         stan::model::assign(onset_to_survival,
           stan_convolve(max_delay, onset_to_etu, etu_to_survival, pstream__),
           "assigning variable onset_to_survival");
-        current_statement__ = 125;
+        current_statement__ = 131;
         stan::model::assign(onset_to_survival,
           stan::math::multiply(
             stan::math::elt_divide(stan::model::deep_copy(onset_to_survival),
               stan::math::sum(onset_to_survival)), (1 - cfr)),
           "assigning variable onset_to_survival");
-        current_statement__ = 126;
+        current_statement__ = 132;
         stan::model::assign(onset_to_death,
           stan_convolve(max_delay, onset_to_etu, etu_to_death, pstream__),
           "assigning variable onset_to_death");
-        current_statement__ = 127;
+        current_statement__ = 133;
         stan::model::assign(onset_to_death,
           stan::math::multiply(
             stan::math::elt_divide(stan::model::deep_copy(onset_to_death),
               stan::math::sum(onset_to_death)), cfr),
           "assigning variable onset_to_death");
-        current_statement__ = 128;
+        current_statement__ = 134;
         stan::model::assign(onset_to_release,
           stan_convolve(max_delay, onset_to_iso, iso_to_release, pstream__),
           "assigning variable onset_to_release");
-        current_statement__ = 129;
+        current_statement__ = 135;
         stan::model::assign(onset_to_release,
           stan::math::elt_divide(stan::model::deep_copy(onset_to_release),
             stan::math::sum(onset_to_release)),
           "assigning variable onset_to_release");
       }
       {
-        current_statement__ = 131;
+        current_statement__ = 137;
         stan::model::assign(deaths_truncated_mu,
           stan::math::rep_vector(stan::math::exp(-10), n_obs),
           "assigning variable deaths_truncated_mu");
-        current_statement__ = 132;
+        current_statement__ = 138;
         stan::model::assign(deaths_nowcast_mu,
           stan::math::rep_vector(stan::math::exp(-10), n_obs),
           "assigning variable deaths_nowcast_mu");
-        current_statement__ = 133;
+        current_statement__ = 139;
         stan::model::assign(deaths_projected_mu,
           stan::math::rep_vector(stan::math::exp(-10), n_proj),
           "assigning variable deaths_projected_mu");
         double density = std::numeric_limits<double>::quiet_NaN();
-        current_statement__ = 145;
+        current_statement__ = 151;
         for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 143;
+          current_statement__ = 149;
           for (int j = 1; j <= max_delay; ++j) {
-            current_statement__ = 137;
+            current_statement__ = 143;
             if (stan::math::logical_lte(i, n_obs)) {
-              current_statement__ = 136;
+              current_statement__ = 142;
               density = (stan::model::rvalue(cases_nowcast_mu,
                            "cases_nowcast_mu", stan::model::index_uni(i))
                 *
                 stan::model::rvalue(onset_to_death, "onset_to_death",
                   stan::model::index_uni(j)));
             } else {
-              current_statement__ = 135;
+              current_statement__ = 141;
               density = (stan::model::rvalue(cases_projected_mu,
                            "cases_projected_mu",
                            stan::model::index_uni((i - n_obs)))
@@ -2555,18 +2632,18 @@ public:
                 stan::model::rvalue(onset_to_death, "onset_to_death",
                   stan::model::index_uni(j)));
             }
-            current_statement__ = 141;
+            current_statement__ = 147;
             if (stan::math::logical_lte((i + j), n_obs)) {
-              current_statement__ = 140;
+              current_statement__ = 146;
               stan::model::assign(deaths_nowcast_mu,
                 (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
                    stan::model::index_uni((i + j))) + density),
                 "assigning variable deaths_nowcast_mu",
                 stan::model::index_uni((i + j)));
             } else {
-              current_statement__ = 139;
+              current_statement__ = 145;
               if (stan::math::logical_lte((i + j), n_tot)) {
-                current_statement__ = 138;
+                current_statement__ = 144;
                 stan::model::assign(deaths_projected_mu,
                   (stan::model::rvalue(deaths_projected_mu,
                      "deaths_projected_mu",
@@ -2577,9 +2654,9 @@ public:
             }
           }
         }
-        current_statement__ = 147;
+        current_statement__ = 153;
         for (int i = 1; i <= n_obs; ++i) {
-          current_statement__ = 146;
+          current_statement__ = 152;
           stan::model::assign(deaths_truncated_mu,
             (stan::model::rvalue(deaths_nowcast_mu, "deaths_nowcast_mu",
                stan::model::index_uni(i)) *
@@ -2588,70 +2665,82 @@ public:
             "assigning variable deaths_truncated_mu",
             stan::model::index_uni(i));
         }
+        current_statement__ = 154;
+        stan::model::assign(deaths_nowcast_mu,
+          mfrv(stan::model::deep_copy(deaths_nowcast_mu), pstream__),
+          "assigning variable deaths_nowcast_mu");
+        current_statement__ = 155;
+        stan::model::assign(deaths_projected_mu,
+          mfrv(stan::model::deep_copy(deaths_projected_mu), pstream__),
+          "assigning variable deaths_projected_mu");
+        current_statement__ = 156;
+        stan::model::assign(deaths_truncated_mu,
+          mfrv(stan::model::deep_copy(deaths_truncated_mu), pstream__),
+          "assigning variable deaths_truncated_mu");
       }
-      current_statement__ = 149;
+      current_statement__ = 158;
       prop_iso = stan::math::inv_logit(prop_iso_logit);
-      current_statement__ = 150;
+      current_statement__ = 159;
       alerts_per_case = stan::math::exp(alerts_per_case_log);
-      current_statement__ = 151;
+      current_statement__ = 160;
       stan::model::assign(alerts_background,
         stan::math::exp(alerts_background_log),
         "assigning variable alerts_background");
       {
-        current_statement__ = 152;
+        current_statement__ = 161;
         stan::math::validate_non_negative_index("etu_admission", "n_tot",
           n_tot);
         Eigen::Matrix<double,-1,1> etu_admission =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 154;
+        current_statement__ = 163;
         stan::math::validate_non_negative_index("etu_discharge", "n_tot",
           n_tot);
         Eigen::Matrix<double,-1,1> etu_discharge =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 156;
+        current_statement__ = 165;
         stan::math::validate_non_negative_index("iso_admission", "n_tot",
           n_tot);
         Eigen::Matrix<double,-1,1> iso_admission =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 158;
+        current_statement__ = 167;
         stan::math::validate_non_negative_index("iso_discharge", "n_tot",
           n_tot);
         Eigen::Matrix<double,-1,1> iso_discharge =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 160;
+        current_statement__ = 169;
         stan::model::assign(alerts_truncated_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable alerts_truncated_mu");
-        current_statement__ = 161;
+        current_statement__ = 170;
         stan::model::assign(etu_admission, stan::math::rep_vector(0, n_tot),
           "assigning variable etu_admission");
-        current_statement__ = 162;
+        current_statement__ = 171;
         stan::model::assign(etu_discharge, stan::math::rep_vector(0, n_tot),
           "assigning variable etu_discharge");
-        current_statement__ = 163;
+        current_statement__ = 172;
         stan::model::assign(iso_admission, stan::math::rep_vector(0, n_tot),
           "assigning variable iso_admission");
-        current_statement__ = 164;
+        current_statement__ = 173;
         stan::model::assign(iso_discharge, stan::math::rep_vector(0, n_tot),
           "assigning variable iso_discharge");
-        current_statement__ = 185;
+        current_statement__ = 194;
         for (int i = 1; i <= (n_tot - 1); ++i) {
           int j_max = std::numeric_limits<int>::min();
-          current_statement__ = 165;
+          current_statement__ = 174;
           j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
             i) : max_delay);
           double cases_val = std::numeric_limits<double>::quiet_NaN();
           double alerts_bg = std::numeric_limits<double>::quiet_NaN();
-          current_statement__ = 174;
+          current_statement__ = 183;
           if (stan::math::logical_lte(i, n_obs)) {
-            current_statement__ = 171;
+            current_statement__ = 180;
             cases_val = stan::model::rvalue(cases_reported, "cases_reported",
                           stan::model::index_uni(i));
-            current_statement__ = 172;
+            current_statement__ = 181;
             alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
@@ -2659,11 +2748,11 @@ public:
                               "alerts_background_ind",
                               stan::model::index_uni(i))));
           } else {
-            current_statement__ = 168;
+            current_statement__ = 177;
             cases_val = stan::model::rvalue(cases_projected_mu,
                           "cases_projected_mu",
                           stan::model::index_uni((i - n_obs)));
-            current_statement__ = 169;
+            current_statement__ = 178;
             alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
@@ -2672,21 +2761,21 @@ public:
                               stan::model::index_uni(n_alerts_background))));
           }
           double alerts_val = std::numeric_limits<double>::quiet_NaN();
-          current_statement__ = 175;
+          current_statement__ = 184;
           alerts_val = ((cases_val * alerts_per_case) + alerts_bg);
-          current_statement__ = 183;
+          current_statement__ = 192;
           for (int j = 1; j <= j_max; ++j) {
             int t = std::numeric_limits<int>::min();
-            current_statement__ = 176;
+            current_statement__ = 185;
             t = (i + j);
-            current_statement__ = 177;
+            current_statement__ = 186;
             stan::model::assign(etu_admission,
               (stan::model::rvalue(etu_admission, "etu_admission",
                  stan::model::index_uni(t)) + (cases_val *
               stan::model::rvalue(onset_to_etu, "onset_to_etu",
                 stan::model::index_uni(j)))),
               "assigning variable etu_admission", stan::model::index_uni(t));
-            current_statement__ = 178;
+            current_statement__ = 187;
             stan::model::assign(etu_discharge,
               (stan::model::rvalue(etu_discharge, "etu_discharge",
                  stan::model::index_uni(t)) + (cases_val *
@@ -2695,7 +2784,7 @@ public:
               stan::model::rvalue(onset_to_death, "onset_to_death",
                 stan::model::index_uni(j))))),
               "assigning variable etu_discharge", stan::model::index_uni(t));
-            current_statement__ = 179;
+            current_statement__ = 188;
             stan::model::assign(alerts_truncated_mu,
               (stan::model::rvalue(alerts_truncated_mu,
                  "alerts_truncated_mu", stan::model::index_uni(t)) +
@@ -2704,14 +2793,14 @@ public:
                 stan::model::index_uni(j)))),
               "assigning variable alerts_truncated_mu",
               stan::model::index_uni(t));
-            current_statement__ = 180;
+            current_statement__ = 189;
             stan::model::assign(iso_admission,
               (stan::model::rvalue(iso_admission, "iso_admission",
                  stan::model::index_uni(t)) + ((alerts_val *
               stan::model::rvalue(onset_to_iso, "onset_to_iso",
                 stan::model::index_uni(j))) * prop_iso)),
               "assigning variable iso_admission", stan::model::index_uni(t));
-            current_statement__ = 181;
+            current_statement__ = 190;
             stan::model::assign(iso_discharge,
               (stan::model::rvalue(iso_discharge, "iso_discharge",
                  stan::model::index_uni(t)) + ((alerts_val *
@@ -2720,62 +2809,38 @@ public:
               "assigning variable iso_discharge", stan::model::index_uni(t));
           }
         }
-        current_statement__ = 186;
+        current_statement__ = 195;
         stan::model::assign(etu_truncated_mu,
           stan::math::cumulative_sum(
             stan::math::subtract(etu_admission, etu_discharge)),
           "assigning variable etu_truncated_mu");
-        current_statement__ = 187;
+        current_statement__ = 196;
         stan::model::assign(iso_truncated_mu,
           stan::math::cumulative_sum(
             stan::math::subtract(iso_admission, iso_discharge)),
           "assigning variable iso_truncated_mu");
-        current_statement__ = 190;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 189;
-          if (stan::math::logical_eq(
-                stan::model::rvalue(etu_truncated_mu, "etu_truncated_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 188;
-            stan::model::assign(etu_truncated_mu, 0.00001,
-              "assigning variable etu_truncated_mu",
-              stan::model::index_uni(i));
-          }
-        }
-        current_statement__ = 193;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 192;
-          if (stan::math::logical_eq(
-                stan::model::rvalue(alerts_truncated_mu,
-                  "alerts_truncated_mu", stan::model::index_uni(i)), 0)) {
-            current_statement__ = 191;
-            stan::model::assign(alerts_truncated_mu, 0.00001,
-              "assigning variable alerts_truncated_mu",
-              stan::model::index_uni(i));
-          }
-        }
-        current_statement__ = 196;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 195;
-          if (stan::math::logical_lte(
-                stan::model::rvalue(iso_truncated_mu, "iso_truncated_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 194;
-            stan::model::assign(iso_truncated_mu, 0.00001,
-              "assigning variable iso_truncated_mu",
-              stan::model::index_uni(i));
-          }
-        }
+        current_statement__ = 197;
+        stan::model::assign(etu_truncated_mu,
+          mfrv(stan::model::deep_copy(etu_truncated_mu), pstream__),
+          "assigning variable etu_truncated_mu");
+        current_statement__ = 198;
+        stan::model::assign(alerts_truncated_mu,
+          mfrv(stan::model::deep_copy(alerts_truncated_mu), pstream__),
+          "assigning variable alerts_truncated_mu");
+        current_statement__ = 199;
+        stan::model::assign(iso_truncated_mu,
+          mfrv(stan::model::deep_copy(iso_truncated_mu), pstream__),
+          "assigning variable iso_truncated_mu");
       }
-      current_statement__ = 198;
-      cases_overdisp = stan::math::exp(cases_overdisp_log);
-      current_statement__ = 199;
-      deaths_overdisp = stan::math::exp(deaths_overdisp_log);
-      current_statement__ = 200;
-      etu_overdisp = stan::math::exp(etu_overdisp_log);
       current_statement__ = 201;
-      alerts_overdisp = stan::math::exp(alerts_overdisp_log);
+      cases_overdisp = stan::math::exp(cases_overdisp_log);
       current_statement__ = 202;
+      deaths_overdisp = stan::math::exp(deaths_overdisp_log);
+      current_statement__ = 203;
+      etu_overdisp = stan::math::exp(etu_overdisp_log);
+      current_statement__ = 204;
+      alerts_overdisp = stan::math::exp(alerts_overdisp_log);
+      current_statement__ = 205;
       iso_overdisp = stan::math::exp(iso_overdisp_log);
       if (emit_transformed_parameters__) {
         out__.write(growthrate_reported);
@@ -2822,30 +2887,35 @@ public:
         std::vector<int>(n_obs, std::numeric_limits<int>::min());
       std::vector<int> deaths_nowcast_sim =
         std::vector<int>(n_obs, std::numeric_limits<int>::min());
-      current_statement__ = 203;
-      stan::model::assign(cases_truncated_sim,
-        stan::math::neg_binomial_2_rng(cases_truncated_mu, cases_overdisp,
-          base_rng__), "assigning variable cases_truncated_sim");
-      current_statement__ = 204;
-      stan::model::assign(cases_nowcast_sim,
-        stan::math::neg_binomial_2_rng(cases_nowcast_mu, cases_overdisp,
-          base_rng__), "assigning variable cases_nowcast_sim");
-      current_statement__ = 205;
-      stan::model::assign(cases_projected_sim,
-        stan::math::neg_binomial_2_rng(cases_projected_mu, cases_overdisp,
-          base_rng__), "assigning variable cases_projected_sim");
       current_statement__ = 206;
-      stan::model::assign(deaths_truncated_sim,
-        stan::math::neg_binomial_2_rng(deaths_truncated_mu, deaths_overdisp,
-          base_rng__), "assigning variable deaths_truncated_sim");
+      stan::model::assign(cases_truncated_sim,
+        stan::math::neg_binomial_2_rng(mfrv(cases_truncated_mu, pstream__),
+          cases_overdisp, base_rng__),
+        "assigning variable cases_truncated_sim");
       current_statement__ = 207;
-      stan::model::assign(deaths_nowcast_sim,
-        stan::math::neg_binomial_2_rng(deaths_nowcast_mu, deaths_overdisp,
-          base_rng__), "assigning variable deaths_nowcast_sim");
+      stan::model::assign(cases_nowcast_sim,
+        stan::math::neg_binomial_2_rng(mfrv(cases_nowcast_mu, pstream__),
+          cases_overdisp, base_rng__), "assigning variable cases_nowcast_sim");
       current_statement__ = 208;
+      stan::model::assign(cases_projected_sim,
+        stan::math::neg_binomial_2_rng(mfrv(cases_projected_mu, pstream__),
+          cases_overdisp, base_rng__),
+        "assigning variable cases_projected_sim");
+      current_statement__ = 209;
+      stan::model::assign(deaths_truncated_sim,
+        stan::math::neg_binomial_2_rng(mfrv(deaths_truncated_mu, pstream__),
+          deaths_overdisp, base_rng__),
+        "assigning variable deaths_truncated_sim");
+      current_statement__ = 210;
+      stan::model::assign(deaths_nowcast_sim,
+        stan::math::neg_binomial_2_rng(mfrv(deaths_nowcast_mu, pstream__),
+          deaths_overdisp, base_rng__),
+        "assigning variable deaths_nowcast_sim");
+      current_statement__ = 211;
       stan::model::assign(deaths_projected_sim,
-        stan::math::neg_binomial_2_rng(deaths_projected_mu, deaths_overdisp,
-          base_rng__), "assigning variable deaths_projected_sim");
+        stan::math::neg_binomial_2_rng(mfrv(deaths_projected_mu, pstream__),
+          deaths_overdisp, base_rng__),
+        "assigning variable deaths_projected_sim");
       Eigen::Matrix<double,-1,1> iso_nowcast_mu =
         Eigen::Matrix<double,-1,1>::Constant(n_tot,
           std::numeric_limits<double>::quiet_NaN());
@@ -2856,64 +2926,64 @@ public:
         Eigen::Matrix<double,-1,1>::Constant(n_tot,
           std::numeric_limits<double>::quiet_NaN());
       {
-        current_statement__ = 209;
+        current_statement__ = 212;
         stan::math::validate_non_negative_index("etu_admission_nowcast_mu",
           "n_tot", n_tot);
         Eigen::Matrix<double,-1,1> etu_admission_nowcast_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 211;
+        current_statement__ = 214;
         stan::math::validate_non_negative_index("etu_discharge_nowcast_mu",
           "n_tot", n_tot);
         Eigen::Matrix<double,-1,1> etu_discharge_nowcast_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 213;
+        current_statement__ = 216;
         stan::math::validate_non_negative_index("iso_admission_nowcast_mu",
           "n_tot", n_tot);
         Eigen::Matrix<double,-1,1> iso_admission_nowcast_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 215;
+        current_statement__ = 218;
         stan::math::validate_non_negative_index("iso_discharge_nowcast_mu",
           "n_tot", n_tot);
         Eigen::Matrix<double,-1,1> iso_discharge_nowcast_mu =
           Eigen::Matrix<double,-1,1>::Constant(n_tot,
             std::numeric_limits<double>::quiet_NaN());
-        current_statement__ = 217;
+        current_statement__ = 220;
         stan::model::assign(alerts_nowcast_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable alerts_nowcast_mu");
-        current_statement__ = 218;
+        current_statement__ = 221;
         stan::model::assign(etu_admission_nowcast_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable etu_admission_nowcast_mu");
-        current_statement__ = 219;
+        current_statement__ = 222;
         stan::model::assign(etu_discharge_nowcast_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable etu_discharge_nowcast_mu");
-        current_statement__ = 220;
+        current_statement__ = 223;
         stan::model::assign(iso_admission_nowcast_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable iso_admission_nowcast_mu");
-        current_statement__ = 221;
+        current_statement__ = 224;
         stan::model::assign(iso_discharge_nowcast_mu,
           stan::math::rep_vector(0, n_tot),
           "assigning variable iso_discharge_nowcast_mu");
-        current_statement__ = 242;
+        current_statement__ = 245;
         for (int i = 1; i <= (n_tot - 1); ++i) {
           int j_max = std::numeric_limits<int>::min();
-          current_statement__ = 222;
+          current_statement__ = 225;
           j_max = (stan::math::logical_gt((i + max_delay), n_tot) ? (n_tot -
             i) : max_delay);
           double cases_val = std::numeric_limits<double>::quiet_NaN();
           double alerts_bg = std::numeric_limits<double>::quiet_NaN();
-          current_statement__ = 231;
+          current_statement__ = 234;
           if (stan::math::logical_lte(i, n_obs)) {
-            current_statement__ = 228;
+            current_statement__ = 231;
             cases_val = stan::model::rvalue(cases_nowcast_mu,
                           "cases_nowcast_mu", stan::model::index_uni(i));
-            current_statement__ = 229;
+            current_statement__ = 232;
             alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
@@ -2921,11 +2991,11 @@ public:
                               "alerts_background_ind",
                               stan::model::index_uni(i))));
           } else {
-            current_statement__ = 225;
+            current_statement__ = 228;
             cases_val = stan::model::rvalue(cases_projected_mu,
                           "cases_projected_mu",
                           stan::model::index_uni((i - n_obs)));
-            current_statement__ = 226;
+            current_statement__ = 229;
             alerts_bg = stan::model::rvalue(alerts_background,
                           "alerts_background",
                           stan::model::index_uni(
@@ -2934,14 +3004,14 @@ public:
                               stan::model::index_uni(n_alerts_background))));
           }
           double alerts_val = std::numeric_limits<double>::quiet_NaN();
-          current_statement__ = 232;
+          current_statement__ = 235;
           alerts_val = ((cases_val * alerts_per_case) + alerts_bg);
-          current_statement__ = 240;
+          current_statement__ = 243;
           for (int j = 1; j <= j_max; ++j) {
             int t = std::numeric_limits<int>::min();
-            current_statement__ = 233;
+            current_statement__ = 236;
             t = (i + j);
-            current_statement__ = 234;
+            current_statement__ = 237;
             stan::model::assign(etu_admission_nowcast_mu,
               (stan::model::rvalue(etu_admission_nowcast_mu,
                  "etu_admission_nowcast_mu", stan::model::index_uni(t)) +
@@ -2950,7 +3020,7 @@ public:
                 stan::model::index_uni(j)))),
               "assigning variable etu_admission_nowcast_mu",
               stan::model::index_uni(t));
-            current_statement__ = 235;
+            current_statement__ = 238;
             stan::model::assign(etu_discharge_nowcast_mu,
               (stan::model::rvalue(etu_discharge_nowcast_mu,
                  "etu_discharge_nowcast_mu", stan::model::index_uni(t)) +
@@ -2961,7 +3031,7 @@ public:
                 stan::model::index_uni(j))))),
               "assigning variable etu_discharge_nowcast_mu",
               stan::model::index_uni(t));
-            current_statement__ = 236;
+            current_statement__ = 239;
             stan::model::assign(alerts_nowcast_mu,
               (stan::model::rvalue(alerts_nowcast_mu, "alerts_nowcast_mu",
                  stan::model::index_uni(t)) + (alerts_val *
@@ -2969,7 +3039,7 @@ public:
                 stan::model::index_uni(j)))),
               "assigning variable alerts_nowcast_mu",
               stan::model::index_uni(t));
-            current_statement__ = 237;
+            current_statement__ = 240;
             stan::model::assign(iso_admission_nowcast_mu,
               (stan::model::rvalue(iso_admission_nowcast_mu,
                  "iso_admission_nowcast_mu", stan::model::index_uni(t)) +
@@ -2978,7 +3048,7 @@ public:
                 stan::model::index_uni(j))) * prop_iso)),
               "assigning variable iso_admission_nowcast_mu",
               stan::model::index_uni(t));
-            current_statement__ = 238;
+            current_statement__ = 241;
             stan::model::assign(iso_discharge_nowcast_mu,
               (stan::model::rvalue(iso_discharge_nowcast_mu,
                  "iso_discharge_nowcast_mu", stan::model::index_uni(t)) +
@@ -2989,50 +3059,28 @@ public:
               stan::model::index_uni(t));
           }
         }
-        current_statement__ = 243;
+        current_statement__ = 246;
         stan::model::assign(etu_nowcast_mu,
           stan::math::cumulative_sum(
             stan::math::subtract(etu_admission_nowcast_mu,
               etu_discharge_nowcast_mu)), "assigning variable etu_nowcast_mu");
-        current_statement__ = 244;
+        current_statement__ = 247;
         stan::model::assign(iso_nowcast_mu,
           stan::math::cumulative_sum(
             stan::math::subtract(iso_admission_nowcast_mu,
               iso_discharge_nowcast_mu)), "assigning variable iso_nowcast_mu");
-        current_statement__ = 247;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 246;
-          if (stan::math::logical_eq(
-                stan::model::rvalue(etu_nowcast_mu, "etu_nowcast_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 245;
-            stan::model::assign(etu_nowcast_mu, 0.00001,
-              "assigning variable etu_nowcast_mu", stan::model::index_uni(i));
-          }
-        }
+        current_statement__ = 248;
+        stan::model::assign(etu_nowcast_mu,
+          mfrv(stan::model::deep_copy(etu_nowcast_mu), pstream__),
+          "assigning variable etu_nowcast_mu");
+        current_statement__ = 249;
+        stan::model::assign(alerts_nowcast_mu,
+          mfrv(stan::model::deep_copy(alerts_nowcast_mu), pstream__),
+          "assigning variable alerts_nowcast_mu");
         current_statement__ = 250;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 249;
-          if (stan::math::logical_eq(
-                stan::model::rvalue(alerts_nowcast_mu, "alerts_nowcast_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 248;
-            stan::model::assign(alerts_nowcast_mu, 0.00001,
-              "assigning variable alerts_nowcast_mu",
-              stan::model::index_uni(i));
-          }
-        }
-        current_statement__ = 253;
-        for (int i = 1; i <= n_tot; ++i) {
-          current_statement__ = 252;
-          if (stan::math::logical_lte(
-                stan::model::rvalue(iso_nowcast_mu, "iso_nowcast_mu",
-                  stan::model::index_uni(i)), 0)) {
-            current_statement__ = 251;
-            stan::model::assign(iso_nowcast_mu, 0.00001,
-              "assigning variable iso_nowcast_mu", stan::model::index_uni(i));
-          }
-        }
+        stan::model::assign(iso_nowcast_mu,
+          mfrv(stan::model::deep_copy(iso_nowcast_mu), pstream__),
+          "assigning variable iso_nowcast_mu");
       }
       std::vector<int> etu_truncated_sim =
         std::vector<int>(n_tot, std::numeric_limits<int>::min());
@@ -3046,30 +3094,32 @@ public:
         std::vector<int>(n_tot, std::numeric_limits<int>::min());
       std::vector<int> iso_nowcast_sim =
         std::vector<int>(n_tot, std::numeric_limits<int>::min());
-      current_statement__ = 255;
+      current_statement__ = 252;
       stan::model::assign(etu_truncated_sim,
-        stan::math::neg_binomial_2_rng(etu_truncated_mu, etu_overdisp,
-          base_rng__), "assigning variable etu_truncated_sim");
-      current_statement__ = 256;
+        stan::math::neg_binomial_2_rng(mfrv(etu_truncated_mu, pstream__),
+          etu_overdisp, base_rng__), "assigning variable etu_truncated_sim");
+      current_statement__ = 253;
       stan::model::assign(alerts_truncated_sim,
-        stan::math::neg_binomial_2_rng(alerts_truncated_mu, alerts_overdisp,
-          base_rng__), "assigning variable alerts_truncated_sim");
-      current_statement__ = 257;
+        stan::math::neg_binomial_2_rng(mfrv(alerts_truncated_mu, pstream__),
+          alerts_overdisp, base_rng__),
+        "assigning variable alerts_truncated_sim");
+      current_statement__ = 254;
       stan::model::assign(iso_truncated_sim,
-        stan::math::neg_binomial_2_rng(iso_truncated_mu, iso_overdisp,
-          base_rng__), "assigning variable iso_truncated_sim");
-      current_statement__ = 258;
+        stan::math::neg_binomial_2_rng(mfrv(iso_truncated_mu, pstream__),
+          iso_overdisp, base_rng__), "assigning variable iso_truncated_sim");
+      current_statement__ = 255;
       stan::model::assign(etu_nowcast_sim,
-        stan::math::neg_binomial_2_rng(etu_nowcast_mu, etu_overdisp,
-          base_rng__), "assigning variable etu_nowcast_sim");
-      current_statement__ = 259;
+        stan::math::neg_binomial_2_rng(mfrv(etu_nowcast_mu, pstream__),
+          etu_overdisp, base_rng__), "assigning variable etu_nowcast_sim");
+      current_statement__ = 256;
       stan::model::assign(alerts_nowcast_sim,
-        stan::math::neg_binomial_2_rng(alerts_nowcast_mu, alerts_overdisp,
-          base_rng__), "assigning variable alerts_nowcast_sim");
-      current_statement__ = 260;
+        stan::math::neg_binomial_2_rng(mfrv(alerts_nowcast_mu, pstream__),
+          alerts_overdisp, base_rng__),
+        "assigning variable alerts_nowcast_sim");
+      current_statement__ = 257;
       stan::model::assign(iso_nowcast_sim,
-        stan::math::neg_binomial_2_rng(iso_nowcast_mu, iso_overdisp,
-          base_rng__), "assigning variable iso_nowcast_sim");
+        stan::math::neg_binomial_2_rng(mfrv(iso_nowcast_mu, pstream__),
+          iso_overdisp, base_rng__), "assigning variable iso_nowcast_sim");
       out__.write(cases_projected_sim);
       out__.write(cases_truncated_sim);
       out__.write(cases_nowcast_sim);

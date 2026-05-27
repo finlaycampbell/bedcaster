@@ -13,7 +13,7 @@ fit_bedcaster.}
 \item{type}{What type of visualisation. "fit" will call
 \code{vis_bedcast_fit}, "growthrate" will call
 \code{vis_bedcast_growthrate} and "vis_bedcast_parameters" will call
-\code{vis_parameters}.}
+\code{vis_bedcast_parameters}.}
 
 \item{...}{Other arguments passed to plotting functions.}
 }

@@ -2,11 +2,14 @@ Package: bedcaster
 Title: Bed Occupancy Forecasting for Epidemics
 Version: 0.1.0
 Authors@R: person("Finlay", "Campbell", email = "finlaycampbell93@gmail.com", role = c("aut", "cre"))
-Description: A package for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. Provides tools for data processing, delay estimation, and Stan-based modeling of ETU and isolation occupancy.
+Description: Forecast ETU and isolation bed occupancy during epidemics with a
+    Bayesian Stan model that nowcasts and projects cases, deaths, alerts,
+    and healthcare demand from daily surveillance data.
 License: MIT + file LICENSE
+URL: https://github.com/finlaycampbell/bedcaster
+BugReports: https://github.com/finlaycampbell/bedcaster/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
 Depends: 
     R (>= 4.1.0)
 Imports:
@@ -15,15 +18,10 @@ Imports:
     forcats,
     ggplot2,
     glue,
-    here,
-    janitor,
-    magrittr,
     methods,
     purrr,
     Rcpp (>= 0.12.0),
     RcppParallel (>= 5.0.1),
-    reshape2,
-    rio,
     rstan (>= 2.18.1),
     rstantools (>= 2.4.0),
     scales,
@@ -32,7 +30,6 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    utils,
     zoo
 Suggests:
     testthat (>= 3.0.0),
@@ -48,3 +45,4 @@ LinkingTo:
     rstan (>= 2.18.1),
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
+Config/roxygen2/version: 8.0.0

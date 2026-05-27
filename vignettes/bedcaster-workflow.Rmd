@@ -1,6 +1,6 @@
 ---
 title: "Bed Occupancy Forecasting Workflow"
-author: "Bedcaster Package"
+author: "Finlay Campbell"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -13,255 +13,112 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.width = 10,
-  fig.height = 6
+  fig.width = 8,
+  fig.height = 5
 )
 ```
 
-# Introduction
+## Introduction
 
-The `bedcaster` package provides tools for forecasting bed occupancy during epidemics using Bayesian nowcasting methods. This vignette demonstrates the complete workflow for analyzing epidemiological data and generating forecasts of ETU (Ebola Treatment Unit) and isolation bed occupancy.
+The **bedcaster** package forecasts healthcare demand during epidemics by fitting a single Bayesian model to daily surveillance data. The model nowcasts and projects:
 
-# Workflow Overview
+- reported cases and deaths (with reporting-delay adjustment),
+- ETU occupancy,
+- community alerts, and
+- isolation bed occupancy.
 
-The bedcaster workflow consists of several key steps:
+This vignette outlines the workflow from a prepared data frame through fitting, summarisation, and visualisation.
 
-1. **Data Import**: Import and process linelist, alerts, and occupancy data
-2. **Delay Estimation**: Calculate delay distributions between key events
-3. **Data Merging**: Combine all data sources into a time series format
-4. **Model Fitting**: Fit a Bayesian Stan model for nowcasting and forecasting
-5. **Visualization**: Create comprehensive plots of results
+## Data preparation
 
-# Step-by-Step Workflow
+`fit_bedcaster()` expects a data frame with columns `date`, `cases`, `deaths`, `etu`, `alerts`, and `iso`. Build this from your linelist, bed-management system, and alert database. Counts can be `NA` on days when a series was not recorded.
 
-## 1. Load Required Packages
-
-```{r load-packages, eval = FALSE}
-# Load the bedcaster package and dependencies
+```{r example-data, eval = FALSE}
 library(bedcaster)
-library(tidyverse)
-library(rstan)
-library(here)
+
+df <- data.frame(
+  date = seq(as.Date("2024-01-01"), as.Date("2024-03-31"), by = "day"),
+  cases = rpois(91, 8),
+  deaths = rpois(91, 1),
+  etu = rpois(91, 12),
+  alerts = rpois(91, 20),
+  iso = rpois(91, 15)
+)
+
+as_of <- max(df$date)
 ```
 
-## 2. Import Data
+In practice you will merge linelist-derived incidence, ETU/isolation occupancy, and alert time series before calling the model. The package does not ship outbreak-specific import helpers; data preparation stays in your analysis pipeline.
 
-The workflow begins by importing data from various sources:
+## Fitting the model
 
-### Import Linelist Data
-```{r import-linelist, eval = FALSE}
-# Import real linelist data
-ll <- get_real_linelist()
+```{r fit, eval = FALSE}
+bedcast <- fit_bedcaster(
+  df,
+  as_of = as_of,
+  n_proj = 28,
+  n_iter = 500,
+  n_chains = 2,
+  n_cores = 2
+)
+
+print(bedcast)
 ```
 
-The `get_real_linelist()` function imports and processes epidemiological linelist data, handling various date formats and cleaning column names.
+Key arguments:
 
-### Import Alerts Data
-```{r import-alerts, eval = FALSE}
-# Import daily alerts data
-alerts <- get_alerts()
-```
+- **`as_of`** — snapshot date used to compute reporting-delay weights.
+- **`n_proj`** — projection length in days beyond the fit period.
+- **`extrapolate_growthrate`** — if `FALSE` (default), projected growth rates stay at the last estimated value; if `TRUE`, growth is extrapolated with a logistic asymptote.
+- **Delay priors** — length-4 vectors for each delay (`meanlog.mean`, `meanlog.sd`, `sdlog.mean`, `sdlog.sd`); see `?fit_bedcaster`.
 
-The `get_alerts()` function processes daily alerts data, converting from wide format (districts as columns) to long format suitable for analysis.
+```{r priors, eval = FALSE}
+delay_prior <- c(
+  meanlog.mean = log(5), meanlog.sd = 0.5,
+  sdlog.mean = log(2), sdlog.sd = 0.5
+)
 
-### Import Occupancy Data
-```{r import-occupancy, eval = FALSE}
-# Import ETU and isolation occupancy data
-etu_iso <- get_etu_iso()
-```
-
-The `get_etu_iso()` function imports daily bed occupancy data for treatment and isolation facilities.
-
-### Import Incidence Data
-```{r import-incidence, eval = FALSE}
-# Import incidence data (optional - can be calculated from linelist)
-incidence <- get_incidence()
-```
-
-## 3. Calculate Delay Distributions
-
-Delay distributions are crucial for understanding the time between different epidemiological events:
-
-```{r calculate-delays, eval = FALSE}
-# Calculate delay distributions from linelist data
-delays <- get_delays(ll)
-```
-
-The `get_delays()` function estimates delay distributions for:
-- Onset to ETU admission
-- ETU admission to survival/death
-- Onset to contact isolation
-- Lab turnaround time
-- Onset to case confirmation
-
-## 4. Merge Data Sources
-
-Combine all data sources into a single time series:
-
-```{r merge-data, eval = FALSE}
-# Merge all data sources
-data <- merge_data(ll, alerts, etu_iso, delays, incidence)
-```
-
-The `merge_data()` function:
-- Calculates daily incidence from linelist data
-- Aggregates alerts by date
-- Fills gaps in the time series
-- Creates case inflation factors for reporting delays
-- Converts to tsibble format for time series analysis
-
-## 5. Compile and Fit Stan Model
-
-### Compile the Stan Model
-```{r compile-model, eval = FALSE}
-# Compile the Stan model
-model <- stan_model(here("inst/stan/occupancy_model_nowcast.stan"))
-```
-
-### Fit the Model
-```{r fit-model, eval = FALSE}
-# Fit the model with custom priors
-results <- fit_stan(
-  data, model,
-  # Delay priors (log-mean, log-sd)
-  prior_onset_to_etu = delays$onset_to_etu,
-  prior_etu_to_survival = delays$etu_to_survival,
-  prior_etu_to_death = delays$etu_to_death,
-  prior_onset_to_iso = delays$onset_to_iso,
-  prior_iso_to_release = c(log(3), 0.5, 1.5, 0.5),
-  
-  # Case fatality rate prior (logit scale)
-  prior_cfr = c(qlogis(0.40), 0.3),
-  
-  # Isolation parameters
-  prior_prop_iso = c(qlogis(0.8), 0.8),
-  
-  # Alert parameters
-  prior_alerts_background = c(log(50), 0.4),
-  prior_alerts_per_case = c(log(10), 0.4),
-  
-  # Model settings
-  days_ahead = 7*6,  # 6 weeks ahead
-  n_iter = 1e3,      # 1000 iterations
-  n_chains = 3,      # 3 chains
-  n_knots = 20       # 20 knots for growth rate spline
+bedcast <- fit_bedcaster(
+  df,
+  as_of = as_of,
+  prior_onset_to_etu = delay_prior,
+  prior_cfr = c(qlogis(0.3), 0.25)
 )
 ```
 
-The `fit_stan()` function fits a hierarchical Bayesian model that:
-- Models case incidence using spline-based growth rates
-- Accounts for reporting delays using delay distributions
-- Links cases to bed occupancy through admission/discharge processes
-- Models alerts as a function of cases and background noise
-- Provides nowcasts and forecasts with uncertainty quantification
+Increase `n_iter` and `n_chains` for production runs and check convergence with `rstan::check_hmc_diagnostics(bedcast$fit)`.
 
-## 6. Visualize Results
+## Summaries and extraction
 
-### Model Fit Visualization
-```{r visualize-fit, eval = FALSE}
-# Create comprehensive model fit visualization
-p_fit <- vis_stan_fit(results, ylim_fact = 1.5)
-p_fit %>% save_plot("model_fit.png", height = 20)
+```{r summary, eval = FALSE}
+# Quantiles by date for a vector parameter
+summary(bedcast, "cases_nowcast_sim", alpha = 0.95)
+
+# Scalar parameter
+summary(bedcast, "cfr")
+
+# Long-format MCMC draws
+extract(bedcast, "cfr")
 ```
 
-The `vis_stan_fit()` function creates a comprehensive visualization showing:
-- Observed data as bar charts
-- Nowcasts and forecasts with credible intervals
-- Separate panels for cases, ETU occupancy, alerts, and isolation occupancy
-- Clear distinction between observed and projected data
+## Visualisation
 
-### Parameter Distributions
-```{r visualize-parameters, eval = FALSE}
-# Visualize parameter distributions and priors
-p_params <- vis_parameters(results, base_size = 14)
-p_params %>% save_plot("parameters.png", width = 21, height = 15.3)
+```{r plots, eval = FALSE}
+plot(bedcast, type = "fit")
+plot(bedcast, type = "parameters")
+plot(bedcast, type = "growthrate")
 ```
 
-The `vis_parameters()` function shows:
-- Posterior parameter distributions (informed by data)
-- Prior distributions (initial assumptions)
-- Comparison of how much the data informed each parameter
+`vis_bedcast_fit()` shows reported bars, nowcast/forecast ribbons, and median lines for each outcome. `vis_bedcast_parameters()` overlays prior (grey) and posterior (green) densities. `vis_bedcast_growthrate()` plots the spline-based daily growth rate with credible intervals.
 
-### Growth Rate Visualization
-```{r visualize-growth, eval = FALSE}
-# Visualize growth rate over time
-p_growth <- vis_growth_rate(results, base_size = 14)
-p_growth %>% save_plot("growth_rate.png")
-```
+## Best practices
 
-The `vis_growth_rate()` function shows:
-- Daily growth rate estimates over time
-- Uncertainty bounds from MCMC samples
-- Reference line at zero growth
+1. **Align `as_of` with your reporting snapshot** so delay weights match the data you present to decision-makers.
+2. **Set priors from epidemiological knowledge** — delays and CFR should reflect the outbreak context.
+3. **Use enough MCMC iterations** for stable intervals before operational use.
+4. **Review all outcomes** — poor fit on ETU or isolation may indicate data issues even when cases look reasonable.
 
-## 7. Extract and Analyze Results
+## Further reading
 
-### Summarize Parameter Estimates
-```{r summarize-results, eval = FALSE}
-# Get case estimates with credible intervals
-cases <- summarise_stan("log_cases_inflated", results, 
-                       probs = c(0.025, 0.5, 0.975))
-
-# Get ETU occupancy estimates
-etu_occ <- summarise_stan("etu_modelled", results)
-
-# Get case fatality rate
-cfr <- summarise_stan("cfr", results)
-```
-
-### Extract Raw Samples
-```{r extract-samples, eval = FALSE}
-# Extract raw MCMC samples for custom analysis
-cfr_samples <- extract_stan("cfr", results)
-growth_samples <- extract_stan("growth_rate_vec", results)
-```
-
-# Key Features
-
-## Bayesian Nowcasting
-The package implements Bayesian nowcasting methods that:
-- Account for reporting delays in case data
-- Provide uncertainty quantification
-- Generate both nowcasts and forecasts
-
-## Flexible Delay Modeling
-Delay distributions are estimated from data and can be:
-- Customized with different prior assumptions
-- Updated as new data becomes available
-- Used to inform case inflation factors
-
-## Comprehensive Visualization
-The package provides multiple visualization functions:
-- Model fit plots with credible intervals
-- Parameter distribution comparisons
-- Growth rate time series
-- Customizable plot saving
-
-## Stan Integration
-The package leverages Stan for:
-- Efficient MCMC sampling
-- Flexible model specification
-- High-quality posterior inference
-
-# Best Practices
-
-## Data Quality
-- Ensure consistent date formats across data sources
-- Check for missing values and outliers
-- Validate delay distributions make epidemiological sense
-
-## Model Tuning
-- Adjust priors based on domain knowledge
-- Increase MCMC iterations for better convergence
-- Use multiple chains to assess convergence
-
-## Visualization
-- Save plots in high resolution for publications
-- Customize plot aesthetics for your needs
-- Use appropriate credible interval levels
-
-# Conclusion
-
-The `bedcaster` package provides a comprehensive toolkit for bed occupancy forecasting during epidemics. The workflow is designed to be flexible and adaptable to different disease contexts while maintaining rigorous statistical methods.
-
-For more information on specific functions, see the package documentation and help files.
+- Package README: [github.com/finlaycampbell/bedcaster](https://github.com/finlaycampbell/bedcaster)
+- Function reference: `?fit_bedcaster`, `?vis_bedcast_fit`

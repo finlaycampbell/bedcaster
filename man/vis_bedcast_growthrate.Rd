@@ -7,7 +7,9 @@
 vis_bedcast_growthrate(bedcast, alpha = 0.95, base_size = 12)
 }
 \arguments{
-\item{bedcast}{A list containing the output from \code{fit_bedcast}.}
+\item{bedcast}{A \code{bedcast} object from \code{\link{fit_bedcaster}}.}
+
+\item{alpha}{Coverage of the credible interval (default: 0.95).}
 
 \item{base_size}{Numeric base font size for the plot (default: 12).}
 }
