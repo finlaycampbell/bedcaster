@@ -22,7 +22,7 @@ vis_bedcast_growthrate <- function(bedcast,
                                    base_size = 12) {
 
   q_lo <- paste0("q_", format(0.5 - alpha / 2, scientific = FALSE))
-  q_md <- paste0("q_", format(0.5, scientific = FALSE))
+  q_md <- "q_0.500"
   q_hi <- paste0("q_", format(0.5 + alpha / 2, scientific = FALSE))
 
   bind_rows(
