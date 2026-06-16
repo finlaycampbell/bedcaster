@@ -14,7 +14,7 @@
 #'
 #' @return A ggplot object showing the model fit visualization.
 #'
-#' @importFrom dplyr bind_rows group_by summarise mutate filter transmute
+#' @importFrom dplyr bind_rows group_by summarise mutate filter transmute if_else
 #' @importFrom purrr map_dfr map imap_dfr set_names pluck as_vector
 #' @importFrom ggplot2 ggplot aes geom_col geom_ribbon geom_line geom_vline
 #' @importFrom ggplot2 scale_linetype scale_alpha_continuous facet_wrap labs
@@ -95,7 +95,11 @@ vis_bedcast_fit <- function(results,
     ),
     .id = "what"
   ) |>
-    mutate(what = forcats::fct_inorder(what))
+    mutate(
+      what = forcats::fct_inorder(what),
+      # Stan uses -1000 as a missing sentinel; do not plot as observed data.
+      reported = if_else(reported == -1000L, NA_integer_, reported)
+    )
 
   # extract quantiles for ribbons
   ribbons <- map_dfr(

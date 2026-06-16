@@ -2,6 +2,11 @@
 
 ## Bug fixes
 
+- Restore original `deaths` values (including `NA`) in the returned `data` for
+  plots; Stan still receives `-1000` as a missing sentinel internally.
+- Apply the CFR prior on `cfr_logit` (logit scale), not on `cfr`, so the prior
+  mean matches `qlogis()` inputs when deaths are not in the likelihood.
+
 - Death likelihood is now skipped for days where `deaths` is `NA`, matching ETU,
   alerts, and isolation handling. Previously `NA` deaths were passed as `-1000`
   and still included in the vectorised death likelihood, causing sampler failures.

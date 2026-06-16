@@ -542,7 +542,7 @@ model {
   iso_to_release_sd ~ normal(prior_iso_to_release[3], prior_iso_to_release[4]);  
 
   // prior on cfr
-  cfr ~ normal(prior_cfr[1], prior_cfr[2]);
+  cfr_logit ~ normal(prior_cfr[1], prior_cfr[2]);
 
   // prior on prop isolated
   prop_iso_logit ~ normal(prior_prop_iso[1], prior_prop_iso[2]);

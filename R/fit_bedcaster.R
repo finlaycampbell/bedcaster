@@ -211,6 +211,7 @@ fit_bedcaster <- function(df, as_of,
     data,
     list(
       extrapolate_growthrate = isTRUE(extrapolate_growthrate),
+      deaths_reported = df$deaths,
       etu_reported = df$etu,
       alerts_reported = df$alerts,
       iso_reported = df$iso,
