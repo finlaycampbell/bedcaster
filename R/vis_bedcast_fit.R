@@ -88,19 +88,6 @@ vis_bedcast_fit <- function(results,
     alerts = "Daily alerts"
   )
 
-  deaths_fitted <- !is.null(results$data$deaths_n) &&
-    results$data$deaths_n > 0L
-
-  if (!deaths_fitted) {
-    data_vars <- data_vars[names(data_vars) != "deaths"]
-    fitting_vars <- fitting_vars[!grepl("^deaths_", fitting_vars)]
-  }
-
-  truncated_vars <- c(
-    "cases_truncated_sim",
-    if (deaths_fitted) "deaths_truncated_sim"
-  )
-
   # extract data
   data <- map_dfr(
     purrr::set_names(names(data_vars)),
@@ -152,7 +139,7 @@ vis_bedcast_fit <- function(results,
 
   # extract median estimates for lines
   mids <- map_dfr(
-    c(fitting_vars, truncated_vars),
+    c(fitting_vars, "cases_truncated_sim", "deaths_truncated_sim"),
     function(varname) {
       var <- str_split(varname, "_")[[1]][1]
       summary(results, varname, probs = 0.5) |>
