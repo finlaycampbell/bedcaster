@@ -47,6 +47,7 @@
 #' @param n_knots Integer specifying number of knots for the growth rate spline
 #'   (default: 15).
 #' @param n_iter Integer specifying number of MCMC iterations (default: 100).
+#' @param n_thin Integer specifying MCMC thinning interval (default: 1).
 #' @param alerts_background_window Integer specifying window size for background
 #'   alerts estimation (default: 14).
 #' @param n_chains Integer specifying number of MCMC chains (default: 1).
@@ -99,6 +100,7 @@ fit_bedcaster <- function(df, as_of,
                           n_proj = 28,
                           n_knots = 15,
                           n_iter = 100,
+                          n_thin = 1,
                           alerts_background_window = 28,
                           max_delay = 50,
                           n_chains = 1,
@@ -202,6 +204,7 @@ fit_bedcaster <- function(df, as_of,
     data = data,
     chains = n_chains,
     iter = n_iter,
+    thin = n_thin,
     verbose = TRUE,
     refresh = 10,
     init = init_fun
