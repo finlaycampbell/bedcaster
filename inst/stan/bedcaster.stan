@@ -56,6 +56,12 @@ data {
   // Number of reported dethas per day
   int deaths_reported[n_obs];
 
+  // Number of days with death data
+  int deaths_n;
+
+  // Indices of days with death data
+  int deaths_ind[deaths_n];
+
   // ETU occupancy by day
   int etu_reported[n_obs];
 
@@ -560,7 +566,10 @@ model {
   cases_reported ~ neg_binomial_2(cases_truncated_mu, cases_overdisp);
 
   // likelihood of reported deaths
-  deaths_reported ~ neg_binomial_2(deaths_truncated_mu, deaths_overdisp);
+  for (i in deaths_ind)
+    target += neg_binomial_2_lpmf(
+      deaths_reported[i] | deaths_truncated_mu[i], deaths_overdisp
+    );
 
   // likelihood of reported etu
   for(i in etu_ind)

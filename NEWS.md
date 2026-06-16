@@ -1,3 +1,11 @@
+# bedcaster (development version)
+
+## Bug fixes
+
+- Death likelihood is now skipped for days where `deaths` is `NA`, matching ETU,
+  alerts, and isolation handling. Previously `NA` deaths were passed as `-1000`
+  and still included in the vectorised death likelihood, causing sampler failures.
+
 # bedcaster 0.1.0
 
 Initial release.

@@ -5,7 +5,8 @@
 #' for reporting delays and provides nowcasts and forecasts of healthcare demand.
 #'
 #' @param df A data frame with columns `date`, `cases`, `deaths`, `etu`,
-#'   `alerts`, and `iso` (counts may be `NA` when not observed).
+#'   `alerts`, and `iso` (counts may be `NA` when not observed; `NA` deaths
+#'   exclude those days from the death likelihood).
 #' @param as_of Date used to compute reporting-delay weights (typically the
 #'   latest date in the surveillance system).
 #' @param prior_onset_to_reporting Named numeric vector passed to
@@ -148,12 +149,16 @@ fit_bedcaster <- function(df, as_of,
     alerts_background_ind
   )
 
+  deaths_ind <- as.integer(which(!is.na(df$deaths)))
+
   data <- list(
     n_obs = nrow(df),
     n_proj = n_proj,
     max_delay = max_delay,
     cases_reported = replace_na(df$cases, -1000),
     deaths_reported = replace_na(df$deaths, -1000),
+    deaths_n = length(deaths_ind),
+    deaths_ind = deaths_ind,
     etu_reported = replace_na(df$etu, -1000),
     etu_n = sum(!is.na(df$etu)),
     etu_ind = which(!is.na(df$etu)),
