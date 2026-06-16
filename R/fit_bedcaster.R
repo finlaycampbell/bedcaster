@@ -9,9 +9,9 @@
 #'   exclude those days from the death likelihood).
 #' @param as_of Date used to compute reporting-delay weights (typically the
 #'   latest date in the surveillance system).
-#' @param prior_onset_to_reporting Named numeric vector passed to
-#'   [distcrete::distcrete()] for the onset-to-reporting delay (`meanlog`,
-#'   `sdlog` on the log scale).
+#' @param prior_onset_to_reporting Named length-4 vector giving Normal priors on
+#'   onset-to-reporting log-mean and log-sd (`meanlog.mean`, `meanlog.sd`,
+#'   `sdlog.mean`, `sdlog.sd`).
 #' @param prior_onset_to_etu Named length-4 vector giving Normal priors on
 #'   onset-to-ETU log-mean and log-sd (`meanlog.mean`, `meanlog.sd`,
 #'   `sdlog.mean`, `sdlog.sd`).
@@ -61,14 +61,14 @@
 #'   }
 #'
 #' @importFrom splines bs
-#' @importFrom stats qlogis plogis
-#' @importFrom distcrete distcrete
+#' @importFrom stats qlogis plogis dlnorm
 #' @importFrom tidyr replace_na
 #' @export
 #'
 fit_bedcaster <- function(df, as_of,
                           prior_onset_to_reporting = c(
-                            meanlog.mean = 0, sdlog.mean = 5
+                            meanlog.mean = 0, meanlog.sd = 5,
+                            sdlog.mean = 0, sdlog.sd = 5
                           ),
                           prior_onset_to_etu = c(
                             meanlog.mean = 0, meanlog.sd = 5,
@@ -106,16 +106,16 @@ fit_bedcaster <- function(df, as_of,
                           n_chains = 1,
                           n_cores = 1) {
 
-  # specify discrete lognormal
-  onset_to_reporting <- distcrete(
-    name = "lnorm", interval = 1,
-    meanlog = prior_onset_to_reporting["meanlog.mean"],
-    sdlog = prior_onset_to_reporting["sdlog.mean"]
-  )
+  reporting_delay_days <- as.integer(as.numeric(as_of - df$date))
+  if (any(reporting_delay_days < 0L, na.rm = TRUE)) {
+    stop("as_of must be on or after all onset dates in df$date.")
+  }
 
-  # define probability of reporting for given delays
-  prop_cases_reported <- onset_to_reporting$p(
-    as.numeric(as_of - df$date)
+  prop_cases_reported <- .reporting_prop_at_delay(
+    reporting_delay_days,
+    meanlog = prior_onset_to_reporting["meanlog.mean"],
+    sdlog = prior_onset_to_reporting["sdlog.mean"],
+    max_delay = max_delay
   )
 
   ## generate spline matrix with buffer on either side to prevent extremes
@@ -170,6 +170,9 @@ fit_bedcaster <- function(df, as_of,
     iso_reported = replace_na(df$iso, -1000),
     iso_n = sum(!is.na(df$iso)),
     iso_ind = which(!is.na(df$iso)),
+    prior_onset_to_reporting = prior_onset_to_reporting[
+      c("meanlog.mean", "meanlog.sd", "sdlog.mean", "sdlog.sd")
+    ],
     prior_onset_to_etu = prior_onset_to_etu,
     prior_etu_to_survival = prior_etu_to_survival,
     prior_etu_to_death = prior_etu_to_death,
@@ -179,8 +182,7 @@ fit_bedcaster <- function(df, as_of,
     prior_prop_iso = prior_prop_iso,
     prior_alerts_background = prior_alerts_background,
     prior_alerts_per_case = prior_alerts_per_case,
-    log_prop_cases_reported = log(prop_cases_reported),
-    prop_deaths_reported = prop_cases_reported,
+    reporting_delay_days = reporting_delay_days,
     n_alerts_background = n_alerts_background,
     alerts_background_ind = alerts_background_ind,
     n_spline_param = nrow(spline),
@@ -192,7 +194,7 @@ fit_bedcaster <- function(df, as_of,
   init_fun <- function(...) {
     list(
       log_cases_missed =
-        log((1 + df$cases) / (data$prop_cases_reported) - 1)
+        log((1 + df$cases) / prop_cases_reported - 1)
     )
   }
 
@@ -229,4 +231,30 @@ fit_bedcaster <- function(df, as_of,
 
   return(out)
 
+}
+
+#' Discrete lognormal CDF for reporting-delay initial values.
+#'
+#' @param days Integer days from onset to reporting horizon.
+#' @param meanlog Lognormal log-mean.
+#' @param sdlog Lognormal log-SD.
+#' @param max_delay Maximum delay support (days).
+#' @keywords internal
+#' @noRd
+.reporting_prop_at_delay <- function(days, meanlog, sdlog, max_delay) {
+  pmf <- stats::dlnorm(seq_len(max_delay), meanlog = meanlog, sdlog = sdlog)
+  pmf <- pmf / sum(pmf)
+  vapply(
+    days,
+    function(w) {
+      if (w >= max_delay) {
+        return(1)
+      }
+      if (w <= 0L) {
+        return(1e-9)
+      }
+      sum(pmf[seq_len(w)])
+    },
+    numeric(1)
+  )
 }

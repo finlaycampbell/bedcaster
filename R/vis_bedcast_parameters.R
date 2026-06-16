@@ -24,6 +24,7 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
 
   # define plot labels
   labels <- c(
+    onset_to_reporting_logmean = "Delay onset to reporting",
     onset_to_etu_logmean = "Delay onset to hospitalisation",
     etu_to_survival_logmean = "Delay hospitalisation to survival",
     etu_to_death_logmean = "Delay hospitalisation to death",
@@ -36,6 +37,7 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
   )
 
   delay_prefixes <- c(
+    "onset_to_reporting",
     "onset_to_etu",
     "etu_to_survival",
     "etu_to_death",

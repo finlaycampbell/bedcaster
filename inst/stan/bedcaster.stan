@@ -90,6 +90,10 @@ data {
   int iso_ind[iso_n];
 
   // mean and sd of the normal prior on the logmean of the delay
+  // from onset to reporting (line-list entry)
+  vector[4] prior_onset_to_reporting;
+
+  // mean and sd of the normal prior on the logmean of the delay
   // from onset to hospitalisation
   vector[4] prior_onset_to_etu;
 
@@ -124,13 +128,8 @@ data {
   // number of alerts per case
   vector[2] prior_alerts_per_case;
 
-  // delay distribution from onset to case confirmation
-  // and entry into database
-  vector[n_obs] log_prop_cases_reported;
-
-  // delay distribution from onset to death confirmation
-  // and entry into database
-  vector[n_obs] prop_deaths_reported;
+  // days from symptom onset to as_of (reporting horizon) for each obs day
+  int<lower = 0> reporting_delay_days[n_obs];
 
   // number of alerts_background bins
   int n_alerts_background;
@@ -171,6 +170,10 @@ parameters {
 
   // proportion of alerts isolated
   real prop_iso_logit;
+
+  // logmean delay from onset to reporting (line-list entry)
+  real onset_to_reporting_logmean;
+  real<lower = 0> onset_to_reporting_sd;
 
   // logmean delay from onset to hospitalisation
   real onset_to_etu_logmean;
@@ -219,6 +222,33 @@ parameters {
 }
 
 transformed parameters {
+
+  // probability each onset day is already reported by as_of
+  vector[n_obs] log_prop_cases_reported;
+  vector[n_obs] prop_deaths_reported;
+
+  {
+    vector[max_delay] onset_to_reporting_pmf;
+    for (i in 1:max_delay) {
+      onset_to_reporting_pmf[i] = exp(
+        lognormal_lpdf(i | onset_to_reporting_logmean, onset_to_reporting_sd)
+      );
+    }
+    onset_to_reporting_pmf = onset_to_reporting_pmf ./ sum(onset_to_reporting_pmf);
+
+    for (i in 1:n_obs) {
+      if (reporting_delay_days[i] >= max_delay) {
+        prop_deaths_reported[i] = 1;
+      } else if (reporting_delay_days[i] <= 0) {
+        prop_deaths_reported[i] = 1e-9;
+      } else {
+        prop_deaths_reported[i] = sum(
+          onset_to_reporting_pmf[1:reporting_delay_days[i]]
+        );
+      }
+      log_prop_cases_reported[i] = log(prop_deaths_reported[i]);
+    }
+  }
 
   // GROWTHRATE CALCULATIONS
 
@@ -526,6 +556,13 @@ transformed parameters {
 model {
 
   // prior on delays
+  onset_to_reporting_logmean ~ normal(
+    prior_onset_to_reporting[1], prior_onset_to_reporting[2]
+  );
+  onset_to_reporting_sd ~ normal(
+    prior_onset_to_reporting[3], prior_onset_to_reporting[4]
+  );
+
   onset_to_etu_logmean ~ normal(prior_onset_to_etu[1], prior_onset_to_etu[2]);
   onset_to_etu_sd ~ normal(prior_onset_to_etu[3], prior_onset_to_etu[4]);
   
