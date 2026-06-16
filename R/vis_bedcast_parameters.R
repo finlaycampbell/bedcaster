@@ -9,14 +9,14 @@
 #'
 #' @return A ggplot object showing parameter distributions with priors overlaid.
 #'
-#' @importFrom dplyr group_by summarise mutate select if_else
+#' @importFrom dplyr group_by summarise mutate select bind_rows rename left_join
 #' @importFrom purrr map_dfr pmap set_names
 #' @importFrom tidyr unnest
 #' @importFrom ggplot2 ggplot aes geom_area geom_density facet_wrap labs
 #' @importFrom ggplot2 scale_y_continuous scale_x_continuous theme_minimal theme
-#' @importFrom ggplot2 element_rect
+#' @importFrom ggplot2 element_rect labeller
 #' @importFrom tibble tibble
-#' @importFrom stats qnorm dnorm plogis qlogis
+#' @importFrom stats qnorm dnorm plogis qlogis density rnorm
 #' @importFrom stringr str_remove
 #' @export
 #'
@@ -35,22 +35,44 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
     alerts_background = "Background number of alerts"
   )
 
-  # extract samples (delay log-means plotted on exp scale to match priors)
-  samples <- map_dfr(
-    set_names(names(labels)), ~ extract(results, .x), .id = "var"
-  ) |>
-    mutate(
-      value = if_else(
-        grepl("_logmean$", .data$var),
-        exp(.data$value),
-        .data$value
-      )
-    )
+  delay_prefixes <- c(
+    "onset_to_etu",
+    "etu_to_survival",
+    "etu_to_death",
+    "onset_to_iso",
+    "iso_to_release"
+  )
+
+  # delay posteriors on the lognormal mean: exp(meanlog + sdlog^2 / 2)
+  delay_samples <- map_dfr(delay_prefixes, function(prefix) {
+    ml <- extract(results, paste0(prefix, "_logmean"))
+    sl <- extract(results, paste0(prefix, "_sd"))
+    ml |>
+      rename(meanlog = value) |>
+      left_join(
+        sl |> rename(sdlog = value),
+        by = c("index", "iter")
+      ) |>
+      mutate(
+        var = paste0(prefix, "_logmean"),
+        value = exp(meanlog + sdlog^2 / 2)
+      ) |>
+      select(var, index, iter, value)
+  })
+
+  other_vars <- setdiff(names(labels), unique(delay_samples$var))
+  other_samples <- map_dfr(
+    set_names(other_vars),
+    ~ extract(results, .x),
+    .id = "var"
+  )
+
+  samples <- bind_rows(delay_samples, other_samples)
 
   # generate priors
   prior <- samples |>
     group_by(var) |>
-    summarise(minval = min(value), maxval = max(value)) |>
+    summarise(minval = min(value), maxval = max(value), .groups = "drop") |>
     mutate(
       prior = pmap(
         list(var, minval, maxval),
@@ -92,7 +114,7 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
 #' @noRd
 make_prior <- function(results, var, minval, maxval) {
   varname <- paste0("prior_", str_remove(var, "_logmean"))
-  prior <- results$data[[varname]][1:2]
+  prior <- results$data[[varname]]
   if (varname %in% c("prior_cfr", "prior_prop_iso")) {
     rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
     sq <- seq(
@@ -122,6 +144,16 @@ make_prior <- function(results, var, minval, maxval) {
       value = exp(sq),
       density = dnorm(sq, prior[1], prior[2]) / get_auc(prior, "exp")
     )
+  } else if (length(prior) >= 4L && grepl("_logmean$", var)) {
+    # Pathway delay: normal priors on meanlog and sdlog -> lognormal mean
+    n <- 2000L
+    ml <- rnorm(n, prior[1], prior[2])
+    sl <- pmax(rnorm(n, prior[3], prior[4]), 1e-6)
+    mean_nat <- exp(ml + sl^2 / 2)
+    from <- min(minval, stats::quantile(mean_nat, 0.001))
+    to <- max(maxval, stats::quantile(mean_nat, 0.999))
+    dens <- density(mean_nat, from = from, to = to)
+    tibble(value = dens$x, density = dens$y)
   } else {
     rnge <- qnorm(c(0.01, 0.99), prior[1], prior[2])
     sq <- seq(
