@@ -51,21 +51,40 @@ vis_bedcast_fit <- function(results,
       return(reported_max)
     }
 
-    # no reported data: anchor on latest central estimate in fit window
+    # No reported data: anchor on the latest fit-window central estimate.
+    # Use both sim and mu so NB noise does not collapse the cap (e.g. deaths).
+    fit_dates <- results$data$date_fit
+    anchors <- numeric(0)
+
     sim_par <- paste0(var, "_nowcast_sim")
     sim_med <- summary(results, sim_par, probs = 0.5)
-    fit_dates <- results$data$date_fit
     sim_fit <- sim_med[sim_med$index %in% fit_dates, , drop = FALSE]
 
-    if (nrow(sim_fit) == 0) {
-      return(max(sim_med$q_0.5, na.rm = TRUE))
+    if (nrow(sim_fit) > 0L) {
+      latest_idx <- which.max(sim_fit$index)
+      anchors <- c(anchors, sim_fit$q_0.5[latest_idx])
+      anchors <- c(anchors, max(sim_fit$q_0.5, na.rm = TRUE))
+    } else {
+      anchors <- c(anchors, max(sim_med$q_0.5, na.rm = TRUE))
     }
 
-    latest_idx <- which.max(sim_fit$index)
-    anchor <- sim_fit$q_0.5[latest_idx]
+    mu_par <- paste0(var, "_nowcast_mu")
+    mu_med <- tryCatch(
+      summary(results, mu_par, probs = 0.5),
+      error = function(e) NULL
+    )
+    if (!is.null(mu_med)) {
+      mu_fit <- mu_med[mu_med$index %in% fit_dates, , drop = FALSE]
+      if (nrow(mu_fit) > 0L) {
+        latest_idx <- which.max(mu_fit$index)
+        anchors <- c(anchors, mu_fit$q_0.5[latest_idx])
+        anchors <- c(anchors, max(mu_fit$q_0.5, na.rm = TRUE))
+      }
+    }
 
+    anchor <- max(anchors, na.rm = TRUE)
     if (!is.finite(anchor) || anchor <= 0) {
-      anchor <- max(sim_fit$q_0.5, na.rm = TRUE)
+      return(NA_real_)
     }
 
     anchor

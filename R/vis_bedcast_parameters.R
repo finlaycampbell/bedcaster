@@ -9,7 +9,7 @@
 #'
 #' @return A ggplot object showing parameter distributions with priors overlaid.
 #'
-#' @importFrom dplyr group_by summarise mutate select
+#' @importFrom dplyr group_by summarise mutate select if_else
 #' @importFrom purrr map_dfr pmap set_names
 #' @importFrom tidyr unnest
 #' @importFrom ggplot2 ggplot aes geom_area geom_density facet_wrap labs
@@ -35,10 +35,17 @@ vis_bedcast_parameters <- function(results, base_size = 12) {
     alerts_background = "Background number of alerts"
   )
 
-  # extract samples
+  # extract samples (delay log-means plotted on exp scale to match priors)
   samples <- map_dfr(
     set_names(names(labels)), ~ extract(results, .x), .id = "var"
-  )
+  ) |>
+    mutate(
+      value = if_else(
+        grepl("_logmean$", .data$var),
+        exp(.data$value),
+        .data$value
+      )
+    )
 
   # generate priors
   prior <- samples |>

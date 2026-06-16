@@ -555,6 +555,7 @@ model {
 
   // prior on overdispersion parameter of nbinom sampling distribution
   cases_overdisp_log ~ normal(2, 1);
+  deaths_overdisp_log ~ normal(2, 1);
   etu_overdisp_log ~ normal(0, 1);
   alerts_overdisp_log ~ normal(0, 1);
   iso_overdisp_log ~ normal(0, 1);

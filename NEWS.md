@@ -6,6 +6,12 @@
   plots; Stan still receives `-1000` as a missing sentinel internally.
 - Apply the CFR prior on `cfr_logit` (logit scale), not on `cfr`, so the prior
   mean matches `qlogis()` inputs when deaths are not in the likelihood.
+- Add a prior on `deaths_overdisp_log` (same as cases) so death simulations are
+  stable when deaths are not in the likelihood.
+- Plot delay posteriors on `exp(log-mean)` in `vis_bedcast_parameters()` to match
+  prior scale.
+- Improve y-axis capping in `vis_bedcast_fit()` when reported data are missing
+  by anchoring on both `*_nowcast_sim` and `*_nowcast_mu`.
 
 - Death likelihood is now skipped for days where `deaths` is `NA`, matching ETU,
   alerts, and isolation handling. Previously `NA` deaths were passed as `-1000`
